@@ -1,0 +1,248 @@
+﻿/*==========================
+    TOP HEADER
+==========================*/
+.top-header {
+    background: linear-gradient(90deg,#0b5ed7,#198754);
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+    .top-header a {
+        color: #fff;
+        text-decoration: none;
+        transition: .3s;
+    }
+
+        .top-header a:hover {
+            color: #ffe082;
+            text-decoration: none;
+        }
+
+    .top-header i {
+        margin-right: 5px;
+    }
+
+/*==========================
+        HEADER IMAGE
+==========================*/
+
+.header-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/*==========================
+        NAVBAR
+==========================*/
+
+.gov-navbar {
+    background: #0A4C7D;
+    box-shadow: 0 3px 8px rgba(0,0,0,.15);
+}
+
+    .gov-navbar .nav-link,
+    .gov-navbar .navbar-brand {
+        color: #fff !important;
+        font-weight: 400;
+        padding: 2px 18px;
+    }
+
+        .gov-navbar .nav-link:hover {
+            background: rgba(255,255,255,.15);
+            border-radius: 4px;
+        }
+
+    .gov-navbar .active > .nav-link {
+        background: rgba(255,255,255,.20);
+        border-radius: 4px;
+    }
+
+/*==========================
+        UTILITIES
+==========================*/
+
+.divider {
+    color: rgba(255,255,255,.5);
+    margin: 0 10px;
+}
+
+.text-tools a {
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    border-color: #fff;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+/*==================================
+       carousel and login section
+=====================================*/
+
+
+.login-section {
+    background: #f4f7fb;
+    padding: 25px;
+}
+
+.portal-slider {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+    .portal-slider img {
+        height: 520px;
+        object-fit: cover;
+    }
+
+    .portal-slider .carousel-caption {
+        background: rgba(0,0,0,.55);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 25px;
+        text-align: left;
+        color: #fff;
+    }
+
+    .portal-slider h2 {
+        font-weight: 600;
+    }
+
+    .portal-slider p {
+        font-size: 18px;
+    }
+
+/*==========================
+LOGIN CARD
+==========================*/
+
+.login-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.login-header {
+    background: #0A4C7D;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 12px;
+    text-align: center;
+}
+
+.login-body {
+    padding: 25px;
+    background: #fff;
+}
+
+    .login-body label {
+        font-weight: 600;
+        color: #0A4C7D;
+    }
+
+.form-control {
+    height: 46px;
+    border-radius: 6px;
+}
+
+    .form-control:focus {
+        border-color: #0A4C7D;
+        box-shadow: 0 0 5px rgba(10,76,125,.25);
+    }
+
+.login-btn {
+    background: #0A4C7D;
+    color: #fff;
+    border: none;
+    width: 100%;
+    height: 46px;
+    font-weight: 600;
+}
+
+    .login-btn:hover {
+        background: #06385d;
+        color: #fff;
+    }
+
+.captcha-box {
+    margin: 15px 0;
+}
+
+.btn-refresh {
+    cursor: pointer;
+    transition: .3s;
+}
+
+    .btn-refresh:hover {
+        transform: rotate(180deg);
+    }
+
+#imgCaptcha {
+    max-width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+
+.forgot-link {
+    font-size: 14px;
+}
+
+.error-msg {
+    color: red;
+    font-weight: 600;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
+
+
+/*=================================
+        FOOTER
+=================================*/
+
+.gov-footer {
+    background: linear-gradient(90deg, #0A4C7D 0%, #1565C0 50%, #1E88E5 100%);
+    color: #ffffff;
+    padding: 15px 0;
+    font-size: 15px;
+    border-top: 4px solid #ffc107;
+    box-shadow: 0 -2px 8px rgba(0,0,0,.15);
+}
+
+    .gov-footer p {
+        margin: 0;
+        line-height: 1.8;
+    }
+
+    .gov-footer a {
+        color: #FFD54F;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all .3s ease;
+    }
+
+        .gov-footer a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+.footer-divider {
+    color: rgba(255,255,255,.6);
+    margin: 0 8px;
+}
+
+
+
+
+
+

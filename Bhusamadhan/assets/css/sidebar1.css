@@ -1,0 +1,79 @@
+﻿/*=========================================================
+    GOVERNMENT WHITE SIDEBAR
+=========================================================*/
+
+.main-sidebar {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 40%, #eef2f7 100%) !important;
+    border-right: 1px solid #d6dbe1;
+}
+
+/* Brand */
+
+.brand-link {
+    background: linear-gradient(to right,#1eb089,#7c49ab) !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #d6dbe1;
+}
+
+/* User Panel */
+
+.user-panel {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+    .user-panel .info a {
+        color: #1b365d !important;
+        font-weight: 600;
+    }
+
+/* Menu */
+
+.nav-sidebar .nav-item > .nav-link {
+    color: #2c3e50 !important;
+    border-radius: 6px;
+    margin: 3px 8px;
+    transition: .3s;
+}
+
+/* Icons */
+
+.nav-sidebar .nav-icon {
+    color: #1565c0 !important;
+}
+
+/* Hover */
+
+.nav-sidebar .nav-item > .nav-link:hover {
+    background: #e3f2fd !important;
+    color: #0d47a1 !important;
+}
+
+/* Active */
+
+.nav-sidebar .nav-item > .nav-link.active {
+    background: linear-gradient(to right,#1eb089,#2ecc71) !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+    .nav-sidebar .nav-item > .nav-link.active i {
+        color: #ffffff !important;
+    }
+
+/* Treeview */
+
+.nav-treeview {
+    background: #f5f7fa;
+    border-radius: 6px;
+    margin: 2px 8px;
+}
+
+    .nav-treeview .nav-link {
+        color: #555 !important;
+        padding-left: 35px;
+    }
+
+        .nav-treeview .nav-link:hover {
+            background: #d6ecff !important;
+            color: #0d47a1 !important;
+        }

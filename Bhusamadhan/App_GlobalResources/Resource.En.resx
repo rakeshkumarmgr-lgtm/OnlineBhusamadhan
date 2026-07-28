@@ -1,0 +1,1023 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="MenuActsRules" xml:space="preserve">
+    <value>Rules &amp; Acts</value>
+  </data>
+  <data name="MenuAssetsDeclaration" xml:space="preserve">
+    <value>Assets &amp; Declaration</value>
+  </data>
+  <data name="MenuBoardMemberProfile" xml:space="preserve">
+    <value>Board Member Profile Pic</value>
+  </data>
+  <data name="MenuEntryReport" xml:space="preserve">
+    <value>Directorate Latter &amp; Circular</value>
+  </data>
+  <data name="MenuChairmanBOD" xml:space="preserve">
+    <value>List Of Chairman BOD</value>
+  </data>
+  <data name="MenuCirculars" xml:space="preserve">
+    <value>Circulars</value>
+  </data>
+  <data name="MenuComplaintEnquiry" xml:space="preserve">
+    <value>Complaint / Enquiry</value>
+  </data>
+  <data name="MenuContacts" xml:space="preserve">
+    <value>Helpdesk</value>
+  </data>
+  <data name="MenuContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="MenuCorrigendumInfo" xml:space="preserve">
+    <value>Corrigendum Info</value>
+  </data>
+  <data name="MenuDebard" xml:space="preserve">
+    <value>Debar/Debar Free /Blacklist Contractor</value>
+  </data>
+  <data name="MenuDepartmentReview" xml:space="preserve">
+    <value>Department Review notes</value>
+  </data>
+  <data name="MenuDevlopmentCommissioner" xml:space="preserve">
+    <value>Development Commissioner</value>
+  </data>
+  <data name="MenuDocuments" xml:space="preserve">
+    <value>Directorate Letters &amp; Circular</value>
+  </data>
+  <data name="MenueBookGallery" xml:space="preserve">
+    <value>eBook Gallery</value>
+  </data>
+  <data name="MenuGallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="MenuHome" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="MenuAadhar" xml:space="preserve">
+    <value>ER2. Verified Aadhar Report</value>
+  </data>
+  <data name="MenuListMD" xml:space="preserve">
+    <value>List Of M.D.</value>
+  </data>
+  <data name="MenuLotteryReport" xml:space="preserve">
+    <value>Lottery Report</value>
+  </data>
+  <data name="MenuMDBSBCCL" xml:space="preserve">
+    <value>MD BSBCCL</value>
+  </data>
+  <data name="MenuMediaNews" xml:space="preserve">
+    <value>Media / News</value>
+  </data>
+  <data name="MenuMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="MenuMinister" xml:space="preserve">
+    <value>Hon'ble  Minister</value>
+  </data>
+  <data name="MenuNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="MenuNotice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="MenuNotification" xml:space="preserve">
+    <value>Notification</value>
+  </data>
+  <data name="MenuObjective" xml:space="preserve">
+    <value>Goals &amp; Objectives</value>
+  </data>
+  <data name="MenuOfficeOrder" xml:space="preserve">
+    <value>Office Order</value>
+  </data>
+  <data name="MenuOfficerDetails" xml:space="preserve">
+    <value>Organisation Officer Details</value>
+  </data>
+  <data name="MenuOfficerProfile" xml:space="preserve">
+    <value>Officer Profile</value>
+  </data>
+  <data name="MenuPhotoGallery" xml:space="preserve">
+    <value>Photo Gallery</value>
+  </data>
+  <data name="MenuPIUReview" xml:space="preserve">
+    <value>PIU Review notes</value>
+  </data>
+  <data name="MenuProcedingReview" xml:space="preserve">
+    <value>Proceding Review notes</value>
+  </data>
+  <data name="MenuProfile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="MenuRateNegotiation" xml:space="preserve">
+    <value>Rate Negotiation</value>
+  </data>
+  <data name="MenuSentPFMS" xml:space="preserve">
+    <value>ER3. PFMS  Sent Beneficiary Report</value>
+  </data>
+  <data name="MenuRTI" xml:space="preserve">
+    <value>RTI</value>
+  </data>
+  <data name="MenuSeceretaryBCD" xml:space="preserve">
+    <value>Seceretary BCD</value>
+  </data>
+  <data name="MenuTender" xml:space="preserve">
+    <value>Tender</value>
+  </data>
+  <data name="MenuTenderDetails" xml:space="preserve">
+    <value>Tender Details</value>
+  </data>
+  <data name="MenuTenderProcedding" xml:space="preserve">
+    <value>Tender Procedding</value>
+  </data>
+  <data name="MenuTransferOrder" xml:space="preserve">
+    <value>Transfer Order</value>
+  </data>
+  <data name="MenuVideoGallery" xml:space="preserve">
+    <value>Video Gallery</value>
+  </data>
+  <data name="Homeabt" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="HomeabtDetail" xml:space="preserve">
+    <value>Old Age Pension</value>
+  </data>
+  <data name="ConAdd" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ConAddDetails" xml:space="preserve">
+    <value>New Secretariat, Vikas Bhawan, Bailey Rd, Patna - 800015</value>
+  </data>
+  <data name="ConEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ConFax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="ConPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="FCopyright" xml:space="preserve">
+    <value>© 2018 All Rights Reserved. Software Solutions Provided by NIC (BSU) </value>
+  </data>
+  <data name="logo" xml:space="preserve">
+    <value>Vridhjan Portal</value>
+  </data>
+  <data name="MenuFeedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="MenuHindi" xml:space="preserve">
+    <value>हिंदी</value>
+  </data>
+  <data name="MenuISO" xml:space="preserve">
+    <value>Social Welfare Dept. ( Directorate of Social Security )</value>
+  </data>
+  <data name="MenuLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="MenuProjectView" xml:space="preserve">
+    <value>Project View</value>
+  </data>
+  <data name="MenuScreenReader" xml:space="preserve">
+    <value>Screen Reader</value>
+  </data>
+  <data name="MenuSitemap" xml:space="preserve">
+    <value>Sitemap</value>
+  </data>
+  <data name="MenuSkey" xml:space="preserve">
+    <value>Shortcuts Keys</value>
+  </data>
+  <data name="MenuSkip" xml:space="preserve">
+    <value>Skip to main content</value>
+  </data>
+  <data name="MenuTextSize" xml:space="preserve">
+    <value>Text Size</value>
+  </data>
+  <data name="MenuTheme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="MenuUndertaking" xml:space="preserve">
+    <value>(A Government of Bihar )</value>
+  </data>
+  <data name="TextMax" xml:space="preserve">
+    <value>A+</value>
+  </data>
+  <data name="TextMin" xml:space="preserve">
+    <value>A-</value>
+  </data>
+  <data name="TextResize" xml:space="preserve">
+    <value>A</value>
+  </data>
+  <data name="ActionReadMore" xml:space="preserve">
+    <value>Read More</value>
+  </data>
+  <data name="CmConTent" xml:space="preserve">
+    <value>Hon'ble Chief Minister, Bihar</value>
+  </data>
+  <data name="CMHeading" xml:space="preserve">
+    <value>Shri Nitish Kumar</value>
+  </data>
+  <data name="MinsContent" xml:space="preserve">
+    <value>Hon'ble Minister, Building Construction Dept.</value>
+  </data>
+  <data name="MinsHeading" xml:space="preserve">
+    <value>Shri Maheshwar Hazari</value>
+  </data>
+  <data name="ImpLinkAcc" xml:space="preserve">
+    <value>Public Financial Management System - PFMS</value>
+  </data>
+  <data name="ImpLinkCentral" xml:space="preserve">
+    <value>Social Welfare Department</value>
+  </data>
+  <data name="ImpLinkEleave" xml:space="preserve">
+    <value>Social Security Pension Management Information System (SSPMIS )</value>
+  </data>
+  <data name="ImpLinkGov" xml:space="preserve">
+    <value>Grievance</value>
+  </data>
+  <data name="ImpLinkPro" xml:space="preserve">
+    <value>Project Management Information System</value>
+  </data>
+  <data name="ImpLinkRoad" xml:space="preserve">
+    <value>e - Suvidha</value>
+  </data>
+  <data name="ImpLinkUrban" xml:space="preserve">
+    <value>e - labharthi</value>
+  </data>
+  <data name="TextFeature" xml:space="preserve">
+    <value>Features</value>
+  </data>
+  <data name="TextFeedbackContent" xml:space="preserve">
+    <value>Your feedback is important to us. Please submit your queries, suggestions or comments in the hereunder feedback box</value>
+  </data>
+  <data name="TextFeedbackHeading" xml:space="preserve">
+    <value>Send us your feedback, comments and suggestions !</value>
+  </data>
+  <data name="TextImportant" xml:space="preserve">
+    <value>Important</value>
+  </data>
+  <data name="TextKey" xml:space="preserve">
+    <value>CSR</value>
+  </data>
+  <data name="Textlatest" xml:space="preserve">
+    <value>Latest</value>
+  </data>
+  <data name="TextLink" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="TextNews" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="MD1" xml:space="preserve">
+    <value>Shri Sudhir Kumar</value>
+  </data>
+  <data name="MD1FY" xml:space="preserve">
+    <value>26-04-2011</value>
+  </data>
+  <data name="MD1TY" xml:space="preserve">
+    <value>31-08-2012</value>
+  </data>
+  <data name="MD2" xml:space="preserve">
+    <value>Shri Ganga Kumar</value>
+  </data>
+  <data name="MD2FY" xml:space="preserve">
+    <value>24-09-2012</value>
+  </data>
+  <data name="MD2TY" xml:space="preserve">
+    <value>10-04-2016</value>
+  </data>
+  <data name="MD3" xml:space="preserve">
+    <value>Shri Amrit Lal Meena</value>
+  </data>
+  <data name="MD3FY" xml:space="preserve">
+    <value>11-04-2016</value>
+  </data>
+  <data name="MD3TY" xml:space="preserve">
+    <value>31-07-2017</value>
+  </data>
+  <data name="MD4" xml:space="preserve">
+    <value>Shri Saket Kumar</value>
+  </data>
+  <data name="MD4FY" xml:space="preserve">
+    <value>01-08-2017</value>
+  </data>
+  <data name="MD4TY" xml:space="preserve">
+    <value>16-08-2018</value>
+  </data>
+  <data name="MD5" xml:space="preserve">
+    <value>Shri Amit Kumar</value>
+  </data>
+  <data name="MD5FY" xml:space="preserve">
+    <value>16-08-2018</value>
+  </data>
+  <data name="HomeabtDetailDis" xml:space="preserve">
+    <value>Divyang</value>
+  </data>
+  <data name="TextArchive" xml:space="preserve">
+    <value>Visit to archive tender</value>
+  </data>
+  <data name="TextPublishing" xml:space="preserve">
+    <value>Publishing Date</value>
+  </data>
+  <data name="TextTender" xml:space="preserve">
+    <value>Tender Submit Date</value>
+  </data>
+  <data name="TxtTender" xml:space="preserve">
+    <value>Current Tender</value>
+  </data>
+  <data name="TextAssestFile" xml:space="preserve">
+    <value>Asset Declaration File</value>
+  </data>
+  <data name="TextDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="TextDegi" xml:space="preserve">
+    <value>DESIGNATION</value>
+  </data>
+  <data name="TextDocument" xml:space="preserve">
+    <value>Document No</value>
+  </data>
+  <data name="TextName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TextSl" xml:space="preserve">
+    <value>Sl.</value>
+  </data>
+  <data name="TextSubject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="Mnth1" xml:space="preserve">
+    <value>Jan</value>
+  </data>
+  <data name="Mnth10" xml:space="preserve">
+    <value>Oct</value>
+  </data>
+  <data name="Mnth11" xml:space="preserve">
+    <value>Nov</value>
+  </data>
+  <data name="Mnth12" xml:space="preserve">
+    <value>Dec</value>
+  </data>
+  <data name="Mnth2" xml:space="preserve">
+    <value>Feb</value>
+  </data>
+  <data name="Mnth3" xml:space="preserve">
+    <value>Mar</value>
+  </data>
+  <data name="Mnth4" xml:space="preserve">
+    <value>Apr</value>
+  </data>
+  <data name="Mnth5" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="Mnth6" xml:space="preserve">
+    <value>Jun</value>
+  </data>
+  <data name="Mnth7" xml:space="preserve">
+    <value>Jul</value>
+  </data>
+  <data name="Mnth8" xml:space="preserve">
+    <value>Aug</value>
+  </data>
+  <data name="Mnth9" xml:space="preserve">
+    <value>Sep</value>
+  </data>
+  <data name="TxtConsultancy" xml:space="preserve">
+    <value>Consultancy</value>
+  </data>
+  <data name="TxtDDate" xml:space="preserve">
+    <value>Debar Date</value>
+  </data>
+  <data name="TxtDFDate" xml:space="preserve">
+    <value>Debar Free Date</value>
+  </data>
+  <data name="TxtDur" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="TxtEoffice" xml:space="preserve">
+    <value>E-Office</value>
+  </data>
+  <data name="TxtEPC" xml:space="preserve">
+    <value>EPC</value>
+  </data>
+  <data name="TxtFDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="TxtFireScheme" xml:space="preserve">
+    <value>Fire Services</value>
+  </data>
+  <data name="TxtNContractor" xml:space="preserve">
+    <value>Name of Contractor</value>
+  </data>
+  <data name="TxtPMIS" xml:space="preserve">
+    <value>PMIS</value>
+  </data>
+  <data name="txtTDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="MenuOthers" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCommercial" xml:space="preserve">
+    <value>Commercial</value>
+  </data>
+  <data name="TxtEOI" xml:space="preserve">
+    <value>EOI</value>
+  </data>
+  <data name="TxtEOIF" xml:space="preserve">
+    <value>Expression of Interest (EOI)</value>
+  </data>
+  <data name="txtFree" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="txtNIT" xml:space="preserve">
+    <value>NIT</value>
+  </data>
+  <data name="txtNITF" xml:space="preserve">
+    <value>Notice Inviting Tender (NIT)</value>
+  </data>
+  <data name="txtQOI" xml:space="preserve">
+    <value>QOT</value>
+  </data>
+  <data name="txtQOIF" xml:space="preserve">
+    <value>Quotation (QOT)</value>
+  </data>
+  <data name="txtRFP" xml:space="preserve">
+    <value>RFP</value>
+  </data>
+  <data name="txtRFPF" xml:space="preserve">
+    <value>Request For Proposal (RFP)</value>
+  </data>
+  <data name="txtScreenBold" xml:space="preserve">
+    <value>Following table lists the information about different screen readers:</value>
+  </data>
+  <data name="txtScreenGo" xml:space="preserve">
+    <value>System Access To Go</value>
+  </data>
+  <data name="txtScreenhal" xml:space="preserve">
+    <value>Hal</value>
+  </data>
+  <data name="txtScreenJAWS" xml:space="preserve">
+    <value>JAWS</value>
+  </data>
+  <data name="txtScreenNova" xml:space="preserve">
+    <value>Supernova</value>
+  </data>
+  <data name="txtScreenNVDA" xml:space="preserve">
+    <value>Non Visual Desktop Access (NVDA)</value>
+  </data>
+  <data name="txtScreenSAFA" xml:space="preserve">
+    <value>Screen Access For All (SAFA)</value>
+  </data>
+  <data name="txtScreenText" xml:space="preserve">
+    <value>The Department of Information Technology website complies with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 level AA. This will enable people with visual impairments access the website using assistive technologies, such as screen readers. The information of the website is accessible with different screen readers, such as JAWS.</value>
+  </data>
+  <data name="txtScreenthu" xml:space="preserve">
+    <value>Thunder</value>
+  </data>
+  <data name="txtScreenwindows" xml:space="preserve">
+    <value>Window-Eyes</value>
+  </data>
+  <data name="TxtShortText" xml:space="preserve">
+    <value>The Department of Information Technology website complies with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 level AA. This will view and explore Web pages using shortcut keys.</value>
+  </data>
+  <data name="txtShortTextBold" xml:space="preserve">
+    <value>Following table lists the information about different shortcut keys:</value>
+  </data>
+  <data name="MenuOnlineUser" xml:space="preserve">
+    <value>Online Visitors</value>
+  </data>
+  <data name="TextUpdate" xml:space="preserve">
+    <value>Updated on</value>
+  </data>
+  <data name="HeadAadhar" xml:space="preserve">
+    <value>Aadhar Valid/Invalid/Name Match With Aadhar/Name Not Match With Aadhar Summry</value>
+  </data>
+  <data name="MenuBenLst" xml:space="preserve">
+    <value>ER5. Beneficiary List District / Block / Pachayat Wise</value>
+  </data>
+  <data name="HeadPFMS" xml:space="preserve">
+    <value>District Wise Beneficiary Count</value>
+  </data>
+  <data name="TxtSNo" xml:space="preserve">
+    <value>S.No.</value>
+  </data>
+  <data name="HeadBenList" xml:space="preserve">
+    <value>District Wise Beneficiary Count</value>
+  </data>
+  <data name="MenuPaymentRpt" xml:space="preserve">
+    <value>Payment Report</value>
+  </data>
+  <data name="MenuPR1" xml:space="preserve">
+    <value>PR1.  Check Beneficiary Payment History</value>
+  </data>
+  <data name="MenuPR2" xml:space="preserve">
+    <value>PR2.  Beneficiary Status List</value>
+  </data>
+  <data name="MenuPR3" xml:space="preserve">
+    <value>PR3.  Check Beneficiary Status</value>
+  </data>
+  <data name="HeadBenStatus" xml:space="preserve">
+    <value>Check the beneficiary's payment status</value>
+  </data>
+  <data name="BtnReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="BtnSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="HeadBenStatuslist" xml:space="preserve">
+    <value>Beneficiary List With Status</value>
+  </data>
+  <data name="HeadChkPayment" xml:space="preserve">
+    <value>Check the beneficiary's payment status</value>
+  </data>
+  <data name="txtBlk" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="txtDist" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="txtfinyear" xml:space="preserve">
+    <value>Financial Year</value>
+  </data>
+  <data name="txtpan" xml:space="preserve">
+    <value>Panchayat</value>
+  </data>
+  <data name="txtschm" xml:space="preserve">
+    <value>Scheme Name</value>
+  </data>
+  <data name="txtStatusRpt" xml:space="preserve">
+    <value>Status Report</value>
+  </data>
+  <data name="txtStauts" xml:space="preserve">
+    <value>Old Age pensioners Status Report</value>
+  </data>
+  <data name="LockBen" xml:space="preserve">
+    <value>Locked Beneficiary</value>
+  </data>
+  <data name="PaymentDone" xml:space="preserve">
+    <value>Payment Done</value>
+  </data>
+  <data name="PFMSAccp" xml:space="preserve">
+    <value>PFMS Accepted</value>
+  </data>
+  <data name="TotlBenCount" xml:space="preserve">
+    <value>Total Beneficiary</value>
+  </data>
+  <data name="LogoDis" xml:space="preserve">
+    <value>Divyang Portal</value>
+  </data>
+  <data name="txtdisStatus" xml:space="preserve">
+    <value>Divyang pensioners Status Report</value>
+  </data>
+  <data name="BtnApply" xml:space="preserve">
+    <value>Apply Now</value>
+  </data>
+  <data name="btnclick" xml:space="preserve">
+    <value>Click Here</value>
+  </data>
+  <data name="LstofOldAge" xml:space="preserve">
+    <value>List of Old Age Homes</value>
+  </data>
+  <data name="TxtApply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="TxtDwnForm" xml:space="preserve">
+    <value>Download Pension Form</value>
+  </data>
+  <data name="TxtDwonload" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="TxtOldAge" xml:space="preserve">
+    <value>Old Age Homes</value>
+  </data>
+  <data name="TxtOnlineApply" xml:space="preserve">
+    <value>Online Apply For Pension</value>
+  </data>
+  <data name="txtdiscrt" xml:space="preserve">
+    <value>Disability Certificate</value>
+  </data>
+  <data name="txtregngo" xml:space="preserve">
+    <value>Registered NGO</value>
+  </data>
+  <data name="txtregwith" xml:space="preserve">
+    <value>Join Us</value>
+  </data>
+  <data name="txtregwithlink1" xml:space="preserve">
+    <value>Rehab Professionals (Bihar)</value>
+  </data>
+  <data name="txtregwithlink2" xml:space="preserve">
+    <value>Volunteers (Bihar)</value>
+  </data>
+  <data name="txtsignlan" xml:space="preserve">
+    <value>Sign Language</value>
+  </data>
+  <data name="txtsignlanvideo" xml:space="preserve">
+    <value>Sign Language Videos</value>
+  </data>
+  <data name="Menuassistivedevices" xml:space="preserve">
+    <value>Assistive Devices</value>
+  </data>
+  <data name="Menulistofsuppliers" xml:space="preserve">
+    <value>list of suppliers</value>
+  </data>
+  <data name="TextDetail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="TextHeading" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="Txtcrtificatelnk1" xml:space="preserve">
+    <value>What is Disability Certificate</value>
+  </data>
+  <data name="Txtcrtificatelnk2" xml:space="preserve">
+    <value>Status of Issuance of Disability Certificate</value>
+  </data>
+  <data name="txtngoreg" xml:space="preserve">
+    <value>List of non-governmental non-governmental organizations registered by the office of the Commissioner of Disability (Divayanjan)</value>
+  </data>
+  <data name="MenuISOdis" xml:space="preserve">
+    <value>Social Welfare Dept. ( Directorate of Divyangjan Empowerment )</value>
+  </data>
+  <data name="txtinfo" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="txtstory" xml:space="preserve">
+    <value>Story</value>
+  </data>
+  <data name="txtsuccess" xml:space="preserve">
+    <value>Success </value>
+  </data>
+  <data name="txtusfull" xml:space="preserve">
+    <value>Useful Links</value>
+  </data>
+  <data name="applyoldagefrm" xml:space="preserve">
+    <value> Online Registration for Mukhyamanti Vriddhjan Pension Yojna (MVPY).</value>
+  </data>
+  <data name="LogoEdu" xml:space="preserve">
+    <value>Education Department</value>
+  </data>
+  <data name="Deptname" xml:space="preserve">
+    <value>Government of Bihar</value>
+  </data>
+  <data name="txtcomplaint" xml:space="preserve">
+    <value>Apply for the Chief Minister Balika (Graduate) Incentive Scheme 2019.</value>
+  </data>
+  <data name="txtonliecomplaint" xml:space="preserve">
+    <value>Apply for the Chief Minister Girl Child (Secondary + 2) Incentive Scheme 2019.</value>
+  </data>
+  <data name="MenuOverview" xml:space="preserve">
+    <value>Overview</value>
+  </data>
+  <data name="MenuUn1" xml:space="preserve">
+    <value>P.U</value>
+  </data>
+  <data name="MenuUn2" xml:space="preserve">
+    <value>M.U</value>
+  </data>
+  <data name="MenuUn3" xml:space="preserve">
+    <value>V.K.S.U</value>
+  </data>
+  <data name="MenuUn4" xml:space="preserve">
+    <value>L.N.M.U</value>
+  </data>
+  <data name="MenuUn5" xml:space="preserve">
+    <value>J.P.U</value>
+  </data>
+  <data name="MenuUn6" xml:space="preserve">
+    <value>B.R.A.B.U</value>
+  </data>
+  <data name="MenuUn7" xml:space="preserve">
+    <value>K.S.D.S.U</value>
+  </data>
+  <data name="MenuUn8" xml:space="preserve">
+    <value>T.M.B.U</value>
+  </data>
+  <data name="MenuHistory" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Menukeycontact" xml:space="preserve">
+    <value>HelpDesk</value>
+  </data>
+  <data name="Menuorg" xml:space="preserve">
+    <value>Organization Structure</value>
+  </data>
+  <data name="Menurevision" xml:space="preserve">
+    <value>Revision Notes</value>
+  </data>
+  <data name="MenuRptCard" xml:space="preserve">
+    <value>Bihar Report Card 2015</value>
+  </data>
+  <data name="MenuTxtbook" xml:space="preserve">
+    <value>University Folders</value>
+  </data>
+  <data name="MenuUn10" xml:space="preserve">
+    <value>Nalanda Open University</value>
+  </data>
+  <data name="MenuUn11" xml:space="preserve">
+    <value>Chanakya National Law University</value>
+  </data>
+  <data name="MenuUn12" xml:space="preserve">
+    <value>Aryabhat Knowledge University</value>
+  </data>
+  <data name="MenuUn13" xml:space="preserve">
+    <value>Nalanda Internation University</value>
+  </data>
+  <data name="MenuUn14" xml:space="preserve">
+    <value>MMH Arabic &amp; Persian University</value>
+  </data>
+  <data name="MenuUn9" xml:space="preserve">
+    <value>B.N.M.U</value>
+  </data>
+  <data name="MnuAdministration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="MnuHEdu" xml:space="preserve">
+    <value>Higher Education</value>
+  </data>
+  <data name="MnuMassEdu" xml:space="preserve">
+    <value>Mass Education</value>
+  </data>
+  <data name="MnuMidaymeal" xml:space="preserve">
+    <value>Mid Day Meal</value>
+  </data>
+  <data name="MnuPD" xml:space="preserve">
+    <value>Planning Directorate</value>
+  </data>
+  <data name="MnuPEdu" xml:space="preserve">
+    <value>Primary Education</value>
+  </data>
+  <data name="MnuRD" xml:space="preserve">
+    <value>Resarch &amp; Training</value>
+  </data>
+  <data name="MnuSEdu" xml:space="preserve">
+    <value>Secondary Education</value>
+  </data>
+  <data name="txtLetterType" xml:space="preserve">
+    <value>Letter Type</value>
+  </data>
+  <data name="txtPrimaryEducation" xml:space="preserve">
+    <value>Primary Education</value>
+  </data>
+  <data name="txtDirectorate" xml:space="preserve">
+    <value>Directorate</value>
+  </data>
+  <data name="MnuHigher" xml:space="preserve">
+    <value>Higher</value>
+  </data>
+  <data name="MnuPrimary" xml:space="preserve">
+    <value>Primary</value>
+  </data>
+  <data name="MnuResearch" xml:space="preserve">
+    <value>Research &amp; Training</value>
+  </data>
+  <data name="MnuSecondary" xml:space="preserve">
+    <value>Secondary</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>मास</value>
+  </data>
+  <data name="TextLetterNo" xml:space="preserve">
+    <value>Letter No</value>
+  </data>
+  <data name="MenuUn91" xml:space="preserve">
+    <value>Academies</value>
+  </data>
+  <data name="txtkeycont" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtbalkbalika" xml:space="preserve">
+    <value>Apply for Chief Minister Child / Girl Child (10th Passed) Incentive Scheme 2019</value>
+  </data>
+  <data name="txtmedaha" xml:space="preserve">
+    <value>Apply for Intermediate [+2] female students passed from first and second class of SC, ST, Chief Minister Medhavruti Yojana 2019</value>
+  </data>
+  <data name="txtbstpracts" xml:space="preserve">
+    <value>Best Practices</value>
+  </data>
+  <data name="txtcmfcell" xml:space="preserve">
+    <value>CFMS Cell</value>
+  </data>
+  <data name="txtnewclip" xml:space="preserve">
+    <value>News and Clippings</value>
+  </data>
+  <data name="txtpay" xml:space="preserve">
+    <value>Pay Verification Cell</value>
+  </data>
+  <data name="txtstdcrd" xml:space="preserve">
+    <value>Bihar Student Credit Card Scheme</value>
+  </data>
+  <data name="txtTEMIS" xml:space="preserve">
+    <value>TEMIS</value>
+  </data>
+  <data name="txttndr" xml:space="preserve">
+    <value>Tenders</value>
+  </data>
+  <data name="txtboard" xml:space="preserve">
+    <value>Board</value>
+  </data>
+  <data name="txtnotice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="txtLetterDt" xml:space="preserve">
+    <value>Letter Date</value>
+  </data>
+  <data name="MenuUn15" xml:space="preserve">
+    <value>Munger University</value>
+  </data>
+  <data name="MenuUn16" xml:space="preserve">
+    <value>Patliputra University</value>
+  </data>
+  <data name="MenuUn17" xml:space="preserve">
+    <value>Purnea University</value>
+  </data>
+  <data name="txtScan1" xml:space="preserve">
+    <value>Scan the QR code using your mobile for immediate access to CMRF website.</value>
+  </data>
+  <data name="txtquickDonate" xml:space="preserve">
+    <value>Quick Donate</value>
+  </data>
+  <data name="txtReliefFund" xml:space="preserve">
+    <value>Into CM's Relief Fund</value>
+  </data>
+  <data name="txtScan2" xml:space="preserve">
+    <value>code using your mobile for immediate access to CMRF website.</value>
+  </data>
+  <data name="txtasset" xml:space="preserve">
+    <value>Asset Declaration</value>
+  </data>
+  <data name="MenuAsha" xml:space="preserve">
+    <value>ASHA Dawa Prapatra</value>
+  </data>
+  <data name="MenuAshaFacilitator" xml:space="preserve">
+    <value>ASHA Facilitator Dawa Prapatra</value>
+  </data>
+  <data name="MenuDepartmentLogin" xml:space="preserve">
+    <value>Department Login</value>
+  </data>
+  <data name="MenuHelpdesk" xml:space="preserve">
+    <value>Helpdesk</value>
+  </data>
+  <data name="MenuImportantNotice" xml:space="preserve">
+    <value>Important Notice</value>
+  </data>
+  <data name="MenuMobileApp" xml:space="preserve">
+    <value>Download Mobile App</value>
+  </data>
+  <data name="MenuRequest" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="MenuRequestQuery" xml:space="preserve">
+    <value>Request For Query</value>
+  </data>
+  <data name="MenuRequestResponse" xml:space="preserve">
+    <value>Request Query Response</value>
+  </data>
+  <data name="MenuRpt" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="MenuRptAshaActivity" xml:space="preserve">
+    <value>ASHA Activity Status</value>
+  </data>
+  <data name="MenuRptAshaFacActivity" xml:space="preserve">
+    <value>ASHA Facilitator Activity Status</value>
+  </data>
+  <data name="MenuRptAshaFacLogin" xml:space="preserve">
+    <value>ASHA Facilitator Login Status</value>
+  </data>
+  <data name="MenuRptAshaLogin" xml:space="preserve">
+    <value>ASHA Login Status</value>
+  </data>
+  <data name="MenuRptCons" xml:space="preserve">
+    <value>Consolidated Reports</value>
+  </data>
+  <data name="MenuUserManual" xml:space="preserve">
+    <value>User Manual</value>
+  </data>
+  <data name="TxtNic" xml:space="preserve">
+    <value>National Informatics Centre (NIC)</value>
+  </data>
+  <data name="MenuRptAshaActivityProgress" xml:space="preserve">
+    <value>Asha Activity Progress Report</value>
+  </data>
+</root>

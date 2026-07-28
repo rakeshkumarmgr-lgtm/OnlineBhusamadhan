@@ -1,0 +1,975 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MenuAbout" xml:space="preserve">
+    <value>हमारे बारे में</value>
+  </data>
+  <data name="MenuActsRules" xml:space="preserve">
+    <value>अधिनियम / नियम</value>
+  </data>
+  <data name="MenuAssetsDeclaration" xml:space="preserve">
+    <value>संपत्ति और घोषणा</value>
+  </data>
+  <data name="MenuBoardMemberProfile" xml:space="preserve">
+    <value>बोर्ड निदेशकों की प्रोफाइल तस्वीर</value>
+  </data>
+  <data name="MenuEntryReport" xml:space="preserve">
+    <value>निदेशालय लैटर एंड सर्कुलर</value>
+  </data>
+  <data name="MenuChairmanBOD" xml:space="preserve">
+    <value>अध्यक्ष की सूची</value>
+  </data>
+  <data name="MenuCirculars" xml:space="preserve">
+    <value>परिपत्र</value>
+  </data>
+  <data name="MenuComplaintEnquiry" xml:space="preserve">
+    <value>शिकायत / पूछताछ</value>
+  </data>
+  <data name="MenuContacts" xml:space="preserve">
+    <value>संपर्क करें</value>
+  </data>
+  <data name="MenuContactUs" xml:space="preserve">
+    <value>हमसे संपर्क करें</value>
+  </data>
+  <data name="MenuCorrigendumInfo" xml:space="preserve">
+    <value>शुद्धिपत्र सूचना</value>
+  </data>
+  <data name="MenuDebard" xml:space="preserve">
+    <value>डिबार/डिबार मुक्त संवेदको की सूची</value>
+  </data>
+  <data name="MenuDepartmentReview" xml:space="preserve">
+    <value>विभाग समीक्षा टिप्पणियाँ</value>
+  </data>
+  <data name="MenuDevlopmentCommissioner" xml:space="preserve">
+    <value>विकास आयुक्त की ओर से संदेश</value>
+  </data>
+  <data name="MenuDocuments" xml:space="preserve">
+    <value>निदेशालय पत्र और परिपत्र</value>
+  </data>
+  <data name="MenuGallery" xml:space="preserve">
+    <value>गैलरी</value>
+  </data>
+  <data name="MenuHome" xml:space="preserve">
+    <value>मुख्य पृष्ठ</value>
+  </data>
+  <data name="MenuAadhar" xml:space="preserve">
+    <value>ER2. सत्यापित आधार रिपोर्ट</value>
+  </data>
+  <data name="MenuListMD" xml:space="preserve">
+    <value>प्रबंध निदेशक की सूची</value>
+  </data>
+  <data name="MenuLotteryReport" xml:space="preserve">
+    <value>लॉटरी सूचना</value>
+  </data>
+  <data name="MenuMDBSBCCL" xml:space="preserve">
+    <value>बीoएसoबीoसीoसीoएलo प्रबंध निदेशक की ओर से संदेश</value>
+  </data>
+  <data name="MenuMediaNews" xml:space="preserve">
+    <value>मीडिया / समाचार</value>
+  </data>
+  <data name="MenuMessage" xml:space="preserve">
+    <value>संदेश</value>
+  </data>
+  <data name="MenuMinister" xml:space="preserve">
+    <value>माननीय मंत्री की ओर से संदेश</value>
+  </data>
+  <data name="MenuNotes" xml:space="preserve">
+    <value>टिप्पणियाँ</value>
+  </data>
+  <data name="MenuNotice" xml:space="preserve">
+    <value>सूचना</value>
+  </data>
+  <data name="MenuNotification" xml:space="preserve">
+    <value>अधिसूचना</value>
+  </data>
+  <data name="MenuObjective" xml:space="preserve">
+    <value>लक्ष्य और उद्देश्य</value>
+  </data>
+  <data name="MenuOfficeOrder" xml:space="preserve">
+    <value>कार्यालय आदेश</value>
+  </data>
+  <data name="MenuOfficerDetails" xml:space="preserve">
+    <value>संगठन अधिकारी विवरण</value>
+  </data>
+  <data name="MenuOfficerProfile" xml:space="preserve">
+    <value>अधिकारियों का प्रोफ़ाइल</value>
+  </data>
+  <data name="MenuPhotoGallery" xml:space="preserve">
+    <value>फोटो गैलरी</value>
+  </data>
+  <data name="MenuPIUReview" xml:space="preserve">
+    <value>परियोजना कार्यान्वयन इकाई समीक्षा टिप्पणियाँ</value>
+  </data>
+  <data name="MenuProcedingReview" xml:space="preserve">
+    <value>कार्यवाही टिप्पणियाँ</value>
+  </data>
+  <data name="MenuProfile" xml:space="preserve">
+    <value>प्रोफ़ाइल</value>
+  </data>
+  <data name="MenuRateNegotiation" xml:space="preserve">
+    <value>दर वार्ता सूचना</value>
+  </data>
+  <data name="MenuSentPFMS" xml:space="preserve">
+    <value>ER3. पीएफएमएस भेजा गया लाभार्थी की रिपोर्ट</value>
+  </data>
+  <data name="MenuRTI" xml:space="preserve">
+    <value>सूचना के अधिकार</value>
+  </data>
+  <data name="MenuSeceretaryBCD" xml:space="preserve">
+    <value>बीo सीo डीo सचिव की ओर से संदेश</value>
+  </data>
+  <data name="MenuTender" xml:space="preserve">
+    <value>निविदा</value>
+  </data>
+  <data name="MenuTenderDetails" xml:space="preserve">
+    <value>निविदा सूचना</value>
+  </data>
+  <data name="MenuTenderProcedding" xml:space="preserve">
+    <value>निविदा कार्यवाही सूचना</value>
+  </data>
+  <data name="MenuTransferOrder" xml:space="preserve">
+    <value>स्थानांतरण आदेश</value>
+  </data>
+  <data name="MenuVideoGallery" xml:space="preserve">
+    <value>वीडियो गैलरी</value>
+  </data>
+  <data name="Homeabt" xml:space="preserve">
+    <value>वृद्धावस्था पेंशन</value>
+  </data>
+  <data name="HomeabtDetail" xml:space="preserve">
+    <value>के बारे में</value>
+  </data>
+  <data name="ConAdd" xml:space="preserve">
+    <value>पता</value>
+  </data>
+  <data name="ConAddDetails" xml:space="preserve">
+    <value>नया सचिवालय, विकास भवन, बेली रोड, पटना, बिहार - 800015.</value>
+  </data>
+  <data name="ConEmail" xml:space="preserve">
+    <value>ईमेल</value>
+  </data>
+  <data name="ConFax" xml:space="preserve">
+    <value>फैक्स</value>
+  </data>
+  <data name="ConPhone" xml:space="preserve">
+    <value>फोन</value>
+  </data>
+  <data name="FCopyright" xml:space="preserve">
+    <value>© 2018 सर्वाधिकार सुरक्षित , सॉफ्टवेयर सलूशन : एनआईसी (बीएसयू) </value>
+  </data>
+  <data name="logo" xml:space="preserve">
+    <value>वृद्धजन पोर्टल</value>
+  </data>
+  <data name="MenuFeedback" xml:space="preserve">
+    <value>प्रतिक्रिया</value>
+  </data>
+  <data name="MenuHindi" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="MenuISO" xml:space="preserve">
+    <value>समाज कल्याण विभाग ( सामाजिक सुरक्षा निदेशालय )</value>
+  </data>
+  <data name="MenuLogin" xml:space="preserve">
+    <value>लॉगिन</value>
+  </data>
+  <data name="MenuProjectView" xml:space="preserve">
+    <value>परियोजना दृश्य</value>
+  </data>
+  <data name="MenuScreenReader" xml:space="preserve">
+    <value>स्क्रीन रीडर</value>
+  </data>
+  <data name="MenuSitemap" xml:space="preserve">
+    <value>साइटमैप</value>
+  </data>
+  <data name="MenuSkey" xml:space="preserve">
+    <value>लघु पथ</value>
+  </data>
+  <data name="MenuSkip" xml:space="preserve">
+    <value>मुख्य सामग्री पर जाएं</value>
+  </data>
+  <data name="MenuTextSize" xml:space="preserve">
+    <value>अक्षर आकार</value>
+  </data>
+  <data name="MenuTheme" xml:space="preserve">
+    <value>थीम का चयन करें</value>
+  </data>
+  <data name="MenuUndertaking" xml:space="preserve">
+    <value>(बिहार सरकार)</value>
+  </data>
+  <data name="TextMax" xml:space="preserve">
+    <value>अ+</value>
+  </data>
+  <data name="TextMin" xml:space="preserve">
+    <value>अ-</value>
+  </data>
+  <data name="TextResize" xml:space="preserve">
+    <value>अ</value>
+  </data>
+  <data name="ActionReadMore" xml:space="preserve">
+    <value>अधिक पढ़ने के</value>
+  </data>
+  <data name="CmConTent" xml:space="preserve">
+    <value>माननीय मुख्यमंत्री बिहार</value>
+  </data>
+  <data name="CMHeading" xml:space="preserve">
+    <value>श्री नीतीश कुमार</value>
+  </data>
+  <data name="MinsContent" xml:space="preserve">
+    <value>माननीय मंत्री, भवन निर्माण विभाग</value>
+  </data>
+  <data name="MinsHeading" xml:space="preserve">
+    <value>श्री महेश्वर हजारी</value>
+  </data>
+  <data name="ImpLinkAcc" xml:space="preserve">
+    <value>सार्वजनिक वित्तीय प्रबंधन प्रणाली - पीएफएमएस</value>
+  </data>
+  <data name="ImpLinkCentral" xml:space="preserve">
+    <value>समाज कल्याण विभाग</value>
+  </data>
+  <data name="ImpLinkEleave" xml:space="preserve">
+    <value>सामाजिक सुरक्षा पेंशन प्रबंधन सूचना प्रणाली (SSPMIS)</value>
+  </data>
+  <data name="ImpLinkGov" xml:space="preserve">
+    <value>शिकायत</value>
+  </data>
+  <data name="ImpLinkPro" xml:space="preserve">
+    <value>परियोजना प्रबंधन सूचना प्रणाली</value>
+  </data>
+  <data name="ImpLinkRoad" xml:space="preserve">
+    <value>ई - सुविधा</value>
+  </data>
+  <data name="ImpLinkUrban" xml:space="preserve">
+    <value>ई - लभार्थी</value>
+  </data>
+  <data name="TextFeature" xml:space="preserve">
+    <value>विशेषताऐं</value>
+  </data>
+  <data name="TextFeedbackContent" xml:space="preserve">
+    <value>आपकी प्रतिक्रिया हमारे लिए महत्वपूर्ण है। कृपया यहां फीडबैक बॉक्स में अपने प्रश्न, सुझाव या टिप्पणियां जमा करें</value>
+  </data>
+  <data name="TextFeedbackHeading" xml:space="preserve">
+    <value>हमें अपनी प्रतिक्रिया, टिप्पणियां और सुझाव भेजें !</value>
+  </data>
+  <data name="TextImportant" xml:space="preserve">
+    <value>जरूरी</value>
+  </data>
+  <data name="TextKey" xml:space="preserve">
+    <value>सी.एस.आर</value>
+  </data>
+  <data name="Textlatest" xml:space="preserve">
+    <value>नवीनतम</value>
+  </data>
+  <data name="TextLink" xml:space="preserve">
+    <value>लिंक</value>
+  </data>
+  <data name="TextNews" xml:space="preserve">
+    <value>समाचार</value>
+  </data>
+  <data name="MD1" xml:space="preserve">
+    <value>श्री सुधिर कुमार</value>
+  </data>
+  <data name="TextArchive" xml:space="preserve">
+    <value>संग्रह निविदा के लिए जाएं</value>
+  </data>
+  <data name="TextPublishing" xml:space="preserve">
+    <value>प्रकाशन की तिथि</value>
+  </data>
+  <data name="TextTender" xml:space="preserve">
+    <value>निविदा जमा की तिथि</value>
+  </data>
+  <data name="TxtTender" xml:space="preserve">
+    <value>वर्तमान निविदा</value>
+  </data>
+  <data name="TextAssestFile" xml:space="preserve">
+    <value>संपत्ति घोषणा फ़ाइल</value>
+  </data>
+  <data name="TextDate" xml:space="preserve">
+    <value>तिथि</value>
+  </data>
+  <data name="TextDegi" xml:space="preserve">
+    <value>पदनाम</value>
+  </data>
+  <data name="TextDocument" xml:space="preserve">
+    <value>दस्तावेज़ सं</value>
+  </data>
+  <data name="TextName" xml:space="preserve">
+    <value>नाम</value>
+  </data>
+  <data name="TextSl" xml:space="preserve">
+    <value>क्र0 सं0</value>
+  </data>
+  <data name="TextSubject" xml:space="preserve">
+    <value>विषय</value>
+  </data>
+  <data name="Mnth1" xml:space="preserve">
+    <value>जनवरी</value>
+  </data>
+  <data name="Mnth10" xml:space="preserve">
+    <value>अक्टूबर</value>
+  </data>
+  <data name="Mnth11" xml:space="preserve">
+    <value>नवंबर</value>
+  </data>
+  <data name="Mnth12" xml:space="preserve">
+    <value>दिसंबर</value>
+  </data>
+  <data name="Mnth2" xml:space="preserve">
+    <value>फरवरी</value>
+  </data>
+  <data name="Mnth3" xml:space="preserve">
+    <value>मार्च</value>
+  </data>
+  <data name="Mnth4" xml:space="preserve">
+    <value>अप्रैल</value>
+  </data>
+  <data name="Mnth5" xml:space="preserve">
+    <value>मई</value>
+  </data>
+  <data name="Mnth6" xml:space="preserve">
+    <value>जून</value>
+  </data>
+  <data name="Mnth7" xml:space="preserve">
+    <value>जुलाई</value>
+  </data>
+  <data name="Mnth8" xml:space="preserve">
+    <value>अगस्त</value>
+  </data>
+  <data name="Mnth9" xml:space="preserve">
+    <value>सितम्बर</value>
+  </data>
+  <data name="TxtConsultancy" xml:space="preserve">
+    <value>कंसल्टेंसी</value>
+  </data>
+  <data name="TxtDDate" xml:space="preserve">
+    <value>डिबार  तिथि</value>
+  </data>
+  <data name="TxtDFDate" xml:space="preserve">
+    <value>डिबार मुफ्त तिथि</value>
+  </data>
+  <data name="TxtDur" xml:space="preserve">
+    <value>अवधि</value>
+  </data>
+  <data name="TxtEoffice" xml:space="preserve">
+    <value>ई-कार्यालय</value>
+  </data>
+  <data name="TxtEPC" xml:space="preserve">
+    <value>ईपीसी</value>
+  </data>
+  <data name="TxtFDate" xml:space="preserve">
+    <value>तारीख से</value>
+  </data>
+  <data name="TxtFireScheme" xml:space="preserve">
+    <value>अग्नि योजना</value>
+  </data>
+  <data name="TxtNContractor" xml:space="preserve">
+    <value>ठेकेदार का नाम</value>
+  </data>
+  <data name="TxtPMIS" xml:space="preserve">
+    <value>पी ऍम आई एस</value>
+  </data>
+  <data name="txtTDate" xml:space="preserve">
+    <value>तारीख तक</value>
+  </data>
+  <data name="MenuOthers" xml:space="preserve">
+    <value>अन्य</value>
+  </data>
+  <data name="txtCommercial" xml:space="preserve">
+    <value>वाणिज्यिक</value>
+  </data>
+  <data name="TxtEOI" xml:space="preserve">
+    <value>ईओआई</value>
+  </data>
+  <data name="TxtEOIF" xml:space="preserve">
+    <value>ब्याज की अभिव्यक्ति (ईओआई)</value>
+  </data>
+  <data name="txtFree" xml:space="preserve">
+    <value>नि: शुल्क</value>
+  </data>
+  <data name="txtNIT" xml:space="preserve">
+    <value>एनआईटी</value>
+  </data>
+  <data name="txtNITF" xml:space="preserve">
+    <value>निविदा आमंत्रित करने की सूचना (एनआईटी)</value>
+  </data>
+  <data name="txtQOI" xml:space="preserve">
+    <value>क्यूओटी</value>
+  </data>
+  <data name="txtQOIF" xml:space="preserve">
+    <value>कोटेशन (क्यूओटी)</value>
+  </data>
+  <data name="txtRFP" xml:space="preserve">
+    <value>आरएफपी</value>
+  </data>
+  <data name="txtRFPF" xml:space="preserve">
+    <value>प्रस्ताव के लिए अनुरोध (आरएफपी)</value>
+  </data>
+  <data name="txtScreenBold" xml:space="preserve">
+    <value>निचे की तालिका में कई स्क्रीन रीडर की सूची है:</value>
+  </data>
+  <data name="txtScreenGo" xml:space="preserve">
+    <value>सिस्टम एक्सेस तो गो</value>
+  </data>
+  <data name="txtScreenhal" xml:space="preserve">
+    <value>हल</value>
+  </data>
+  <data name="txtScreenJAWS" xml:space="preserve">
+    <value>जवास</value>
+  </data>
+  <data name="txtScreenNova" xml:space="preserve">
+    <value>सुपरनोवा</value>
+  </data>
+  <data name="txtScreenNVDA" xml:space="preserve">
+    <value>नॉन विसुअल डेस्कटॉप एक्सेस (NVDA)</value>
+  </data>
+  <data name="txtScreenSAFA" xml:space="preserve">
+    <value>स्क्रीन एक्सेस फॉर आल (SAFA)</value>
+  </data>
+  <data name="txtScreenText" xml:space="preserve">
+    <value>सूचना प्रौद्योगिकी वेबसाइट विभाग वर्ल्ड वाइड वेब कंसोर्टियम (W3C) वेब सामग्री अभिगम्यता दिशानिर्देश (WCAG) 2.0 स्तर ए.ए. के अनुसार अन्धे लोग स्क्रीन रीडर के रूप में सहायक प्रौद्योगिकियों का उपयोग कर वेबसाइट का उपयोग करने में सक्षम हो जाएगे, इस वेबसाइट की जानकारी विभिन्न स्क्रीन रीडर का उपयोग करके लिया जा सकता है, जैसा की जवास (JAWAS)</value>
+  </data>
+  <data name="txtScreenthu" xml:space="preserve">
+    <value>थंडर</value>
+  </data>
+  <data name="txtScreenweb" xml:space="preserve">
+    <value>वेब एनीवेयर</value>
+  </data>
+  <data name="txtScreenwindows" xml:space="preserve">
+    <value>विंडो-आईज</value>
+  </data>
+  <data name="TxtShortText" xml:space="preserve">
+    <value>सूचना प्रौद्योगिकी वेबसाइट विभाग वर्ल्ड वाइड वेब कंसोर्टियम (W3C) वेब सामग्री Accessibility दिशानिर्देश (WCAG) 2.0 स्तर ए.ए. के साथ अनुपालन । इन शॉर्टकट कुंजियों का उपयोग करते हुए वेब पृष्ठों को देख और पता लगा सकतें है ।</value>
+  </data>
+  <data name="txtShortTextBold" xml:space="preserve">
+    <value>नीचे दी गई तालिका वेब पन्ने के शॉर्टकट कुंजियों की जानकरीया है। :</value>
+  </data>
+  <data name="MenuOnlineUser" xml:space="preserve">
+    <value>ऑनलाइन उपभोक्ता</value>
+  </data>
+  <data name="TextUpdate" xml:space="preserve">
+    <value>संशोधित किया गया</value>
+  </data>
+  <data name="HeadAadhar" xml:space="preserve">
+    <value>आधार मान्य / अमान्य / आधार के साथ नाम मिलान / आधार शिखर के साथ नाम का मिलान नहीं</value>
+  </data>
+  <data name="MenuBenLst" xml:space="preserve">
+    <value>ER5. लाभार्थी सूची जिला / ब्लॉक / पचायत वार</value>
+  </data>
+  <data name="HeadPFMS" xml:space="preserve">
+    <value>जिला वाइज लाभार्थी गणना</value>
+  </data>
+  <data name="TxtSNo" xml:space="preserve">
+    <value>क्र.सं.</value>
+  </data>
+  <data name="HeadBenList" xml:space="preserve">
+    <value>जिला वाइज लाभार्थी गणना</value>
+  </data>
+  <data name="MenuPaymentRpt" xml:space="preserve">
+    <value>भुगतान रिपोर्ट</value>
+  </data>
+  <data name="MenuPR1" xml:space="preserve">
+    <value>PR1.  लाभार्थी भुगतान इतिहास की जाँच करें</value>
+  </data>
+  <data name="MenuPR2" xml:space="preserve">
+    <value>PR2.  लाभार्थी की स्थिति सूची</value>
+  </data>
+  <data name="MenuPR3" xml:space="preserve">
+    <value>PR3.  लाभार्थी की स्थिति की जाँच करें</value>
+  </data>
+  <data name="HeadBenStatus" xml:space="preserve">
+    <value>लाभार्थी की भुगतान स्थिति की जांच करें</value>
+  </data>
+  <data name="BtnReset" xml:space="preserve">
+    <value>रीसेट</value>
+  </data>
+  <data name="BtnSearch" xml:space="preserve">
+    <value>खोजें</value>
+  </data>
+  <data name="HeadBenStatuslist" xml:space="preserve">
+    <value>स्टेटस के साथ लाभार्थी सूची</value>
+  </data>
+  <data name="HeadChkPayment" xml:space="preserve">
+    <value>लाभार्थी की भुगतान स्थिति की जांच करें</value>
+  </data>
+  <data name="txtBlk" xml:space="preserve">
+    <value>प्रखंड</value>
+  </data>
+  <data name="txtDist" xml:space="preserve">
+    <value>जिला</value>
+  </data>
+  <data name="txtfinyear" xml:space="preserve">
+    <value>वित्तीय वर्ष</value>
+  </data>
+  <data name="txtpan" xml:space="preserve">
+    <value>पंचायत</value>
+  </data>
+  <data name="txtschm" xml:space="preserve">
+    <value>योजना का नाम</value>
+  </data>
+  <data name="txtStatusRpt" xml:space="preserve">
+    <value>स्थिति रिपोर्ट</value>
+  </data>
+  <data name="txtStauts" xml:space="preserve">
+    <value>वृद्धावस्था पेंशनरों की स्थिति रिपोर्ट</value>
+  </data>
+  <data name="LockBen" xml:space="preserve">
+    <value>लॉक लाभार्थी</value>
+  </data>
+  <data name="PaymentDone" xml:space="preserve">
+    <value>भुगतान हो गया</value>
+  </data>
+  <data name="PFMSAccp" xml:space="preserve">
+    <value>पीएफएमएस स्वीकार किया</value>
+  </data>
+  <data name="TotlBenCount" xml:space="preserve">
+    <value>कुल लाभार्थी</value>
+  </data>
+  <data name="LogoDis" xml:space="preserve">
+    <value>दिव्यांग पोर्टल</value>
+  </data>
+  <data name="txtdisStatus" xml:space="preserve">
+    <value>दिव्यांगता पेंशनरों की स्थिति रिपोर्ट</value>
+  </data>
+  <data name="HomeabtDetailDis" xml:space="preserve">
+    <value>दिव्यांग</value>
+  </data>
+  <data name="BtnApply" xml:space="preserve">
+    <value>अभी अप्लाई करें</value>
+  </data>
+  <data name="btnclick" xml:space="preserve">
+    <value>यहां क्लिक करें</value>
+  </data>
+  <data name="LstofOldAge" xml:space="preserve">
+    <value>वृद्धाश्रम की सूची</value>
+  </data>
+  <data name="TxtApply" xml:space="preserve">
+    <value>ऑनलाइन आवेदन</value>
+  </data>
+  <data name="TxtDwnForm" xml:space="preserve">
+    <value>पेंशन फॉर्म डाउनलोड करें</value>
+  </data>
+  <data name="TxtDwonload" xml:space="preserve">
+    <value>डाउनलोड करने योग्य</value>
+  </data>
+  <data name="TxtOldAge" xml:space="preserve">
+    <value>वृद्धाश्रम</value>
+  </data>
+  <data name="TxtOnlineApply" xml:space="preserve">
+    <value>पेंशन के लिए ऑनलाइन आवेदन करें</value>
+  </data>
+  <data name="txtdiscrt" xml:space="preserve">
+    <value>दिव्यांगता प्रमाण पत्र</value>
+  </data>
+  <data name="txtregngo" xml:space="preserve">
+    <value> पंजीकृत एनजीओ</value>
+  </data>
+  <data name="txtregwith" xml:space="preserve">
+    <value>हमसे जुड़े |</value>
+  </data>
+  <data name="txtregwithlink1" xml:space="preserve">
+    <value>पुनर्वसन पेशेवर (बिहार)</value>
+  </data>
+  <data name="txtregwithlink2" xml:space="preserve">
+    <value>स्वयंसेवक (बिहार)</value>
+  </data>
+  <data name="txtsignlan" xml:space="preserve">
+    <value>सांकेतिक भाषा</value>
+  </data>
+  <data name="txtsignlanvideo" xml:space="preserve">
+    <value>सांकेतिक भाषा वीडियो</value>
+  </data>
+  <data name="Menuassistivedevices" xml:space="preserve">
+    <value>सहयोगी यन्त्र</value>
+  </data>
+  <data name="Menulistofsuppliers" xml:space="preserve">
+    <value>आपूर्तिकर्ताओं की सूची</value>
+  </data>
+  <data name="TextDetail" xml:space="preserve">
+    <value> विस्तार</value>
+  </data>
+  <data name="TextHeading" xml:space="preserve">
+    <value>शीर्षक</value>
+  </data>
+  <data name="Txtcrtificatelnk1" xml:space="preserve">
+    <value>दिव्यांगता प्रमाण पत्र क्या है |</value>
+  </data>
+  <data name="Txtcrtificatelnk2" xml:space="preserve">
+    <value>दिव्यांगता प्रमाण पत्र जारी करने की स्थिति</value>
+  </data>
+  <data name="txtngoreg" xml:space="preserve">
+    <value>राज्य आयुक्त निःशक्तता (दिव्यांगजन) कार्यालय द्वारा निबंधित गैरसरकारी स्वयंसेवी संस्थानों की सूची ।</value>
+  </data>
+  <data name="MenuISOdis" xml:space="preserve">
+    <value>समाज कल्याण विभाग ( दिव्यांग जन सशक्तिकरण निदेशालय )</value>
+  </data>
+  <data name="txtinfo" xml:space="preserve">
+    <value>जानकारी</value>
+  </data>
+  <data name="txtstory" xml:space="preserve">
+    <value>कहानी</value>
+  </data>
+  <data name="txtsuccess" xml:space="preserve">
+    <value>सफलता की</value>
+  </data>
+  <data name="txtusfull" xml:space="preserve">
+    <value>उपयोगी लिंक</value>
+  </data>
+  <data name="applyoldagefrm" xml:space="preserve">
+    <value>वृद्धजन पेंशन योजना में आवेदन करने के लिए ।</value>
+  </data>
+  <data name="LogoEdu" xml:space="preserve">
+    <value>शिक्षा विभाग</value>
+  </data>
+  <data name="Deptname" xml:space="preserve">
+    <value>बिहार सरकार</value>
+  </data>
+  <data name="txtcomplaint" xml:space="preserve">
+    <value>मुख्यमंत्री बालिका (स्नातक) प्रोत्साहन योजना 2019 के लिए आवेदन करें.</value>
+  </data>
+  <data name="txtonliecomplaint" xml:space="preserve">
+    <value>मुख्यमंत्री बालिका (माध्यमिक +2) प्रोत्साहन योजना 2019 के लिए आवेदन करें.</value>
+  </data>
+  <data name="MenuOverview" xml:space="preserve">
+    <value>अवलोकन</value>
+  </data>
+  <data name="MenuUn1" xml:space="preserve">
+    <value>P.U</value>
+  </data>
+  <data name="MenuUn2" xml:space="preserve">
+    <value>M.U</value>
+  </data>
+  <data name="MenuUn3" xml:space="preserve">
+    <value>V.K.S.U</value>
+  </data>
+  <data name="MenuUn4" xml:space="preserve">
+    <value>L.N.M.U</value>
+  </data>
+  <data name="MenuUn5" xml:space="preserve">
+    <value>J.P.U</value>
+  </data>
+  <data name="MenuUn6" xml:space="preserve">
+    <value>B.R.A.B.U</value>
+  </data>
+  <data name="MenuUn7" xml:space="preserve">
+    <value>K.S.D.S.U</value>
+  </data>
+  <data name="MenuUn8" xml:space="preserve">
+    <value>T.M.B.U</value>
+  </data>
+  <data name="MenuHistory" xml:space="preserve">
+    <value>इतिहास</value>
+  </data>
+  <data name="Menukeycontact" xml:space="preserve">
+    <value>हेल्पडेस्क</value>
+  </data>
+  <data name="Menuorg" xml:space="preserve">
+    <value>संगठन संरचना</value>
+  </data>
+  <data name="Menurevision" xml:space="preserve">
+    <value>संशोधन नोट्स</value>
+  </data>
+  <data name="MenuRptCard" xml:space="preserve">
+    <value>बिहार रिपोर्ट कार्ड 2015</value>
+  </data>
+  <data name="MenuTxtbook" xml:space="preserve">
+    <value>यूनिवर्सिटी फोल्डर</value>
+  </data>
+  <data name="MenuUn10" xml:space="preserve">
+    <value>नालंदा खुला विश्वविद्यालय</value>
+  </data>
+  <data name="MenuUn11" xml:space="preserve">
+    <value>चाणक्य नेशनल लॉ यूनिवर्सिटी</value>
+  </data>
+  <data name="MenuUn12" xml:space="preserve">
+    <value>आर्यभट्ट ज्ञान विश्वविद्यालय</value>
+  </data>
+  <data name="MenuUn13" xml:space="preserve">
+    <value>नालंदा इंटरनेशन यूनिवर्सिटी</value>
+  </data>
+  <data name="MenuUn14" xml:space="preserve">
+    <value>MMH अरबी और फारसी विश्वविद्यालय</value>
+  </data>
+  <data name="MenuUn9" xml:space="preserve">
+    <value>B.N.M.U</value>
+  </data>
+  <data name="MnuAdministration" xml:space="preserve">
+    <value>प्रशासन</value>
+  </data>
+  <data name="MnuHEdu" xml:space="preserve">
+    <value>उच्च शिक्षा</value>
+  </data>
+  <data name="MnuMassEdu" xml:space="preserve">
+    <value>जन शिक्षा</value>
+  </data>
+  <data name="MnuMidaymeal" xml:space="preserve">
+    <value>मध्यान भोजन</value>
+  </data>
+  <data name="MnuPD" xml:space="preserve">
+    <value>योजना निदेशालय</value>
+  </data>
+  <data name="MnuPEdu" xml:space="preserve">
+    <value>प्राथमिक शिक्षा</value>
+  </data>
+  <data name="MnuRD" xml:space="preserve">
+    <value>शोध और प्रशिक्षण</value>
+  </data>
+  <data name="MnuSEdu" xml:space="preserve">
+    <value>माध्यमिक शिक्षा</value>
+  </data>
+  <data name="txtLetterType" xml:space="preserve">
+    <value>पत्र प्रकार</value>
+  </data>
+  <data name="txtDirectorate" xml:space="preserve">
+    <value>प्रबंध-विभाग</value>
+  </data>
+  <data name="MnuHigher" xml:space="preserve">
+    <value>उच्च</value>
+  </data>
+  <data name="MnuPrimary" xml:space="preserve">
+    <value>प्राथमिक</value>
+  </data>
+  <data name="MnuSecondary" xml:space="preserve">
+    <value>माध्यमिक</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>रेसार्च और प्रशिक्षण</value>
+  </data>
+  <data name="TextLetterNo" xml:space="preserve">
+    <value>पत्र संख्या</value>
+  </data>
+  <data name="MenuUn91" xml:space="preserve">
+    <value>Academies</value>
+  </data>
+  <data name="txtkeycont" xml:space="preserve">
+    <value>शिक्षा विभाग का निर्देश</value>
+  </data>
+  <data name="txtbalkbalika" xml:space="preserve">
+    <value>मुख्यमंत्री बालक / बालिका (10th Passed) प्रोत्साहन योजना 2019 के लिए आवेदन करें</value>
+  </data>
+  <data name="txtmedaha" xml:space="preserve">
+    <value>मुख्यमंत्री मेधावृति योजना 2019 अनु0 जाति एवं अनु0 जनजाति के प्रथम एवं द्वितीय श्रेणी से Intermediate [+2] उतीर्ण छात्राओं के लिये आवेदन करें</value>
+  </data>
+  <data name="txtbstpracts" xml:space="preserve">
+    <value>सर्वोत्तम प्रथाएं</value>
+  </data>
+  <data name="txtcmfcell" xml:space="preserve">
+    <value>सीएफएमएस सेल</value>
+  </data>
+  <data name="txtnewclip" xml:space="preserve">
+    <value>समाचार और क्लिपिंग</value>
+  </data>
+  <data name="txtpay" xml:space="preserve">
+    <value>वेतन सत्यापन सेल</value>
+  </data>
+  <data name="txtstdcrd" xml:space="preserve">
+    <value>बिहार स्टूडेंट क्रेडिट कार्ड योजना</value>
+  </data>
+  <data name="txtTEMIS" xml:space="preserve">
+    <value>टी ई एमआईएस</value>
+  </data>
+  <data name="txttndr" xml:space="preserve">
+    <value>निविदाएं</value>
+  </data>
+  <data name="txtboard" xml:space="preserve">
+    <value>बोर्ड</value>
+  </data>
+  <data name="txtnotice" xml:space="preserve">
+    <value>नोटिस</value>
+  </data>
+  <data name="txtLetterDt" xml:space="preserve">
+    <value>पत्र की तारीख</value>
+  </data>
+  <data name="MenuUn15" xml:space="preserve">
+    <value>मुंगेर विश्वविद्यालय</value>
+  </data>
+  <data name="MenuUn16" xml:space="preserve">
+    <value>पाटलिपुत्र विश्वविद्यालय</value>
+  </data>
+  <data name="MenuUn17" xml:space="preserve">
+    <value>पूर्णिया विश्वविद्यालय</value>
+  </data>
+  <data name="txtScan1" xml:space="preserve">
+    <value>CMRF वेबसाइट पर तत्काल पहुँचने के लिए अपने मोबाइल का उपयोग करते हुए QR कोड को स्कैन करें।</value>
+  </data>
+  <data name="txtquickDonate" xml:space="preserve">
+    <value>त्वरित दान</value>
+  </data>
+  <data name="txtReliefFund" xml:space="preserve">
+    <value>मुख्यमंत्री राहत कोष में</value>
+  </data>
+  <data name="txtScan2" xml:space="preserve">
+    <value>उपयोग करते हुए QR कोड को स्कैन करें।</value>
+  </data>
+  <data name="txtasset" xml:space="preserve">
+    <value>एसेट डिक्लेरेशन</value>
+  </data>
+  <data name="MenuAsha" xml:space="preserve">
+    <value>आशा का दावा प्रपत्र भरें</value>
+  </data>
+  <data name="MenuAshaFacilitator" xml:space="preserve">
+    <value>आशा फैसिलिटेटर का दावा प्रपत्र भरें</value>
+  </data>
+  <data name="MenuDepartmentLogin" xml:space="preserve">
+    <value>विभागीय लॉगिन</value>
+  </data>
+  <data name="MenuHelpdesk" xml:space="preserve">
+    <value>हेल्पडेस्क</value>
+  </data>
+  <data name="MenuImportantNotice" xml:space="preserve">
+    <value>महत्वपूर्ण सूचना</value>
+  </data>
+  <data name="MenuMobileApp" xml:space="preserve">
+    <value>डाउनलोड मोबाइल ऍप</value>
+  </data>
+  <data name="MenuRequest" xml:space="preserve">
+    <value>शिकायत</value>
+  </data>
+  <data name="MenuRequestQuery" xml:space="preserve">
+    <value>शिकायत दर्ज करें</value>
+  </data>
+  <data name="MenuRequestResponse" xml:space="preserve">
+    <value>शिकायत की स्थिति के लिए यहाँ क्लिक करे</value>
+  </data>
+  <data name="MenuRpt" xml:space="preserve">
+    <value>रिपोर्ट</value>
+  </data>
+  <data name="MenuRptAshaActivity" xml:space="preserve">
+    <value>आशा के दावा प्रपत्र की स्थिति</value>
+  </data>
+  <data name="MenuRptAshaFacActivity" xml:space="preserve">
+    <value>आशा  फैसिलिटेटर के दावा प्रपत्र की स्थिति</value>
+  </data>
+  <data name="MenuRptAshaFacLogin" xml:space="preserve">
+    <value>आशा  फैसिलिटेटर के लॉगिन की स्थिति</value>
+  </data>
+  <data name="MenuRptAshaLogin" xml:space="preserve">
+    <value>आशा के लॉगिन की स्थिति</value>
+  </data>
+  <data name="MenuRptCons" xml:space="preserve">
+    <value>समेकित रिपोर्ट</value>
+  </data>
+  <data name="MenuUserManual" xml:space="preserve">
+    <value>यूजर मैन्युअल</value>
+  </data>
+  <data name="TxtNic" xml:space="preserve">
+    <value>राष्ट्रीय सूचना विज्ञान केंद्र (एन०आई०सी०)</value>
+  </data>
+  <data name="MenuRptAshaActivityProgress" xml:space="preserve">
+    <value>आशा कार्य प्रगति रिपोर्ट</value>
+  </data>
+</root>

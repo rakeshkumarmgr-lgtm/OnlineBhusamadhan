@@ -1,0 +1,25 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build output
+bin/
+obj/
+
+# NuGet packages
+packages/
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# SQL Server database files
+*.mdf
+*.ldf
+
+# Windows files
+Thumbs.db
+Desktop.ini

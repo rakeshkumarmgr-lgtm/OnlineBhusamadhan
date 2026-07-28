@@ -1,0 +1,80 @@
+﻿
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wizard-steps li {
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+    .wizard-steps li:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 22px;
+        left: 50%;
+        width: 100%;
+        height: 4px;
+        background: #d9d9d9;
+        z-index: 0;
+    }
+
+.step {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+    color: #666;
+}
+
+.step-no {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #d9d9d9;
+    color: #fff;
+    line-height: 45px;
+    margin: auto;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.step-text {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.completed .step-no {
+    background: #28a745;
+}
+
+.current .step-no {
+    background: #0d6efd;
+}
+
+.disabled .step-no {
+    background: #c7c7c7;
+}
+
+.completed {
+    color: #28a745;
+}
+
+.current {
+    color: #0d6efd;
+}
+
+.disabled {
+    color: #999;
+    pointer-events: none;
+}
+
+

@@ -1,0 +1,196 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserEntry.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.UserEntry" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<%@ Register Src="~/LandDispute/Entry/UserControls/UC_Step1.ascx" TagPrefix="uc" TagName="Step1" %>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .wizard-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+            .wizard-steps li {
+                position: relative;
+                flex: 1;
+                text-align: center;
+            }
+
+                .wizard-steps li:not(:last-child)::after {
+                    content: "";
+                    position: absolute;
+                    top: 22px;
+                    left: 50%;
+                    width: 100%;
+                    height: 4px;
+                    background: #d9d9d9;
+                    z-index: 0;
+                }
+
+        .step {
+            display: inline-block;
+            position: relative;
+            z-index: 2;
+            text-decoration: none;
+            color: #666;
+        }
+
+        .step-no {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #d9d9d9;
+            color: #fff;
+            line-height: 45px;
+            margin: auto;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .step-text {
+            display: block;
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .completed .step-no {
+            background: #28a745;
+        }
+
+        .current .step-no {
+            background: #0d6efd;
+        }
+
+        .disabled .step-no {
+            background: #c7c7c7;
+        }
+
+        .completed {
+            color: #28a745;
+        }
+
+        .current {
+            color: #0d6efd;
+        }
+
+        .disabled {
+            color: #999;
+            pointer-events: none;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
+    <div class="container-fluid">
+        <div class="card shadow-sm mb-3">
+
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Application Entry
+                </h5>
+            </div>
+
+            <div class="card-body">
+
+                <ul class="wizard-steps">
+
+                    <li>
+                        <a id="hstep1" runat="server" class="step current">
+                            <span class="step-no">1</span>
+                            <span class="step-text">वादी और भूमि विवाद</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="hstep2" runat="server" class="step disabled">
+                            <span class="step-no">2</span>
+                            <span class="step-text">प्रतिवादी और अन्य</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="hstep3" runat="server" class="step disabled">
+                            <span class="step-no">3</span>
+                            <span class="step-text">खाता-खेसरा</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="hstep4" runat="server" class="step disabled">
+                            <span class="step-no">4</span>
+                            <span class="step-text">वादी/प्रतिवादी का साक्ष्य</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="hstep5" runat="server" class="step disabled">
+                            <span class="step-no">5</span>
+                            <span class="step-text">प्रस्तुत साक्ष्य</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="hstep6" runat="server" class="step disabled">
+                            <span class="step-no">6</span>
+                            <span class="step-text">घटना एवं न्यायालय</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a id="hstep7" runat="server" class="step disabled">
+                            <span class="step-no">7</span>
+                            <span class="step-text">अंचलाधिकारी एवं थानाध्यक्ष बैठक</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <asp:Panel ID="pnlStep1" runat="server">
+            <uc:Step1 ID="Step1" runat="server" />
+        </asp:Panel>
+
+        <asp:Panel ID="pnlStep2" runat="server">
+           
+        </asp:Panel>
+
+        <asp:Panel ID="pnlStep3" runat="server" Visible="false">
+           
+        </asp:Panel>
+
+        <asp:Panel ID="pnlStep4" runat="server" Visible="false">
+            
+        </asp:Panel>
+
+        <asp:Panel ID="pnlStep5" runat="server" Visible="false">
+            
+        </asp:Panel>
+
+        <asp:Panel ID="pnlStep6" runat="server" Visible="false">
+            
+        </asp:Panel>
+
+        <asp:Panel ID="pnlStep7" runat="server" Visible="false">
+           
+        </asp:Panel>
+
+        <%-- ButtonSection--%>
+        <div class="text-center mt-3 mb-4">
+
+            <asp:Button ID="btnPrevious" runat="server" Text="Previous" CssClass="btn btn-secondary" OnClick="btnPrevious_Click" />
+            &nbsp;
+
+     <asp:LinkButton ID="LinkBtnPreview" runat="server" CssClass="btn btn-info">&nbsp;Preview<i class="fa fa-eye"></i></asp:LinkButton>&nbsp;
+     <asp:Button ID="btnNext" runat="server" Text="Save & Next" CssClass="btn btn-success" OnClick="btnNext_Click"  />
+
+        </div>
+    </div>
+</asp:Content>
