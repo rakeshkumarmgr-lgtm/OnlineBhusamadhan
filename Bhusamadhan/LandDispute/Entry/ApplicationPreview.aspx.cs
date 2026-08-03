@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -11,8 +13,20 @@ namespace Bhusamadhan.LandDispute.Entry
 {
     public partial class ApplicationPreview : System.Web.UI.Page
     {
+        string userid = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            DataTable dt = Session["UserLogIn"] as DataTable;
+
+            if (dt != null)
+            {
+                if (dt.Rows.Count == 1)
+                {
+                    //int roleid = Convert.ToInt32(dt.Rows[0]["RoleID"].ToString());
+                    userid = dt.Rows[0]["UserID"].ToString();
+                }
+            }
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["a_id"] == null)
@@ -52,66 +66,24 @@ namespace Bhusamadhan.LandDispute.Entry
             btnFinalSubmit.Enabled = false;
 
             btnEdit.Enabled = false;
+           
         }
 
         private string GenerateApplicationNo(long applicationId)
         {
-            string applicationNo = "";
-
-            using (SqlConnection con =  new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
             {
                 con.Open();
 
-                SqlTransaction tran = con.BeginTransaction();
+                SqlCommand cmd = new SqlCommand("BS_SP_FinalSubmit", con);
 
-                try
-                {
-                    //----------------------------------------------------
-                    // Get Next Running Number
-                    //----------------------------------------------------
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                    SqlCommand cmd = new SqlCommand();
+                cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
+                cmd.Parameters.AddWithValue("@CUUser", SqlDbType.VarChar).Value = userid;
 
-                    cmd.Connection = con;
-
-                    cmd.Transaction = tran;
-
-                    cmd.CommandText =  @"SELECT ISNULL(MAX(CAST(RIGHT(ApplicationNo,5) AS INT)),0)+1  FROM BS_Matter_Registration  WHERE YEAR(Created_Date)=YEAR(GETDATE())  AND ApplicationNo IS NOT NULL";
-
-                    int nextNo =
-                        Convert.ToInt32(cmd.ExecuteScalar());
-
-                    //----------------------------------------------------
-                    // Generate Number
-                    //----------------------------------------------------
-
-                    applicationNo = "LD"+ DateTime.Now.ToString("yy") + nextNo.ToString("D5");
-
-                    //----------------------------------------------------
-                    // Update Master
-                    //----------------------------------------------------
-
-                    cmd.Parameters.Clear();
-
-                    cmd.CommandText =
-                    @"UPDATE BS_Matter_Registration  SET  ApplicationNo=@ApplicationNo,  CurrentStep=7,  IsFinalSubmit=1  WHERE a_id=@a_id";
-
-                    cmd.Parameters.AddWithValue("@ApplicationNo", applicationNo);
-
-                    cmd.Parameters.AddWithValue("@a_id", applicationId);
-
-                    cmd.ExecuteNonQuery();
-
-                    tran.Commit();
-                }
-                catch
-                {
-                    tran.Rollback();
-                    throw;
-                }
+                return cmd.ExecuteScalar().ToString();
             }
-
-            return applicationNo;
         }
     }
 }

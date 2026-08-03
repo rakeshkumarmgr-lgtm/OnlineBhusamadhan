@@ -8,6 +8,47 @@
     <link href="../../assets/css/cssSteps.css" rel="stylesheet" />
     <link href="../../assets/css/cssEntryPage.css" rel="stylesheet" />
 
+    <script type="text/javascript">
+        function checkDate(sender, args) {
+            //if (sender._selectedDate > new Date()) {
+            //    alert("You cannot select a day latter than today!");
+            //    sender._selectedDate = new Date();
+            //    // set the date back to the current date
+            //    sender._textbox.set_Value("")
+            //}
+        }
+        function dateValidate(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 45) {
+                return true;
+            }
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <script>
+        function saveIPCSelection() {
+            var list = document.getElementById('<%= ddldhara1.ClientID %>');
+            var selected = [];
+
+            for (var i = 0; i < list.options.length; i++) {
+                if (list.options[i].selected) {
+                    selected.push(list.options[i].value);
+                }
+            }
+
+            document.getElementById('<%= hdnSelectedIPC.ClientID %>').value = selected.join(',');
+        }
+
+        $(document).ready(function () {
+            $('#<%= ddlbsn_dhara_hai.ClientID %>').on('change', function () {
+                saveIPCSelection();
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
     <div class="container-fluid">
@@ -83,6 +124,10 @@
                 <asp:Label ID="lblMsg" runat="server" ForeColor="Red" Font-Bold="True"></asp:Label>
             </center>
         </div>
+        <div class="alert alert-info mb-3" runat="server" id="divDraftInfo" visible="false">
+            <strong>Draft Application ID :</strong>
+            <asp:Label ID="lblApplicationId" runat="server"></asp:Label>
+        </div>
 
         <!-- Step-1  -->
         <asp:Panel ID="pnlStep1" runat="server">
@@ -105,7 +150,7 @@
 
                             <div class="card section-card">
 
-                                <div class="section-header"><i class="fa fa-user"></i>व्यक्तिगत जानकारी </div>
+                                <%--<div class="section-header"><i class="fa fa-user"></i>व्यक्तिगत जानकारी </div>--%>
 
                                 <div class="card-body section-body">
 
@@ -184,7 +229,7 @@
                             <!-- ====================== Address Information ====================== -->
                             <div class="card section-card">
 
-                                <div class="section-header"><i class="fa fa-map-marker-alt"></i>पता विवरण </div>
+                                <%--<div class="section-header"><i class="fa fa-map-marker-alt"></i>पता विवरण </div>--%>
 
                                 <div class="card-body section-body">
 
@@ -251,7 +296,7 @@
                             <!-- ====================== Area Information ====================== -->
                             <div class="card section-card">
 
-                                <div class="section-header"><i class="fa fa-map"></i>स्थानीय पता विवरण </div>
+                                <%--<div class="section-header"><i class="fa fa-map"></i>स्थानीय पता विवरण </div>--%>
 
                                 <div class="card-body section-body">
 
@@ -369,7 +414,7 @@
 
                             <div class="card section-card">
 
-                                <div class="section-header"><i class="fa fa-building"></i>विभाग सम्बन्धी जानकारी </div>
+                                <%--<div class="section-header"><i class="fa fa-building"></i>विभाग सम्बन्धी जानकारी </div>--%>
 
                                 <div class="card-body section-body">
 
@@ -426,7 +471,7 @@
 
                             <div class="card section-card">
 
-                                <div class="section-header bg-success"><i class="fa fa-university"></i>संस्था सम्बन्धी जानकारी </div>
+                                <%--  <div class="section-header bg-success"><i class="fa fa-university"></i>संस्था सम्बन्धी जानकारी </div>--%>
 
                                 <div class="card-body section-body">
 
@@ -523,6 +568,7 @@
                                                                     <th>वादी का नाम</th>
                                                                     <th>पिता / पति का नाम</th>
                                                                     <th>लिंग</th>
+                                                                    <th>मोबाइल</th>
                                                                     <th>जन्म वर्ष</th>
                                                                     <th>जिला</th>
                                                                     <th>अनुमंडल</th>
@@ -532,7 +578,7 @@
                                                                     <th>ग्राम पंचायत</th>
                                                                     <th>राजस्व ग्राम</th>
                                                                     <th>वार्ड</th>
-                                                                    <th>मोबाइल</th>
+
                                                                     <th>विभाग प्रतिनिधि</th>
                                                                     <th>संस्था प्रतिनिधि</th>
                                                                     <%-- <th>विभाग / संस्था</th>
@@ -557,59 +603,17 @@
                                                                 <%# Container.ItemIndex + 1 %>
                                                             </td>
 
-                                                            <td><%# Eval("NameAsPerAadhaar") %></td>
+                                                            <td><%# Eval("vadi_Name") %></td>
 
                                                             <td><%# Eval("Vadi_Father_Husband_Name") %></td>
 
                                                             <td class="text-center">
                                                                 <%# Eval("SexAsPerAadhaar").ToString() == "M" ? "पुरुष" : Eval("SexAsPerAadhaar").ToString() == "F" ? "महिला" : "अन्य" %>
                                                             </td>
-
-                                                            <td class="text-center">
-                                                                <%# Eval("YearOfBirthAsPerAadhaar") %>
-                                                            </td>
-
-                                                            <td><%# Eval("DistrictName") %></td>
-
-                                                            <td><%# Eval("SubdivisionName") %></td>
-
-                                                            <td><%# Eval("BlockName") %></td>
-
-                                                            <td><%# Eval("ThanaName") %></td>
-
-                                                            <td><%# Eval("AreaTypeName") %></td>
-
-                                                            <td><%# Eval("PanchayatName") %></td>
-
-                                                            <td><%# Eval("VillageName") %></td>
-
-                                                            <td class="text-center">
-                                                                <%# Eval("WardName") %>
-                                                            </td>
-
                                                             <td class="text-center">
                                                                 <%# Eval("Vadi_MobileNo") %>
                                                             </td>
 
-                                                            <td class="text-center">
-                                                                <%# Eval("is_vadi_from_an_dept").ToString() == "Y" ? "हाँ" : "नहीं" %>
-                                                            </td>
-
-                                                            <td class="text-center">
-                                                                <%# Eval("is_vadi_from_an_org").ToString() == "Y" ? "हाँ" : "नहीं" %>
-                                                            </td>
-
-                                                            <%-- <td>
-
-                                                                <%# Eval("is_vadi_from_an_dept").ToString() == "Y" ? Eval("vadi_dept_name") : Eval("is_vadi_from_an_org").ToString() == "Y"  ? Eval("vadi_org_name") : "" %>
-
-                                                            </td>
-
-                                                            <td>
-
-                                                                <%# Eval("is_vadi_from_an_dept").ToString() == "Y" ? Eval("vadi_dept_pad_name") : Eval("is_vadi_from_an_org").ToString() == "Y" ? Eval("vadi_org_pad_name") : "" %>
-
-                                                            </td>--%>
                                                         </tr>
 
                                                     </ItemTemplate>
@@ -2077,7 +2081,7 @@
 
                                             &nbsp;&nbsp;
 
-                                             <asp:RadioButton ID="rdoNew" runat="server" Text="BNS" GroupName="dhara" AutoPostBack="true" OnCheckedChanged="DharaChanged" />
+                                       <asp:RadioButton ID="rdoNew" runat="server" Text="BNS" GroupName="dhara" AutoPostBack="true" OnCheckedChanged="DharaChanged" />
 
                                         </div>
 
@@ -2104,7 +2108,7 @@
                                 </div>
                                 <!-- IPC Checkboxes -->
                                 <div class="row">
-                                    
+
                                     <div class="col-md-6 mb-3" id="divDhara" runat="server" visible="false">
 
                                         <label class="form-label">IPC धाराएँ </label>
@@ -2385,37 +2389,41 @@
 
         <asp:Panel ID="pnlStep7" runat="server" Visible="false">
 
-            <div class="card mt-3">
+            <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional">
 
-                <div class="card-header bg-light">
-                    <h5>Step-7 : अंचलाधिकारी एवं थानाध्यक्ष बैठक</h5>
-                </div>
+                <ContentTemplate>
 
-                <div class="section-card">
+                    <div class="card mt-3">
 
-                    <div class="section-header">
-                        अंचलाधिकारी एवं थानाध्यक्ष द्वारा भूमि विवाद के निराकरण हेतु कृत कारवाई का विवरण
-                    </div>
+                        <div class="card-header bg-light">
+                            <h5>Step-7 : अंचलाधिकारी एवं थानाध्यक्ष बैठक</h5>
+                        </div>
 
-                    <div class="section-body">
+                        <div class="section-card">
 
-                        <!-- =========================
+                            <div class="section-header">
+                                अंचलाधिकारी एवं थानाध्यक्ष द्वारा भूमि विवाद के निराकरण हेतु कृत कारवाई का विवरण
+                            </div>
+
+                            <div class="section-body">
+
+                                <!-- =========================
                              Meeting Information
                         ==========================-->
 
-                        <div class="row g-3 mb-4">
+                                <div class="row g-3 mb-4">
 
-                            <div class="col-lg-3 col-md-6">
+                                    <div class="col-lg-3 col-md-6">
 
-                                <label class="form-label">विवाद की संवेदनशीलता<span class="required">*</span> </label>
+                                        <label class="form-label">विवाद की संवेदनशीलता<span class="required">*</span> </label>
 
-                                <asp:DropDownList ID="ddlbhumivivadki_sanvedanshilta" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlbhumivivadki_sanvedanshilta" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                                <%--   <asp:RequiredFieldValidator ID="RequiredFieldValidator87"  runat="server" ControlToValidate="ddlbhumivivadki_sanvedanshilta"  Display="Dynamic"  ForeColor="Red"> विवाद की संवेदनशीलता </asp:RequiredFieldValidator>--%>
-                            </div>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator87" runat="server" ControlToValidate="ddlbhumivivadki_sanvedanshilta" Display="Dynamic" ForeColor="Red"> विवाद की संवेदनशीलता </asp:RequiredFieldValidator>
+                                    </div>
 
 
-                            <%--  <div class="col-lg-2 col-md-6 text-center">
+                                    <%--  <div class="col-lg-2 col-md-6 text-center">
 
                                 <label class="form-label d-block">
                                     संवेदनशीलता स्तर
@@ -2429,195 +2437,199 @@
                             </div>--%>
 
 
-                            <div class="col-lg-3 col-md-6">
+                                    <div class="col-lg-3 col-md-6">
 
-                                <label class="form-label">बैठक की तिथि <span class="required">*</span> </label>
+                                        <label class="form-label">बैठक की तिथि <span class="required">*</span> </label>
 
-                                <asp:TextBox ID="txtbaithakDate" runat="server" CssClass="form-control" MaxLength="10" placeholder="dd-MM-yyyy"></asp:TextBox>
+                                        <asp:TextBox ID="txtbaithakDate" runat="server" CssClass="form-control" MaxLength="10" placeholder="dd-MM-yyyy"></asp:TextBox>
 
-                                <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtbaithakDate" Format="dd-MM-yyyy" CssClass="zindex"></cc1:CalendarExtender>
+                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtbaithakDate" Format="dd-MM-yyyy" CssClass="zindex"></cc1:CalendarExtender>
 
-                            </div>
-
-
-                            <div class="col-lg-2 col-md-6">
-
-                                <label class="form-label">क्या वादी उपस्थित है? <span class="required">*</span> </label>
-
-                                <asp:DropDownList ID="ddlIsVadiAvailable" runat="server" CssClass="form-control">
-
-                                    <asp:ListItem Value="0">--चुने--</asp:ListItem>
-                                    <asp:ListItem Value="Y">हाँ</asp:ListItem>
-                                    <asp:ListItem Value="N">नहीं</asp:ListItem>
-
-                                </asp:DropDownList>
-
-                            </div>
+                                    </div>
 
 
-                            <div class="col-lg-3 col-md-6">
+                                    <div class="col-lg-2 col-md-6">
 
-                                <label class="form-label">क्या प्रतिवादी उपस्थित है? <span class="required">*</span>  </label>
+                                        <label class="form-label">क्या वादी उपस्थित है? <span class="required">*</span> </label>
 
-                                <asp:DropDownList ID="ddl_IsprativadiAvailable" runat="server" CssClass="form-control">
+                                        <asp:DropDownList ID="ddlIsVadiAvailable" runat="server" CssClass="form-control">
 
-                                    <asp:ListItem Value="0">--चुने--</asp:ListItem>
-                                    <asp:ListItem Value="Y">हाँ</asp:ListItem>
-                                    <asp:ListItem Value="N">नहीं</asp:ListItem>
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
 
-                                </asp:DropDownList>
+                                        </asp:DropDownList>
 
-                            </div>
-
-                        </div>
+                                    </div>
 
 
-                        <hr />
+                                    <div class="col-lg-3 col-md-6">
+
+                                        <label class="form-label">क्या प्रतिवादी उपस्थित है? <span class="required">*</span>  </label>
+
+                                        <asp:DropDownList ID="ddl_IsprativadiAvailable" runat="server" CssClass="form-control">
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                    </div>
+
+                                </div>
 
 
-                        <!-- =========================
+                                <hr />
+
+
+                                <!-- =========================
                               Meeting Result
                         ==========================-->
 
-                        <div class="row g-3 mb-4">
+                                <div class="row g-3 mb-4">
 
-                            <div class="col-lg-3">
+                                    <div class="col-lg-3">
 
-                                <label class="form-label">बैठक का निष्कर्ष <span class="required">*</span> </label>
+                                        <label class="form-label">बैठक का निष्कर्ष <span class="required">*</span> </label>
 
-                                <asp:DropDownList ID="ddlaction" runat="server" CssClass="form-control" AutoPostBack="true">
+                                        <asp:DropDownList ID="ddlaction" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlaction_SelectedIndexChanged">
 
-                                    <asp:ListItem Value="0">--चुने--</asp:ListItem>
-                                    <asp:ListItem Value="1">प्रारंभिक निष्पादन</asp:ListItem>
-                                    <asp:ListItem Value="2">मापी के लिए निर्धारित</asp:ListItem>
-                                    <asp:ListItem Value="3">प्रक्रियाधीन</asp:ListItem>
-                                    <asp:ListItem Value="4">अस्वीकृत</asp:ListItem>
-                                    <asp:ListItem Value="5">अंतिम निष्पादन</asp:ListItem>
-                                    <asp:ListItem Value="6">न्यायालय में लंबित</asp:ListItem>
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="1">प्रारंभिक निष्पादन</asp:ListItem>
+                                            <asp:ListItem Value="2">मापी के लिए निर्धारित</asp:ListItem>
+                                            <asp:ListItem Value="3">प्रक्रियाधीन</asp:ListItem>
+                                            <asp:ListItem Value="4">अस्वीकृत</asp:ListItem>
+                                            <asp:ListItem Value="5">अंतिम निष्पादन</asp:ListItem>
+                                            <asp:ListItem Value="6">न्यायालय में लंबित</asp:ListItem>
 
-                                </asp:DropDownList>
+                                        </asp:DropDownList>
 
-                            </div>
-
-
-                            <div class="col-lg-3" id="divNextDate" runat="server" visible="false">
-
-                                <label class="form-label">अगली सुनवाई की तिथि </label>
-
-                                <asp:TextBox ID="txtAgalaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy"> </asp:TextBox>
-
-                                <cc1:CalendarExtender ID="PopCalendar2" runat="server" TargetControlID="txtAgalaDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
-
-                            </div>
+                                    </div>
 
 
-                            <div class="col-lg-3" id="divvadkavars" runat="server" visible="false">
+                                    <div class="col-lg-3" id="divNextDate" runat="server" visible="false">
 
-                                <label class="form-label">वादी की वाद संख्या / वर्ष </label>
+                                        <%--<label class="form-label">अगली सुनवाई की तिथि </label>--%>
+                                        <asp:Label ID="labNextDate" runat="server" Text="अगली सुनवाई की तिथि"></asp:Label>
+                                        <asp:TextBox ID="txtAgalaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy"> </asp:TextBox>
 
-                                <asp:TextBox ID="txtvadkavars" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="PopCalendar2" runat="server" TargetControlID="txtAgalaDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
 
-                            </div>
-
-
-                            <div class="col-lg-6" id="divCancelReason" runat="server" visible="false">
-
-                                <label class="form-label">अस्वीकृति का कारण </label>
-
-                                <asp:TextBox ID="txtCancelReason" runat="server" CssClass="form-control" TextMode="MultiLine" MaxLength="500" Rows="3" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
-
-                            </div>
-
-                        </div>
+                                    </div>
 
 
-                        <!-- =========================
+                                    <div class="col-lg-3" id="divvadkavars" runat="server" visible="false">
+
+                                        <label class="form-label">वादी की वाद संख्या / वर्ष </label>
+
+                                        <asp:TextBox ID="txtvadkavars" runat="server" CssClass="form-control"></asp:TextBox>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6" id="divCancelReason" runat="server" visible="false">
+
+                                        <label class="form-label">अस्वीकृति का कारण </label>
+
+                                        <asp:TextBox ID="txtCancelReason" runat="server" CssClass="form-control" TextMode="MultiLine" MaxLength="500" Rows="3" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- =========================
                              Decision
                         ==========================-->
 
-                        <div class="row g-3 mb-4">
+                                <div class="row g-3 mb-4">
 
-                            <div class="col-lg-6">
+                                    <div class="col-lg-6">
 
-                                <label class="form-label">बैठक में लिया गया निर्णय </label>
+                                        <label class="form-label">बैठक में लिया गया निर्णय </label>
 
-                                <asp:TextBox ID="txtfalafal" runat="server" CssClass="form-control" Rows="4" TextMode="MultiLine" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+                                        <asp:TextBox ID="txtfalafal" runat="server" CssClass="form-control" Rows="4" TextMode="MultiLine" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
 
-                            </div>
+                                    </div>
 
-                            <div class="col-lg-6">
+                                    <div class="col-lg-6">
 
-                                <label class="form-label">संयुक्त प्रतिवेदन (PDF) </label>
+                                        <label class="form-label">संयुक्त प्रतिवेदन (PDF) </label>
 
-                                <asp:HiddenField ID="hdLandDoc" runat="server" />
+                                        <asp:HiddenField ID="hdLandDoc" runat="server" />
 
-                                <asp:FileUpload ID="LandDoc" runat="server" CssClass="form-control" accept=".pdf" />
+                                        <asp:FileUpload ID="LandDoc" runat="server" CssClass="form-control" accept=".pdf" />
 
-                                <small class="text-danger">केवल PDF (3 MB) </small>
+                                        <small class="text-danger">केवल PDF (3 MB) </small>
 
-                                <a id="lnkLandDoc" runat="server" class="getpdfdoc" path="display" visible="false">View Document  </a>
+                                        <a id="lnkLandDoc" runat="server" class="getpdfdoc" path="display" visible="false">View Document  </a>
 
-                            </div>
+                                    </div>
 
-                        </div>
+                                </div>
 
 
-                        <!-- =========================
+                                <!-- =========================
                             Circle Officer
                         ==========================-->
 
-                        <div class="row g-3 mb-4">
+                                <div class="row g-3 mb-4">
 
-                            <div class="col-lg-6">
+                                    <div class="col-lg-6">
 
-                                <label class="form-label">अंचलाधिकारी का मंतव्य </label>
+                                        <label class="form-label">अंचलाधिकारी का मंतव्य </label>
 
-                                <asp:TextBox ID="txtabhiyukt_anchaladhikari" runat="server" CssClass="form-control" Rows="4" MaxLength="500" TextMode="MultiLine"> </asp:TextBox>
+                                        <asp:TextBox ID="txtabhiyukt_anchaladhikari" runat="server" CssClass="form-control" Rows="4" MaxLength="500" TextMode="MultiLine"> </asp:TextBox>
 
-                            </div>
+                                    </div>
 
-                            <div class="col-lg-6">
+                                    <div class="col-lg-6">
 
-                                <label class="form-label">अंचलाधिकारी का मंतव्य पत्र </label>
+                                        <label class="form-label">अंचलाधिकारी का मंतव्य पत्र </label>
 
-                                <asp:HiddenField ID="hdCircleOfficer_letterofintent" runat="server" />
+                                        <asp:HiddenField ID="hdCircleOfficer_letterofintent" runat="server" />
 
-                                <asp:FileUpload ID="CircleOfficer_letterOfIntent" runat="server" CssClass="form-control" accept=".pdf" />
+                                        <asp:FileUpload ID="CircleOfficer_letterOfIntent" runat="server" CssClass="form-control" accept=".pdf" />
 
-                                <small class="text-danger">केवल PDF (3 MB) </small>
+                                        <small class="text-danger">केवल PDF (3 MB) </small>
 
-                                <a id="lnkCircleOfficer_letterOfIntent" runat="server" class="getpdfdoc" path="display" visible="false">View Document </a>
+                                        <a id="lnkCircleOfficer_letterOfIntent" runat="server" class="getpdfdoc" path="display" visible="false">View Document </a>
 
-                            </div>
+                                    </div>
 
-                        </div>
+                                </div>
 
 
-                        <!-- =========================
+                                <!-- =========================
                             SHO
                         ==========================-->
 
-                        <div class="row g-3">
+                                <div class="row g-3">
 
-                            <div class="col-lg-6">
+                                    <div class="col-lg-6">
 
-                                <label class="form-label">थानाध्यक्ष का मंतव्य </label>
+                                        <label class="form-label">थानाध्यक्ष का मंतव्य </label>
 
-                                <asp:TextBox ID="txtabhiyukt_thaanprabhaaree" runat="server" CssClass="form-control" Rows="4" MaxLength="500" TextMode="MultiLine"> </asp:TextBox>
+                                        <asp:TextBox ID="txtabhiyukt_thaanprabhaaree" runat="server" CssClass="form-control" Rows="4" MaxLength="500" TextMode="MultiLine"> </asp:TextBox>
 
-                            </div>
+                                    </div>
 
-                            <div class="col-lg-6">
+                                    <div class="col-lg-6">
 
-                                <label class="form-label">थानाध्यक्ष का मंतव्य पत्र </label>
+                                        <label class="form-label">थानाध्यक्ष का मंतव्य पत्र </label>
 
-                                <asp:HiddenField ID="hdPoliceOfficer_letterOfIntent" runat="server" />
+                                        <asp:HiddenField ID="hdPoliceOfficer_letterOfIntent" runat="server" />
 
-                                <asp:FileUpload ID="PoliceOfficer_letterOfIntent" runat="server" CssClass="form-control" accept=".pdf" />
+                                        <asp:FileUpload ID="PoliceOfficer_letterOfIntent" runat="server" CssClass="form-control" accept=".pdf" />
 
-                                <small class="text-danger">केवल PDF (3 MB)</small>
+                                        <small class="text-danger">केवल PDF (3 MB)</small>
 
-                                <a id="lnkPoliceOfficer_letterOfIntent" runat="server" class="getpdfdoc" path="display" visible="false">View Document </a>
+                                        <a id="lnkPoliceOfficer_letterOfIntent" runat="server" class="getpdfdoc" path="display" visible="false">View Document </a>
+
+                                    </div>
+
+                                </div>
 
                             </div>
 
@@ -2625,9 +2637,8 @@
 
                     </div>
 
-                </div>
-
-            </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
         </asp:Panel>
 
