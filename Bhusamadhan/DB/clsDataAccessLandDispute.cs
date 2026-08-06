@@ -161,37 +161,82 @@ namespace Bhusamadhan.DB
 
         }
 
-        public DataTable GetDataTableWithProc(string ProcName, SqlParameter[] param)
+        //public DataTable GetDataTableWithProc(string ProcName, SqlParameter[] param)
+        //{
+        //    DataTable dt = new DataTable();
+        //    try
+        //    {
+
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.CommandText = ProcName;
+        //        foreach (SqlParameter prm in param)
+        //        {
+        //            cmd.Parameters.Add(prm);
+        //        }
+        //        SqlDataAdapter adap1 = new SqlDataAdapter();
+        //        cmd.Connection = con;
+        //        cmd.CommandTimeout = 0;
+        //        adap1.SelectCommand = cmd;
+        //        adap1.Fill(dt);
+        //        adap1.Dispose();
+        //        return dt;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // ExceptionLogging.SendErrorToText(ex);
+        //        // HttpContext.Current.Response.Write("Some Technical Error occurred,Please visit after some time");
+        //        return dt;
+        //    }
+
+
+
+        //}
+
+        public DataTable GetDataTableWithProc(string procName, SqlParameter[] parameters)
         {
             DataTable dt = new DataTable();
+
             try
             {
-
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = ProcName;
-                foreach (SqlParameter prm in param)
+                using (SqlCommand cmd = new SqlCommand(procName, con))
                 {
-                    cmd.Parameters.Add(prm);
-                }
-                SqlDataAdapter adap1 = new SqlDataAdapter();
-                cmd.Connection = con;
-                cmd.CommandTimeout = 0;
-                adap1.SelectCommand = cmd;
-                adap1.Fill(dt);
-                adap1.Dispose();
-                return dt;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandTimeout = 0;
 
+                    if (parameters != null)
+                    {
+                        foreach (SqlParameter prm in parameters)
+                        {
+                            cmd.Parameters.Add(prm);
+                        }
+                    }
+
+                    if (con.State != ConnectionState.Open)
+                        con.Open();
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new ApplicationException( "Database error occurred while executing stored procedure : " + procName, ex);
             }
             catch (Exception ex)
             {
-                // ExceptionLogging.SendErrorToText(ex);
-                // HttpContext.Current.Response.Write("Some Technical Error occurred,Please visit after some time");
-                return dt;
+                throw new ApplicationException( "Unexpected error occurred while executing stored procedure : " + procName, ex);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                    con.Close();
             }
 
-
-
+            return dt;
         }
 
 

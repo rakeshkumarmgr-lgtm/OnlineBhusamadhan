@@ -11,15 +11,17 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Bhusamadhan.DataAccessLayer.LandDisputeDAL;
+using System.IO;
 
 namespace Bhusamadhan.LandDispute.Entry
 {
     public partial class EntryPage : System.Web.UI.Page
     {
         string thanacode = "";
+        string commCode = "";
         string userid = "";
         DBHelper objDBHelper = new DBHelper();
-
+        string connectionString = DBConHelper.GetConnectionString();
         private readonly MatterRegistrationDAL _matterDAL = new MatterRegistrationDAL();
 
         private readonly VadiDetailDAL _vadiDAL = new VadiDetailDAL();
@@ -32,6 +34,7 @@ namespace Bhusamadhan.LandDispute.Entry
                 if (dt.Rows.Count == 1)
                 {
                     //int roleid = Convert.ToInt32(dt.Rows[0]["RoleID"].ToString());
+                    commCode= dt.Rows[0]["Commsionary_Code"].ToString();
                     userid = dt.Rows[0]["UserID"].ToString();
                     ddlDistrict.SelectedValue = dt.Rows[0]["District_Code"].ToString();
                     ddlDistrict.Enabled = false;
@@ -77,6 +80,7 @@ namespace Bhusamadhan.LandDispute.Entry
                     CurrentStep = 1;
 
                     ViewState["vadiDetails"] = CreateVadiTable();
+                    
                 }
 
                 ShowStep(CurrentStep);
@@ -231,6 +235,11 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 case 1:
                     pnlStep1.Visible = true;
+
+                    if (ApplicationId > 0)
+                    {
+                        FillStep1(ApplicationId);
+                    }
                     break;
 
                 case 2:
@@ -311,30 +320,74 @@ namespace Bhusamadhan.LandDispute.Entry
             switch (CurrentStep)
             {
                 case 1:
+                    Page.Validate("2");
+
+                    if (!Page.IsValid)
+                    {
+                        return;
+                    }
+
+                    //Additional custom validation
+                    //if (!ValidateStep1())
+                    //{
+                    //    return;
+                    //}
+
+
                     result = SaveStep1();
                     break;
 
                 case 2:
+                    Page.Validate("3");
+
+                    if (!Page.IsValid)
+                        return;
+
                     result = SaveStep2();
                     break;
 
                 case 3:
+                    Page.Validate("4");
+
+                    if (!Page.IsValid)
+                        return;
+
                     result = SaveStep3();
                     break;
 
                 case 4:
+                    Page.Validate("5");
+
+                    if (!Page.IsValid)
+                        return;
+
                     result = SaveStep4();
                     break;
 
                 case 5:
+                    Page.Validate("6");
+
+                    if (!Page.IsValid)
+                        return;
+
                     result = SaveStep5();
                     break;
 
                 case 6:
+                    Page.Validate("7");
+
+                    if (!Page.IsValid)
+                        return;
+
                     result = SaveStep6();
                     break;
 
                 case 7:
+                    Page.Validate("8");
+
+                    if (!Page.IsValid)
+                        return;
+
                     result = SaveStep7();
                     if (result)
                     {
@@ -354,6 +407,8 @@ namespace Bhusamadhan.LandDispute.Entry
 
 
         //---------------------------Step 1 form entry ---------------------------------------------------
+
+
 
         public bool ValidateVadiDetail()
         {
@@ -507,13 +562,52 @@ namespace Bhusamadhan.LandDispute.Entry
             DataTable dt = new DataTable();
 
             dt.Columns.Add("vadi_Name");
+            dt.Columns.Add("is_vadi_from_an_org");
+            dt.Columns.Add("vadi_org_type");
+            dt.Columns.Add("vadi_org_name");
+            dt.Columns.Add("vadi_org_pad_name");
+            dt.Columns.Add("is_vadi_from_an_dept");
+            dt.Columns.Add("vadi_dept_name");
+            dt.Columns.Add("vadi_dept_pad_name");
             dt.Columns.Add("Vadi_Father_Husband_Name");
-            dt.Columns.Add("Vadi_MobileNo");
+            dt.Columns.Add("NameAsPerAadhaar");
+            dt.Columns.Add("AadharNo");
+            dt.Columns.Add("YearOfBirthAsPerAadhaar");
             dt.Columns.Add("SexAsPerAadhaar");
+            dt.Columns.Add("Vadi_District_Code");
+            dt.Columns.Add("Vadi_Sub_DivCode");
+            dt.Columns.Add("Vadi_Block_Code");
+            dt.Columns.Add("Vadi_Thana_code");
+            dt.Columns.Add("Vadi_AreaType");
+            dt.Columns.Add("Vadi_Panchayat_Code");
+            dt.Columns.Add("Vadi_Village_Code");
+            dt.Columns.Add("Vadi_WardNo");
+            dt.Columns.Add("Vadi_MobileNo");
+            dt.Columns.Add("IsVerifyAadhaa");
            
+            dt.Columns.Add("Vadi_Panchayat_Anya");
+            dt.Columns.Add("Vadi_Village_Anya");
+            dt.Columns.Add("Vadi_WardNo_Anya");
+            dt.Columns.Add("mohalla");
+            dt.Columns.Add("sanstha_sambandh_type");
+
+            //--------------------------------------------------
+            // Display columns
+            //--------------------------------------------------
+
+            dt.Columns.Add("DistrictName");
+            dt.Columns.Add("SubDivisionName");
+            dt.Columns.Add("BlockName");
+            //dt.Columns.Add("ThanaName");
+            dt.Columns.Add("AreaTypeName");
+            dt.Columns.Add("PanchayatName");
+            dt.Columns.Add("VillageName");
+            dt.Columns.Add("WardName");
+
 
             return dt;
         }
+        
 
 
         protected void btnAddVadiDetail_Click(object sender, EventArgs e)
@@ -525,15 +619,15 @@ namespace Bhusamadhan.LandDispute.Entry
                 return;
             }
 
-            if (!ValidateVadiDetail())
-            {
-                return;
-            }
+            //if (!ValidateVadiDetail())
+            //{
+            //    return;
+            //}
 
             try
             {
                 DataTable dt = ViewState["vadiDetails"] as DataTable;
-
+            
                 //if (dt == null)
                 //{
                 //    lblMsg.Text = "ViewState[vadiDetails] is NULL";
@@ -543,10 +637,82 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 DataRow dr = dt.NewRow();
 
-                dr["vadi_Name"] = txtNamePerAadhaar.Text;
-                dr["Vadi_Father_Husband_Name"] = txtFName.Text;
-                dr["Vadi_MobileNo"] = txtvadimobile.Text;
-                dr["SexAsPerAadhaar"] = ddlgender.SelectedValue;
+
+                dr["vadi_Name"] = txtNamePerAadhaar.Text.Trim();
+
+                dr["is_vadi_from_an_org"] = ddl_is_vadi_from_an_org.SelectedValue.ToString();
+
+                dr["vadi_org_type"] = ddlWsanstha_naam.SelectedValue.ToString();
+
+                dr["vadi_org_name"] = txtWsanstha_naam.Text.Trim();
+
+                dr["vadi_org_pad_name"] = txtWsanstha_padanaam.Text.Trim();
+
+                dr["is_vadi_from_an_dept"] = ddl_is_vadi_from_an_dept.SelectedValue.ToString();
+
+                dr["vadi_dept_name"] = ddlWvibhaag_naam.SelectedValue.ToString();
+
+                dr["vadi_dept_pad_name"] = txtWvibhaag_padanaam.Text.Trim();
+
+                dr["Vadi_Father_Husband_Name"] = txtFName.Text.Trim();
+
+                dr["NameAsPerAadhaar"] = txtNamePerAadhaar.Text.Trim();
+
+                dr["AadharNo"] = "";
+
+                dr["YearOfBirthAsPerAadhaar"] = ddlYear.SelectedValue.ToString();
+
+                dr["SexAsPerAadhaar"] = ddlgender.SelectedValue.ToUpper();
+
+                dr["Vadi_District_Code"] = ddlUserDist.SelectedValue.ToString();
+              
+
+                dr["Vadi_Sub_DivCode"] = ddlUserSubdivision.SelectedValue.ToString();
+               
+
+                dr["Vadi_Block_Code"] = ddlUserBlock.SelectedValue.ToString();
+              
+                dr["Vadi_Thana_code"] = ddlUserThana.SelectedValue.ToString();
+                
+                dr["Vadi_AreaType"] = ddlUserAreatype.SelectedValue.ToString();
+                
+                dr["Vadi_Panchayat_Code"] = ddlUserPanchyat.SelectedValue.ToString();
+              
+                dr["Vadi_Village_Code"] = ddlUserVillage.SelectedValue.ToString();
+               
+                dr["Vadi_WardNo"] = ddlUserWard.SelectedValue.ToString();
+               
+                dr["Vadi_MobileNo"] = txtvadimobile.Text.Trim();
+
+                dr["IsVerifyAadhaa"] = 'N';
+
+                dr["Vadi_Panchayat_Anya"] = txtUserPanchyat_Anya.Text.Trim();
+
+                dr["Vadi_Village_Anya"] = txtUserVillage_Anya.Text.Trim();
+
+                dr["Vadi_WardNo_Anya"] = txtUserWard_Anya.Text.Trim();
+
+                dr["mohalla"] = txtUserMohalla.Text.Trim();
+
+                dr["sanstha_sambandh_type"] = ddlWsanshaanya_naam.SelectedValue.ToString();
+
+                //------------------------Display Column----------------------
+
+                dr["DistrictName"] = ddlUserDist.SelectedItem.Text;
+
+                dr["SubDivisionName"] = ddlUserSubdivision.SelectedItem.Text;
+
+                dr["BlockName"] = ddlUserBlock.SelectedItem.Text;
+
+                //dr["ThanaName"] = ddlUserThana.SelectedItem.Text;
+
+                dr["AreaTypeName"] = ddlUserAreatype.SelectedValue == "R" ? "ग्रामीण" : "शहरी";
+
+                dr["PanchayatName"] = ddlUserPanchyat.SelectedItem.Text;
+
+                dr["VillageName"] = ddlUserVillage.SelectedItem.Text;
+
+                dr["WardName"] = ddlUserWard.SelectedItem.Text;
 
                 dt.Rows.Add(dr);
 
@@ -556,103 +722,55 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 ClearVadiFields();
 
-                //DataRow dr = dt.NewRow();
-
-                //#region Basic Information
-
-                //dr["vadi_Name"] = txtNamePerAadhaar.Text.Trim();
-
-                //dr["Vadi_Father_Husband_Name"] = txtFName.Text.Trim();
-
-                //dr["NameAsPerAadhaar"] = txtNamePerAadhaar.Text.Trim();
-
-                //dr["AadharNo"] = "";
-
-                //dr["YearOfBirthAsPerAadhaar"] = ddlYear.SelectedValue == "0" ? (object)DBNull.Value : Convert.ToInt32(ddlYear.SelectedValue);
-
-                //dr["SexAsPerAadhaar"] = ddlgender.SelectedValue;
-
-                //dr["Vadi_MobileNo"] = txtvadimobile.Text.Trim();
-
-                //dr["IsVerifyAadhaa"] = "N";
-
-                //#endregion
-
-                //#region Department
-
-                //dr["is_vadi_from_an_dept"] = ddl_is_vadi_from_an_dept.SelectedValue;
-
-                //dr["vadi_dept_id"] = ddlWvibhaag_naam.SelectedValue == "0" ? "" : ddlWvibhaag_naam.SelectedValue;
-
-                //dr["vadi_dept_name"] = ddlWvibhaag_naam.SelectedItem?.Text ?? "";
-
-                //dr["vadi_dept_pad_name"] = txtWvibhaag_padanaam.Text.Trim();
-
-                //#endregion
-
-                //#region Organization
-
-                //dr["is_vadi_from_an_org"] = ddl_is_vadi_from_an_org.SelectedValue;
-
-                //dr["vadi_org_type"] = ddlWsanstha_naam.SelectedValue == "0" ? (object)DBNull.Value: Convert.ToInt32(ddlWsanstha_naam.SelectedValue);
-
-                //dr["vadi_org_name"] = txtWsanstha_naam.Text.Trim();
-
-                //dr["vadi_org_pad_name"] = txtWsanstha_padanaam.Text.Trim();
-
-                //dr["sanstha_sambandh_type"] = ddlWsanshaanya_naam.SelectedValue == "0" ? (object)DBNull.Value : Convert.ToInt32(ddlWsanshaanya_naam.SelectedValue);
-
-                //#endregion
-
-                //#region Address Codes
-
-                //dr["Vadi_District_Code"] = ddlUserDist.SelectedValue;
-                //dr["Vadi_Sub_DivCode"] = ddlUserSubdivision.SelectedValue;
-                //dr["Vadi_Block_Code"] = ddlUserBlock.SelectedValue;
-                //dr["Vadi_Thana_code"] = ddlUserThana.SelectedValue;
-                //dr["Vadi_AreaType"] = ddlUserAreatype.SelectedValue;
-                //dr["Vadi_Panchayat_Code"] = ddlUserPanchyat.SelectedValue;
-                //dr["Vadi_Village_Code"] = ddlUserVillage.SelectedValue;
-                //dr["Vadi_WardNo"] = ddlUserWard.SelectedValue;
-
-                //dr["Vadi_Panchayat_Anya"] = txtUserPanchyat_Anya.Text.Trim();
-                //dr["Vadi_Village_Anya"] = txtUserVillage_Anya.Text.Trim();
-                //dr["Vadi_WardNo_Anya"] = txtUserWard_Anya.Text.Trim();
-                //dr["Mohalla"] = txtUserMohalla.Text.Trim();
-
-                //#endregion
-
-                //#region Display Columns (For Repeater Only)
-
-                //dr["DistrictName"] = ddlUserDist.SelectedItem?.Text ?? "";
-                //dr["SubdivisionName"] = ddlUserSubdivision.SelectedItem?.Text ?? "";
-                //dr["BlockName"] = ddlUserBlock.SelectedItem?.Text ?? "";
-                //dr["ThanaName"] = ddlUserThana.SelectedItem?.Text ?? "";
-                //dr["AreaTypeName"] = ddlUserAreatype.SelectedItem?.Text ?? "";
-                //dr["PanchayatName"] = ddlUserPanchyat.SelectedItem?.Text ?? "";
-                //dr["VillageName"] = ddlUserVillage.SelectedItem?.Text ?? "";
-                //dr["WardName"] = ddlUserWard.SelectedItem?.Text ?? "";
-
-                //dr["OrgTypeName"] =  ddl_is_vadi_from_an_dept.SelectedValue == "Y" ? ddlWvibhaag_naam.SelectedItem?.Text ?? "" : ddl_is_vadi_from_an_org.SelectedValue == "Y"  ? ddlWsanstha_naam.SelectedItem?.Text ?? "" : "";
-
-                //dr["AssociationName"] = ddlWsanshaanya_naam.SelectedItem?.Text ?? "";
-
-                //#endregion
-
-                //dt.Rows.Add(dr);
-
-                //ViewState["vadiDetails"] = dt;
-
-                //BindWadiRepeater();
-
-                //hfwadiprint.Value = "Printstep1";
-
-                //pnlupdate1.Update();
             }
             catch (Exception ex)
             {
-                lblMsg.Text = ex.ToString().Replace(Environment.NewLine, "<br/>");
+                lblMsg.Text = ex.ToString();
             }
+        }
+
+        public void ClearVadiFields()
+        {
+            txtNamePerAadhaar.Text = "";
+            ddl_is_vadi_from_an_org.SelectedIndex = 0;
+            ddlWsanstha_naam.SelectedIndex = 0;
+
+            txtWsanstha_naam.Text = "";
+
+            txtWsanstha_padanaam.Text = "";
+            ddl_is_vadi_from_an_dept.SelectedIndex = 0;
+            ddlWvibhaag_naam.SelectedIndex = 0;
+
+            txtWvibhaag_padanaam.Text = "";
+
+            txtFName.Text = "";
+
+            txtNamePerAadhaar.Text = "";
+
+            ddlYear.SelectedIndex = 0;
+            ddlgender.SelectedIndex = 0;
+            ddlUserDist.SelectedIndex = 0;
+            ddlUserSubdivision.SelectedIndex = 0;
+            ddlUserBlock.SelectedIndex = 0;
+            ddlUserThana.SelectedIndex = 0;
+            ddlUserAreatype.SelectedIndex = 0;
+
+            ddlUserPanchyat.SelectedIndex = 0;
+            ddlUserVillage.SelectedIndex = 0;
+
+            ddlUserWard.SelectedIndex = 0;
+
+            txtvadimobile.Text = "";
+
+            txtUserPanchyat_Anya.Text = "";
+
+            txtUserVillage_Anya.Text = "";
+
+            txtUserWard_Anya.Text = "";
+
+            txtUserMohalla.Text = "";
+
+            ddlWsanshaanya_naam.SelectedIndex = 0;
         }
 
         private void LoadVadiDetails(long applicationId)
@@ -661,7 +779,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
             using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
             {
-                SqlDataAdapter da = new SqlDataAdapter(@"SELECT Vadi_Name,  Vadi_Father_Husband_Name, Vadi_MobileNo, SexAsPerAadhaar  FROM BS_VadiDetailEntry WHERE a_id=@a_id", con);
+                SqlDataAdapter da = new SqlDataAdapter(@"select * from BS_VW_GetVadi_Step1 WHERE a_id=@a_id", con);
 
                 da.SelectCommand.Parameters.AddWithValue("@a_id", applicationId);
 
@@ -688,6 +806,8 @@ namespace Bhusamadhan.LandDispute.Entry
         {
             rptWadi.DataSource = ViewState["vadiDetails"] as DataTable;
             rptWadi.DataBind();
+
+
         }
 
 
@@ -707,10 +827,7 @@ namespace Bhusamadhan.LandDispute.Entry
             BindWadiRepeater();
         }
 
-        public void ClearVadiFields()
-        {
-
-        }
+       
 
 
         //-------------------basic step of step 1 completed--------------------------------------
@@ -821,12 +938,36 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
+        private string GetUserIP()
+        {
+            string iMainpaddress = Context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+            if (!string.IsNullOrEmpty(iMainpaddress))
+            {
+                return iMainpaddress.Split(',')[0];
+            }
+
+            return Request.ServerVariables["REMOTE_ADDR"];
+        }
+
+        private string InsSaveFile(string fileName, FileUpload fuFile, string a_id)
+        {
+            string uploadDirectory = string.Empty;
+            string pdfpath = FileSaveServer.getBase64(fuFile);
+            string extension = string.Empty;
+            extension = Path.GetExtension(fuFile.FileName).ToLower();
+            string fn = "ID" + a_id;
+            uploadDirectory = "~/LandDoc/Upload/" + fn + "/";
+            string resi = FileSaveServer.InsertPDFNew(uploadDirectory, pdfpath, fileName, extension);
+            // Utility.showMessage(Page, resi);
+            return resi;
+            //return uploadDirectory + fileName + extension;
+        }
         private bool SaveStep1()
         {
             //if (!ValidateStep1())
             //    return false;
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
                 con.Open();
 
@@ -834,58 +975,202 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 try
                 {
-                    //-------------------------------------------------
-                    // Save Master
-                    //-------------------------------------------------
 
-                    //SqlCommand cmd = new SqlCommand("BS_sp_SaveStep1", con, trans);
-                    //cmd.CommandType = CommandType.StoredProcedure;
+                    string guid = "";
 
-                    //cmd.Parameters.AddWithValue("@District_Code", ddlDistrict.SelectedValue);
-                    //cmd.Parameters.AddWithValue("@Block_Code", ddlBlock.SelectedValue);
-                    //cmd.Parameters.AddWithValue("@Village", ddlVillage.SelectedValue);
-                    //cmd.Parameters.AddWithValue("@CUUser", userid);
+                    if (ApplicationId == 0)
+                    {
+                        guid = Guid.NewGuid().ToString();
+                    }
+                    else
+                    {
+                        guid = _matterDAL.GetApplicationGuid(ApplicationId, con, trans);
 
-                    //long applicationId = Convert.ToInt64(cmd.ExecuteScalar());
+                        if (string.IsNullOrWhiteSpace(guid))
+                            guid = Guid.NewGuid().ToString();
+                    }
 
-                    long applicationId = _matterDAL.SaveStep1(ApplicationId, ddlDistrict.SelectedValue,  ddlBlock.SelectedValue,  ddlVillage.SelectedValue,  userid,  con, trans);
+                    string Vadi_sakshya_FilePath = string.Empty;
+                    string Prativadi_sakshya_FilePath = string.Empty;
 
-                    //-------------------------------------------------
+                    string uploadFolder = $"~/LandDoc/Upload/ID{guid}";
+
+
+                    if (ApplicationId > 0)
+                    {
+                        DataRow dr = _matterDAL.GetUploadedFiles(ApplicationId, con, trans);
+
+                        if (dr != null)
+                        {
+                            Vadi_sakshya_FilePath = dr["Vadi_sakshya_FilePath"].ToString();
+                            Prativadi_sakshya_FilePath = dr["Prativadi_sakshya_FilePath"].ToString();
+                        }
+                    }
+
+                    //-------------------- Validate --------------------//
+
+                    if (AppDoc.HasFile)
+                    {
+                        if (FileUploadValidator.IsPdf(AppDoc.PostedFile, 1024, 1024) != "OK")
+                        {
+                            lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                            return false;
+                        }
+
+                        Vadi_sakshya_FilePath = $"{uploadFolder}/Vadi_sakshya_File.pdf";
+
+                        string savedPath = InsSaveFile("Vadi_sakshya_File", AppDoc, guid);
+
+                        if (savedPath == "0" || savedPath != Vadi_sakshya_FilePath)
+                        {
+                            lblMsg.Text = "Technical Error while uploading Vadi document.";
+                            return false;
+                        }
+                    }
+
+                    if (PrativadiDoc.HasFile)
+                    {
+                        if (FileUploadValidator.IsPdf(PrativadiDoc.PostedFile, 1024, 1024) != "OK")
+                        {
+                            lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                            return false;
+                        }
+
+                        Prativadi_sakshya_FilePath = $"{uploadFolder}/Prativadi_sakshya_File.pdf";
+
+                        string savedPath = InsSaveFile("Prativadi_sakshya_File", PrativadiDoc, guid);
+
+                        if (savedPath == "0" || savedPath != Prativadi_sakshya_FilePath)
+                        {
+                            lblMsg.Text = "Technical Error while uploading Prativadi document.";
+                            return false;
+                        }
+                    }
+
+                    //if (AppDoc.HasFile)
+                    //{
+                    //    if (FileUploadValidator.IsPdf(AppDoc.PostedFile, 1024, 1024) != "OK")
+                    //    {
+                    //        lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                    //        return false;
+                    //    }
+
+                    //    Vadi_sakshya_FilePath = $"{uploadFolder}/Vadi_sakshya_File.pdf";
+                    //}
+
+                    //if (PrativadiDoc.HasFile)
+                    //{
+                    //    if (FileUploadValidator.IsPdf(PrativadiDoc.PostedFile, 1024, 1024) != "OK")
+                    //    {
+                    //        lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                    //        return false;
+                    //    }
+
+                    //    Prativadi_sakshya_FilePath = $"{uploadFolder}/Prativadi_sakshya_File.pdf";
+                    //}
+
+                    ////-------------------- Upload --------------------//
+
+                    //if (AppDoc.HasFile)
+                    //{
+                    //    Vadi_sakshya_FilePath =  $"{uploadFolder}/Vadi_sakshya_File.pdf";
+
+                    //    string savedPath = InsSaveFile("Vadi_sakshya_File", AppDoc, guid);
+
+                    //    if (savedPath == "0" || savedPath != Vadi_sakshya_FilePath)
+                    //    {
+                    //        lblMsg.Text = "Technical Error while uploading Vadi document.";
+                    //        return false;
+                    //    }
+                    //}
+
+                    //if (PrativadiDoc.HasFile)
+                    //{
+                    //    Prativadi_sakshya_FilePath = $"{uploadFolder}/Prativadi_sakshya_File.pdf";
+
+                    //    string savedPath =  InsSaveFile("Prativadi_sakshya_File", AppDoc, guid);
+
+                    //    if (savedPath == "0" || savedPath != Prativadi_sakshya_FilePath)
+                    //    {
+                    //        lblMsg.Text = "Technical Error while uploading PratiVadi document.";
+                    //        return false;
+                    //    }
+
+
+                    //    //string savedPath = InsSaveFile("Prativadi_sakshya_File", PrativadiDoc, guid);
+
+                    //    //if (savedPath == "0" || savedPath != Prativadi_sakshya_FilePath)
+                    //    //{
+                    //    //    lblMsg.Text = "Technical Error while uploading Prativadi document.";
+                    //    //    return false;
+                    //    //}
+                    //}
+
+                    //long applicationId = _matterDAL.SaveStep1(ApplicationId, ddlDistrict.SelectedValue, ddlBlock.SelectedValue, ddlVillage.SelectedValue, userid, con, trans);
+
+                    long applicationId = _matterDAL.SaveStep1(ApplicationId, Convert.ToInt32(commCode), txtrajaswa_sankhya.Text.Trim(), Convert.ToInt32(ddlbhumitype.SelectedValue), Convert.ToInt32(ddlsarkaribhumitype.SelectedValue), txtsarkaribhumitype_Anya.Text.Trim(), Convert.ToInt32(ddlbhumivivadtype.SelectedValue), txtbhumivivad_Anya.Text.Trim(), Convert.ToInt32(ddl_vivad_adyatan_sthiti.SelectedValue), Convert.ToInt32(ddlDistrict.SelectedValue), Convert.ToInt32(ddlSubdivision.SelectedValue), Convert.ToInt32(ddlBlock.SelectedValue), Convert.ToInt32(ddlPolice.SelectedValue), Convert.ToInt32(ddlPanchyat.SelectedValue), txtPanchyat_Anya.Text.Trim(), ddlareatype.SelectedValue, Convert.ToInt32(ddlVillage.SelectedValue), txtVillage_Anya.Text.Trim(), Convert.ToInt32(ddlWard.SelectedValue), txtWard_Anya.Text.Trim(), Vadi_sakshya_FilePath, Prativadi_sakshya_FilePath, Convert.ToDateTime(txtAwadenKiTithi.Text.ToString()), txtVadiVivarani.Text.Trim(), txtPrativadiVivarani.Text.Trim(), guid, userid, GetUserIP().ToString(), con, trans);
+
+
                     // Store in Session
-                    //-------------------------------------------------
 
                     ApplicationId = applicationId;
-                    DisplayApplicationInfo();
-                    //-------------------------------------------------
+
+
                     // Save Vadi
-                    //-------------------------------------------------
 
                     DataTable dtVadi = GetVadiDetails();
+                    //DataTable dtVadi = GetVadiDetailsForSave();
 
-                    if (dtVadi.Rows.Count == 0)
+                    if (dtVadi == null || dtVadi.Rows.Count == 0)
                     {
                         trans.Rollback();
 
-                        lblMsg.Text = "कृपया कम से कम एक वादी जोड़ें।";
+                        lblMsg.Text = "कृपया पहले 'Save' बटन दबाकर कम से कम एक वादी जोड़ें।";
 
                         return false;
                     }
 
-                    //SaveVadiDetails(applicationId, dtVadi, con, trans);
-                    _vadiDAL.SaveVadiDetails( applicationId, dtVadi,  con, trans);
+                    //-------- Create a filtered copy of GetVadiDetails()--------------------
+                    DataTable dtForDb = dtVadi.DefaultView.ToTable(false,
+                                    "vadi_Name",
+                                    "is_vadi_from_an_org",
+                                    "vadi_org_type",
+                                    "vadi_org_name",
+                                    "vadi_org_pad_name",
+                                    "is_vadi_from_an_dept",
+                                    "vadi_dept_name",
+                                    "vadi_dept_pad_name",
+                                    "Vadi_Father_Husband_Name",
+                                    "NameAsPerAadhaar",
+                                    "AadharNo",
+                                    "YearOfBirthAsPerAadhaar",
+                                    "SexAsPerAadhaar",
+                                    "Vadi_District_Code",
+                                    "Vadi_Sub_DivCode",
+                                    "Vadi_Block_Code",
+                                    "Vadi_Thana_code",
+                                    "Vadi_AreaType",
+                                    "Vadi_Panchayat_Code",
+                                    "Vadi_Village_Code",
+                                    "Vadi_WardNo",
+                                    "Vadi_MobileNo",
+                                    "IsVerifyAadhaa",
+                                    "Vadi_Panchayat_Anya",
+                                    "Vadi_Village_Anya",
+                                    "Vadi_WardNo_Anya",
+                                    "mohalla",
+                                    "sanstha_sambandh_type"
+                   );
 
-                    //-------------------------------------------------
-                    // Update Current Step
-                    //-------------------------------------------------
 
-                    //SqlCommand cmdStep = new SqlCommand(@" UPDATE BS_Matter_Registration SET CurrentStep=2 WHERE a_id=@a_id", con, trans);
+                    //_vadiDAL.SaveVadiDetails( applicationId, dtVadi,userid,  con, trans);
+                    _vadiDAL.SaveVadiDetails(applicationId, dtForDb, userid, con, trans);
 
-                    //cmdStep.Parameters.AddWithValue("@a_id", applicationId);
+                    // Update Current Step                 
 
-                    //cmdStep.ExecuteNonQuery();
-                    _matterDAL.UpdateCurrentStep( applicationId, 2, con, trans);
+                    _matterDAL.UpdateCurrentStep(applicationId, 2, con, trans);
 
-
+                    DisplayApplicationInfo();
                     trans.Commit();
 
                     lblMsg.Text = "Step-1 saved successfully.";
@@ -903,6 +1188,76 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
+        private void FillStep1(long applicationId)
+        {
+            DataTable dt = _matterDAL.GetStep1(applicationId);
+
+            if (dt.Rows.Count == 0)
+                return;
+
+            DataRow dr = dt.Rows[0];
+
+            BindDist_Wadi_Pratiwadi();
+            ddlDistrict.SelectedValue = dr["District_Code"].ToString();
+
+
+
+            BindBlock();
+
+            ddlBlock.SelectedValue = dr["Block_Code"].ToString();
+
+
+
+            //------------------------------------
+            // Documents
+            //------------------------------------
+
+            string baseUrl = ConfigurationManager.AppSettings["DocumentServer"];
+
+            // Remove trailing slash if any
+            baseUrl = baseUrl.TrimEnd('/');
+
+            //---------------- Vadi Document ----------------
+
+            if (!string.IsNullOrWhiteSpace(dr["Vadi_sakshya_File"].ToString()))
+            {
+                string filePath = dr["Vadi_sakshya_File"].ToString();
+
+                // Convert "~/LandDoc/Upload/..." to "/LandDoc/Upload/..."
+                filePath = filePath.Replace("~", "");
+
+                lnkAppDoc.HRef = baseUrl + filePath;
+                lnkAppDoc.Target = "_blank";
+                lnkAppDoc.Visible = true;
+            }
+            else
+            {
+                lnkAppDoc.Visible = false;
+            }
+
+            //---------------- Prativadi Document ----------------
+
+            if (!string.IsNullOrWhiteSpace(dr["Prativadi_sakshya_File"].ToString()))
+            {
+                string filePath = dr["Prativadi_sakshya_File"].ToString();
+
+                filePath = filePath.Replace("~", "");
+
+                lnkPrativadiDoc.HRef = baseUrl + filePath;
+                lnkPrativadiDoc.Target = "_blank";
+                lnkPrativadiDoc.Visible = true;
+            }
+            else
+            {
+                lnkPrativadiDoc.Visible = false;
+            }
+
+            //------------------------------------
+
+            LoadVadiDetails(applicationId);
+        }
+
+       
         //private void SaveVadiDetails(long applicationId, DataTable dtVadi, SqlConnection con,  SqlTransaction trans)
         //{
         //    if (dtVadi == null || dtVadi.Rows.Count == 0)

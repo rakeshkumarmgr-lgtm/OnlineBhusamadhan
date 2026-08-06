@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://10.133.25.21/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://10.133.25.21/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://10.133.25.21/">
+      <s:element name="InsertImage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Photo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_filename" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertImageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertImageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_Doc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Docpath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_FileExt" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertDocResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDOC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_path" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDOCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteDOCResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Photo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_filename" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_fileExt" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertPDFResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPDF1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Photo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_filename" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertPDF1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertPDF1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="skey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Cap" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewDocResult" type="tns:ArrayOfReturnValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfReturnValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnValue" nillable="true" type="tns:ReturnValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Skey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cap" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ViewMergeDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="skey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Filepath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_Cap" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ViewMergeDocResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ViewMergeDocResult" type="tns:ArrayOfReturnValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ArrayOfReturnValue" nillable="true" type="tns:ArrayOfReturnValue" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InsertImageSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertImage" />
+  </wsdl:message>
+  <wsdl:message name="InsertImageSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDocSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDoc" />
+  </wsdl:message>
+  <wsdl:message name="InsertDocSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDocResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDOCSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDOC" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDOCSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDOCResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPDF" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDF1SoapIn">
+    <wsdl:part name="parameters" element="tns:InsertPDF1" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDF1SoapOut">
+    <wsdl:part name="parameters" element="tns:InsertPDF1Response" />
+  </wsdl:message>
+  <wsdl:message name="ViewDocSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewDoc" />
+  </wsdl:message>
+  <wsdl:message name="ViewDocSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewDocResponse" />
+  </wsdl:message>
+  <wsdl:message name="ViewMergeDocSoapIn">
+    <wsdl:part name="parameters" element="tns:ViewMergeDoc" />
+  </wsdl:message>
+  <wsdl:message name="ViewMergeDocSoapOut">
+    <wsdl:part name="parameters" element="tns:ViewMergeDocResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertImageHttpGetIn">
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Photo" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertImageHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertDocHttpGetIn">
+    <wsdl:part name="_Doc" type="s:string" />
+    <wsdl:part name="_Docpath" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+    <wsdl:part name="_FileExt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertDocHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDOCHttpGetIn">
+    <wsdl:part name="_path" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDOCHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDFHttpGetIn">
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Photo" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+    <wsdl:part name="_fileExt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDFHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDF1HttpGetIn">
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Photo" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDF1HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewDocHttpGetIn">
+    <wsdl:part name="skey" type="s:string" />
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Cap" type="s:string" />
+    <wsdl:part name="_Type" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewDocHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReturnValue" />
+  </wsdl:message>
+  <wsdl:message name="ViewMergeDocHttpGetIn">
+    <wsdl:part name="skey" type="s:string" />
+    <wsdl:part name="Filepath" type="s:string" />
+    <wsdl:part name="_Cap" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewMergeDocHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReturnValue" />
+  </wsdl:message>
+  <wsdl:message name="InsertImageHttpPostIn">
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Photo" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertImageHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertDocHttpPostIn">
+    <wsdl:part name="_Doc" type="s:string" />
+    <wsdl:part name="_Docpath" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+    <wsdl:part name="_FileExt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertDocHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDOCHttpPostIn">
+    <wsdl:part name="_path" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDOCHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDFHttpPostIn">
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Photo" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+    <wsdl:part name="_fileExt" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDFHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDF1HttpPostIn">
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Photo" type="s:string" />
+    <wsdl:part name="_filename" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InsertPDF1HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewDocHttpPostIn">
+    <wsdl:part name="skey" type="s:string" />
+    <wsdl:part name="_path" type="s:string" />
+    <wsdl:part name="_Cap" type="s:string" />
+    <wsdl:part name="_Type" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewDocHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReturnValue" />
+  </wsdl:message>
+  <wsdl:message name="ViewMergeDocHttpPostIn">
+    <wsdl:part name="skey" type="s:string" />
+    <wsdl:part name="Filepath" type="s:string" />
+    <wsdl:part name="_Cap" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ViewMergeDocHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfReturnValue" />
+  </wsdl:message>
+  <wsdl:portType name="ImageWebServiceSoap">
+    <wsdl:operation name="InsertImage">
+      <wsdl:input message="tns:InsertImageSoapIn" />
+      <wsdl:output message="tns:InsertImageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDoc">
+      <wsdl:input message="tns:InsertDocSoapIn" />
+      <wsdl:output message="tns:InsertDocSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDOC">
+      <wsdl:input message="tns:DeleteDOCSoapIn" />
+      <wsdl:output message="tns:DeleteDOCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF">
+      <wsdl:input message="tns:InsertPDFSoapIn" />
+      <wsdl:output message="tns:InsertPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF1">
+      <wsdl:input message="tns:InsertPDF1SoapIn" />
+      <wsdl:output message="tns:InsertPDF1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewDoc">
+      <wsdl:input message="tns:ViewDocSoapIn" />
+      <wsdl:output message="tns:ViewDocSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewMergeDoc">
+      <wsdl:input message="tns:ViewMergeDocSoapIn" />
+      <wsdl:output message="tns:ViewMergeDocSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImageWebServiceHttpGet">
+    <wsdl:operation name="InsertImage">
+      <wsdl:input message="tns:InsertImageHttpGetIn" />
+      <wsdl:output message="tns:InsertImageHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDoc">
+      <wsdl:input message="tns:InsertDocHttpGetIn" />
+      <wsdl:output message="tns:InsertDocHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDOC">
+      <wsdl:input message="tns:DeleteDOCHttpGetIn" />
+      <wsdl:output message="tns:DeleteDOCHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF">
+      <wsdl:input message="tns:InsertPDFHttpGetIn" />
+      <wsdl:output message="tns:InsertPDFHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF1">
+      <wsdl:input message="tns:InsertPDF1HttpGetIn" />
+      <wsdl:output message="tns:InsertPDF1HttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewDoc">
+      <wsdl:input message="tns:ViewDocHttpGetIn" />
+      <wsdl:output message="tns:ViewDocHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewMergeDoc">
+      <wsdl:input message="tns:ViewMergeDocHttpGetIn" />
+      <wsdl:output message="tns:ViewMergeDocHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ImageWebServiceHttpPost">
+    <wsdl:operation name="InsertImage">
+      <wsdl:input message="tns:InsertImageHttpPostIn" />
+      <wsdl:output message="tns:InsertImageHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDoc">
+      <wsdl:input message="tns:InsertDocHttpPostIn" />
+      <wsdl:output message="tns:InsertDocHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDOC">
+      <wsdl:input message="tns:DeleteDOCHttpPostIn" />
+      <wsdl:output message="tns:DeleteDOCHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF">
+      <wsdl:input message="tns:InsertPDFHttpPostIn" />
+      <wsdl:output message="tns:InsertPDFHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF1">
+      <wsdl:input message="tns:InsertPDF1HttpPostIn" />
+      <wsdl:output message="tns:InsertPDF1HttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewDoc">
+      <wsdl:input message="tns:ViewDocHttpPostIn" />
+      <wsdl:output message="tns:ViewDocHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ViewMergeDoc">
+      <wsdl:input message="tns:ViewMergeDocHttpPostIn" />
+      <wsdl:output message="tns:ViewMergeDocHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ImageWebServiceSoap" type="tns:ImageWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertImage">
+      <soap:operation soapAction="http://10.133.25.21/InsertImage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDoc">
+      <soap:operation soapAction="http://10.133.25.21/InsertDoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDOC">
+      <soap:operation soapAction="http://10.133.25.21/DeleteDOC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF">
+      <soap:operation soapAction="http://10.133.25.21/InsertPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF1">
+      <soap:operation soapAction="http://10.133.25.21/InsertPDF1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewDoc">
+      <soap:operation soapAction="http://10.133.25.21/ViewDoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewMergeDoc">
+      <soap:operation soapAction="http://10.133.25.21/ViewMergeDoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImageWebServiceSoap12" type="tns:ImageWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertImage">
+      <soap12:operation soapAction="http://10.133.25.21/InsertImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDoc">
+      <soap12:operation soapAction="http://10.133.25.21/InsertDoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDOC">
+      <soap12:operation soapAction="http://10.133.25.21/DeleteDOC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF">
+      <soap12:operation soapAction="http://10.133.25.21/InsertPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF1">
+      <soap12:operation soapAction="http://10.133.25.21/InsertPDF1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewDoc">
+      <soap12:operation soapAction="http://10.133.25.21/ViewDoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewMergeDoc">
+      <soap12:operation soapAction="http://10.133.25.21/ViewMergeDoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImageWebServiceHttpGet" type="tns:ImageWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="InsertImage">
+      <http:operation location="/InsertImage" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDoc">
+      <http:operation location="/InsertDoc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDOC">
+      <http:operation location="/DeleteDOC" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF">
+      <http:operation location="/InsertPDF" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF1">
+      <http:operation location="/InsertPDF1" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewDoc">
+      <http:operation location="/ViewDoc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewMergeDoc">
+      <http:operation location="/ViewMergeDoc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ImageWebServiceHttpPost" type="tns:ImageWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="InsertImage">
+      <http:operation location="/InsertImage" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDoc">
+      <http:operation location="/InsertDoc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDOC">
+      <http:operation location="/DeleteDOC" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF">
+      <http:operation location="/InsertPDF" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertPDF1">
+      <http:operation location="/InsertPDF1" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewDoc">
+      <http:operation location="/ViewDoc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ViewMergeDoc">
+      <http:operation location="/ViewMergeDoc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ImageWebService">
+    <wsdl:port name="ImageWebServiceSoap" binding="tns:ImageWebServiceSoap">
+      <soap:address location="http://localhost:8085/ImageWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImageWebServiceSoap12" binding="tns:ImageWebServiceSoap12">
+      <soap12:address location="http://localhost:8085/ImageWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImageWebServiceHttpGet" binding="tns:ImageWebServiceHttpGet">
+      <http:address location="http://localhost:8085/ImageWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ImageWebServiceHttpPost" binding="tns:ImageWebServiceHttpPost">
+      <http:address location="http://localhost:8085/ImageWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

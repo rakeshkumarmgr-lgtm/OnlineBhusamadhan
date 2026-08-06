@@ -573,7 +573,7 @@
                                                                     <th>जिला</th>
                                                                     <th>अनुमंडल</th>
                                                                     <th>अंचल</th>
-                                                                    <th>थाना</th>
+                                                                    <%--  <th>थाना</th>--%>
                                                                     <th>क्षेत्र</th>
                                                                     <th>ग्राम पंचायत</th>
                                                                     <th>राजस्व ग्राम</th>
@@ -613,7 +613,54 @@
                                                             <td class="text-center">
                                                                 <%# Eval("Vadi_MobileNo") %>
                                                             </td>
+                                                            <td class="text-center">
+                                                                <%# Eval("YearOfBirthAsPerAadhaar") %> 
 
+                                                            </td>
+
+                                                           <td>
+                                                                <%# Eval("DistrictName") %>
+
+                                                            </td>
+
+                                                            <td>
+                                                                <%# Eval("SubDivisionName") %>
+
+                                                            </td>
+
+                                                            <td>
+                                                                <%# Eval("BlockName") %>
+
+                                                            </td>
+                                                            <td>
+                                                                <%# Eval("AreaTypeName") %>
+
+                                                            </td>
+
+                                                            <td>
+                                                                <%# Eval("PanchayatName") %>
+
+                                                            </td>
+
+                                                            <td>
+                                                                <%# Eval("VillageName") %>
+
+                                                            </td>
+
+                                                            <td>
+                                                                <%# Eval("WardName") %>
+
+                                                            </td>
+                                                            <td>
+
+                                                                <%# Eval("is_vadi_from_an_dept") %> 
+
+                                                            </td>
+                                                            <td>
+
+                                                                <%# Eval("is_vadi_from_an_org") %>
+
+                                                            </td>
                                                         </tr>
 
                                                     </ItemTemplate>
@@ -2647,7 +2694,7 @@
 
             <asp:Button ID="btnPrevious" runat="server" Text="Previous" CssClass="btn btn-secondary" OnClick="btnPrevious_Click" />
             &nbsp;
-           <asp:Button ID="btnNext" runat="server" Text="Save & Next" CssClass="btn btn-success" OnClick="btnNext_Click" />
+           <asp:Button ID="btnNext" runat="server" Text="Save & Next" CssClass="btn btn-success" OnClick="btnNext_Click" CausesValidation="false" />
 
         </div>
 

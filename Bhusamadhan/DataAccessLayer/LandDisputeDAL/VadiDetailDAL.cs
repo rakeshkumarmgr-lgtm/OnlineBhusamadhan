@@ -9,9 +9,9 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class VadiDetailDAL
     {
-        public void SaveVadiDetails( long applicationId,  DataTable dtVadi, SqlConnection con, SqlTransaction trans)
+        public void SaveVadiDetails( long applicationId,  DataTable dtForDb, string userid, SqlConnection con, SqlTransaction trans)
         {
-            if (dtVadi == null || dtVadi.Rows.Count == 0)
+            if (dtForDb == null || dtForDb.Rows.Count == 0)
                 return;
 
             using (SqlCommand cmd = new SqlCommand("BS_SP_SaveVadiDetails", con, trans))
@@ -23,8 +23,8 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
                 SqlParameter tvp = cmd.Parameters.Add("@VadiDetails", SqlDbType.Structured);
 
                 tvp.TypeName = "dbo.BS_VadiDetailType";
-                tvp.Value = dtVadi;
-
+                tvp.Value = dtForDb;
+                cmd.Parameters.Add("@CUUser", SqlDbType.NVarChar).Value = userid;
                 cmd.ExecuteNonQuery();
             }
         }
