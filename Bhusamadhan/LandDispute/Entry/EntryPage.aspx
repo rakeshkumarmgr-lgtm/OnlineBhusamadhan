@@ -618,7 +618,7 @@
 
                                                             </td>
 
-                                                           <td>
+                                                            <td>
                                                                 <%# Eval("DistrictName") %>
 
                                                             </td>
@@ -1075,7 +1075,7 @@
                                             <asp:TextBox ID="txtPName" runat="server" CssClass="form-control" placeholder="प्रतिवादी का नाम" AutoComplete="off" oninput="this.value=this.value.toUpperCase();">
                                             </asp:TextBox>
 
-                                            <asp:RequiredFieldValidator runat="server" CssClass="validator" ControlToValidate="txtPName" ValidationGroup="3" Display="Dynamic" ErrorMessage="प्रतिवादी का नाम आवश्यक है">  </asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator runat="server" CssClass="validator" ControlToValidate="txtPName" ValidationGroup="PratiVadi" Display="Dynamic" ErrorMessage="प्रतिवादी का नाम आवश्यक है">  </asp:RequiredFieldValidator>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
@@ -1159,8 +1159,7 @@
 
                                             <label class="form-label">वार्ड (अगर अन्य है) <span class="required">*</span> </label>
 
-                                            <asp:TextBox ID="txtPWard_Anya" runat="server" CssClass="form-control" AutoComplete="off">
-                                            </asp:TextBox>
+                                            <asp:TextBox ID="txtPWard_Anya" runat="server" CssClass="form-control" AutoComplete="off"> </asp:TextBox>
 
                                         </div>
 
@@ -1228,7 +1227,7 @@
 
                                             </asp:DropDownList>
 
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator46" runat="server" CssClass="validator" ControlToValidate="ddl_is_pratiVadi_from_an_dept" InitialValue="0" ValidationGroup="3" Display="Dynamic" ErrorMessage="कृपया विभाग प्रतिनिधि चुनें।"> </asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator46" runat="server" CssClass="validator" ControlToValidate="ddl_is_pratiVadi_from_an_dept" InitialValue="0" ValidationGroup="PratiVadi" Display="Dynamic" ErrorMessage="कृपया विभाग प्रतिनिधि चुनें।"> </asp:RequiredFieldValidator>
                                         </div>
 
                                         <div class="col-md-4 mb-3" id="divPVibhag_details" runat="server" visible="false">
@@ -1239,7 +1238,7 @@
 
                                             <asp:DropDownList ID="ddlPvibhaag_naam" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator44" runat="server" CssClass="validator" ControlToValidate="ddlPvibhaag_naam" InitialValue="0" ValidationGroup="3" Display="Dynamic" ErrorMessage="कृपया विभाग का नाम चुनें।">  </asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator44" runat="server" CssClass="validator" ControlToValidate="ddlPvibhaag_naam" InitialValue="0" ValidationGroup="PratiVadi" Display="Dynamic" ErrorMessage="कृपया विभाग का नाम चुनें।">  </asp:RequiredFieldValidator>
 
                                         </div>
 
@@ -1283,7 +1282,7 @@
 
                                             </asp:DropDownList>
 
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator47" runat="server" CssClass="validator" ControlToValidate="ddl_is_pratiVadi_from_an_org" InitialValue="0" ValidationGroup="3" Display="Dynamic" ErrorMessage="कृपया संस्था प्रतिनिधि चुनें।"> </asp:RequiredFieldValidator>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator47" runat="server" CssClass="validator" ControlToValidate="ddl_is_pratiVadi_from_an_org" InitialValue="0" ValidationGroup="PratiVadi" Display="Dynamic" ErrorMessage="कृपया संस्था प्रतिनिधि चुनें।"> </asp:RequiredFieldValidator>
 
                                         </div>
 
@@ -1301,7 +1300,7 @@
                                     <asp:DropDownList ID="ddlPsanstha_naam" runat="server" CssClass="form-control" AutoPostBack="true">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator43" runat="server" ErrorMessage="select संस्था का प्रकार..."
-                                        ControlToValidate="ddlPsanstha_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="3" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
+                                        ControlToValidate="ddlPsanstha_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-3 mb-2 p-1">
 
@@ -1309,14 +1308,14 @@
                                     <asp:DropDownList ID="ddlPsanshaanya_naam" runat="server" CssClass="form-control" AutoPostBack="true">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator45" runat="server" ErrorMessage="select संस्था का प्रकार..."
-                                        ControlToValidate="ddlPsanshaanya_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="3" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
+                                        ControlToValidate="ddlPsanshaanya_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-3 mb-2 p-1">
 
                                     <label class="form-label">संस्था का नाम<span class="text-danger">*</span></label>
                                     <asp:TextBox ID="txtPsanstha_naam" runat="server" CssClass="form-control" AutoComplete="off" MaxLength="100" placeholder="संस्था का नाम"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator49" runat="server" ErrorMessage="select संस्था का नाम..."
-                                        ControlToValidate="txtPsanstha_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="3"></asp:RequiredFieldValidator>
+                                        ControlToValidate="txtPsanstha_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="col-md-3 mb-2 p-1">
 
@@ -1324,6 +1323,138 @@
                                     <asp:TextBox ID="txtPsanstha_padanaam" runat="server" CssClass="form-control" AutoComplete="off" MaxLength="100" placeholder="संस्था में पदनाम"></asp:TextBox>
                                 </div>
                             </div>
+
+                            <!-- Save Button -->
+
+                            <div class="row mb-2">
+                                <div class="col-md-12 text-center">
+
+                                    <asp:Button ID="btnAddPratiVadiDetail" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="PratiVadi" OnClick="btnAddPratiVadiDetail_Click" />
+                                </div>
+                            </div>
+
+                            <!-- Repeater -->
+
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+
+                                        <asp:Repeater ID="Pratiwadi_repeater" runat="server" OnItemCommand="Pratiwadi_repeater_ItemCommand">
+
+                                            <HeaderTemplate>
+
+                                                <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                                                    <thead class="thead-dark text-center">
+                                                        <tr>
+                                                            <th style="width: 70px;">Action</th>
+                                                            <th style="width: 50px;">#</th>
+                                                            <th>प्रतिवादी का नाम</th>
+                                                            <th>पिता / पति का नाम</th>
+
+                                                            <th>मोबाइल</th>
+
+                                                            <th>जिला</th>
+                                                             <th>अनुमंडल</th>
+                                                            <th>अंचल</th>
+                                                           
+                                                            <th>क्षेत्र</th>
+                                                            <th>ग्राम पंचायत</th>
+                                                            <th>राजस्व ग्राम</th>
+                                                            <th>वार्ड</th>
+
+                                                            <th>विभाग प्रतिनिधि</th>
+                                                            <th>संस्था प्रतिनिधि</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                            </HeaderTemplate>
+
+                                            <ItemTemplate>
+
+                                                <tr>
+
+                                                    <td class="text-center">
+
+                                                        <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" CommandName="Remove" CommandArgument='<%# Container.ItemIndex %>' ToolTip="Delete Record" OnClientClick="return confirm('Are you sure you want to delete this record?');"> <i class="fa fa-trash"></i> </asp:LinkButton>
+
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <%# Container.ItemIndex + 1 %>
+                                                    </td>
+
+                                                    <td><%# Eval("pratiVadi_Name") %></td>
+
+                                                    <td><%# Eval("pratiVadi_Father_Husband_Name") %></td>
+
+
+                                                    <td class="text-center">
+                                                        <%# Eval("pratiVadi_MobileNo") %>
+                                                    </td>
+                                                   
+
+                                                    <td>
+                                                        <%# Eval("DistrictName") %>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <%# Eval("SubDivisionName") %>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <%# Eval("BlockName") %>
+
+                                                    </td>
+                                                    <td>
+                                                        <%# Eval("AreaTypeName") %>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <%# Eval("PanchayatName") %>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <%# Eval("VillageName") %>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <%# Eval("WardName") %>
+
+                                                    </td>
+                                                    <td>
+
+                                                        <%# Eval("is_pratiVadi_from_an_dept") %> 
+
+                                                    </td>
+                                                    <td>
+
+                                                        <%# Eval("is_pratiVadi_from_an_org") %>
+
+                                                    </td>
+                                                </tr>
+
+                                            </ItemTemplate>
+
+                                            <FooterTemplate>
+                                                </tbody>
+
+                  </table>
+
+                                            </FooterTemplate>
+
+                                        </asp:Repeater>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Repeater End -->
 
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -1355,7 +1486,7 @@
 
                                     </asp:DropDownList>
 
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator48" runat="server" CssClass="validator" ControlToValidate="ddlwadi_pratiwadi_sunwai" InitialValue="0" ValidationGroup="2" Display="Dynamic" SetFocusOnError="true" ErrorMessage="कृपया विकल्प चुनें।">
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator48" runat="server" CssClass="validator" ControlToValidate="ddlwadi_pratiwadi_sunwai" InitialValue="0" ValidationGroup="3" Display="Dynamic" SetFocusOnError="true" ErrorMessage="कृपया विकल्प चुनें।">
                                     </asp:RequiredFieldValidator>
 
                                 </div>
@@ -1399,7 +1530,7 @@
 
                                     </asp:DropDownList>
 
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator50" runat="server" CssClass="validator" ControlToValidate="ddlSuchana_ka_tamila" InitialValue="0" Display="Dynamic" SetFocusOnError="true" ErrorMessage="कृपया विकल्प चुनें।"> </asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator50" runat="server" CssClass="validator" ControlToValidate="ddlSuchana_ka_tamila" InitialValue="0" Display="Dynamic" SetFocusOnError="true" ValidationGroup="3" ErrorMessage="कृपया विकल्प चुनें।"> </asp:RequiredFieldValidator>
 
                                 </div>
 
@@ -1416,7 +1547,7 @@
 
                                     </asp:DropDownList>
 
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator51" runat="server" CssClass="validator" ControlToValidate="ddlSuchana_ka_upasthiti" InitialValue="0" Display="Dynamic" SetFocusOnError="true" ErrorMessage="कृपया विकल्प चुनें।"> </asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator51" runat="server" CssClass="validator" ControlToValidate="ddlSuchana_ka_upasthiti" InitialValue="0" Display="Dynamic" SetFocusOnError="true" ValidationGroup="3" ErrorMessage="कृपया विकल्प चुनें।"> </asp:RequiredFieldValidator>
 
                                 </div>
 

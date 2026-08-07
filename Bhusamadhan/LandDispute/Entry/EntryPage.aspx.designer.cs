@@ -1428,6 +1428,24 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.TextBox txtPsanstha_padanaam;
 
         /// <summary>
+        /// btnAddPratiVadiDetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddPratiVadiDetail;
+
+        /// <summary>
+        /// Pratiwadi_repeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Pratiwadi_repeater;
+
+        /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
