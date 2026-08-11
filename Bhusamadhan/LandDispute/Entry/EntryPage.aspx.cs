@@ -25,9 +25,15 @@ namespace Bhusamadhan.LandDispute.Entry
         string connectionString = DBConHelper.GetConnectionString();
         private readonly MatterRegistrationDAL _matterDAL = new MatterRegistrationDAL();
 
-        private readonly VadiDetailDAL _vadiDAL = new VadiDetailDAL();
+        //private readonly VadiDetailDAL _vadiDAL = new VadiDetailDAL();
 
         private readonly SaveStep2DAL _step2DAL = new SaveStep2DAL();
+
+        private readonly SaveStep3DAL _step3DAL = new SaveStep3DAL();
+
+        private readonly SaveStep4DAL _step4DAL = new SaveStep4DAL();
+
+        private readonly SaveStep5DAL _step5DAL = new SaveStep5DAL();
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt = Session["UserLogIn"] as DataTable;
@@ -255,10 +261,18 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 case 3:
                     pnlStep3.Visible = true;
+                    if (ApplicationId > 0)
+                    {
+                        FillStep3(ApplicationId);
+                    }
                     break;
 
                 case 4:
                     pnlStep4.Visible = true;
+                    if (ApplicationId > 0)
+                    {
+                        FillStep4(ApplicationId);
+                    }
                     break;
 
                 case 5:
@@ -354,28 +368,28 @@ namespace Bhusamadhan.LandDispute.Entry
                     break;
 
                 case 3:
-                    Page.Validate("4");
+                    //Page.Validate("4");
 
-                    if (!Page.IsValid)
-                        return;
+                    //if (!Page.IsValid)
+                    //    return;
 
                     result = SaveStep3();
                     break;
 
                 case 4:
-                    Page.Validate("5");
+                    //Page.Validate("5");
 
-                    if (!Page.IsValid)
-                        return;
+                    //if (!Page.IsValid)
+                    //    return;
 
                     result = SaveStep4();
                     break;
 
                 case 5:
-                    Page.Validate("6");
+                    //Page.Validate("6");
 
-                    if (!Page.IsValid)
-                        return;
+                    //if (!Page.IsValid)
+                    //    return;
 
                     result = SaveStep5();
                     break;
@@ -414,7 +428,6 @@ namespace Bhusamadhan.LandDispute.Entry
 
 
         //---------------------------Step 1 form entry ---------------------------------------------------
-
 
 
         public bool ValidateVadiDetail()
@@ -615,7 +628,6 @@ namespace Bhusamadhan.LandDispute.Entry
             return dt;
         }
         
-
 
         protected void btnAddVadiDetail_Click(object sender, EventArgs e)
         {
@@ -957,64 +969,7 @@ namespace Bhusamadhan.LandDispute.Entry
                         }
                     }
 
-                    //if (AppDoc.HasFile)
-                    //{
-                    //    if (FileUploadValidator.IsPdf(AppDoc.PostedFile, 1024, 1024) != "OK")
-                    //    {
-                    //        lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
-                    //        return false;
-                    //    }
-
-                    //    Vadi_sakshya_FilePath = $"{uploadFolder}/Vadi_sakshya_File.pdf";
-                    //}
-
-                    //if (PrativadiDoc.HasFile)
-                    //{
-                    //    if (FileUploadValidator.IsPdf(PrativadiDoc.PostedFile, 1024, 1024) != "OK")
-                    //    {
-                    //        lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
-                    //        return false;
-                    //    }
-
-                    //    Prativadi_sakshya_FilePath = $"{uploadFolder}/Prativadi_sakshya_File.pdf";
-                    //}
-
-                    ////-------------------- Upload --------------------//
-
-                    //if (AppDoc.HasFile)
-                    //{
-                    //    Vadi_sakshya_FilePath =  $"{uploadFolder}/Vadi_sakshya_File.pdf";
-
-                    //    string savedPath = InsSaveFile("Vadi_sakshya_File", AppDoc, guid);
-
-                    //    if (savedPath == "0" || savedPath != Vadi_sakshya_FilePath)
-                    //    {
-                    //        lblMsg.Text = "Technical Error while uploading Vadi document.";
-                    //        return false;
-                    //    }
-                    //}
-
-                    //if (PrativadiDoc.HasFile)
-                    //{
-                    //    Prativadi_sakshya_FilePath = $"{uploadFolder}/Prativadi_sakshya_File.pdf";
-
-                    //    string savedPath =  InsSaveFile("Prativadi_sakshya_File", AppDoc, guid);
-
-                    //    if (savedPath == "0" || savedPath != Prativadi_sakshya_FilePath)
-                    //    {
-                    //        lblMsg.Text = "Technical Error while uploading PratiVadi document.";
-                    //        return false;
-                    //    }
-
-
-                    //    //string savedPath = InsSaveFile("Prativadi_sakshya_File", PrativadiDoc, guid);
-
-                    //    //if (savedPath == "0" || savedPath != Prativadi_sakshya_FilePath)
-                    //    //{
-                    //    //    lblMsg.Text = "Technical Error while uploading Prativadi document.";
-                    //    //    return false;
-                    //    //}
-                    //}
+                  
 
                     //long applicationId = _matterDAL.SaveStep1(ApplicationId, ddlDistrict.SelectedValue, ddlBlock.SelectedValue, ddlVillage.SelectedValue, userid, con, trans);
 
@@ -1074,7 +1029,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
 
                     //_vadiDAL.SaveVadiDetails( applicationId, dtVadi,userid,  con, trans);
-                    _vadiDAL.SaveVadiDetails(applicationId, dtForDb, userid, con, trans);
+                    _matterDAL.SaveVadiDetails(applicationId, dtForDb, userid, con, trans);
 
                     // Update Current Step                 
 
@@ -1196,8 +1151,9 @@ namespace Bhusamadhan.LandDispute.Entry
                 dt.Columns.Add("pratiVadi_Village_Anya", typeof(string));
 
                 dt.Columns.Add("pratiVadi_WardNo", typeof(long));
+                //---------------------------------
                 dt.Columns.Add("pratiVadi_WardNo_Anya", typeof(string));
-
+                //----------------------------------------
                 dt.Columns.Add("pratiVadi_MobileNo", typeof(string));
                 dt.Columns.Add("mohalla", typeof(string));
 
@@ -1279,9 +1235,9 @@ namespace Bhusamadhan.LandDispute.Entry
 
 
             dr["pratiVadi_WardNo"] = ddlPWard.SelectedValue.ToString();
-
+            //-------------------------
             dr["pratiVadi_WardNo_Anya"] = txtPWard_Anya.Text.Trim();
-
+            //---------------------------------
 
             dr["mohalla"] = txtPMohalla.Text.Trim();
 
@@ -1357,7 +1313,6 @@ namespace Bhusamadhan.LandDispute.Entry
             ddlPsanshaanya_naam.SelectedIndex = 0;
         }
 
-       
 
         protected void Pratiwadi_repeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -1398,9 +1353,6 @@ namespace Bhusamadhan.LandDispute.Entry
                 return false;
             }
 
-            //string userId = userid;
-
-            //DataTable dtPratiVadiForDb = GetPratiVadiDataTableFromViewState();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -1491,9 +1443,176 @@ namespace Bhusamadhan.LandDispute.Entry
 
         }
 
-
-
         //---------------------------Step2 complete------------------------------------------------------
+
+        //---------------------------Step3 ------------------------------------------------------
+
+        private DataTable CreateKhataKhesraVivarniTable()
+        {
+            DataTable dt;
+
+            if (ViewState["KhataKhesraDetails"] == null)
+            {
+                dt = new DataTable();
+
+                // Database fields
+                dt.Columns.Add("khataNo", typeof(string));
+                dt.Columns.Add("khesraNo", typeof(string));
+
+                dt.Columns.Add("RakbaNo1", typeof(string));
+                dt.Columns.Add("Rakba_unit1", typeof(int));
+                dt.Columns.Add("RakbaNo2", typeof(string));
+                dt.Columns.Add("Rakba_unit2", typeof(int));
+                dt.Columns.Add("RakbaNo3", typeof(string));
+                dt.Columns.Add("Rakba_unit3", typeof(int));
+
+                dt.Columns.Add("LandTypesInKhatian", typeof(int));
+                dt.Columns.Add("LandDetailsInKhatian", typeof(string));
+                dt.Columns.Add("North_chauhaddee", typeof(string));
+                dt.Columns.Add("South_chauhaddee", typeof(string));
+                dt.Columns.Add("East_chauhaddee", typeof(string));
+                dt.Columns.Add("West_chauhaddee", typeof(string));
+
+                dt.Columns.Add("LandTypesInKhatianDesc", typeof(string));
+                dt.Columns.Add("Rakba", typeof(string));
+
+              
+                ViewState["KhataKhesraDetails"] = dt;
+            }
+            else
+            {
+                dt = (DataTable)ViewState["KhataKhesraDetails"];
+            }
+
+            return dt;
+        }
+
+        protected void btnsaveBhumiKaVivaran_Click(object sender, EventArgs e)
+        {
+
+            Page.Validate("4");
+            if (!Page.IsValid)
+                return;
+
+            DataTable dt = CreateKhataKhesraVivarniTable();
+
+            DataRow dr = dt.NewRow();
+
+            dr["khataNo"] = txtkhatasankhya.Text.Trim();
+
+            dr["khesraNo"] = txtkhesarasankhya.Text.Trim();
+
+            dr["RakbaNo1"] = txtrakabasankhya1.Text.Trim();
+
+            dr["Rakba_unit1"] = ddlrakabaunit1.SelectedValue.ToString(); ;
+
+            dr["RakbaNo2"] = txtrakabasankhya2.Text.Trim();
+
+            dr["Rakba_unit2"] = ddlrakabaunit2.SelectedValue.ToString();
+
+            dr["RakbaNo3"] = txtrakabasankhya3.Text.Trim();
+
+            dr["Rakba_unit3"] = ddlrakabaunit3.SelectedValue.ToString();
+
+
+            dr["LandTypesInKhatian"] = ddlkhatiyan_me_jaminvivran.SelectedValue.ToString();
+
+            dr["LandDetailsInKhatian"] = txtkhatiyan_me_jaminvivran_text.Text.Trim();
+
+
+            dr["North_chauhaddee"] = txtuttari_chohaddi.Text.Trim();
+
+            dr["South_chauhaddee"] = txtdakshini_chohaddi.Text.Trim();
+
+            dr["East_chauhaddee"] = txtpurvi_chohaddi.Text.Trim();
+
+            dr["West_chauhaddee"] = txtpashchimi_chohaddi.Text.Trim();
+
+            //------------display-------------------------------
+
+            dr["Landdesciption"] = ddlkhatiyan_me_jaminvivran.SelectedItem.Text;
+            dr["Rakba"] = txtrakabasankhya1.Text.Trim() + " " + ddlrakabaunit1.SelectedItem.ToString() + "," + txtrakabasankhya2.Text.Trim() + " " + ddlrakabaunit2.SelectedItem.ToString() + ", " + txtrakabasankhya3.Text.Trim() + "," + ddlrakabaunit3.SelectedItem.ToString();
+
+            dt.Rows.Add(dr);
+
+            ViewState["KhataKhesraDetails"] = dt;
+
+            BindKhataKhesraRepeater();
+
+            ClearKharaKhesraControls();
+
+        }
+
+        private void BindKhataKhesraRepeater()
+        {
+            DataTable dt = CreateKhataKhesraVivarniTable();
+
+            rptKhataKhesraVivarni.DataSource = dt;
+            rptKhataKhesraVivarni.DataBind();
+        }
+
+        private void ClearKharaKhesraControls()
+        {
+            txtkhatasankhya.Text = "";
+
+            txtkhesarasankhya.Text = "";
+
+            txtrakabasankhya1.Text = "";
+
+            txtrakabasankhya1.Text = "";
+
+            ddlrakabaunit1.SelectedIndex = 0;
+
+            txtrakabasankhya2.Text = "";
+
+            ddlrakabaunit2.SelectedIndex = 0;
+
+            txtrakabasankhya3.Text = "";
+
+            ddlrakabaunit3.SelectedIndex = 0;
+
+            ddlkhatiyan_me_jaminvivran.SelectedIndex = 0;
+
+            txtkhatiyan_me_jaminvivran_text.Text = "";
+
+            txtuttari_chohaddi.Text = "";
+
+            txtdakshini_chohaddi.Text = "";
+
+            txtpurvi_chohaddi.Text = "";
+
+            txtpashchimi_chohaddi.Text = "";
+        }
+
+        protected void rptKhataKhesraVivarni_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                DataTable dt = CreateKhataKhesraVivarniTable();
+
+                if (index >= 0 && index < dt.Rows.Count)
+                {
+                    dt.Rows.RemoveAt(index);
+                    dt.AcceptChanges();
+
+                    ViewState["KhataKhesraDetails"] = dt;
+
+                    BindKhataKhesraRepeater();
+                }
+            }
+        }
+
+        private DataTable GetKhataKhesraDetails()
+        {
+            if (ViewState["KhataKhesraDetails"] == null)
+            {
+                ViewState["KhataKhesraDetails"] = CreateKhataKhesraVivarniTable();
+            }
+
+            return (DataTable)ViewState["KhataKhesraDetails"];
+        }
         private bool SaveStep3()
         {
             if (ApplicationId == 0)
@@ -1502,28 +1621,59 @@ namespace Bhusamadhan.LandDispute.Entry
                 return false;
             }
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
+                con.Open();
+
+                SqlTransaction trans = con.BeginTransaction();
+
+
+                DataTable dtKhataKhesra = GetKhataKhesraDetails();
+
+                if (dtKhataKhesra == null || dtKhataKhesra.Rows.Count == 0)
+                {
+                    trans.Rollback();
+
+                    lblMsg.Text = "कृपया पहले 'Save' बटन दबाकर खाता खेसरा का विवरण अंकित करें।";
+
+                    return false;
+                }
+
+                //-------- Create a filtered copy of  CreateKhataKhesraVivarniTable()--------------------
+                DataTable dtKhataKhesraForDb = dtKhataKhesra.DefaultView.ToTable(false,
+                                                       "khataNo",
+                                                        "khesraNo",
+                                                        "RakbaNo1",
+                                                        "Rakba_unit1",
+                                                        "RakbaNo2",
+                                                        "Rakba_unit2",
+                                                        "RakbaNo3",
+                                                        "Rakba_unit3",
+                                                        "LandTypesInKhatian",
+                                                        "LandDetailsInKhatian",
+                                                        "North_chauhaddee",
+                                                        "South_chauhaddee",
+                                                        "East_chauhaddee",
+                                                        "West_chauhaddee"
+
+                                                        );
+
+
                 try
                 {
-                    con.Open();
+                    long savedApplicationId = _step3DAL.SaveStep3(ApplicationId, dtKhataKhesraForDb, userid, con, trans);
 
-                    SqlCommand cmd = new SqlCommand("BS_SP_SaveStep3", con);
+                    trans.Commit();
 
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    ApplicationId = savedApplicationId;
 
-                    cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = ApplicationId;
-
-                    cmd.Parameters.Add("@Is_Vadi_Present", SqlDbType.Char).Value = 'Y';
-
-                    cmd.Parameters.Add("@Matter_Status_by", SqlDbType.VarChar).Value = userid;
-
-                    cmd.ExecuteNonQuery();
-                    DisplayApplicationInfo();
                     return true;
                 }
                 catch (Exception ex)
                 {
+                    trans.Rollback();
+
                     lblMsg.Text = ex.Message;
 
                     return false;
@@ -1531,6 +1681,503 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
+        private void FillStep3(long applicationId)
+        {
+
+            DataTable dtDb = _step3DAL.GetKhataKhesraDetails(applicationId);
+
+            ViewState["KhataKhesraDetails"] = dtDb;
+
+            rptKhataKhesraVivarni.DataSource = dtDb;
+            rptKhataKhesraVivarni.DataBind();
+
+
+        }
+
+        //------------------------------------------step4--------------------------------------------------------
+
+        //---------------------------Vadi Evidence--------------------------------------
+
+        private string InsSaveFile(string fileName, FileUpload fuFile, string a_id, string path)
+        {
+            string uploadDirectory = string.Empty;
+            string pdfpath = FileSaveServer.getBase64(fuFile);
+            string extension = string.Empty;
+            extension = Path.GetExtension(fuFile.FileName).ToLower();
+            uploadDirectory = path;
+            string resi = FileSaveServer.InsertPDFNew(uploadDirectory, pdfpath, fileName, extension);
+            //if (resi == "0")
+            //{
+            //    return resi;
+            //}
+            //else
+            //{
+            //    return uploadDirectory + fileName + extension;
+            //}
+            return resi;
+        }
+
+
+        private DataTable CreateVadiEvidenceDetailTable()
+        {
+            DataTable dt;
+
+            if (ViewState["VadiEvidenceDetail"] == null)
+            {
+                dt = new DataTable();
+
+                dt.Columns.Add("evidence_id", typeof(string));
+                dt.Columns.Add("evidence_name", typeof(string));
+                dt.Columns.Add("evidence_any_name", typeof(string));
+                dt.Columns.Add("FullfileName", typeof(string));
+
+
+                ViewState["VadiEvidenceDetail"] = dt;
+            }
+            else
+            {
+                dt = (DataTable)ViewState["VadiEvidenceDetail"];
+            }
+
+            return dt;
+        }
+
+
+
+        protected void rptVadiEvidence_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                DataTable dt = CreateVadiEvidenceDetailTable();
+
+                if (index >= 0 && index < dt.Rows.Count)
+                {
+                    dt.Rows.RemoveAt(index);
+                    dt.AcceptChanges();
+
+                    ViewState["VadiEvidenceDetail"] = dt;
+
+                    BindVadiEvidenceRepeater();
+                }
+            }
+
+            if (e.CommandName == "View")
+            {
+                int index;
+
+                if (!int.TryParse(e.CommandArgument.ToString(), out index))
+                    return;
+
+                DataTable dt = CreateVadiEvidenceDetailTable();
+
+                if (index < 0 || index >= dt.Rows.Count)
+                    return;
+
+                string filePath = Convert.ToString(dt.Rows[index]["FullfileName"]);
+
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    lblMsg.Text = "दस्तावेज़ उपलब्ध नहीं है।";
+                    return;
+                }
+
+              
+                string script = "window.open('" + ResolveUrl(filePath) + "', '_blank');";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ViewVadiEvidence", script, true);
+            }
+        }
+
+        private DataTable GetVadiEvidenceDetails()
+        {
+            if (ViewState["VadiEvidenceDetail"] == null)
+            {
+                ViewState["VadiEvidenceDetail"] = CreateVadiEvidenceDetailTable();
+            }
+
+            return (DataTable)ViewState["VadiEvidenceDetail"];
+        }
+
+        protected void btnAddVadiEvidenceDetail_Click(object sender, EventArgs e)
+        {
+
+
+            string ddlIsVadiEvi1 = ddlIsVadiEvi.SelectedValue.Trim();
+
+            if (ddlIsVadiEvi1 == "0")
+            {
+                lblMsg.Text = "कृपया वादी द्वारा साक्ष्य का दस्तावेज उपलब्ध है ? चुनें...!";
+
+                ddlIsVadiEvi.Focus();
+                return;
+            }
+
+            if (ddlIsVadiEvi1 == "Y")
+            {
+                if (ddlVadiEvidenceType.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "कृपया साक्ष्य का प्रकार चुनें...!";
+
+                    ddlVadiEvidenceType.Focus();
+                    return;
+                }
+
+                if (ddlVadiEvidenceType.SelectedValue == "9" &&
+                    string.IsNullOrWhiteSpace(txtVadiEvidenceType.Text))
+                {
+                    lblMsg.Text = "कृपया अन्य साक्ष्य का प्रकार अंकित करें...!";
+
+                    txtVadiEvidenceType.Focus();
+                    return;
+                }
+
+                if (!file_vadi_dastavej_new.HasFile)
+                {
+                    lblMsg.Text = "कृपया दस्तावेज़ चुनें...!";
+
+                    file_vadi_dastavej_new.Focus();
+                    return;
+                }
+            }
+
+
+            if (file_vadi_dastavej_new.HasFile)
+            {
+                string fileExtension =
+                    Path.GetExtension(file_vadi_dastavej_new.FileName).ToLower();
+
+                if (fileExtension != ".pdf")
+                {
+                    lblMsg.Text = "केवल PDF फ़ाइल अपलोड करें।";
+
+                    file_vadi_dastavej_new.Focus();
+                    return;
+                }
+
+                if (file_vadi_dastavej_new.PostedFile.ContentLength >
+                    (3 * 1024 * 1024))
+                {
+                    lblMsg.Text = "फ़ाइल का आकार अधिकतम 3 MB होना चाहिए।";
+
+                    file_vadi_dastavej_new.Focus();
+                    return;
+                }
+            }
+
+
+            long a_id = ApplicationId;
+
+            if (a_id <= 0)
+            {
+                lblMsg.Text = "आवेदन की पहचान उपलब्ध नहीं है। कृपया पुनः प्रयास करें।";
+
+                return;
+            }
+
+
+
+            DataTable dt = CreateVadiEvidenceDetailTable();
+
+            int rowNo = dt.Rows.Count + 1;
+
+            string fileName = "VadiEvidence" + rowNo;
+
+            string uploadDirectory = "~/LandDoc/Upload/VadiEvidence" + a_id + "/";
+
+            string vadiEvidenceFile = string.Empty;
+
+
+            //------------------- Upload PDF through ImageWebService
+
+
+            if (file_vadi_dastavej_new.HasFile)
+            {
+                string fileUploadResult = InsSaveFile(fileName, file_vadi_dastavej_new, a_id.ToString(), uploadDirectory);
+
+                string expectedFilePath = uploadDirectory + fileName + ".pdf";
+
+                if (fileUploadResult == "0" || string.IsNullOrWhiteSpace(fileUploadResult))
+                {
+                    lblMsg.Text = "दस्तावेज़ अपलोड करने में तकनीकी समस्या हुई।";
+
+                    return;
+                }
+
+                if (fileUploadResult != expectedFilePath)
+                {
+                    lblMsg.Text = "दस्तावेज़ अपलोड करने में तकनीकी समस्या हुई।";
+
+                    return;
+                }
+
+                vadiEvidenceFile = expectedFilePath;
+            }
+
+            string evidenceId = ddlVadiEvidenceType.SelectedValue.Trim();
+
+            string evidenceName = evidenceId != "9" ? ddlVadiEvidenceType.SelectedItem.Text.Trim() : txtVadiEvidenceType.Text.Trim();
+
+            string evidenceAnyName = evidenceId == "9" ? txtVadiEvidenceType.Text.Trim() : string.Empty;
+
+            dt.Rows.Add(evidenceId, evidenceName, evidenceAnyName, vadiEvidenceFile);
+
+            ViewState["VadiEvidenceDetail"] = dt;
+
+            BindVadiEvidenceRepeater();
+
+            txtVadiEvidenceType.Text = string.Empty;
+
+            ddlVadiEvidenceType.SelectedIndex = 0;
+
+            divtxtVadiEvidenceType.Visible = false;
+
+            lblMsg.Text = "रिकॉर्ड सफलतापूर्वक जोड़ा गया।";
+        }
+
+        private void BindVadiEvidenceRepeater()
+        {
+            DataTable dt = CreateVadiEvidenceDetailTable();
+
+            rptVadiEvidence.DataSource = dt;
+            rptVadiEvidence.DataBind();
+        }
+
+
+        //---------------------------Prativadi Evidence--------------------------------------
+        private DataTable CreatePrativadiEvidenceDetailTable()
+        {
+            DataTable dt;
+
+            if (ViewState["PratiVadiEvidenceDetail"] == null)
+            {
+                dt = new DataTable();
+
+                dt.Columns.Add("evidence_id", typeof(string));
+                dt.Columns.Add("evidence_name", typeof(string));
+                dt.Columns.Add("evidence_any_name", typeof(string));
+                dt.Columns.Add("FullfileName", typeof(string));
+
+
+                ViewState["PratiVadiEvidenceDetail"] = dt;
+            }
+            else
+            {
+                dt = (DataTable)ViewState["PratiVadiEvidenceDetail"];
+            }
+
+            return dt;
+        }
+
+
+        protected void btnAddPrativadiEvidenceDetail_Click(object sender, EventArgs e)
+        {
+
+            string ddlIsPvadiEvi1 = ddlIsPvadiEvi.SelectedValue.Trim();
+
+            if (ddlIsPvadiEvi1 == "0")
+            {
+                lblMsg.Text = "कृपया प्रतिवादी द्वारा साक्ष्य का दस्तावेज उपलब्ध है ? चुनें...!";
+
+                ddlIsPvadiEvi.Focus();
+                return;
+            }
+
+            if (ddlIsPvadiEvi1 == "Y")
+            {
+                if (ddlPrativadiEvidenceType.SelectedIndex == 0)
+                {
+                    lblMsg.Text = "कृपया साक्ष्य का प्रकार चुनें...!";
+
+                    ddlPrativadiEvidenceType.Focus();
+                    return;
+                }
+
+                if (ddlPrativadiEvidenceType.SelectedValue == "9" && string.IsNullOrWhiteSpace(txtPrativadiEvidenceType.Text))
+                {
+                    lblMsg.Text = "कृपया अन्य साक्ष्य का प्रकार अंकित करें...!";
+
+                    txtPrativadiEvidenceType.Focus();
+                    return;
+                }
+
+
+                if (!file_Prativadi_dastavej_new.HasFile)
+                {
+                    lblMsg.Text = "कृपया दस्तावेज़ चुनें...!";
+
+                    file_Prativadi_dastavej_new.Focus();
+                    return;
+                }
+            }
+
+
+            if (file_Prativadi_dastavej_new.HasFile)
+            {
+                string fileExtension = Path.GetExtension(file_Prativadi_dastavej_new.FileName).ToLower();
+
+                if (fileExtension != ".pdf")
+                {
+                    lblMsg.Text = "केवल PDF फ़ाइल अपलोड करें।";
+
+                    file_Prativadi_dastavej_new.Focus();
+                    return;
+                }
+
+                if (file_Prativadi_dastavej_new.PostedFile.ContentLength > (3 * 1024 * 1024))
+                {
+                    lblMsg.Text = "फ़ाइल का आकार अधिकतम 3 MB होना चाहिए।";
+
+                    file_Prativadi_dastavej_new.Focus();
+                    return;
+                }
+            }
+
+
+            long a_id = ApplicationId;
+
+            if (a_id <= 0)
+            {
+                lblMsg.Text = "आवेदन की पहचान उपलब्ध नहीं है। कृपया पुनः प्रयास करें.";
+
+                return;
+            }
+
+
+            DataTable dt = CreatePrativadiEvidenceDetailTable();
+
+            int rowNo = dt.Rows.Count + 1;
+
+            string fileName = "PrativadiEvidence" + rowNo;
+
+            string uploadDirectory = "~/LandDoc/Upload/PrativadiEvidence" + a_id + "/";
+
+            string prativadiEvidenceFile = string.Empty;
+
+
+            //---------------------Upload PDF through ImageWebService
+
+
+            if (file_Prativadi_dastavej_new.HasFile)
+            {
+                string fileUploadResult = InsSaveFile(fileName, file_Prativadi_dastavej_new, a_id.ToString(), uploadDirectory);
+
+                string expectedFilePath = uploadDirectory + fileName + ".pdf";
+
+                if (fileUploadResult == "0" || string.IsNullOrWhiteSpace(fileUploadResult))
+                {
+                    lblMsg.Text = "दस्तावेज़ अपलोड करने में तकनीकी समस्या हुई।";
+
+                    return;
+                }
+
+                if (fileUploadResult != expectedFilePath)
+                {
+                    lblMsg.Text = "दस्तावेज़ अपलोड करने में तकनीकी समस्या हुई।";
+
+                    return;
+                }
+
+                prativadiEvidenceFile = expectedFilePath;
+            }
+
+
+            string evidenceId = ddlPrativadiEvidenceType.SelectedValue.Trim();
+
+            string evidenceName = evidenceId != "9" ? ddlPrativadiEvidenceType.SelectedItem.Text.Trim() : txtPrativadiEvidenceType.Text.Trim();
+
+            string evidenceAnyName = evidenceId == "9" ? txtPrativadiEvidenceType.Text.Trim() : string.Empty;
+
+
+            dt.Rows.Add(evidenceId, evidenceName, evidenceAnyName, prativadiEvidenceFile);
+
+            ViewState["PrativadiEvidenceDetail"] = dt;
+
+            BindPrativadiEvidenceRepeater();
+
+            txtPrativadiEvidenceType.Text = string.Empty;
+
+            ddlPrativadiEvidenceType.SelectedIndex = 0;
+
+            divtxtPrativadiEvidenceType.Visible = false;
+
+            lblMsg.Text = "रिकॉर्ड सफलतापूर्वक जोड़ा गया।";
+        }
+
+        private void BindPrativadiEvidenceRepeater()
+        {
+            DataTable dt = CreatePrativadiEvidenceDetailTable();
+
+            rptPrativadiEvidence.DataSource = dt;
+            rptPrativadiEvidence.DataBind();
+        }
+
+        protected void rptPrativadiEvidence_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                DataTable dt = CreatePrativadiEvidenceDetailTable();
+
+                if (index >= 0 && index < dt.Rows.Count)
+                {
+                    dt.Rows.RemoveAt(index);
+                    dt.AcceptChanges();
+
+                    ViewState["PratiVadiEvidenceDetail"] = dt;
+
+                    BindPrativadiEvidenceRepeater();
+                }
+            }
+
+            if (e.CommandName == "View")
+            {
+                int index;
+
+                if (!int.TryParse(e.CommandArgument.ToString(), out index))
+                    return;
+
+                DataTable dt =
+                    CreatePrativadiEvidenceDetailTable();
+
+                if (index < 0 || index >= dt.Rows.Count)
+                    return;
+
+               
+                string filePath = Convert.ToString(dt.Rows[index]["FullfileName"]);
+
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    lblMsg.Text = "दस्तावेज़ उपलब्ध नहीं है।";
+
+                    return;
+                }
+
+                
+                string documentUrl = ResolveUrl(filePath);
+
+               
+                string script = "window.open('" + documentUrl.Replace("'", "\\'") + "', '_blank');";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ViewPrativadiEvidence", script, true);
+
+                return;
+            }
+
+
+        }
+
+        private DataTable GetPratiVadiEvidenceDetails()
+        {
+            if (ViewState["PratiVadiEvidenceDetail"] == null)
+            {
+                ViewState["PratiVadiEvidenceDetail"] = CreatePrativadiEvidenceDetailTable();
+            }
+
+            return (DataTable)ViewState["PratiVadiEvidenceDetail"];
+        }
         private bool SaveStep4()
         {
             if (ApplicationId == 0)
@@ -1539,33 +2186,273 @@ namespace Bhusamadhan.LandDispute.Entry
                 return false;
             }
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
+                SqlTransaction trans = null;
+
                 try
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand("BS_SP_SaveStep4", con);
+                    trans = con.BeginTransaction();
 
-                    cmd.CommandType = CommandType.StoredProcedure;
+                   
+               
+                    DataTable dtVadiEvidence = GetVadiEvidenceDetails();
 
-                    cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = ApplicationId;
+                    if (dtVadiEvidence == null || dtVadiEvidence.Rows.Count == 0)
+                    {
+                        trans.Rollback();
 
-                    cmd.Parameters.Add("@Is_Vadi_Present", SqlDbType.Char).Value = 'Y';
+                        lblMsg.Text = "कृपया पहले 'Save' बटन दबाकर वादी साक्ष्य का विवरण अंकित करें।";
 
-                    cmd.Parameters.Add("@Matter_Status_by", SqlDbType.VarChar).Value = userid;
+                        return false;
+                    }
 
-                    cmd.ExecuteNonQuery();
+                    // ------------------------------------------------
+                    // Create filtered Vadi DataTable for database
+                    // ------------------------------------------------
+                    DataTable dtVadiEvidenceForDb = dtVadiEvidence.DefaultView.ToTable(
+                            false,
+                            "evidence_id",
+                            "evidence_any_name",
+                            "FullfileName"
+                        );
+
+                    dtVadiEvidenceForDb.Columns["evidence_any_name"] .ColumnName = "evidence_anya";
+
+                    dtVadiEvidenceForDb.Columns["FullfileName"] .ColumnName = "Vadi_sakshya_File";
+
+                    DataTable dtPrativadiEvidence = GetPratiVadiEvidenceDetails();
+
+                    if (dtPrativadiEvidence == null || dtPrativadiEvidence.Rows.Count == 0)
+                    {
+                        trans.Rollback();
+
+                        lblMsg.Text = "कृपया पहले 'Save' बटन दबाकर प्रतिवादी साक्ष्य का विवरण अंकित करें।";
+
+                        return false;
+                    }
+
+                    // ------------------------------------------------
+                    // Create filtered Prativadi DataTable for database
+                    // ------------------------------------------------
+                    DataTable dtPrativadiEvidenceForDb = dtPrativadiEvidence.DefaultView.ToTable(
+                            false,
+                            "evidence_id",
+                            "evidence_any_name",
+                            "FullfileName"
+                        );
+
+                    dtPrativadiEvidenceForDb.Columns["evidence_any_name"] .ColumnName = "evidence_anya";
+
+                    dtPrativadiEvidenceForDb.Columns["FullfileName"].ColumnName = "Prativadi_sakshya_File";
+
+                    long applicationId = _step4DAL.SaveStep4(  ApplicationId, dtVadiEvidenceForDb, dtPrativadiEvidenceForDb, userid, con, trans);
+
+                 
+                    trans.Commit();
+
+                 
+                    ApplicationId = applicationId;
+
                     DisplayApplicationInfo();
+
                     return true;
                 }
                 catch (Exception ex)
                 {
+                    if (trans != null)
+                        trans.Rollback();
+
                     lblMsg.Text = ex.Message;
 
                     return false;
                 }
             }
+        }
+
+        private void FillStep4(long applicationId)
+        {
+           
+
+            DataTable dtVadiDb = _step4DAL.GetVadiEvidenceDetails(applicationId);
+
+            DataTable dtVadi = CreateVadiEvidenceDetailTable();
+
+            // Remove existing ViewState rows
+            dtVadi.Clear();
+
+            foreach (DataRow row in dtVadiDb.Rows)
+            {
+                DataRow newRow = dtVadi.NewRow();
+
+                newRow["evidence_id"] = row["evidence_id"];
+                newRow["evidence_any_name"] = row["evidence_any_name"];
+                newRow["FullfileName"] = row["FullfileName"];
+
+                // evidence_name is a UI column.
+                // It is not currently returned by the database query.
+                newRow["evidence_name"] = "";
+
+                dtVadi.Rows.Add(newRow);
+            }
+
+            ViewState["VadiEvidenceDetail"] = dtVadi;
+
+            rptVadiEvidence.DataSource = dtVadi;
+            rptVadiEvidence.DataBind();
+
+
+            DataTable dtPrativadiDb = _step4DAL.GetPrativadiEvidenceDetails(applicationId);
+
+            DataTable dtPrativadi = CreatePrativadiEvidenceDetailTable();
+
+            dtPrativadi.Clear();
+
+            foreach (DataRow row in dtPrativadiDb.Rows)
+            {
+                DataRow newRow = dtPrativadi.NewRow();
+
+                newRow["evidence_id"] = row["evidence_id"];
+                newRow["evidence_any_name"] = row["evidence_any_name"];
+                newRow["FullfileName"] = row["FullfileName"];
+
+                // UI column
+                newRow["evidence_name"] = "";
+
+                dtPrativadi.Rows.Add(newRow);
+            }
+
+            ViewState["PratiVadiEvidenceDetail"] = dtPrativadi;
+
+            rptPrativadiEvidence.DataSource = dtPrativadi;
+            rptPrativadiEvidence.DataBind();
+        }
+
+        //-----------------------------step4 complete here-------------------------------------------
+
+
+        //-----------------------------------------Step5---------------------------------------------------
+
+        bool validateFile(FileUpload fuFile, string FileType)
+        {
+            if (fuFile.HasFile)
+            {
+                int contentLength = fuFile.PostedFile.ContentLength;
+                string extension = Path.GetExtension(fuFile.PostedFile.FileName);
+                long maxFileSize = 5000000;
+
+                string mimeType = fuFile.PostedFile.ContentType;
+                string allowedMimeType = "application/pdf";
+
+                if (mimeType == allowedMimeType)
+                {
+                    switch (FileType)
+                    {
+                        case "zip":
+                            switch (extension.ToLower())
+                            {
+                                case ".zip":
+                                    break;
+                                default:
+                                    lblMsg.Text = "This file type is not allowed.";
+                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
+                                    return false;
+                            }
+
+                            if (contentLength > (1 * 1024 * 1024))
+                            {
+                                lblMsg.Text = "File size must be less than or equal to 3 MB";
+                                return false;
+                            }
+                            break;
+                        case "doc":
+
+                            switch (extension.ToLower())
+                            {
+                                //case ".jMD":
+                                //case ".jpeg":
+                                case ".pdf":
+
+                                    break;
+                                default:
+                                    lblMsg.Text = "This file type is not allowed.";
+                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
+                                    return false;
+                            }
+                            if (contentLength > (3 * 1024 * 1024))
+                            {
+                                lblMsg.Text = "File size must be less than or equal to 3 MB";
+                                return false;
+                            }
+                            break;
+                        case "Image":
+
+                            switch (extension.ToLower())
+                            {
+
+                                case ".png":
+                                case ".PNG":
+                                case ".jpg":
+                                case ".JPG":
+                                case ".jpeg":
+                                case ".JPEG":
+
+
+                                    break;
+                                default:
+                                    lblMsg.Text = "This file type is not allowed.";
+                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
+                                    return false;
+                            }
+                            if (contentLength > (0.4 * 1024 * 1024))
+                            {
+                                lblMsg.Text = "File size must be less than or equal to 400KB";
+                                return false;
+                            }
+                            break;
+
+
+
+                        default:
+                            lblMsg.Text = "Unknown File Type !!";
+                            return false;
+                    }
+                }
+                else
+                {
+
+                    lblMsg.Text = "Invalid file type. Only PDF files are allowed.";
+                    return false;
+                }
+            }
+            return true;
+        }
+        private bool ValidateStep5()
+        {
+            if (ddlbhukhand_mapi.SelectedIndex == 0)
+            {
+                lblMsg.Text = "कृपया विवादित भू-खंड की मापी चुनें...";
+                ddlbhukhand_mapi.Focus();
+                return false;
+            }
+
+            if (ddlbhukhand_mapi.SelectedIndex == 1 &&  ddlbhukhand_Copy.SelectedIndex == 0)
+            {
+                lblMsg.Text = "कृपया विवादित भू-खंड की मापी चुनें...";
+                ddlbhukhand_Copy.Focus();
+                return false;
+            }
+
+            if (ddlbhukhand_mapi.SelectedIndex == 1 &&  ddlbhukhand_Copy.SelectedIndex == 2 &&  string.IsNullOrWhiteSpace(txtMapiKeNirdharit_tithi.Text))
+            {
+                lblMsg.Text = "कृपया मापी के लिए निर्धारित तिथि अंकित करें...";
+                txtMapiKeNirdharit_tithi.Focus();
+                return false;
+            }
+
+            return true;
         }
 
         private bool SaveStep5()
@@ -1576,33 +2463,168 @@ namespace Bhusamadhan.LandDispute.Entry
                 return false;
             }
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+            if (!ValidateStep5())
+                return false;
+
+            long applicationId = ApplicationId;
+
+            string pulisPadadhikarPatrFile = string.Empty;
+            string halkaKarmchariPatrFile = string.Empty;
+            string vivaaditBhukhandMapiFile = string.Empty;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
             {
+                SqlTransaction trans = null;
+
                 try
                 {
                     con.Open();
+                    trans = con.BeginTransaction();
 
-                    SqlCommand cmd = new SqlCommand("BS_SP_SaveStep5", con);
+     
+                    if (pulis_padadhikari_Patr_file.HasFile)
+                    {
+                        if (!validateFile(pulis_padadhikari_Patr_file, "doc"))
+                            return false;
 
-                    cmd.CommandType = CommandType.StoredProcedure;
+                        string result = FileUploadValidator.IsPdf( pulis_padadhikari_Patr_file.PostedFile, 1024, 1024);
 
-                    cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = ApplicationId;
+                        if (result != "OK")
+                        {
+                            lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                            return false;
+                        }
 
-                    cmd.Parameters.Add("@Is_Vadi_Present", SqlDbType.Char).Value = 'Y';
+                        string path = "~/LandDoc/Upload/PulisPadadhikariPatr" + applicationId + "/";
 
-                    cmd.Parameters.Add("@Matter_Status_by", SqlDbType.VarChar).Value = userid;
+                        string uploadedPath = InsSaveFile( "PulisPadadhikariPatr",  pulis_padadhikari_Patr_file,  applicationId.ToString(), path);
 
-                    cmd.ExecuteNonQuery();
+                        string expectedPath =  "~/LandDoc/Upload/PulisPadadhikariPatr" + applicationId + "/PulisPadadhikariPatr.pdf";
+
+                        if (uploadedPath == "0" || uploadedPath != expectedPath)
+                        {
+                            lblMsg.Text = "Technical Error";
+                            return false;
+                        }
+
+                        pulisPadadhikarPatrFile = "~/LandDoc/Upload/PulisPadadhikariPatr#a_id#/PulisPadadhikariPatr.pdf";
+                    }
+
+                   
+                    //------------------Upload Halka Karmchari PDF---------------
+                   
+                    if (file_halkakarmchari_praptr.HasFile)
+                    {
+                        if (!validateFile(file_halkakarmchari_praptr, "doc"))
+                            return false;
+
+                        string result = FileUploadValidator.IsPdf( file_halkakarmchari_praptr.PostedFile, 1024, 1024);
+
+                        if (result != "OK")
+                        {
+                            lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                            return false;
+                        }
+
+                        string path =  "~/LandDoc/Upload/FileHalkakarmchariPraptr" + applicationId + "/";
+
+                        string uploadedPath = InsSaveFile( "FileHalkakarmchariPraptr", file_halkakarmchari_praptr, applicationId.ToString(), path);
+
+                        string expectedPath = "~/LandDoc/Upload/FileHalkakarmchariPraptr" + applicationId + "/FileHalkakarmchariPraptr.pdf";
+
+                        if (uploadedPath == "0" || uploadedPath != expectedPath)
+                        {
+                            lblMsg.Text = "Technical Error";
+                            return false;
+                        }
+
+                        halkaKarmchariPatrFile = "~/LandDoc/Upload/FileHalkakarmchariPraptr#a_id#/FileHalkakarmchariPraptr.pdf";
+                    }
+
+                  
+                    // -------------Upload Bhukhand Map / Report PDF
+                    
+
+                    if (ddlbhukhand_Copy.SelectedValue == "Y" && file_bhukand_prativedan.HasFile)
+                    {
+                        if (!validateFile(file_bhukand_prativedan, "doc"))
+                            return false;
+
+                        string result = FileUploadValidator.IsPdf( file_bhukand_prativedan.PostedFile, 1024, 1024);
+
+                        if (result != "OK")
+                        {
+                            lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                            return false;
+                        }
+
+                        string path = "~/LandDoc/Upload/BhukhandPrativedanPatra" + applicationId + "/";
+
+                        string uploadedPath = InsSaveFile( "BhukhandPrativedanPatra", file_bhukand_prativedan, applicationId.ToString(), path);
+
+                        string expectedPath = "~/LandDoc/Upload/BhukhandPrativedanPatra" + applicationId  + "/BhukhandPrativedanPatra.pdf";
+
+                        if (uploadedPath == "0" || uploadedPath != expectedPath)
+                        {
+                            lblMsg.Text = "Technical Error";
+                            return false;
+                        }
+
+                        vivaaditBhukhandMapiFile = "~/LandDoc/Upload/BhukhandPrativedanPatra#a_id#/BhukhandPrativedanPatra.pdf";
+                    }
+
+                    bool saved = _step5DAL.SaveStep5(  applicationId,  txtpulis_padadhikari_vivarani.Text.Trim(), pulisPadadhikarPatrFile, txthalkakarmchari_prativedan.Text.Trim(), halkaKarmchariPatrFile,ddlbhukhand_mapi.SelectedValue.Trim(), ddlbhukhand_Copy.SelectedValue.Trim(), string.IsNullOrWhiteSpace(txtMapiKeNirdharit_tithi.Text) ? "01-01-1900" : txtMapiKeNirdharit_tithi.Text.Trim(),vivaaditBhukhandMapiFile,txtbhukhand_reason.Text.Trim(), con, trans);
+
+                    if (!saved)
+                    {
+                        trans.Rollback();
+                        lblMsg.Text = "Step 5 data could not be saved.";
+                        return false;
+                    }
+
+                 
+                    trans.Commit();
+
+                 
                     DisplayApplicationInfo();
+
+                    lblMsg.Text = "प्रस्तुत साक्ष्य की विवरणी सफलतापूर्वक सहेजा गया।";
+                    ClearStep5();
                     return true;
+                    
+
                 }
                 catch (Exception ex)
                 {
-                    lblMsg.Text = ex.Message;
+                    if (trans != null)
+                    {
+                        try
+                        {
+                            trans.Rollback();
+                        }
+                        catch
+                        {
+                            lblMsg.Text = ex.Message;
+                        }
+                    }
 
+                    lblMsg.Text = ex.Message;
                     return false;
                 }
             }
+        }
+
+        private void ClearStep5()
+        {
+            txtpulis_padadhikari_vivarani.Text = string.Empty;
+
+            txthalkakarmchari_prativedan.Text = string.Empty;
+
+            ddlbhukhand_mapi.SelectedIndex = 0;
+            ddlbhukhand_Copy.SelectedIndex = 0;
+
+            txtMapiKeNirdharit_tithi.Text = string.Empty;
+            txtbhukhand_reason.Text = string.Empty;
         }
 
         private bool SaveStep6()
@@ -2724,9 +3746,9 @@ namespace Bhusamadhan.LandDispute.Entry
 
         private void bindLandUnit()
         {
-            BindLandUnit(ddlrakabasankhya, 1);
-            BindLandUnit(ddlrakabasankhya1, 2);
-            BindLandUnit(ddlrakabasankhya2, 3);
+            BindLandUnit(ddlrakabaunit1, 1);
+            BindLandUnit(ddlrakabaunit2, 2);
+            BindLandUnit(ddlrakabaunit3, 3);
         }
 
 
@@ -3021,18 +4043,17 @@ namespace Bhusamadhan.LandDispute.Entry
         protected void ddlIsVadiEvi_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtVadiEvidenceType.Text = "";
+
             if (ddlIsVadiEvi.SelectedValue == "Y")
             {
                 divVadiEvidenceType.Visible = true;
                 divvadi_dastavej.Visible = true;
-
             }
-            else if (ddlIsPvadiEvi.SelectedValue == "N" || ddlIsPvadiEvi.SelectedValue == "0")
+            else
             {
                 divVadiEvidenceType.Visible = false;
                 divvadi_dastavej.Visible = false;
                 divtxtVadiEvidenceType.Visible = false;
-
             }
         }
 
@@ -3042,8 +4063,8 @@ namespace Bhusamadhan.LandDispute.Entry
             //divbhukhand_mapi.Attributes.Add("class", "col-md-9");
             divbhukhand_Copy.Visible = false;
             ddlbhukhand_Copy.SelectedIndex = 0;
-            ddlbhukhand_Copy_SelectedIndexChanged(sender, e);   //-----------mistake
-
+            /*ddlbhukhand_Copy_SelectedIndexChanged(sender, e); */  //-----------mistake
+            HandleBhukhandCopySelection();
             if (ddlbhukhand_mapi.SelectedIndex == 1)
             {
                 //divbhukhand_mapi.Attributes.Add("class", "col-md-6");
@@ -3054,33 +4075,62 @@ namespace Bhusamadhan.LandDispute.Entry
 
         protected void ddlbhukhand_Copy_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //txtMapiKeNirdharit_tithi.Text = string.Empty;
+            //txtbhukhand_reason.Text = string.Empty;
+
+            //switch (ddlbhukhand_Copy.SelectedValue)
+            //{
+            //    case "Y":   // मापी हुई है
+
+            //        divBhukhandReport.Visible = true;
+            //        divBhukhandReason.Visible = false;
+            //        divMapiKeNirdharit_tithi.Visible = false;
+
+            //        break;
+
+            //    case "N":   // मापी नहीं हुई है
+
+            //        divBhukhandReport.Visible = false;
+            //        divBhukhandReason.Visible = true;
+            //        divMapiKeNirdharit_tithi.Visible = true;
+
+            //        break;
+
+            //    default:
+
+            //        divBhukhandReport.Visible = false;
+            //        divBhukhandReason.Visible = false;
+            //        divMapiKeNirdharit_tithi.Visible = false;
+
+            //        break;
+            //}
+
+            HandleBhukhandCopySelection();
+        }
+
+        private void HandleBhukhandCopySelection()
+        {
             txtMapiKeNirdharit_tithi.Text = string.Empty;
             txtbhukhand_reason.Text = string.Empty;
 
             switch (ddlbhukhand_Copy.SelectedValue)
             {
                 case "Y":   // मापी हुई है
-
                     divBhukhandReport.Visible = true;
                     divBhukhandReason.Visible = false;
                     divMapiKeNirdharit_tithi.Visible = false;
-
                     break;
 
                 case "N":   // मापी नहीं हुई है
-
                     divBhukhandReport.Visible = false;
                     divBhukhandReason.Visible = true;
                     divMapiKeNirdharit_tithi.Visible = true;
-
                     break;
 
                 default:
-
                     divBhukhandReport.Visible = false;
                     divBhukhandReason.Visible = false;
                     divMapiKeNirdharit_tithi.Visible = false;
-
                     break;
             }
         }
@@ -3113,14 +4163,14 @@ namespace Bhusamadhan.LandDispute.Entry
         {
             if (dd_IsBhumiVivad.SelectedValue == "Y")
             {
-                // btnbhumivivad.Visible = true;
+                btnbhumivivad.Visible = true;
                 btnBhumiVivadVivran1.Visible = true;
                 btnBhumiVivadVivran2.Visible = true;
                 btnBhumiVivadVivran3.Visible = true;
                 btnBhumiVivadVivran4.Visible = true;
                 btnBhumiVivadVivran5.Visible = true;
-                //btnBhumiVivadVivran6.Visible = true;
-                //ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                btnBhumiVivadVivran6.Visible = true;
+                ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
                 //this.BindGrid();
             }
             else
@@ -3130,9 +4180,9 @@ namespace Bhusamadhan.LandDispute.Entry
                 btnBhumiVivadVivran3.Visible = false;
                 btnBhumiVivadVivran4.Visible = false;
                 btnBhumiVivadVivran5.Visible = false;
-                //btnBhumiVivadVivran6.Visible = false;
-                //btnbhumivivad.Visible = false;
-                //ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                btnBhumiVivadVivran6.Visible = false;
+                btnbhumivivad.Visible = false;
+                ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
                 //this.BindGrid();
             }
         }
@@ -3402,10 +4452,10 @@ namespace Bhusamadhan.LandDispute.Entry
                 btnnyayalay4.Visible = true;
                 btnnyayalay5.Visible = true;
                 btnnyayalay6.Visible = true;
-                //btnnyayalay7.Visible = true;
-                // btnnayaylaysave.Visible = true;
-                //ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
-                //this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+                btnnyayalay7.Visible = true;
+                btnnayaylaysave.Visible = true;
+               ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
+               this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
             }
             else
             {
@@ -3414,12 +4464,12 @@ namespace Bhusamadhan.LandDispute.Entry
                 btnnyayalay4.Visible = false;
                 btnnyayalay5.Visible = false;
                 btnnyayalay6.Visible = false;
-                //btnnyayalay7.Visible = false;
-                //btnnayaylaysave.Visible = false;
+                btnnyayalay7.Visible = false;
+                btnnayaylaysave.Visible = false;
                 divDist_nyayalaya_type.Visible = false;
                 divSubdivision_nyayalaya_type.Visible = false;
-                //ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
-                //this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+                ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
+               this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
             }
         }
 
@@ -3510,10 +4560,6 @@ namespace Bhusamadhan.LandDispute.Entry
                 divdhara1.Visible = true;
             }
         }
-
-
-
-
 
 
 
@@ -4068,7 +5114,324 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
-       
+        protected void ddlVadiEvidenceType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            divtxtVadiEvidenceType.Visible = false;
+            if (ddlVadiEvidenceType.SelectedValue == "9")
+            {
+                divtxtVadiEvidenceType.Visible = true;
+            }
+        }
+
+        protected void ddlPrativadiEvidenceType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            divtxtPrativadiEvidenceType.Visible = false;
+            if (ddlPrativadiEvidenceType.SelectedValue == "9")
+            {
+                divtxtPrativadiEvidenceType.Visible = true;
+            }
+        }
+        //---------------------------------------Step6 --------------------------------
+
+        private DataTable DetailsOfIncidentDT()
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Ghatna_Vardat_date", typeof(string));
+            dt.Columns.Add("Ghatna_Short_vivran", typeof(string));
+            dt.Columns.Add("is_FIR_registered", typeof(string));
+            dt.Columns.Add("praathamiki_sankhya", typeof(string));
+            dt.Columns.Add("praathamiki_ka_vivaran", typeof(string));
+            dt.Columns.Add("is_complaint_filed", typeof(string));
+            dt.Columns.Add("dhaara", typeof(string));
+            dt.Columns.Add("apraathamiki_sankhya", typeof(string));
+            dt.Columns.Add("apraathamiki_ka_vivaran", typeof(string));
+            dt.Columns.Add("Abhiyukt", typeof(string));
+            dt.Columns.Add("is_Sanha_recorded", typeof(string));
+            dt.Columns.Add("sanha_sankhya", typeof(string));
+            dt.Columns.Add("bnm", typeof(string));
+            dt.Columns.Add("newdhara", typeof(string));
+            dt.Columns.Add("bnm1", typeof(string));
+            dt.Columns.Add("newdhara1", typeof(string));
+
+            return dt;
+        }
+
+        private DataTable CourtDisputeDetailsDT()
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("courtID", typeof(string));
+            dt.Columns.Add("courtTypeID", typeof(string));
+            dt.Columns.Add("District_Code", typeof(string));
+            dt.Columns.Add("Sub_DivCode", typeof(string));
+            dt.Columns.Add("Vibhag_code", typeof(string));
+            dt.Columns.Add("vaadi_ki_vaad_sankhya_varsh", typeof(string));
+            dt.Columns.Add("vadi_name", typeof(string));
+            dt.Columns.Add("prativadi_name", typeof(string));
+            dt.Columns.Add("vaad_ki_addhatan_sthiti_vivaran", typeof(string));
+            dt.Columns.Add("court", typeof(string));
+            dt.Columns.Add("courtType", typeof(string));
+            dt.Columns.Add("Dst", typeof(string));
+            dt.Columns.Add("SubDiv", typeof(string));
+            dt.Columns.Add("Vibhag", typeof(string));
+
+            return dt;
+        }
+        protected void btnbhumivivad_Click(object sender, EventArgs e)
+        {
+           
+            string dhaara = GetSelectedOldDhara();
+
+
+            if (ddlAprathmiki_huyee_hai.SelectedValue == "Y")
+            {
+                // IPC / BNS must be selected
+                if (!rdoOld.Checked && !rdoNew.Checked)
+                {
+                    ShowMessage("Please select Old Dhara or New Dhara");
+                    return;
+                }
+
+              
+                //--------------Old Dhara validation
+              
+                if (rdoOld.Checked)
+                {
+                    bool anyOldDharaSelected =  chk107.Checked ||  chk109.Checked || chk110.Checked || chk113.Checked ||  chk116.Checked ||  chk133.Checked ||  chk144.Checked || chk145.Checked || chk147.Checked;
+
+                    if (!anyOldDharaSelected)
+                    {
+                        ShowMessage("Please select at least one Old Dhara");
+                        return;
+                    }
+                }
+
+               
+                //--------- New Dhara validation
+              
+                if (rdoNew.Checked)
+                {
+                    bool anyBNMSelected = ddlbsn_dhara_hai.Items .Cast<ListItem>().Any(x => x.Selected);
+
+                    if (!anyBNMSelected)
+                    {
+                        ShowMessage("Please select at least one BNM");
+                        return;
+                    }
+
+                    bool anyNewDharaSelected = ddldhara1.Items.Cast<ListItem>().Any(x => x.Selected);
+
+                    if (!anyNewDharaSelected)
+                    {
+                        ShowMessage("Please select at least one New Dhara");
+                        return;
+                    }
+
+                   
+                    bool contains41 = ddlbsn_dhara_hai.Items.Cast<ListItem>().Any(x => x.Selected && x.Value == "41");
+
+                    if (contains41)
+                    {
+                        if (string.IsNullOrWhiteSpace(txtbnm.Text) || string.IsNullOrWhiteSpace(txtdhara.Text))
+                        {
+                            ShowMessage("Please fill Other BNM and Other Dhara details");
+                            return;
+                        }
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(txtAFIR_sankhya.Text))
+                {
+                    ShowMessage("कृपया अप्राथमिकी संख्या अंकित करें...!");
+                    return;
+                }
+            }
+
+            string bnm = "";
+            string newdhara = "";
+            string bnm1 = "";
+            string newdhara1 = "";
+
+            if (rdoNew.Checked)
+            {
+                bnm = GetSelectedValues(ddlbsn_dhara_hai);
+                newdhara = GetSelectedValues(ddldhara1);
+
+                bool contains41 = ddlbsn_dhara_hai.Items .Cast<ListItem>() .Any(x => x.Selected && x.Value == "41");
+
+                if (contains41)
+                {
+                    bnm1 = txtbnm.Text.Trim();
+                    newdhara1 = txtdhara.Text.Trim();
+                }
+            }
+
+
+            DataTable dt = ViewState["DetailsOfIncidentDT"] as DataTable;
+
+            if (dt == null)
+            {
+                ShowMessage("Incident details table is not initialized.");
+                return;
+            }
+
+
+      
+            //-------- Add incident details
+          
+            dt.Rows.Add(
+                txtghatanaDate.Text.Trim(),
+                txtghatanavivran.Text.Trim(),
+                ddlPrathmiki_huyee_hai.SelectedValue.Trim(),
+                txtFIR_sankhya.Text.Trim(),
+                txtPrathmik_vivran.Text.Trim(),
+                ddlAprathmiki_huyee_hai.SelectedValue.Trim(),
+                dhaara,
+                txtAFIR_sankhya.Text.Trim(),
+                txtAprathmik_vivran.Text.Trim(),
+                txtabhiyukt_vaad.Text.Trim(),
+                ddlSanhaStatus.SelectedValue.Trim(),
+                txtSanahaSankhiyan.Text.Trim(),
+                bnm,
+                newdhara,
+                bnm1,
+                newdhara1
+            );
+
+            ViewState["DetailsOfIncidentDT"] = dt;
+
+            //-------------Bind GridView
+           
+           BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+
+
+            ClearBhumiVivadControls();
+        }
+
+        private string GetSelectedOldDhara()
+        {
+            List<string> selectedDhara = new List<string>();
+
+            if (chk107.Checked)
+                selectedDhara.Add(chk107.Text);
+
+            if (chk109.Checked)
+                selectedDhara.Add(chk109.Text);
+
+            if (chk110.Checked)
+                selectedDhara.Add(chk110.Text);
+
+            if (chk113.Checked)
+                selectedDhara.Add(chk113.Text);
+
+            if (chk116.Checked)
+                selectedDhara.Add(chk116.Text);
+
+            if (chk133.Checked)
+                selectedDhara.Add(chk133.Text);
+
+            if (chk144.Checked)
+                selectedDhara.Add(chk144.Text);
+
+            if (chk145.Checked)
+                selectedDhara.Add(chk145.Text);
+
+            if (chk147.Checked)
+                selectedDhara.Add(chk147.Text);
+
+            return string.Join(", ", selectedDhara);
+        }
+
+        private string GetSelectedValues(ListBox listBox)
+        {
+            return string.Join(", ",  listBox.Items .Cast<ListItem>() .Where(x => x.Selected) .Select(x => x.Text));
+        }
+
+        private void ShowMessage(string message)
+        {
+            ScriptManager.RegisterStartupScript( this, GetType(), "alert",  $"alert('{message.Replace("'", "\\'")}');", true);
+        }
+
+        private void ClearBhumiVivadControls()
+        {
+            txtghatanaDate.Text = "";
+            txtghatanavivran.Text = "";
+
+            ddlPrathmiki_huyee_hai.SelectedIndex = 0;
+            txtFIR_sankhya.Text = "";
+            txtPrathmik_vivran.Text = "";
+
+            ddlAprathmiki_huyee_hai.SelectedIndex = 0;
+            txtAFIR_sankhya.Text = "";
+            txtAprathmik_vivran.Text = "";
+
+            txtabhiyukt_vaad.Text = "";
+
+            rdoOld.Checked = false;
+            rdoNew.Checked = false;
+
+            txtbnm.Text = "";
+            txtdhara.Text = "";
+
+            ddldhara1.ClearSelection();
+            ddlbsn_dhara_hai.ClearSelection();
+
+            div_tbnm.Visible = false;
+            div_tdhara.Visible = false;
+            divdhara1.Visible = false;
+            divbsn.Visible = false;
+            divdharabsn.Visible = false;
+
+            divAPrathmiki_sankhiyan.Visible = false;
+            divAPrathmiki_vivaran.Visible = false;
+
+            chk107.Checked = false;
+            chk109.Checked = false;
+            chk110.Checked = false;
+            chk113.Checked = false;
+            chk116.Checked = false;
+            chk133.Checked = false;
+            chk144.Checked = false;
+            chk145.Checked = false;
+            chk147.Checked = false;
+
+            divDhara.Visible = false;
+        }
+
+        protected void BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin()
+        {
+            DataTable dtIncident = ViewState["DetailsOfIncidentDT"] as DataTable;
+
+            if (dtIncident != null)
+            {
+                grdbhumivivad.DataSource = dtIncident;
+                grdbhumivivad.DataBind();
+            }
+            else
+            {
+                grdbhumivivad.DataSource = null;
+                grdbhumivivad.DataBind();
+            }
+
+
+            DataTable dtCourt = ViewState["CourtDisputeDetailsDT"] as DataTable;
+
+            if (dtCourt != null)
+            {
+                grdnyayalay_vivran.DataSource = dtCourt;
+                grdnyayalay_vivran.DataBind();
+            }
+            else
+            {
+                grdnyayalay_vivran.DataSource = null;
+                grdnyayalay_vivran.DataBind();
+            }
+        }
+
+        //------------------------------step4 code---------------------------------------
+
+
     }
 }
 

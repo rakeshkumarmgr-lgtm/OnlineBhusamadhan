@@ -49,6 +49,113 @@
             });
         });
     </script>
+    <script>
+        function toggleBhukhandMapi(ddl) {
+
+            var divCopy = document.getElementById('<%= divbhukhand_Copy.ClientID %>');
+
+            if (ddl.value === "Y") {
+
+                // मापी आवश्यक है
+                divCopy.style.display = "";
+
+                // Reset dependent dropdown
+                var ddlCopy = document.getElementById('<%= ddlbhukhand_Copy.ClientID %>');
+                ddlCopy.selectedIndex = 0;
+
+                // Reset dependent controls
+                toggleBhukhandCopy(ddlCopy);
+            }
+            else {
+
+                // मापी आवश्यक नहीं है / चुने
+                divCopy.style.display = "none";
+
+                // Reset dependent dropdown
+                var ddlCopy = document.getElementById('<%= ddlbhukhand_Copy.ClientID %>');
+                ddlCopy.selectedIndex = 0;
+
+                // Hide dependent controls
+                document.getElementById('<%= divBhukhandReport.ClientID %>').style.display = "none";
+                document.getElementById('<%= divBhukhandReason.ClientID %>').style.display = "none";
+                document.getElementById('<%= divMapiKeNirdharit_tithi.ClientID %>').style.display = "none";
+
+                // Clear dependent fields
+                document.getElementById('<%= txtMapiKeNirdharit_tithi.ClientID %>').value = "";
+                document.getElementById('<%= txtbhukhand_reason.ClientID %>').value = "";
+            }
+        }
+
+
+        function toggleBhukhandCopy(ddl) {
+
+            var divReport = document.getElementById('<%= divBhukhandReport.ClientID %>');
+
+            var divReason = document.getElementById('<%= divBhukhandReason.ClientID %>');
+
+            var divDate = document.getElementById('<%= divMapiKeNirdharit_tithi.ClientID %>');
+
+            var txtDate = document.getElementById('<%= txtMapiKeNirdharit_tithi.ClientID %>');
+
+            var txtReason = document.getElementById('<%= txtbhukhand_reason.ClientID %>');
+
+
+            // Clear values just like the old
+            // ddlbhukhand_Copy_SelectedIndexChanged()
+            txtDate.value = "";
+            txtReason.value = "";
+
+
+            switch (ddl.value) {
+
+                case "Y":
+                    // मापी हुई है
+
+                    divReport.style.display = "";
+                    divReason.style.display = "none";
+                    divDate.style.display = "none";
+
+                    break;
+
+
+                case "N":
+                    // मापी नहीं हुई है
+
+                    divReport.style.display = "none";
+                    divReason.style.display = "";
+                    divDate.style.display = "";
+
+                    break;
+
+
+                default:
+                    // --चुने--
+
+                    divReport.style.display = "none";
+                    divReason.style.display = "none";
+                    divDate.style.display = "none";
+
+                    break;
+            }
+        }
+    </script>
+
+    <script>
+        window.addEventListener("load", function () {
+
+            var ddlMapi = document.getElementById('<%= ddlbhukhand_mapi.ClientID %>');
+
+            var ddlCopy = document.getElementById('<%= ddlbhukhand_Copy.ClientID %>');
+
+            if (ddlMapi) {
+                toggleBhukhandMapi(ddlMapi);
+            }
+
+            if (ddlCopy && ddlMapi && ddlMapi.value === "Y") {
+                toggleBhukhandCopy(ddlCopy);
+            }
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
     <div class="container-fluid">
@@ -1354,9 +1461,9 @@
                                                             <th>मोबाइल</th>
 
                                                             <th>जिला</th>
-                                                             <th>अनुमंडल</th>
+                                                            <th>अनुमंडल</th>
                                                             <th>अंचल</th>
-                                                           
+
                                                             <th>क्षेत्र</th>
                                                             <th>ग्राम पंचायत</th>
                                                             <th>राजस्व ग्राम</th>
@@ -1392,7 +1499,7 @@
                                                     <td class="text-center">
                                                         <%# Eval("pratiVadi_MobileNo") %>
                                                     </td>
-                                                   
+
 
                                                     <td>
                                                         <%# Eval("DistrictName") %>
@@ -1629,9 +1736,9 @@
 
                                                 <label class="form-label">क्षेत्रफल (बड़ी इकाई) <span class="required">*</span> </label>
 
-                                                <asp:TextBox ID="txtrakabasankhya" runat="server" CssClass="form-control" MaxLength="15"> </asp:TextBox>
+                                                <asp:TextBox ID="txtrakabasankhya1" runat="server" CssClass="form-control" MaxLength="15"> </asp:TextBox>
 
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator54" runat="server" CssClass="validator" ValidationGroup="4" Display="Dynamic" ControlToValidate="txtrakabasankhya" ErrorMessage="क्षेत्रफल दर्ज करें">  </asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator54" runat="server" CssClass="validator" ValidationGroup="4" Display="Dynamic" ControlToValidate="txtrakabasankhya1" ErrorMessage="क्षेत्रफल दर्ज करें">  </asp:RequiredFieldValidator>
 
                                             </div>
 
@@ -1639,9 +1746,9 @@
 
                                                 <label class="form-label">यूनिट <span class="required">*</span> </label>
 
-                                                <asp:DropDownList ID="ddlrakabasankhya" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlrakabaunit1" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator57" runat="server" CssClass="validator" ValidationGroup="4" InitialValue="0" Display="Dynamic" ControlToValidate="ddlrakabasankhya" ErrorMessage="यूनिट चुनें"> </asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator57" runat="server" CssClass="validator" ValidationGroup="4" InitialValue="0" Display="Dynamic" ControlToValidate="ddlrakabaunit1" ErrorMessage="यूनिट चुनें"> </asp:RequiredFieldValidator>
 
                                             </div>
 
@@ -1654,7 +1761,7 @@
 
                                                 <label class="form-label">क्षेत्रफल (मध्यम इकाई)</label>
 
-                                                <asp:TextBox ID="txtrakabasankhya1" runat="server" CssClass="form-control" MaxLength="15"> </asp:TextBox>
+                                                <asp:TextBox ID="txtrakabasankhya2" runat="server" CssClass="form-control" MaxLength="15"> </asp:TextBox>
 
                                             </div>
 
@@ -1662,7 +1769,7 @@
 
                                                 <label class="form-label">यूनिट </label>
 
-                                                <asp:DropDownList ID="ddlrakabasankhya1" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlrakabaunit2" runat="server" CssClass="form-control"></asp:DropDownList>
 
                                             </div>
 
@@ -1675,7 +1782,7 @@
 
                                                 <label class="form-label">क्षेत्रफल (सबसे छोटी इकाई) </label>
 
-                                                <asp:TextBox ID="txtrakabasankhya2" runat="server" CssClass="form-control" MaxLength="15">  </asp:TextBox>
+                                                <asp:TextBox ID="txtrakabasankhya3" runat="server" CssClass="form-control" MaxLength="15">  </asp:TextBox>
 
                                             </div>
 
@@ -1683,7 +1790,7 @@
 
                                                 <label class="form-label">यूनिट  </label>
 
-                                                <asp:DropDownList ID="ddlrakabasankhya2" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlrakabaunit3" runat="server" CssClass="form-control"></asp:DropDownList>
 
                                             </div>
 
@@ -1773,6 +1880,121 @@
                                     </div>
 
                                 </div>
+
+                                <!-- Save Button -->
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12 text-center">
+
+                                        <asp:Button ID="btnsaveBhumiKaVivaran" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="4" OnClick="btnsaveBhumiKaVivaran_Click" />
+                                    </div>
+                                </div>
+
+                                <!-- Repeater -->
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+
+                                            <asp:Repeater ID="rptKhataKhesraVivarni" runat="server" OnItemCommand="rptKhataKhesraVivarni_ItemCommand">
+
+                                                <HeaderTemplate>
+
+                                                    <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                                                        <thead class="thead-dark text-center">
+                                                            <tr>
+                                                                <th style="width: 70px;">Action</th>
+                                                                <th style="width: 50px;">#</th>
+                                                                <th>खाता संख्या</th>
+                                                                <th>खेसरा संख्या</th>
+
+                                                                <th>रकबा</th>
+
+                                                                <th>जमीन की किस्म</th>
+                                                                <th>ख़तियन में जमीन का विवरण</th>
+                                                                <th>उत्तर</th>
+
+                                                                <th>दक्षिण</th>
+                                                                <th>पूर्व</th>
+                                                                <th>पश्चिम</th>
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                </HeaderTemplate>
+
+                                                <ItemTemplate>
+
+                                                    <tr>
+
+                                                        <td class="text-center">
+
+                                                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" CommandName="Remove" CommandArgument='<%# Container.ItemIndex %>' ToolTip="Delete Record" OnClientClick="return confirm('Are you sure you want to delete this record?');"> <i class="fa fa-trash"></i> </asp:LinkButton>
+
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <%# Container.ItemIndex + 1 %>
+                                                        </td>
+
+                                                        <td><%# Eval("khataNo") %></td>
+
+                                                        <td><%# Eval("khesraNo") %></td>
+
+
+                                                        <td class="text-center">
+                                                            <%# Eval("Rakba") %>
+                                                        </td>
+
+
+                                                        <td>
+                                                            <%# Eval("Landdesciption") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("LandDetailsInKhatian") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("North_chauhaddee") %>
+
+                                                        </td>
+                                                        <td>
+                                                            <%# Eval("South_chauhaddee") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("East_chauhaddee") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("West_chauhaddee") %>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    </tbody>
+
+                                                    </table>
+
+                                                </FooterTemplate>
+
+                                            </asp:Repeater>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Repeater End -->
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
@@ -1827,7 +2049,7 @@
 
                                         <label class="form-label">साक्ष्य का प्रकार  <span class="required">*</span> </label>
 
-                                        <asp:DropDownList ID="ddlVadiEvidenceType" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlVadiEvidenceType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlVadiEvidenceType_SelectedIndexChanged"></asp:DropDownList>
 
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator63" runat="server" CssClass="validator" ControlToValidate="ddlVadiEvidenceType" InitialValue="0" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="साक्ष्य का प्रकार चुनें।">   </asp:RequiredFieldValidator>
 
@@ -1866,9 +2088,88 @@
 
                                 </div>
 
+                                <!-- Save Button -->
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12 text-center">
+
+                                        <asp:Button ID="btnAddVadiEvidenceDetail" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnAddVadiEvidenceDetail_Click" />
+                                    </div>
+                                </div>
+
+                                <!-- Repeater -->
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+
+                                            <asp:Repeater ID="rptVadiEvidence" runat="server" OnItemCommand="rptVadiEvidence_ItemCommand">
+
+                                                <HeaderTemplate>
+
+                                                    <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                                                        <thead class="thead-dark text-center">
+                                                            <tr>
+                                                                <th style="width: 70px;">Action</th>
+                                                                <th style="width: 50px;">#</th>
+                                                                <th>साक्ष्य का प्रकार</th>
+                                                                <th>साक्ष्य का दस्तावेज</th>
+
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                </HeaderTemplate>
+
+                                                <ItemTemplate>
+
+                                                    <tr>
+
+                                                        <td class="text-center">
+
+                                                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" CommandName="Remove" CommandArgument='<%# Container.ItemIndex %>' ToolTip="Delete Record" OnClientClick="return confirm('Are you sure you want to delete this record?');"> <i class="fa fa-trash"></i> </asp:LinkButton>
+
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <%# Container.ItemIndex + 1 %>
+                                                        </td>
+
+                                                        <td>
+                                                            <asp:Label ID="lblEvidenceType" runat="server" Text='<%# (Convert.ToString(Eval("evidence_id")) != "9")  ? Eval("evidence_name")  : Eval("evidence_any_name") %>'>  </asp:Label></td>
+
+                                                        <td>
+                                                            <asp:ImageButton ID="Image1" runat="server" ImageUrl="~/images/pdf.gif" Width="50px" Height="50px" Style="cursor: pointer;" CommandArgument='<%# Container.ItemIndex %>' CommandName="View" ToolTip="View Document" /></td>
+
+                                                    </tr>
+
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    </tbody>
+
+                                                    </table>
+
+                                                </FooterTemplate>
+
+                                            </asp:Repeater>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             </ContentTemplate>
+                            <Triggers>
+
+                                <asp:PostBackTrigger ControlID="btnAddVadiEvidenceDetail" />
+                            </Triggers>
 
                         </asp:UpdatePanel>
+
+
 
                     </div>
 
@@ -1910,7 +2211,7 @@
 
                                         <label class="form-label">साक्ष्य का प्रकार <span class="required">*</span> </label>
 
-                                        <asp:DropDownList ID="ddlPrativadiEvidenceType" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlPrativadiEvidenceType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPrativadiEvidenceType_SelectedIndexChanged"></asp:DropDownList>
 
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator66" runat="server" CssClass="validator" ControlToValidate="ddlPrativadiEvidenceType" InitialValue="0" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="साक्ष्य का प्रकार चुनें।"> </asp:RequiredFieldValidator>
 
@@ -1948,8 +2249,82 @@
 
                                 </div>
 
-                            </ContentTemplate>
+                                <!-- Save Button -->
 
+                                <div class="row mb-2">
+                                    <div class="col-md-12 text-center">
+
+                                        <asp:Button ID="btnAddPrativadiEvidenceDetail" runat="server" Text="Save" CssClass="btn btn-primary" OnClientClick="return ValidatePrativadiEvidenceDetail();" OnClick="btnAddPrativadiEvidenceDetail_Click" />
+                                    </div>
+                                </div>
+
+                                <!-- Repeater -->
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+
+
+                                            <asp:Repeater ID="rptPrativadiEvidence" runat="server" OnItemCommand="rptPrativadiEvidence_ItemCommand">
+
+                                                <HeaderTemplate>
+
+                                                    <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                                                        <thead class="thead-dark text-center">
+                                                            <tr>
+                                                                <th style="width: 70px;">Action</th>
+                                                                <th style="width: 50px;">#</th>
+                                                                <th>साक्ष्य का प्रकार</th>
+                                                                <th>साक्ष्य का दस्तावेज</th>
+
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                </HeaderTemplate>
+
+                                                <ItemTemplate>
+
+                                                    <tr>
+
+                                                        <td class="text-center">
+
+                                                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" CommandName="Remove" CommandArgument='<%# Container.ItemIndex %>' ToolTip="Delete Record" OnClientClick="return confirm('Are you sure you want to delete this record?');"> <i class="fa fa-trash"></i> </asp:LinkButton>
+
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <%# Container.ItemIndex + 1 %>
+                                                        </td>
+
+                                                        <td>
+                                                            <asp:Label ID="lblEvidenceType" runat="server" Text='<%# (Convert.ToString(Eval("evidence_id")) != "9")  ? Eval("evidence_name")  : Eval("evidence_any_name") %>'>  </asp:Label></td>
+
+                                                        <td>
+                                                            <asp:ImageButton ID="Image1" runat="server" ImageUrl="~/images/pdf.gif" Width="50px" Height="50px" Style="cursor: pointer;" CommandArgument='<%# Container.ItemIndex %>' CommandName="View" ToolTip="View Document" /></td>
+
+                                                    </tr>
+
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    </tbody>
+
+                                                     </table>
+
+                                                </FooterTemplate>
+
+                                            </asp:Repeater>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+
+                                <asp:PostBackTrigger ControlID="btnAddPrativadiEvidenceDetail" />
+                            </Triggers>
                         </asp:UpdatePanel>
 
                     </div>
@@ -2041,6 +2416,7 @@
 
                                     </asp:DropDownList>
 
+
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator68" runat="server" CssClass="validator" ControlToValidate="ddlbhukhand_mapi" ValidationGroup="4" InitialValue="0" Display="Dynamic"> विवादित भू-खंड की मापी </asp:RequiredFieldValidator>
 
                                 </div>
@@ -2056,6 +2432,7 @@
                                         <asp:ListItem Value="N">मापी नहीं हुई है</asp:ListItem>
 
                                     </asp:DropDownList>
+
 
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator69" runat="server" CssClass="validator" ControlToValidate="ddlbhukhand_Copy" ValidationGroup="6" InitialValue="0" Display="Dynamic"> मापी  </asp:RequiredFieldValidator>
 
@@ -2091,7 +2468,7 @@
                             <!-- Reason -->
                             <div class="row">
 
-                                <div class="col-md-6" id="divBhukhandReason" runat="server">
+                                <div class="col-md-6" id="divBhukhandReason" runat="server" visible="false">
 
                                     <label class="form-label">विवादित भू-खंड की मापी नहीं होने का कारण  </label>
 
@@ -2259,7 +2636,7 @@
 
                                             &nbsp;&nbsp;
 
-                                       <asp:RadioButton ID="rdoNew" runat="server" Text="BNS" GroupName="dhara" AutoPostBack="true" OnCheckedChanged="DharaChanged" />
+                                            <asp:RadioButton ID="rdoNew" runat="server" Text="BNS" GroupName="dhara" AutoPostBack="true" OnCheckedChanged="DharaChanged" />
 
                                         </div>
 
@@ -2409,6 +2786,149 @@
 
                         </div>
 
+                        <%--button + grid display section--%>
+                        <div id="btnBhumiVivadVivran6" runat="server" visible="false">
+
+                            <div class="row mb-3">
+                                <div class="col-md-12 text-center">
+                                    <asp:Button ID="btnbhumivivad"  runat="server"  Text="Save" CssClass="btn btn-primary"  Visible="false" OnClick="btnbhumivivad_Click" />
+                                </div>
+                            </div>
+
+                            <!-- Incident Details Grid -->
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <asp:Panel ID="Panelgrdbhumivivad"  runat="server" ScrollBars="Auto">
+
+                                        <asp:GridView   ID="grdbhumivivad"  runat="server" AutoGenerateColumns="false"  CssClass="table table-bordered table-striped table-hover">
+
+                                            <Columns>
+
+                                                <asp:TemplateField  HeaderText="Action" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="btnRowDel"  runat="server"  CssClass="btn btn-danger btn-sm" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
+                                                            OnClientClick="return confirm('Are you sure you want to delete this data?');"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </asp:LinkButton>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Sl. No." ItemStyle-Width="60px" ItemStyle-HorizontalAlign="Center"  HeaderStyle-HorizontalAlign="Center">
+
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:BoundField  DataField="Ghatna_Vardat_date"  HeaderText="घटना की तिथि" ItemStyle-Width="100px" />
+
+
+                                                <asp:TemplateField HeaderText="घटना की संक्षिप्त विवरण" ItemStyle-Width="220px">
+
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("Ghatna_Short_vivran") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:BoundField DataField="is_FIR_registered" HeaderText="प्राथमिकी" ItemStyle-Width="80px" />
+
+
+                                                <asp:BoundField DataField="praathamiki_sankhya" HeaderText="प्राथमिकी संख्या" ItemStyle-Width="110px" />
+
+
+                                                <asp:TemplateField  HeaderText="प्राथमिकी का विवरण" ItemStyle-Width="220px">
+                                                 
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("praathamiki_ka_vivaran") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+
+                                                <asp:BoundField DataField="is_complaint_filed"  HeaderText="अप्राथमिकी" ItemStyle-Width="100px" />
+
+
+                                                <asp:BoundField DataField="dhaara"  HeaderText="धारा (Old)" ItemStyle-Width="100px" />
+
+
+                                                <asp:TemplateField HeaderText="BNS (New)" ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("bnm").ToString()) ? "--" : Eval("bnm") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField  HeaderText="New IPC" ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("newdhara").ToString()) ? "--" : Eval("newdhara") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="BNS Other" ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("bnm1").ToString()) ? "--" : Eval("bnm1") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField  HeaderText="IPC Other"   ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("newdhara1").ToString())  ? "--" : Eval("newdhara1") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                         
+                                                <asp:BoundField DataField="apraathamiki_sankhya"  HeaderText="अप्राथमिकी संख्या" ItemStyle-Width="110px" />
+
+                                                <asp:TemplateField HeaderText="अप्राथमिकी का विवरण"  ItemStyle-Width="220px">
+
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("apraathamiki_ka_vivaran") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+                                         
+                                                <asp:BoundField  DataField="is_Sanha_recorded" HeaderText="सनहा" ItemStyle-Width="80px" />
+                                              
+                                                <asp:BoundField DataField="sanha_sankhya" HeaderText="सनहा संख्या"  ItemStyle-Width="110px" />
+                                               
+                                                <asp:TemplateField HeaderText="अभियुक्ति"  ItemStyle-Width="220px">
+
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("Abhiyukt") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                            </Columns>
+
+                                        </asp:GridView>
+
+                                    </asp:Panel>
+
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="section-card">
 
                             <div class="section-header text-center">
@@ -2549,6 +3069,57 @@
 
                                     </div>
 
+                                </div>
+
+                                <%--Grid+Button--%>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12" id="btnnyayalay7" runat="server" visible="false">
+                                        <center>
+                                            <asp:Button ID="btnnayaylaysave" runat="server" Text="Save" CssClass="btn btn-primary" />
+                                        </center>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <asp:Panel ID="Panelgrdnyayalay_vivran" runat="server" ScrollBars="Auto" Style="padding-left: 100px">
+                                            <asp:GridView runat="server" ID="grdnyayalay_vivran" AutoGenerateColumns="false">
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="50">
+                                                        <ItemTemplate>
+
+                                                            <asp:LinkButton ID="btnRowDel" CssClass="btn btn-danger" runat="server" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
+                                                                OnClientClick="return confirm('Are you sure you want to delete this data?');"><i class="fa fa-trash" aria-hidden="true" style="font-size:20px;"></i></asp:LinkButton>
+
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Sl. No.">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1 %>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" Width="5%" />
+                                                        <ItemStyle HorizontalAlign="Center" />
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="court" HeaderText="न्यायालय" ItemStyle-Width="80" />
+                                                    <asp:BoundField DataField="courtType" HeaderText="न्यायालय का प्रकार" ItemStyle-Width="100" />
+                                                    <asp:BoundField DataField="Dst" HeaderText="जिला" ItemStyle-Width="80" />
+                                                    <asp:BoundField DataField="SubDiv" HeaderText="अनुमंडल" ItemStyle-Width="80" />
+                                                    <asp:BoundField DataField="Vibhag" HeaderText="विभाग" ItemStyle-Width="80" />
+                                                    <asp:BoundField DataField="vaadi_ki_vaad_sankhya_varsh" HeaderText="वाद संख्या / वर्ष" ItemStyle-Width="80" />
+
+                                                    <asp:BoundField DataField="vadi_name" HeaderText="वादी का नाम" ItemStyle-Width="80" />
+                                                    <asp:BoundField DataField="prativadi_name" HeaderText="प्रतिवादी का नाम" ItemStyle-Width="80" />
+                                                    <asp:TemplateField HeaderText="अद्धतन स्थिति का विवरण" ItemStyle-Width="220">
+                                                        <ItemTemplate>
+                                                            <span id='<%# Eval("vaad_ki_addhatan_sthiti_vivaran") %>' style="display: block; overflow: auto; height: 80px;">
+                                                                <%# Eval("vaad_ki_addhatan_sthiti_vivaran") %>
+                                                            </span>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </asp:Panel>
+                                    </div>
                                 </div>
 
                             </div>

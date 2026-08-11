@@ -75,15 +75,40 @@ namespace Bhusamadhan.DB
         /// </summary>
         /// <param name="FileUpload1">ASP.NET FileUpload Control</param>
         /// <returns>Base64 String</returns>
+        //public static string getBase64(FileUpload FileUpload1)
+        //{
+        //    BinaryReader br = new BinaryReader(FileUpload1.PostedFile.InputStream);
+
+        //    byte[] bytes = br.ReadBytes((int)FileUpload1.PostedFile.InputStream.Length);
+
+        //    string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+
+        //    return base64String;
+        //}
+
         public static string getBase64(FileUpload FileUpload1)
         {
-            BinaryReader br = new BinaryReader(FileUpload1.PostedFile.InputStream);
+            if (FileUpload1 == null)
+                return string.Empty;
 
-            byte[] bytes = br.ReadBytes((int)FileUpload1.PostedFile.InputStream.Length);
+            if (!FileUpload1.HasFile)
+                return string.Empty;
 
-            string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+            if (FileUpload1.PostedFile == null)
+                return string.Empty;
 
-            return base64String;
+            if (FileUpload1.PostedFile.InputStream == null)
+                return string.Empty;
+
+            using (BinaryReader br = new BinaryReader(FileUpload1.PostedFile.InputStream))
+            {
+                byte[] bytes = br.ReadBytes((int)FileUpload1.PostedFile.InputStream.Length);
+
+                if (bytes == null || bytes.Length == 0)
+                    return string.Empty;
+
+                return Convert.ToBase64String(bytes);
+            }
         }
     }
 }

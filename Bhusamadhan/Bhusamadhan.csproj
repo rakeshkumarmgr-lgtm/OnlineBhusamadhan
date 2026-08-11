@@ -6062,8 +6062,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.Hi.resx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLayer\LandDisputeDAL\MasterDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\MatterRegistrationDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\SaveStep2DAL.cs" />
+    <Compile Include="DataAccessLayer\LandDisputeDAL\SaveStep3DAL.cs" />
+    <Compile Include="DataAccessLayer\LandDisputeDAL\SaveStep4DAL.cs" />
+    <Compile Include="DataAccessLayer\LandDisputeDAL\SaveStep5DAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\VadiDetailDAL.cs" />
     <Compile Include="DB\clsDataAccessLandDispute.cs" />
     <Compile Include="DB\DBConHelper.cs" />

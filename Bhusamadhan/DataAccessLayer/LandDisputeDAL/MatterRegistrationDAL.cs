@@ -70,6 +70,26 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
                 return Convert.ToInt64(cmd.ExecuteScalar());
             }
         }
+
+        public void SaveVadiDetails(long applicationId, DataTable dtForDb, string userid, SqlConnection con, SqlTransaction trans)
+        {
+            if (dtForDb == null || dtForDb.Rows.Count == 0)
+                return;
+
+            using (SqlCommand cmd = new SqlCommand("BS_SP_SaveVadiDetails", con, trans))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
+
+                SqlParameter tvp = cmd.Parameters.Add("@VadiDetails", SqlDbType.Structured);
+
+                tvp.TypeName = "dbo.BS_VadiDetailType";
+                tvp.Value = dtForDb;
+                cmd.Parameters.Add("@CUUser", SqlDbType.NVarChar).Value = userid;
+                cmd.ExecuteNonQuery();
+            }
+        }
         public void UpdateCurrentStep(long applicationId, int currentStep, SqlConnection con, SqlTransaction trans)
         {
             using (SqlCommand cmd = new SqlCommand( @"UPDATE BS_Matter_Registration SET CurrentStep=@CurrentStep WHERE a_id=@a_id", con, trans))
@@ -129,5 +149,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 
             return dt;
         }
+
+       
     }
 }
