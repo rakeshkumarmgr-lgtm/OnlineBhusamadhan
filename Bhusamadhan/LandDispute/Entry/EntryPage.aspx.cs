@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
@@ -34,6 +35,10 @@ namespace Bhusamadhan.LandDispute.Entry
         private readonly SaveStep4DAL _step4DAL = new SaveStep4DAL();
 
         private readonly SaveStep5DAL _step5DAL = new SaveStep5DAL();
+
+        private readonly SaveStep6DAL _step6DAL = new SaveStep6DAL();
+
+        private readonly SaveStep7DAL _step7DAL = new SaveStep7DAL();
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt = Session["UserLogIn"] as DataTable;
@@ -281,10 +286,18 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 case 6:
                     pnlStep6.Visible = true;
+                    if (ApplicationId > 0)
+                    {
+                        FillStep6(ApplicationId);
+                    }
                     break;
 
                 case 7:
                     pnlStep7.Visible = true;
+                    if (ApplicationId > 0)
+                    {
+                        FillStep7(ApplicationId);
+                    }
                     break;
             }
 
@@ -395,10 +408,10 @@ namespace Bhusamadhan.LandDispute.Entry
                     break;
 
                 case 6:
-                    Page.Validate("7");
+                    //Page.Validate("7");
 
-                    if (!Page.IsValid)
-                        return;
+                    //if (!Page.IsValid)
+                    //    return;
 
                     result = SaveStep6();
                     break;
@@ -2627,6 +2640,420 @@ namespace Bhusamadhan.LandDispute.Entry
             txtbhukhand_reason.Text = string.Empty;
         }
 
+        //-----------------------------------------Step5 complete---------------------------------------------------
+
+
+        //-----------------------------------------Step6---------------------------------------------------
+        //---------------------------------------Step6 --------------------------------
+
+        private DataTable DetailsOfIncidentDT()
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("Ghatna_Vardat_date", typeof(string));
+            dt.Columns.Add("Ghatna_Short_vivran", typeof(string));
+            dt.Columns.Add("is_FIR_registered", typeof(string));
+            dt.Columns.Add("praathamiki_sankhya", typeof(string));
+            dt.Columns.Add("praathamiki_ka_vivaran", typeof(string));
+            dt.Columns.Add("is_complaint_filed", typeof(string));
+            dt.Columns.Add("dhaara", typeof(string));
+            dt.Columns.Add("apraathamiki_sankhya", typeof(string));
+            dt.Columns.Add("apraathamiki_ka_vivaran", typeof(string));
+            dt.Columns.Add("Abhiyukt", typeof(string));
+            dt.Columns.Add("is_Sanha_recorded", typeof(string));
+            dt.Columns.Add("sanha_sankhya", typeof(string));
+            dt.Columns.Add("bnm", typeof(string));
+            dt.Columns.Add("newdhara", typeof(string));
+            dt.Columns.Add("bnm1", typeof(string));
+            dt.Columns.Add("newdhara1", typeof(string));
+
+            return dt;
+        }
+
+        private DataTable CourtDisputeDetailsDT()
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("courtID", typeof(string));
+            dt.Columns.Add("courtTypeID", typeof(string));
+            dt.Columns.Add("District_Code", typeof(string));
+            dt.Columns.Add("Sub_DivCode", typeof(string));
+            dt.Columns.Add("Vibhag_code", typeof(string));
+            dt.Columns.Add("vaadi_ki_vaad_sankhya_varsh", typeof(string));
+            dt.Columns.Add("vadi_name", typeof(string));
+            dt.Columns.Add("prativadi_name", typeof(string));
+            dt.Columns.Add("vaad_ki_addhatan_sthiti_vivaran", typeof(string));
+            dt.Columns.Add("court", typeof(string));
+            dt.Columns.Add("courtType", typeof(string));
+            dt.Columns.Add("Dst", typeof(string));
+            dt.Columns.Add("SubDiv", typeof(string));
+            dt.Columns.Add("Vibhag", typeof(string));
+
+            return dt;
+        }
+        protected void btnbhumivivad_Click(object sender, EventArgs e)
+        {
+
+            string dhaara = GetSelectedOldDhara();
+
+
+            if (ddlAprathmiki_huyee_hai.SelectedValue == "Y")
+            {
+
+                if (!rdoOld.Checked && !rdoNew.Checked)
+                {
+                    ShowMessage("Please select Old Dhara or New Dhara");
+                    return;
+                }
+
+
+                //--------------Old Dhara validation
+
+                if (rdoOld.Checked)
+                {
+                    bool anyOldDharaSelected = chk107.Checked || chk109.Checked || chk110.Checked || chk113.Checked || chk116.Checked || chk133.Checked || chk144.Checked || chk145.Checked || chk147.Checked;
+
+                    if (!anyOldDharaSelected)
+                    {
+                        ShowMessage("Please select at least one Old Dhara");
+                        return;
+                    }
+                }
+
+
+                //--------- New Dhara validation
+
+                if (rdoNew.Checked)
+                {
+                    bool anyBNMSelected = ddlbsn_dhara_hai.Items.Cast<ListItem>().Any(x => x.Selected);
+
+                    if (!anyBNMSelected)
+                    {
+                        ShowMessage("Please select at least one BNM");
+                        return;
+                    }
+
+                    bool anyNewDharaSelected = ddldhara1.Items.Cast<ListItem>().Any(x => x.Selected);
+
+                    if (!anyNewDharaSelected)
+                    {
+                        ShowMessage("Please select at least one New Dhara");
+                        return;
+                    }
+
+
+                    bool contains41 = ddlbsn_dhara_hai.Items.Cast<ListItem>().Any(x => x.Selected && x.Value == "41");
+
+                    if (contains41)
+                    {
+                        if (string.IsNullOrWhiteSpace(txtbnm.Text) || string.IsNullOrWhiteSpace(txtdhara.Text))
+                        {
+                            ShowMessage("Please fill Other BNM and Other Dhara details");
+                            return;
+                        }
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(txtAFIR_sankhya.Text))
+                {
+                    ShowMessage("कृपया अप्राथमिकी संख्या अंकित करें...!");
+                    return;
+                }
+            }
+
+            string bnm = "";
+            string newdhara = "";
+            string bnm1 = "";
+            string newdhara1 = "";
+
+            if (rdoNew.Checked)
+            {
+                bnm = GetSelectedValues(ddlbsn_dhara_hai);
+                newdhara = GetSelectedValues(ddldhara1);
+
+                bool contains41 = ddlbsn_dhara_hai.Items.Cast<ListItem>().Any(x => x.Selected && x.Value == "41");
+
+                if (contains41)
+                {
+                    bnm1 = txtbnm.Text.Trim();
+                    newdhara1 = txtdhara.Text.Trim();
+                }
+            }
+
+
+            DataTable dt = ViewState["DetailsOfIncidentDT"] as DataTable;
+
+            if (dt == null)
+            {
+                ShowMessage("Incident details table is not initialized.");
+                return;
+            }
+            //-------- Add incident details
+            DateTime ghatnaDate;
+
+            if (DateTime.TryParseExact(txtghatanaDate.Text.Trim(), "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out ghatnaDate))
+            {
+                dt.Rows.Add(
+                //txtghatanaDate.Text.Trim(),
+                ghatnaDate,
+                txtghatanavivran.Text.Trim(),
+                ddlPrathmiki_huyee_hai.SelectedValue.Trim(),
+                txtFIR_sankhya.Text.Trim(),
+                txtPrathmik_vivran.Text.Trim(),
+                ddlAprathmiki_huyee_hai.SelectedValue.Trim(),
+                dhaara,
+                txtAFIR_sankhya.Text.Trim(),
+                txtAprathmik_vivran.Text.Trim(),
+                txtabhiyukt_vaad.Text.Trim(),
+                ddlSanhaStatus.SelectedValue.Trim(),
+                txtSanahaSankhiyan.Text.Trim(),
+                bnm,
+                newdhara,
+                bnm1,
+                newdhara1
+            );
+            }
+            else
+            {
+                // Handle invalid date input gracefully
+                lblMsg.Text = "Please enter date in dd-MM-yyyy format.";
+            }
+
+            ViewState["DetailsOfIncidentDT"] = dt;
+
+            //-------------Bind GridView
+
+            BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+
+
+            ClearBhumiVivadControls();
+        }
+
+        private string GetSelectedOldDhara()
+        {
+            List<string> selectedDhara = new List<string>();
+
+            if (chk107.Checked)
+                selectedDhara.Add(chk107.Text);
+
+            if (chk109.Checked)
+                selectedDhara.Add(chk109.Text);
+
+            if (chk110.Checked)
+                selectedDhara.Add(chk110.Text);
+
+            if (chk113.Checked)
+                selectedDhara.Add(chk113.Text);
+
+            if (chk116.Checked)
+                selectedDhara.Add(chk116.Text);
+
+            if (chk133.Checked)
+                selectedDhara.Add(chk133.Text);
+
+            if (chk144.Checked)
+                selectedDhara.Add(chk144.Text);
+
+            if (chk145.Checked)
+                selectedDhara.Add(chk145.Text);
+
+            if (chk147.Checked)
+                selectedDhara.Add(chk147.Text);
+
+            return string.Join(", ", selectedDhara);
+        }
+
+        private string GetSelectedValues(ListBox listBox)
+        {
+            return string.Join(", ", listBox.Items.Cast<ListItem>().Where(x => x.Selected).Select(x => x.Text));
+        }
+
+        private void ShowMessage(string message)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"alert('{message.Replace("'", "\\'")}');", true);
+        }
+
+        private void ClearBhumiVivadControls()
+        {
+            txtghatanaDate.Text = "";
+            txtghatanavivran.Text = "";
+
+            ddlPrathmiki_huyee_hai.SelectedIndex = 0;
+            txtFIR_sankhya.Text = "";
+            txtPrathmik_vivran.Text = "";
+
+            ddlAprathmiki_huyee_hai.SelectedIndex = 0;
+            txtAFIR_sankhya.Text = "";
+            txtAprathmik_vivran.Text = "";
+
+            txtabhiyukt_vaad.Text = "";
+
+            rdoOld.Checked = false;
+            rdoNew.Checked = false;
+
+            txtbnm.Text = "";
+            txtdhara.Text = "";
+
+            ddldhara1.ClearSelection();
+            ddlbsn_dhara_hai.ClearSelection();
+
+            div_tbnm.Visible = false;
+            div_tdhara.Visible = false;
+            divdhara1.Visible = false;
+            divbsn.Visible = false;
+            divdharabsn.Visible = false;
+
+            divAPrathmiki_sankhiyan.Visible = false;
+            divAPrathmiki_vivaran.Visible = false;
+
+            chk107.Checked = false;
+            chk109.Checked = false;
+            chk110.Checked = false;
+            chk113.Checked = false;
+            chk116.Checked = false;
+            chk133.Checked = false;
+            chk144.Checked = false;
+            chk145.Checked = false;
+            chk147.Checked = false;
+
+            divDhara.Visible = false;
+        }
+
+        protected void BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin()
+        {
+            DataTable dtIncident = ViewState["DetailsOfIncidentDT"] as DataTable;
+
+            if (dtIncident != null)
+            {
+                grdbhumivivad.DataSource = dtIncident;
+                grdbhumivivad.DataBind();
+            }
+            else
+            {
+                grdbhumivivad.DataSource = null;
+                grdbhumivivad.DataBind();
+            }
+
+
+            DataTable dtCourt = ViewState["CourtDisputeDetailsDT"] as DataTable;
+
+            if (dtCourt != null)
+            {
+                grdnyayalay_vivran.DataSource = dtCourt;
+                grdnyayalay_vivran.DataBind();
+            }
+            else
+            {
+                grdnyayalay_vivran.DataSource = null;
+                grdnyayalay_vivran.DataBind();
+            }
+        }
+
+        protected void btnnayaylaysave_Click(object sender, EventArgs e)
+        {
+            DataTable dt = ViewState["CourtDisputeDetailsDT"] as DataTable;
+
+            if (dt == null)
+            {
+                dt = CourtDisputeDetailsDT();
+            }
+
+            dt.Rows.Add(
+                ddlnyayalaya.SelectedValue.Trim(),
+                ddlnyayalaya_type.SelectedValue.Trim(),
+                ddlDist_nyayalaya_type.SelectedValue.Trim(),
+                ddlSubdivision_nyayalaya_type.SelectedValue.Trim(),
+                ddlVibhag_nyayalay_type.SelectedValue.Trim(),
+
+                txtdayarvaadsankhya_nayalay.Text.Trim(),
+                txtvaadiname_nayaylay.Text.Trim(),
+                txtprativadi_nayaylay.Text.Trim(),
+                txtwadKiAddhatan_Sthiti_nayayaly.Text.Trim(),
+
+                ddlnyayalaya.SelectedItem != null ? ddlnyayalaya.SelectedItem.Text : "",
+
+                ddlnyayalaya_type.SelectedItem != null ? ddlnyayalaya_type.SelectedItem.Text : "",
+
+                ddlDist_nyayalaya_type.SelectedValue != "0" &&
+                ddlDist_nyayalaya_type.SelectedItem != null ? ddlDist_nyayalaya_type.SelectedItem.Text : "",
+
+                ddlSubdivision_nyayalaya_type.SelectedValue != "0" &&
+                ddlSubdivision_nyayalaya_type.SelectedItem != null ? ddlSubdivision_nyayalaya_type.SelectedItem.Text : "",
+
+                ddlVibhag_nyayalay_type.SelectedValue != "0" &&
+                ddlVibhag_nyayalay_type.SelectedItem != null ? ddlVibhag_nyayalay_type.SelectedItem.Text : ""
+            );
+
+            ViewState["CourtDisputeDetailsDT"] = dt;
+
+            BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+
+            ClearCourtDisputeControls();
+        }
+
+        private void ClearCourtDisputeControls()
+        {
+            ddlnyayalaya.SelectedIndex = 0;
+            ddlnyayalaya_type.SelectedIndex = 0;
+
+            if (ddlDist_nyayalaya_type.Items.Count > 0)
+                ddlDist_nyayalaya_type.SelectedIndex = 0;
+
+            if (ddlSubdivision_nyayalaya_type.Items.Count > 0)
+                ddlSubdivision_nyayalaya_type.SelectedIndex = 0;
+
+            if (ddlVibhag_nyayalay_type.Items.Count > 0)
+                ddlVibhag_nyayalay_type.SelectedIndex = 0;
+
+            txtdayarvaadsankhya_nayalay.Text = "";
+            txtvaadiname_nayaylay.Text = "";
+            txtdayaryear_nayayaly.Text = "";
+            txtprativadi_nayaylay.Text = "";
+            txtwadKiAddhatan_Sthiti_nayayaly.Text = "";
+        }
+
+        public bool valifBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin()
+        {
+            lblMsg.Text = string.Empty;
+
+
+            if (dd_IsBhumiVivad.SelectedIndex == 0)
+            {
+                lblMsg.Text = "क्या भूमि विवाद सें संबंधित प्राथमिकी/अप्राथमिकी दर्ज है ? हां/नहीं चुनें...";
+
+                dd_IsBhumiVivad.Focus();
+                return false;
+            }
+
+
+            if (dd_IsBhumiVivad.SelectedIndex == 1 && grdbhumivivad.Rows.Count == 0)
+            {
+                lblMsg.Text = "कृपया विवाद सें संबंधित घटना/ वारदात का विवरण जोड़ें...";
+
+                btnBhumiVivadVivran6.Focus();
+                return false;
+            }
+
+
+            if (ddl_Isbhumi_Viviad_available.SelectedIndex == 0)
+            {
+                lblMsg.Text = "क्या न्यायालय में प्रक्रियाधीन वाद का विवरण उपलब्ध है ? हां/नहीं चुनें...";
+
+                ddl_Isbhumi_Viviad_available.Focus();
+                return false;
+            }
+
+            if (ddl_Isbhumi_Viviad_available.SelectedIndex == 1 && grdnyayalay_vivran.Rows.Count == 0)
+            {
+                lblMsg.Text = "कृपया न्यायालय में प्रक्रियाधीन वाद का विवरण जोड़ें...";
+
+                btnnayaylaysave.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
         private bool SaveStep6()
         {
             if (ApplicationId == 0)
@@ -2635,73 +3062,210 @@ namespace Bhusamadhan.LandDispute.Entry
                 return false;
             }
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+            if (!valifBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin())
             {
-                try
-                {
-                    con.Open();
-
-                    SqlCommand cmd = new SqlCommand("BS_SP_SaveStep6", con);
-
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = ApplicationId;
-
-                    cmd.Parameters.Add("@Is_Vadi_Present", SqlDbType.Char).Value = 'Y';
-
-                    cmd.Parameters.Add("@Matter_Status_by", SqlDbType.VarChar).Value = userid;
-
-                    cmd.ExecuteNonQuery();
-                    DisplayApplicationInfo();
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    lblMsg.Text = ex.Message;
-
-                    return false;
-                }
-            }
-        }
-
-        private bool SaveStep7()
-        {
-            if (ApplicationId == 0)
-            {
-                lblMsg.Text = "Application not found.";
                 return false;
             }
 
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+            DataTable landDisputeDetails = ViewState["DetailsOfIncidentDT"] as DataTable;
+
+            DataTable courtDisputeDetails = ViewState["CourtDisputeDetailsDT"] as DataTable;
+
+            if (landDisputeDetails == null)
             {
+                landDisputeDetails = DetailsOfIncidentDT();
+            }
+
+            if (courtDisputeDetails == null)
+            {
+                courtDisputeDetails = CourtDisputeDetailsDT();
+            }
+
+            //---- Create copy 
+            DataTable courtDetailsForSave = courtDisputeDetails.Copy();
+
+            courtDetailsForSave.Columns.Remove("court");
+            courtDetailsForSave.Columns.Remove("courtType");
+            courtDetailsForSave.Columns.Remove("Dst");
+            courtDetailsForSave.Columns.Remove("SubDiv");
+            courtDetailsForSave.Columns.Remove("Vibhag");
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlTransaction trans = null;
+
                 try
                 {
                     con.Open();
 
-                    SqlCommand cmd = new SqlCommand("BS_SP_SaveStep7", con);
+                    trans = con.BeginTransaction();
 
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    bool result = _step6DAL.SaveStep6(ApplicationId, dd_IsBhumiVivad.SelectedValue.Trim(), ddl_Isbhumi_Viviad_available.SelectedValue.Trim(), landDisputeDetails, courtDetailsForSave, userid, con, trans);
 
-                    cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = ApplicationId;
+                    if (!result)
+                    {
+                        trans.Rollback();
 
-                    cmd.Parameters.Add("@Is_Vadi_Present", SqlDbType.Char).Value = 'Y';
+                        lblMsg.Text = "Step-6 data could not be saved.";
+                        return false;
+                    }
 
-                    cmd.Parameters.Add("@Matter_Status_by", SqlDbType.VarChar).Value = userid;
+                    trans.Commit();
 
-                    cmd.ExecuteNonQuery();
+                    DisplayApplicationInfo();
+
+                    ClearStep6();
 
                     return true;
-                   // DisplayApplicationInfo();
-                    //Response.Redirect("~/LandDispute/Entry/ApplicationPreview.aspx?a_id="+ ApplicationId);
+
+
                 }
                 catch (Exception ex)
                 {
-                    lblMsg.Text = ex.Message;
+                    if (trans != null)
+                    {
+                        try
+                        {
+                            trans.Rollback();
+                        }
+                        catch
+                        {
+                            lblMsg.Text = ex.Message;
+                        }
+                    }
 
+                    lblMsg.Text = ex.Message;
                     return false;
                 }
             }
         }
+
+        public void ClearStep6()
+        {
+            DataTable incidentDetails = ViewState["DetailsOfIncidentDT"] as DataTable;
+
+            if (incidentDetails != null)
+            {
+                incidentDetails.Clear();
+
+                ViewState["DetailsOfIncidentDT"] = incidentDetails;
+
+                grdbhumivivad.DataSource = incidentDetails;
+                grdbhumivivad.DataBind();
+            }
+
+            DataTable courtDetails = ViewState["CourtDisputeDetailsDT"] as DataTable;
+
+            if (courtDetails != null)
+            {
+                courtDetails.Clear();
+
+                ViewState["CourtDisputeDetailsDT"] = courtDetails;
+
+                grdnyayalay_vivran.DataSource = courtDetails;
+                grdnyayalay_vivran.DataBind();
+            }
+
+            ddlYear.SelectedIndex = 0;
+            dd_IsBhumiVivad.SelectedIndex = 0;
+            ddl_Isbhumi_Viviad_available.SelectedIndex = 0;
+        }
+
+        private void FillStep6(long applicationId)
+        {
+            if (applicationId == 0)
+                return;
+
+            try
+            {
+
+                DataTable dtMatter = _step6DAL.GetStep6MatterDetails(applicationId);
+
+                if (dtMatter.Rows.Count > 0)
+                {
+                    DataRow dr = dtMatter.Rows[0];
+
+                    string bhumiVivad = dr["bhumi_vivad_Vivran_Available"].ToString();
+
+                    string courtDispute = dr["dispute_in_court_available"].ToString();
+
+                    if (dd_IsBhumiVivad.Items.FindByValue(bhumiVivad) != null)
+                        dd_IsBhumiVivad.SelectedValue = bhumiVivad;
+
+                    if (ddl_Isbhumi_Viviad_available.Items.FindByValue(courtDispute) != null)
+                        ddl_Isbhumi_Viviad_available.SelectedValue = courtDispute;
+                }
+
+                DataTable dtIncident = _step6DAL.GetIncidentDetails(applicationId);
+
+                ViewState["DetailsOfIncidentDT"] = dtIncident;
+
+                grdbhumivivad.DataSource = dtIncident;
+                grdbhumivivad.DataBind();
+
+                DataTable dtCourt = _step6DAL.GetCourtDisputeDetails(applicationId);
+
+                ViewState["CourtDisputeDetailsDT"] = dtCourt;
+
+                grdnyayalay_vivran.DataSource = dtCourt;
+                grdnyayalay_vivran.DataBind();
+            }
+            catch (Exception ex)
+            {
+                lblMsg.Text = ex.Message;
+            }
+        }
+
+        protected void grdbhumivivad_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+                DataTable dt = ViewState["DetailsOfIncidentDT"] as DataTable;
+
+                if (dt != null && rowIndex >= 0 && rowIndex < dt.Rows.Count)
+                {
+                    // Remove the row from DataTable
+                    dt.Rows.RemoveAt(rowIndex);
+
+                    // Save back to ViewState
+                    ViewState["DetailsOfIncidentDT"] = dt;
+
+                    // Rebind GridView
+                    grdbhumivivad.DataSource = dt;
+                    grdbhumivivad.DataBind();
+                }
+            }
+        }
+
+        protected void grdnyayalay_vivran_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+                DataTable dt = ViewState["CourtDisputeDetailsDT"] as DataTable;
+
+                if (dt != null && rowIndex >= 0 && rowIndex < dt.Rows.Count)
+                {
+                    // Remove the row from DataTable
+                    dt.Rows.RemoveAt(rowIndex);
+
+                    // Save back to ViewState
+                    ViewState["CourtDisputeDetailsDT"] = dt;
+
+                    // Rebind GridView
+                    grdnyayalay_vivran.DataSource = dt;
+                    grdnyayalay_vivran.DataBind();
+                }
+            }
+        }
+
+
+        //-----------------------------------------Step6 complete--------------------------------------------------
+
+        
 
         //-------------Master bind----------------------------
 
@@ -4170,7 +4734,11 @@ namespace Bhusamadhan.LandDispute.Entry
                 btnBhumiVivadVivran4.Visible = true;
                 btnBhumiVivadVivran5.Visible = true;
                 btnBhumiVivadVivran6.Visible = true;
-                ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                //ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                if (ViewState["DetailsOfIncidentDT"] == null)
+                {
+                    ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                }
                 //this.BindGrid();
             }
             else
@@ -4182,7 +4750,11 @@ namespace Bhusamadhan.LandDispute.Entry
                 btnBhumiVivadVivran5.Visible = false;
                 btnBhumiVivadVivran6.Visible = false;
                 btnbhumivivad.Visible = false;
-                ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                //ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                if (ViewState["DetailsOfIncidentDT"] == null)
+                {
+                    ViewState["DetailsOfIncidentDT"] = DetailsOfIncidentDT();
+                }
                 //this.BindGrid();
             }
         }
@@ -4330,6 +4902,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
             // 🔥 STEP 3: Bind IPC based on BNS
             Binddhara();
+           
         }
 
         void Binddhara()
@@ -4454,8 +5027,12 @@ namespace Bhusamadhan.LandDispute.Entry
                 btnnyayalay6.Visible = true;
                 btnnyayalay7.Visible = true;
                 btnnayaylaysave.Visible = true;
-               ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
-               this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+                //ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
+                if (ViewState["CourtDisputeDetailsDT"] == null)
+                {
+                    ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
+                }
+                //this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
             }
             else
             {
@@ -4468,8 +5045,12 @@ namespace Bhusamadhan.LandDispute.Entry
                 btnnayaylaysave.Visible = false;
                 divDist_nyayalaya_type.Visible = false;
                 divSubdivision_nyayalaya_type.Visible = false;
-                ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
-               this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+                //ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
+                if (ViewState["CourtDisputeDetailsDT"] == null)
+                {
+                    ViewState["CourtDisputeDetailsDT"] = CourtDisputeDetailsDT();
+                }
+                //this.BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
             }
         }
 
@@ -4511,7 +5092,6 @@ namespace Bhusamadhan.LandDispute.Entry
                 ddlnyayalaya_type.SelectedIndex = 0;
             }
         }
-
 
 
         protected void ddlnyayalaya_type_SelectedIndexChanged(object sender, EventArgs e)
@@ -5098,6 +5678,7 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 divNextDate.Visible = true;
                 labNextDate.Text = "अगली सुनवाई की तिथि";
+                divCancelReason.Visible = true;
             }
             else if (ddlaction.SelectedIndex == 5)
             {
@@ -5131,306 +5712,484 @@ namespace Bhusamadhan.LandDispute.Entry
                 divtxtPrativadiEvidenceType.Visible = true;
             }
         }
-        //---------------------------------------Step6 --------------------------------
 
-        private DataTable DetailsOfIncidentDT()
+
+        //-----------------Step7---------------------
+
+        private DataTable CreateActionDetailsTable()
         {
             DataTable dt = new DataTable();
 
-            dt.Columns.Add("Ghatna_Vardat_date", typeof(string));
-            dt.Columns.Add("Ghatna_Short_vivran", typeof(string));
-            dt.Columns.Add("is_FIR_registered", typeof(string));
-            dt.Columns.Add("praathamiki_sankhya", typeof(string));
-            dt.Columns.Add("praathamiki_ka_vivaran", typeof(string));
-            dt.Columns.Add("is_complaint_filed", typeof(string));
-            dt.Columns.Add("dhaara", typeof(string));
-            dt.Columns.Add("apraathamiki_sankhya", typeof(string));
-            dt.Columns.Add("apraathamiki_ka_vivaran", typeof(string));
-            dt.Columns.Add("Abhiyukt", typeof(string));
-            dt.Columns.Add("is_Sanha_recorded", typeof(string));
-            dt.Columns.Add("sanha_sankhya", typeof(string));
-            dt.Columns.Add("bnm", typeof(string));
-            dt.Columns.Add("newdhara", typeof(string));
-            dt.Columns.Add("bnm1", typeof(string));
-            dt.Columns.Add("newdhara1", typeof(string));
-
-            return dt;
-        }
-
-        private DataTable CourtDisputeDetailsDT()
-        {
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("courtID", typeof(string));
-            dt.Columns.Add("courtTypeID", typeof(string));
-            dt.Columns.Add("District_Code", typeof(string));
-            dt.Columns.Add("Sub_DivCode", typeof(string));
-            dt.Columns.Add("Vibhag_code", typeof(string));
+            dt.Columns.Add("Meeting_date", typeof(DateTime));
+            dt.Columns.Add("Is_Vadi_Present", typeof(string));
+            dt.Columns.Add("Is_PratiVadi_Present", typeof(string));
+            dt.Columns.Add("conclusion_of_the_meeting", typeof(string));
+            dt.Columns.Add("anchala_dhikari_mantavy", typeof(string));
+            dt.Columns.Add("thana_prabhari_mantavy", typeof(string));
+            dt.Columns.Add("Joint_report_SHO_Circle_Officer_file", typeof(string));
+            dt.Columns.Add("Matter_Status", typeof(long));
+            dt.Columns.Add("Matter_Status_by", typeof(string));
+            dt.Columns.Add("Matter_Status_date", typeof(DateTime));
+            dt.Columns.Add("date_of_disposal", typeof(DateTime));
+            dt.Columns.Add("reason_for_rejection", typeof(string));
+            dt.Columns.Add("mapi_ki_tithi", typeof(DateTime));
+            dt.Columns.Add("agali_sunavaee_ki_tithi", typeof(DateTime));
+            dt.Columns.Add("CircleOfficer_letterOfIntent", typeof(string));
+            dt.Columns.Add("PoliceOfficer_letterOfIntent", typeof(string));
+            dt.Columns.Add("Bhumi_savedansheelta", typeof(long));
             dt.Columns.Add("vaadi_ki_vaad_sankhya_varsh", typeof(string));
-            dt.Columns.Add("vadi_name", typeof(string));
-            dt.Columns.Add("prativadi_name", typeof(string));
-            dt.Columns.Add("vaad_ki_addhatan_sthiti_vivaran", typeof(string));
-            dt.Columns.Add("court", typeof(string));
-            dt.Columns.Add("courtType", typeof(string));
-            dt.Columns.Add("Dst", typeof(string));
-            dt.Columns.Add("SubDiv", typeof(string));
-            dt.Columns.Add("Vibhag", typeof(string));
 
             return dt;
         }
-        protected void btnbhumivivad_Click(object sender, EventArgs e)
+
+        private object GetDateValue(string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+                return DBNull.Value;
+
+            DateTime date;
+
+            if (DateTime.TryParseExact( value.Trim(), "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out date))
+            {
+                return date;
+            }
+
+            return DBNull.Value;
+        }
+
+        private bool ValidateStep7()
+        {
+            bool isValid = true;
+
+            if (ddlbhumivivadki_sanvedanshilta.SelectedIndex == 0)
+            {
+                lblMsg.Text = "कृपया भूमि की संवेदनशीलता चुनें...!";
+                ddlbhumivivadki_sanvedanshilta.Focus();
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbaithakDate.Text))
+            {
+                lblMsg.Text = "कृपया बैठक की तिथि अंकित करें...!";
+                txtbaithakDate.Focus();
+                isValid = false;
+            }
+
+            if (ddlIsVadiAvailable.SelectedIndex == 0)
+            {
+                lblMsg.Text = "क्या वादी उपस्थित है ? हां/नहीं चुनें...!";
+                ddlIsVadiAvailable.Focus();
+                isValid = false;
+            }
+
+            if (ddl_IsprativadiAvailable.SelectedIndex == 0)
+            {
+                lblMsg.Text = "क्या प्रतिवादी उपस्थित है ? हां/नहीं चुनें...!";
+                ddl_IsprativadiAvailable.Focus();
+                isValid = false;
+            }
+
+            if (ddlaction.SelectedIndex == 0)
+            {
+                lblMsg.Text = "कृपया बैठक का निष्कर्ष चुनें...!";
+                ddlaction.Focus();
+                isValid = false;
+            }
+
            
-            string dhaara = GetSelectedOldDhara();
-
-
-            if (ddlAprathmiki_huyee_hai.SelectedValue == "Y")
+            if (ddlaction.SelectedValue == "2")
             {
-                // IPC / BNS must be selected
-                if (!rdoOld.Checked && !rdoNew.Checked)
+                if (string.IsNullOrWhiteSpace(txtAgalaDate.Text))
                 {
-                    ShowMessage("Please select Old Dhara or New Dhara");
-                    return;
-                }
-
-              
-                //--------------Old Dhara validation
-              
-                if (rdoOld.Checked)
-                {
-                    bool anyOldDharaSelected =  chk107.Checked ||  chk109.Checked || chk110.Checked || chk113.Checked ||  chk116.Checked ||  chk133.Checked ||  chk144.Checked || chk145.Checked || chk147.Checked;
-
-                    if (!anyOldDharaSelected)
-                    {
-                        ShowMessage("Please select at least one Old Dhara");
-                        return;
-                    }
-                }
-
-               
-                //--------- New Dhara validation
-              
-                if (rdoNew.Checked)
-                {
-                    bool anyBNMSelected = ddlbsn_dhara_hai.Items .Cast<ListItem>().Any(x => x.Selected);
-
-                    if (!anyBNMSelected)
-                    {
-                        ShowMessage("Please select at least one BNM");
-                        return;
-                    }
-
-                    bool anyNewDharaSelected = ddldhara1.Items.Cast<ListItem>().Any(x => x.Selected);
-
-                    if (!anyNewDharaSelected)
-                    {
-                        ShowMessage("Please select at least one New Dhara");
-                        return;
-                    }
-
-                   
-                    bool contains41 = ddlbsn_dhara_hai.Items.Cast<ListItem>().Any(x => x.Selected && x.Value == "41");
-
-                    if (contains41)
-                    {
-                        if (string.IsNullOrWhiteSpace(txtbnm.Text) || string.IsNullOrWhiteSpace(txtdhara.Text))
-                        {
-                            ShowMessage("Please fill Other BNM and Other Dhara details");
-                            return;
-                        }
-                    }
-                }
-
-                if (string.IsNullOrWhiteSpace(txtAFIR_sankhya.Text))
-                {
-                    ShowMessage("कृपया अप्राथमिकी संख्या अंकित करें...!");
-                    return;
+                    lblMsg.Text = "कृपया मापी की तिथि अंकित करें...!";
+                    txtAgalaDate.Focus();
+                    isValid = false;
                 }
             }
 
-            string bnm = "";
-            string newdhara = "";
-            string bnm1 = "";
-            string newdhara1 = "";
-
-            if (rdoNew.Checked)
+           
+            if (ddlaction.SelectedValue == "4")
             {
-                bnm = GetSelectedValues(ddlbsn_dhara_hai);
-                newdhara = GetSelectedValues(ddldhara1);
-
-                bool contains41 = ddlbsn_dhara_hai.Items .Cast<ListItem>() .Any(x => x.Selected && x.Value == "41");
-
-                if (contains41)
+                if (string.IsNullOrWhiteSpace(txtCancelReason.Text))
                 {
-                    bnm1 = txtbnm.Text.Trim();
-                    newdhara1 = txtdhara.Text.Trim();
+                    lblMsg.Text = "कृपया अस्वीकृति का कारण अंकित करें...!";
+                    txtCancelReason.Focus();
+                    isValid = false;
                 }
             }
 
-
-            DataTable dt = ViewState["DetailsOfIncidentDT"] as DataTable;
-
-            if (dt == null)
+           
+            if (ddlaction.SelectedValue == "5")
             {
-                ShowMessage("Incident details table is not initialized.");
-                return;
+                if (string.IsNullOrWhiteSpace(txtAgalaDate.Text))
+                {
+                    lblMsg.Text = "कृपया अंतिम निष्पादन की तिथि अंकित करें...!";
+                    txtAgalaDate.Focus();
+                    isValid = false;
+                }
             }
 
+            
+            if (ddlaction.SelectedValue == "6")
+            {
+                if (string.IsNullOrWhiteSpace(txtvadkavars.Text))
+                {
+                    lblMsg.Text = "कृपया वादी की वाद संख्या / वर्ष अंकित करें...!";
+                    txtvadkavars.Focus();
+                    isValid = false;
+                }
+            }
 
-      
-            //-------- Add incident details
+            return isValid;
+        }
+
+        private bool SaveStep7Files( out string landDoc, out string circleOfficerLetter, out string policeOfficerLetter)
+        {
+            // Preserve previously saved document paths
+            landDoc = hdLandDoc.Value;
+            circleOfficerLetter = hdCircleOfficer_letterofintent.Value;
+            policeOfficerLetter = hdPoliceOfficer_letterOfIntent.Value;
+
+            // Get next document number only when a file is actually uploaded
+            int fileNo = 0;
+
+            if (LandDoc.HasFile || CircleOfficer_letterOfIntent.HasFile ||  PoliceOfficer_letterOfIntent.HasFile)
+            {
+                fileNo = GetStep7FileCount() + 1;
+            }
+
+            // --------------------------------------------------
+            // Land Document - OPTIONAL
+            // --------------------------------------------------
+
+            if (LandDoc.HasFile)
+            {
+                if (!validateFile(LandDoc, "doc"))
+                    return false;
+
+                string result = FileUploadValidator.IsPdf(  LandDoc.PostedFile, 1024, 1024);
+
+                if (result != "OK")
+                {
+                    lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                    return false;
+                }
+
+                landDoc = "~/LandDoc/Upload/LandDocuments" + ApplicationId +  "/LandDocuments" + fileNo + ".pdf";
+
+                string path = "~/LandDoc/Upload/LandDocuments" + ApplicationId + "/";
+
+                string savedPath = InsSaveFile( "LandDocuments" + fileNo, LandDoc, ApplicationId.ToString(), path);
+
+                if (savedPath == "0" || savedPath != landDoc)
+                {
+                    landDoc = "";
+                    lblMsg.Text = "LandDocuments not upload";
+                    return false;
+                }
+            }
+
+            // --------------------------------------------------
+            // Circle Officer Letter - OPTIONAL
+            // --------------------------------------------------
+
+            if (CircleOfficer_letterOfIntent.HasFile)
+            {
+                if (!validateFile(CircleOfficer_letterOfIntent, "doc"))
+                    return false;
+
+                string result = FileUploadValidator.IsPdf( CircleOfficer_letterOfIntent.PostedFile, 1024, 1024);
+
+                if (result != "OK")
+                {
+                    lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                    return false;
+                }
+
+                circleOfficerLetter = "~/LandDoc/Upload/CirclePulisPadadhikariPatr" + ApplicationId +  "/CirclePulisPadadhikariPatr" + fileNo + ".pdf";
+
+                string path = "~/LandDoc/Upload/CirclePulisPadadhikariPatr" + ApplicationId + "/";
+
+                string savedPath = InsSaveFile( "CirclePulisPadadhikariPatr" + fileNo, CircleOfficer_letterOfIntent, ApplicationId.ToString(), path);
+
+                if (savedPath == "0" || savedPath != circleOfficerLetter)
+                {
+                    circleOfficerLetter = "";
+                    lblMsg.Text = "Technical Error";
+                    return false;
+                }
+            }
+
+            // --------------------------------------------------
+            // Police Officer Letter - OPTIONAL
+            // --------------------------------------------------
+
+            if (PoliceOfficer_letterOfIntent.HasFile)
+            {
+                if (!validateFile(PoliceOfficer_letterOfIntent, "doc"))
+                    return false;
+
+                string result = FileUploadValidator.IsPdf( PoliceOfficer_letterOfIntent.PostedFile, 1024, 1024);
+
+                if (result != "OK")
+                {
+                    lblMsg.Text = "(पत्र केवल .pdf प्रारूप में 3 MB तक में अपलोड करे)";
+                    return false;
+                }
+
+                policeOfficerLetter = "~/LandDoc/Upload/PulisPadadhikariPatr" + ApplicationId + "/PulisPadadhikariPatr" + fileNo + ".pdf";
+
+                string path = "~/LandDoc/Upload/PulisPadadhikariPatr" + ApplicationId + "/";
+
+                string savedPath = InsSaveFile( "PulisPadadhikariPatr" + fileNo, PoliceOfficer_letterOfIntent, ApplicationId.ToString(), path);
+
+                if (savedPath == "0" || savedPath != policeOfficerLetter)
+                {
+                    policeOfficerLetter = "";
+                    lblMsg.Text = "Technical Error";
+                    return false;
+                }
+            }
+
+           
+            return true;
+        }
+
+        private int GetStep7FileCount()
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand( "SELECT COUNT(*) FROM BS_ActionDetailsEntry WHERE a_id = @a_id", con))
+            {
+                cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = ApplicationId;
+
+                con.Open();
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private bool SaveStep7()
+        {
+            if (ApplicationId == 0)
+            {
+                lblMsg.Text = "Application not found.";
+                return false;
+            }
+
+            if (!ValidateStep7())
+                return false;
+
           
-            dt.Rows.Add(
-                txtghatanaDate.Text.Trim(),
-                txtghatanavivran.Text.Trim(),
-                ddlPrathmiki_huyee_hai.SelectedValue.Trim(),
-                txtFIR_sankhya.Text.Trim(),
-                txtPrathmik_vivran.Text.Trim(),
-                ddlAprathmiki_huyee_hai.SelectedValue.Trim(),
-                dhaara,
-                txtAFIR_sankhya.Text.Trim(),
-                txtAprathmik_vivran.Text.Trim(),
-                txtabhiyukt_vaad.Text.Trim(),
-                ddlSanhaStatus.SelectedValue.Trim(),
-                txtSanahaSankhiyan.Text.Trim(),
-                bnm,
-                newdhara,
-                bnm1,
-                newdhara1
+
+            string landDoc;
+            string circleOfficerLetter;
+            string policeOfficerLetter;
+
+           
+            // -----------------File upload
+           
+
+            if (!SaveStep7Files( out landDoc, out circleOfficerLetter,  out policeOfficerLetter))
+            {
+                return false;
+            }
+
+            DataTable dtAction = CreateActionDetailsTable();
+
+            
+            //------------ Step-7 TVP data
+           
+
+            dtAction.Rows.Add(
+                GetDateValue(txtbaithakDate.Text),
+                ddlIsVadiAvailable.SelectedValue.Trim(),
+                ddl_IsprativadiAvailable.SelectedValue.Trim(),
+                txtfalafal.Text.Trim(),
+                txtabhiyukt_anchaladhikari.Text.Trim(),
+                txtabhiyukt_thaanprabhaaree.Text.Trim(),
+                landDoc,
+                Convert.ToInt64(ddlaction.SelectedValue),
+                 userid,
+                DateTime.Now,
+                GetDateValue(txtAgalaDate.Text),
+                txtCancelReason.Text.Trim(),
+                GetDateValue(txtAgalaDate.Text),
+                GetDateValue(txtAgalaDate.Text),
+                circleOfficerLetter,
+                policeOfficerLetter,
+                Convert.ToInt64(ddlbhumivivadki_sanvedanshilta.SelectedValue),
+                txtvadkavars.Text.Trim()
             );
 
-            ViewState["DetailsOfIncidentDT"] = dt;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlTransaction trans = null;
 
-            //-------------Bind GridView
+                try
+                {
+                    con.Open();
+                    trans = con.BeginTransaction();
+
+                    _step7DAL.SaveStep7( ApplicationId,  userid, dtAction,  con,  trans);
+
+                    trans.Commit();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    if (trans != null)
+                    {
+                        try
+                        {
+                            trans.Rollback();
+                        }
+                        catch
+                        {
+                        }
+                    }
+
+                    lblMsg.Text = ex.Message;
+                    return false;
+                }
+            }
+        }
+
+
+        private void FillStep7(long applicationId)
+        {
+            DataTable dt = _step7DAL.GetStep7(applicationId);
+
+            if (dt.Rows.Count == 0)
+                return;
+
+            DataRow dr = dt.Rows[0];
+
+            string baseUrl = ConfigurationManager.AppSettings["DocumentServer"];
+
+            if (!string.IsNullOrWhiteSpace(baseUrl))
+                baseUrl = baseUrl.TrimEnd('/');
+
+
+            if (dr["Bhumi_savedansheelta"] != DBNull.Value)
+            {
+                ddlbhumivivadki_sanvedanshilta.SelectedValue = dr["Bhumi_savedansheelta"].ToString();
+            }
+
+         
+
+            if (dr["Meeting_date"] != DBNull.Value)
+            {
+                txtbaithakDate.Text = Convert.ToDateTime(dr["Meeting_date"]) .ToString("dd-MM-yyyy");
+            }
+
+          
+            if (dr["Is_Vadi_Present"] != DBNull.Value)
+            {
+                ddlIsVadiAvailable.SelectedValue = dr["Is_Vadi_Present"].ToString();
+            }
+
+
+            if (dr["Is_PratiVadi_Present"] != DBNull.Value)
+            {
+                ddl_IsprativadiAvailable.SelectedValue = dr["Is_PratiVadi_Present"].ToString();
+            }
+
+          
+            if (dr["Matter_Status"] != DBNull.Value)
+            {
+                ddlaction.SelectedValue = dr["Matter_Status"].ToString();
+            }
+
+
+            txtfalafal.Text = dr["conclusion_of_the_meeting"] == DBNull.Value ? "" : dr["conclusion_of_the_meeting"].ToString();
+
            
-           BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin();
+            txtabhiyukt_anchaladhikari.Text = dr["anchala_dhikari_mantavy"] == DBNull.Value ? "" : dr["anchala_dhikari_mantavy"].ToString();
 
+           
+            txtabhiyukt_thaanprabhaaree.Text = dr["thana_prabhari_mantavy"] == DBNull.Value ? "" : dr["thana_prabhari_mantavy"].ToString();
 
-            ClearBhumiVivadControls();
-        }
+           
+            txtvadkavars.Text = dr["vaadi_ki_vaad_sankhya_varsh"] == DBNull.Value ? "": dr["vaadi_ki_vaad_sankhya_varsh"].ToString();
 
-        private string GetSelectedOldDhara()
-        {
-            List<string> selectedDhara = new List<string>();
+            txtCancelReason.Text = dr["reason_for_rejection"] == DBNull.Value  ? ""  : dr["reason_for_rejection"].ToString();
 
-            if (chk107.Checked)
-                selectedDhara.Add(chk107.Text);
-
-            if (chk109.Checked)
-                selectedDhara.Add(chk109.Text);
-
-            if (chk110.Checked)
-                selectedDhara.Add(chk110.Text);
-
-            if (chk113.Checked)
-                selectedDhara.Add(chk113.Text);
-
-            if (chk116.Checked)
-                selectedDhara.Add(chk116.Text);
-
-            if (chk133.Checked)
-                selectedDhara.Add(chk133.Text);
-
-            if (chk144.Checked)
-                selectedDhara.Add(chk144.Text);
-
-            if (chk145.Checked)
-                selectedDhara.Add(chk145.Text);
-
-            if (chk147.Checked)
-                selectedDhara.Add(chk147.Text);
-
-            return string.Join(", ", selectedDhara);
-        }
-
-        private string GetSelectedValues(ListBox listBox)
-        {
-            return string.Join(", ",  listBox.Items .Cast<ListItem>() .Where(x => x.Selected) .Select(x => x.Text));
-        }
-
-        private void ShowMessage(string message)
-        {
-            ScriptManager.RegisterStartupScript( this, GetType(), "alert",  $"alert('{message.Replace("'", "\\'")}');", true);
-        }
-
-        private void ClearBhumiVivadControls()
-        {
-            txtghatanaDate.Text = "";
-            txtghatanavivran.Text = "";
-
-            ddlPrathmiki_huyee_hai.SelectedIndex = 0;
-            txtFIR_sankhya.Text = "";
-            txtPrathmik_vivran.Text = "";
-
-            ddlAprathmiki_huyee_hai.SelectedIndex = 0;
-            txtAFIR_sankhya.Text = "";
-            txtAprathmik_vivran.Text = "";
-
-            txtabhiyukt_vaad.Text = "";
-
-            rdoOld.Checked = false;
-            rdoNew.Checked = false;
-
-            txtbnm.Text = "";
-            txtdhara.Text = "";
-
-            ddldhara1.ClearSelection();
-            ddlbsn_dhara_hai.ClearSelection();
-
-            div_tbnm.Visible = false;
-            div_tdhara.Visible = false;
-            divdhara1.Visible = false;
-            divbsn.Visible = false;
-            divdharabsn.Visible = false;
-
-            divAPrathmiki_sankhiyan.Visible = false;
-            divAPrathmiki_vivaran.Visible = false;
-
-            chk107.Checked = false;
-            chk109.Checked = false;
-            chk110.Checked = false;
-            chk113.Checked = false;
-            chk116.Checked = false;
-            chk133.Checked = false;
-            chk144.Checked = false;
-            chk145.Checked = false;
-            chk147.Checked = false;
-
-            divDhara.Visible = false;
-        }
-
-        protected void BindBhumiVivadSaGhatnaAndNayalayMePrakiriyaAadhin()
-        {
-            DataTable dtIncident = ViewState["DetailsOfIncidentDT"] as DataTable;
-
-            if (dtIncident != null)
+            if (dr["mapi_ki_tithi"] != DBNull.Value)
             {
-                grdbhumivivad.DataSource = dtIncident;
-                grdbhumivivad.DataBind();
+                txtAgalaDate.Text = Convert.ToDateTime(dr["mapi_ki_tithi"]) .ToString("dd-MM-yyyy");
+            }
+            else if (dr["agali_sunavaee_ki_tithi"] != DBNull.Value)
+            {
+                txtAgalaDate.Text =  Convert.ToDateTime(dr["agali_sunavaee_ki_tithi"]).ToString("dd-MM-yyyy");
+            }
+            else if (dr["date_of_disposal"] != DBNull.Value)
+            {
+                txtAgalaDate.Text =  Convert.ToDateTime(dr["date_of_disposal"]).ToString("dd-MM-yyyy");
+            }
+
+            string landDocument =  dr["Joint_report_SHO_Circle_Officer_file"] == DBNull.Value ? "" : dr["Joint_report_SHO_Circle_Officer_file"].ToString();
+
+            if (!string.IsNullOrWhiteSpace(landDocument))
+            {
+                hdLandDoc.Value = landDocument;
+
+                string filePath = landDocument.Replace("~", "");
+
+                lnkLandDoc.HRef = baseUrl + filePath;
+                lnkLandDoc.Target = "_blank";
+                lnkLandDoc.Visible = true;
             }
             else
             {
-                grdbhumivivad.DataSource = null;
-                grdbhumivivad.DataBind();
+                hdLandDoc.Value = "";
+                lnkLandDoc.Visible = false;
             }
 
 
-            DataTable dtCourt = ViewState["CourtDisputeDetailsDT"] as DataTable;
 
-            if (dtCourt != null)
+            string circleOfficerDocument = dr["CircleOfficer_letterOfIntent"] == DBNull.Value ? "" : dr["CircleOfficer_letterOfIntent"].ToString();
+
+            if (!string.IsNullOrWhiteSpace(circleOfficerDocument))
             {
-                grdnyayalay_vivran.DataSource = dtCourt;
-                grdnyayalay_vivran.DataBind();
+                
+                hdCircleOfficer_letterofintent.Value = circleOfficerDocument;
+
+                string filePath = circleOfficerDocument.Replace("~", "");
+
+                lnkCircleOfficer_letterOfIntent.HRef =  baseUrl + filePath;
+
+                lnkCircleOfficer_letterOfIntent.Target = "_blank";
+                lnkCircleOfficer_letterOfIntent.Visible = true;
             }
             else
             {
-                grdnyayalay_vivran.DataSource = null;
-                grdnyayalay_vivran.DataBind();
+                hdCircleOfficer_letterofintent.Value = "";
+                lnkCircleOfficer_letterOfIntent.Visible = false;
+            }
+
+
+
+            string policeOfficerDocument = dr["PoliceOfficer_letterOfIntent"] == DBNull.Value  ? "" : dr["PoliceOfficer_letterOfIntent"].ToString();
+
+            if (!string.IsNullOrWhiteSpace(policeOfficerDocument))
+            {
+               
+                hdPoliceOfficer_letterOfIntent.Value = policeOfficerDocument;
+
+                string filePath =  policeOfficerDocument.Replace("~", "");
+
+                lnkPoliceOfficer_letterOfIntent.HRef = baseUrl + filePath;
+
+                lnkPoliceOfficer_letterOfIntent.Target = "_blank";
+                lnkPoliceOfficer_letterOfIntent.Visible = true;
+            }
+            else
+            {
+                hdPoliceOfficer_letterOfIntent.Value = "";
+                lnkPoliceOfficer_letterOfIntent.Visible = false;
             }
         }
-
-        //------------------------------step4 code---------------------------------------
-
 
     }
 }

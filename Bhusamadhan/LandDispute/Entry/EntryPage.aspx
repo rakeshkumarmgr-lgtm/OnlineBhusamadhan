@@ -49,113 +49,24 @@
             });
         });
     </script>
-    <script>
-        function toggleBhukhandMapi(ddl) {
 
-            var divCopy = document.getElementById('<%= divbhukhand_Copy.ClientID %>');
-
-            if (ddl.value === "Y") {
-
-                // मापी आवश्यक है
-                divCopy.style.display = "";
-
-                // Reset dependent dropdown
-                var ddlCopy = document.getElementById('<%= ddlbhukhand_Copy.ClientID %>');
-                ddlCopy.selectedIndex = 0;
-
-                // Reset dependent controls
-                toggleBhukhandCopy(ddlCopy);
-            }
-            else {
-
-                // मापी आवश्यक नहीं है / चुने
-                divCopy.style.display = "none";
-
-                // Reset dependent dropdown
-                var ddlCopy = document.getElementById('<%= ddlbhukhand_Copy.ClientID %>');
-                ddlCopy.selectedIndex = 0;
-
-                // Hide dependent controls
-                document.getElementById('<%= divBhukhandReport.ClientID %>').style.display = "none";
-                document.getElementById('<%= divBhukhandReason.ClientID %>').style.display = "none";
-                document.getElementById('<%= divMapiKeNirdharit_tithi.ClientID %>').style.display = "none";
-
-                // Clear dependent fields
-                document.getElementById('<%= txtMapiKeNirdharit_tithi.ClientID %>').value = "";
-                document.getElementById('<%= txtbhukhand_reason.ClientID %>').value = "";
-            }
+    <style>
+        .selected-dhara {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #e0f7fa;
+            border-radius: 4px;
         }
 
-
-        function toggleBhukhandCopy(ddl) {
-
-            var divReport = document.getElementById('<%= divBhukhandReport.ClientID %>');
-
-            var divReason = document.getElementById('<%= divBhukhandReason.ClientID %>');
-
-            var divDate = document.getElementById('<%= divMapiKeNirdharit_tithi.ClientID %>');
-
-            var txtDate = document.getElementById('<%= txtMapiKeNirdharit_tithi.ClientID %>');
-
-            var txtReason = document.getElementById('<%= txtbhukhand_reason.ClientID %>');
-
-
-            // Clear values just like the old
-            // ddlbhukhand_Copy_SelectedIndexChanged()
-            txtDate.value = "";
-            txtReason.value = "";
-
-
-            switch (ddl.value) {
-
-                case "Y":
-                    // मापी हुई है
-
-                    divReport.style.display = "";
-                    divReason.style.display = "none";
-                    divDate.style.display = "none";
-
-                    break;
-
-
-                case "N":
-                    // मापी नहीं हुई है
-
-                    divReport.style.display = "none";
-                    divReason.style.display = "";
-                    divDate.style.display = "";
-
-                    break;
-
-
-                default:
-                    // --चुने--
-
-                    divReport.style.display = "none";
-                    divReason.style.display = "none";
-                    divDate.style.display = "none";
-
-                    break;
-            }
+        .remove-cross {
+            color: red;
+            margin-left: 8px;
+            text-decoration: none;
+            font-weight: bold;
         }
-    </script>
+    </style>
 
-    <script>
-        window.addEventListener("load", function () {
-
-            var ddlMapi = document.getElementById('<%= ddlbhukhand_mapi.ClientID %>');
-
-            var ddlCopy = document.getElementById('<%= ddlbhukhand_Copy.ClientID %>');
-
-            if (ddlMapi) {
-                toggleBhukhandMapi(ddlMapi);
-            }
-
-            if (ddlCopy && ddlMapi && ddlMapi.value === "Y") {
-                toggleBhukhandCopy(ddlCopy);
-            }
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
     <div class="container-fluid">
@@ -2513,7 +2424,7 @@
                                         <label class="form-label">प्राथमिकी / अप्राथमिकी / सनहा दर्ज है?<span class="required">*</span> </label>
 
                                         <asp:DropDownList ID="dd_IsBhumiVivad" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="dd_IsBhumiVivad_SelectedIndexChanged">
-                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="0" >--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
                                             <asp:ListItem Value="N">नहीं</asp:ListItem>
                                         </asp:DropDownList>
@@ -2563,7 +2474,7 @@
 
                                         <asp:DropDownList ID="ddlPrathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPrathmiki_huyee_hai_SelectedIndexChanged">
 
-                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="0" >--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
                                             <asp:ListItem Value="N">नहीं</asp:ListItem>
 
@@ -2702,6 +2613,8 @@
 
                                         <asp:HiddenField ID="hdnSelectedIPC" runat="server" />
 
+                                       
+
                                     </div>
 
                                     <row>
@@ -2720,7 +2633,6 @@
                             </div>
 
                         </div>
-
 
 
                         <div class="section-card" id="btnBhumiVivadVivran5" runat="server" visible="false">
@@ -2791,7 +2703,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-12 text-center">
-                                    <asp:Button ID="btnbhumivivad"  runat="server"  Text="Save" CssClass="btn btn-primary"  Visible="false" OnClick="btnbhumivivad_Click" />
+                                    <asp:Button ID="btnbhumivivad" runat="server" Text="Save" CssClass="btn btn-primary" Visible="false" OnClick="btnbhumivivad_Click" />
                                 </div>
                             </div>
 
@@ -2799,23 +2711,23 @@
                             <div class="row">
                                 <div class="col-md-12">
 
-                                    <asp:Panel ID="Panelgrdbhumivivad"  runat="server" ScrollBars="Auto">
+                                    <asp:Panel ID="Panelgrdbhumivivad" runat="server" ScrollBars="Auto">
 
-                                        <asp:GridView   ID="grdbhumivivad"  runat="server" AutoGenerateColumns="false"  CssClass="table table-bordered table-striped table-hover">
+                                        <asp:GridView ID="grdbhumivivad" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdbhumivivad_RowCommand">
 
                                             <Columns>
 
-                                                <asp:TemplateField  HeaderText="Action" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+                                                <asp:TemplateField HeaderText="Action" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
 
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="btnRowDel"  runat="server"  CssClass="btn btn-danger btn-sm" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
+                                                        <asp:LinkButton ID="btnRowDel" runat="server" CssClass="btn btn-danger btn-sm" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
                                                             OnClientClick="return confirm('Are you sure you want to delete this data?');"> <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </asp:LinkButton>
                                                     </ItemTemplate>
 
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Sl. No." ItemStyle-Width="60px" ItemStyle-HorizontalAlign="Center"  HeaderStyle-HorizontalAlign="Center">
+                                                <asp:TemplateField HeaderText="Sl. No." ItemStyle-Width="60px" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
 
                                                     <ItemTemplate>
                                                         <%# Container.DataItemIndex + 1 %>
@@ -2823,7 +2735,7 @@
 
                                                 </asp:TemplateField>
 
-                                                <asp:BoundField  DataField="Ghatna_Vardat_date"  HeaderText="घटना की तिथि" ItemStyle-Width="100px" />
+                                                <asp:BoundField DataField="Ghatna_Vardat_date" HeaderText="घटना की तिथि" ItemStyle-Width="100px" />
 
 
                                                 <asp:TemplateField HeaderText="घटना की संक्षिप्त विवरण" ItemStyle-Width="220px">
@@ -2842,8 +2754,8 @@
                                                 <asp:BoundField DataField="praathamiki_sankhya" HeaderText="प्राथमिकी संख्या" ItemStyle-Width="110px" />
 
 
-                                                <asp:TemplateField  HeaderText="प्राथमिकी का विवरण" ItemStyle-Width="220px">
-                                                 
+                                                <asp:TemplateField HeaderText="प्राथमिकी का विवरण" ItemStyle-Width="220px">
+
                                                     <ItemTemplate>
                                                         <div style="max-height: 80px; overflow: auto;">
                                                             <%# Eval("praathamiki_ka_vivaran") %>
@@ -2853,10 +2765,10 @@
                                                 </asp:TemplateField>
 
 
-                                                <asp:BoundField DataField="is_complaint_filed"  HeaderText="अप्राथमिकी" ItemStyle-Width="100px" />
+                                                <asp:BoundField DataField="is_complaint_filed" HeaderText="अप्राथमिकी" ItemStyle-Width="100px" />
 
 
-                                                <asp:BoundField DataField="dhaara"  HeaderText="धारा (Old)" ItemStyle-Width="100px" />
+                                                <asp:BoundField DataField="dhaara" HeaderText="धारा (Old)" ItemStyle-Width="100px" />
 
 
                                                 <asp:TemplateField HeaderText="BNS (New)" ItemStyle-Width="120px">
@@ -2867,7 +2779,7 @@
 
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField  HeaderText="New IPC" ItemStyle-Width="120px">
+                                                <asp:TemplateField HeaderText="New IPC" ItemStyle-Width="120px">
 
                                                     <ItemTemplate>
                                                         <%# string.IsNullOrEmpty(Eval("newdhara").ToString()) ? "--" : Eval("newdhara") %>
@@ -2883,7 +2795,7 @@
 
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField  HeaderText="IPC Other"   ItemStyle-Width="120px">
+                                                <asp:TemplateField HeaderText="IPC Other" ItemStyle-Width="120px">
 
                                                     <ItemTemplate>
                                                         <%# string.IsNullOrEmpty(Eval("newdhara1").ToString())  ? "--" : Eval("newdhara1") %>
@@ -2891,10 +2803,10 @@
 
                                                 </asp:TemplateField>
 
-                                         
-                                                <asp:BoundField DataField="apraathamiki_sankhya"  HeaderText="अप्राथमिकी संख्या" ItemStyle-Width="110px" />
 
-                                                <asp:TemplateField HeaderText="अप्राथमिकी का विवरण"  ItemStyle-Width="220px">
+                                                <asp:BoundField DataField="apraathamiki_sankhya" HeaderText="अप्राथमिकी संख्या" ItemStyle-Width="110px" />
+
+                                                <asp:TemplateField HeaderText="अप्राथमिकी का विवरण" ItemStyle-Width="220px">
 
                                                     <ItemTemplate>
                                                         <div style="max-height: 80px; overflow: auto;">
@@ -2903,12 +2815,12 @@
                                                     </ItemTemplate>
 
                                                 </asp:TemplateField>
-                                         
-                                                <asp:BoundField  DataField="is_Sanha_recorded" HeaderText="सनहा" ItemStyle-Width="80px" />
-                                              
-                                                <asp:BoundField DataField="sanha_sankhya" HeaderText="सनहा संख्या"  ItemStyle-Width="110px" />
-                                               
-                                                <asp:TemplateField HeaderText="अभियुक्ति"  ItemStyle-Width="220px">
+
+                                                <asp:BoundField DataField="is_Sanha_recorded" HeaderText="सनहा" ItemStyle-Width="80px" />
+
+                                                <asp:BoundField DataField="sanha_sankhya" HeaderText="सनहा संख्या" ItemStyle-Width="110px" />
+
+                                                <asp:TemplateField HeaderText="अभियुक्ति" ItemStyle-Width="220px">
 
                                                     <ItemTemplate>
                                                         <div style="max-height: 80px; overflow: auto;">
@@ -3021,36 +2933,50 @@
 
                                     </div>
 
+
                                     <!-- वादी की वाद संख्या / वर्ष -->
                                     <div class="col-md-3 mb-3" id="btnnyayalay3" runat="server" visible="false">
 
                                         <label class="form-label">वादी की वाद संख्या / वर्ष <span class="required">*</span>  </label>
 
-                                        <asp:TextBox ID="txtdayarvaadsankhya_nayalay" runat="server" CssClass="form-control" placeholder="वादी की वाद संख्या / वर्ष" onkeypress="return isNumberSahana(event,this)"> </asp:TextBox>
+                                        <asp:TextBox ID="txtdayarvaadsankhya_nayalay" runat="server" CssClass="form-control" placeholder="वादी की वाद संख्या / वर्ष"> </asp:TextBox>
 
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator84" runat="server" ControlToValidate="txtdayarvaadsankhya_nayalay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="वादी की वाद संख्या / वर्ष दर्ज करें।"> </asp:RequiredFieldValidator>
 
                                     </div>
+
+
+                                    <!-- वादी की वाद का वर्ष -->
+                                    <div class="col-md-3 mb-3">
+
+                                        <label class="form-label">वादी की वाद का वर्ष <span class="required">*</span> </label>
+
+                                        <asp:TextBox ID="txtdayaryear_nayayaly" runat="server" CssClass="form-control">  </asp:TextBox>
+
+                                    </div>
+
 
                                     <!-- वादी का नाम -->
                                     <div class="col-md-3 mb-3" id="btnnyayalay4" runat="server" visible="false">
 
                                         <label class="form-label">वादी का नाम <span class="required">*</span>  </label>
 
-                                        <asp:TextBox ID="txtvaadiname_nayaylay" runat="server" CssClass="form-control" placeholder="वादी का नाम" onkeypress="return ValidateAlpha(event)">  </asp:TextBox>
+                                        <asp:TextBox ID="txtvaadiname_nayaylay" runat="server" CssClass="form-control" placeholder="वादी का नाम">
+                                        </asp:TextBox>
 
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator85" runat="server" ControlToValidate="txtvaadiname_nayaylay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="वादी का नाम दर्ज करें।"> </asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator85" runat="server" ControlToValidate="txtvaadiname_nayaylay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="वादी का नाम दर्ज करें।">  </asp:RequiredFieldValidator>
 
                                     </div>
 
-                                    <%--<!-- प्रतिवादी का नाम -->--%>
+
+                                    <!-- प्रतिवादी का नाम -->
                                     <div class="col-md-3 mb-3" id="btnnyayalay5" runat="server" visible="false">
 
                                         <label class="form-label">प्रतिवादी का नाम <span class="required">*</span> </label>
 
-                                        <asp:TextBox ID="txtprativadi_nayaylay" runat="server" CssClass="form-control" placeholder="प्रतिवादी का नाम" onkeypress="return ValidateAlpha(event)"> </asp:TextBox>
+                                        <asp:TextBox ID="txtprativadi_nayaylay" runat="server" CssClass="form-control" placeholder="प्रतिवादी का नाम"> </asp:TextBox>
 
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator86" runat="server" ControlToValidate="txtprativadi_nayaylay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="प्रतिवादी का नाम दर्ज करें।">  </asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator86" runat="server" ControlToValidate="txtprativadi_nayaylay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="प्रतिवादी का नाम दर्ज करें।"> </asp:RequiredFieldValidator>
 
                                     </div>
 
@@ -3076,47 +3002,67 @@
                                 <div class="row mb-2">
                                     <div class="col-md-12" id="btnnyayalay7" runat="server" visible="false">
                                         <center>
-                                            <asp:Button ID="btnnayaylaysave" runat="server" Text="Save" CssClass="btn btn-primary" />
+                                            <asp:Button ID="btnnayaylaysave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnnayaylaysave_Click" />
                                         </center>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center">
-                                        <asp:Panel ID="Panelgrdnyayalay_vivran" runat="server" ScrollBars="Auto" Style="padding-left: 100px">
-                                            <asp:GridView runat="server" ID="grdnyayalay_vivran" AutoGenerateColumns="false">
+                                        <asp:Panel ID="Panelgrdnyayalay_vivran" runat="server" ScrollBars="Auto">
+                                            <asp:GridView ID="grdnyayalay_vivran" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdnyayalay_vivran_RowCommand">
+
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="50">
+
+                                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+
                                                         <ItemTemplate>
-
-                                                            <asp:LinkButton ID="btnRowDel" CssClass="btn btn-danger" runat="server" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
-                                                                OnClientClick="return confirm('Are you sure you want to delete this data?');"><i class="fa fa-trash" aria-hidden="true" style="font-size:20px;"></i></asp:LinkButton>
-
+                                                            <asp:LinkButton ID="btnRowDel" runat="server" CssClass="btn btn-danger btn-sm" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
+                                                                OnClientClick="return confirm('Are you sure you want to delete this data?');"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </asp:LinkButton>
                                                         </ItemTemplate>
+
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Sl. No.">
+
+
+                                                    <asp:TemplateField HeaderText="Sl. No." ItemStyle-Width="60px" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+
                                                         <ItemTemplate>
                                                             <%# Container.DataItemIndex + 1 %>
                                                         </ItemTemplate>
-                                                        <HeaderStyle HorizontalAlign="Center" Width="5%" />
-                                                        <ItemStyle HorizontalAlign="Center" />
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="court" HeaderText="न्यायालय" ItemStyle-Width="80" />
-                                                    <asp:BoundField DataField="courtType" HeaderText="न्यायालय का प्रकार" ItemStyle-Width="100" />
-                                                    <asp:BoundField DataField="Dst" HeaderText="जिला" ItemStyle-Width="80" />
-                                                    <asp:BoundField DataField="SubDiv" HeaderText="अनुमंडल" ItemStyle-Width="80" />
-                                                    <asp:BoundField DataField="Vibhag" HeaderText="विभाग" ItemStyle-Width="80" />
-                                                    <asp:BoundField DataField="vaadi_ki_vaad_sankhya_varsh" HeaderText="वाद संख्या / वर्ष" ItemStyle-Width="80" />
 
-                                                    <asp:BoundField DataField="vadi_name" HeaderText="वादी का नाम" ItemStyle-Width="80" />
-                                                    <asp:BoundField DataField="prativadi_name" HeaderText="प्रतिवादी का नाम" ItemStyle-Width="80" />
-                                                    <asp:TemplateField HeaderText="अद्धतन स्थिति का विवरण" ItemStyle-Width="220">
-                                                        <ItemTemplate>
-                                                            <span id='<%# Eval("vaad_ki_addhatan_sthiti_vivaran") %>' style="display: block; overflow: auto; height: 80px;">
-                                                                <%# Eval("vaad_ki_addhatan_sthiti_vivaran") %>
-                                                            </span>
-                                                        </ItemTemplate>
                                                     </asp:TemplateField>
+
+
+                                                    <asp:BoundField DataField="court" HeaderText="न्यायालय" ItemStyle-Width="100px" />
+
+
+                                                    <asp:BoundField DataField="courtType" HeaderText="न्यायालय का प्रकार" ItemStyle-Width="120px" />
+
+
+                                                    <asp:BoundField DataField="Dst" HeaderText="जिला" ItemStyle-Width="90px" />
+
+                                                    <asp:BoundField DataField="SubDiv" HeaderText="अनुमंडल" ItemStyle-Width="90px" />
+
+                                                    <asp:BoundField DataField="Vibhag" HeaderText="विभाग" ItemStyle-Width="90px" />
+
+                                                    <asp:BoundField DataField="vaadi_ki_vaad_sankhya_varsh" HeaderText="वाद संख्या / वर्ष" ItemStyle-Width="120px" />
+
+                                                    <asp:BoundField DataField="vadi_name" HeaderText="वादी का नाम" ItemStyle-Width="120px" />
+
+                                                    <asp:BoundField DataField="prativadi_name" HeaderText="प्रतिवादी का नाम" ItemStyle-Width="120px" />
+
+                                                    <asp:TemplateField HeaderText="अद्धतन स्थिति का विवरण" ItemStyle-Width="220px">
+
+                                                        <ItemTemplate>
+                                                            <div style="max-height: 80px; overflow: auto;">
+                                                                <%# Eval("vaad_ki_addhatan_sthiti_vivaran") %>
+                                                            </div>
+                                                        </ItemTemplate>
+
+                                                    </asp:TemplateField>
+
                                                 </Columns>
+
                                             </asp:GridView>
                                         </asp:Panel>
                                     </div>
@@ -3157,8 +3103,8 @@
                             <div class="section-body">
 
                                 <!-- =========================
-                             Meeting Information
-                        ==========================-->
+                                     Meeting Information
+                                ==========================-->
 
                                 <div class="row g-3 mb-4">
 
@@ -3192,7 +3138,7 @@
 
                                         <asp:TextBox ID="txtbaithakDate" runat="server" CssClass="form-control" MaxLength="10" placeholder="dd-MM-yyyy"></asp:TextBox>
 
-                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtbaithakDate" Format="dd-MM-yyyy" CssClass="zindex"></cc1:CalendarExtender>
+                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtbaithakDate" Format="dd-MM-yyyy" ></cc1:CalendarExtender>
 
                                     </div>
 
@@ -3233,8 +3179,8 @@
 
 
                                 <!-- =========================
-                              Meeting Result
-                        ==========================-->
+                                          Meeting Result
+                                    ==========================-->
 
                                 <div class="row g-3 mb-4">
 
@@ -3289,8 +3235,8 @@
 
 
                                 <!-- =========================
-                             Decision
-                        ==========================-->
+                                     Decision
+                                ==========================-->
 
                                 <div class="row g-3 mb-4">
 
@@ -3304,7 +3250,7 @@
 
                                     <div class="col-lg-6">
 
-                                        <label class="form-label">संयुक्त प्रतिवेदन (PDF) </label>
+                                        <label class="form-label">थानाध्यक्ष एवं अंचलाधिकारी का संयुक्त प्रतिवेदन </label>
 
                                         <asp:HiddenField ID="hdLandDoc" runat="server" />
 
@@ -3320,8 +3266,8 @@
 
 
                                 <!-- =========================
-                            Circle Officer
-                        ==========================-->
+                                    Circle Officer
+                                ==========================-->
 
                                 <div class="row g-3 mb-4">
 
@@ -3350,9 +3296,9 @@
                                 </div>
 
 
-                                <!-- =========================
-                            SHO
-                        ==========================-->
+
+                                <%-----SHO--%>
+
 
                                 <div class="row g-3">
 

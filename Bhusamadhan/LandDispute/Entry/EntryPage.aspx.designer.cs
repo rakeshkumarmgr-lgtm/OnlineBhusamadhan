@@ -2958,6 +2958,15 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator84;
 
         /// <summary>
+        /// txtdayaryear_nayayaly control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdayaryear_nayayaly;
+
+        /// <summary>
         /// btnnyayalay4 control.
         /// </summary>
         /// <remarks>

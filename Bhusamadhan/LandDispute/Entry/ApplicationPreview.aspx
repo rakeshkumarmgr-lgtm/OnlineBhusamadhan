@@ -19,8 +19,6 @@
 
             <hr />
 
-            <!-- Display all application information here -->
-
         </div>
 
         <div class="card-footer text-center">

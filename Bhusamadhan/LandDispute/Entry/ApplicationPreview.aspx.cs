@@ -8,12 +8,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Bhusamadhan.DataAccessLayer.LandDisputeDAL;
 
 namespace Bhusamadhan.LandDispute.Entry
 {
     public partial class ApplicationPreview : System.Web.UI.Page
     {
         string userid = "";
+        private readonly FinalSubmitDAL _finalSubmitDAL = new FinalSubmitDAL();
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt = Session["UserLogIn"] as DataTable;
@@ -59,7 +61,15 @@ namespace Bhusamadhan.LandDispute.Entry
         {
             long applicationId = Convert.ToInt64(Request.QueryString["a_id"]);
 
-            string applicationNo = GenerateApplicationNo(applicationId);
+            //string applicationNo = GenerateApplicationNo(applicationId);
+            string applicationNo = _finalSubmitDAL.GenerateApplicationNo( applicationId, userid);
+
+            if (string.IsNullOrEmpty(applicationNo))
+            {
+                lblApplicationNo.Text ="Application number could not be generated.";
+
+                return;
+            }
 
             lblApplicationNo.Text = "Application Number : " + applicationNo;
 
@@ -69,21 +79,21 @@ namespace Bhusamadhan.LandDispute.Entry
            
         }
 
-        private string GenerateApplicationNo(long applicationId)
-        {
-            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
-            {
-                con.Open();
+        //private string GenerateApplicationNo(long applicationId)
+        //{
+        //    using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conns"].ConnectionString))
+        //    {
+        //        con.Open();
 
-                SqlCommand cmd = new SqlCommand("BS_SP_FinalSubmit", con);
+        //        SqlCommand cmd = new SqlCommand("BS_SP_FinalSubmit", con);
 
-                cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
-                cmd.Parameters.AddWithValue("@CUUser", SqlDbType.VarChar).Value = userid;
+        //        cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
+        //        cmd.Parameters.Add("@CUUser", SqlDbType.NVarChar, 50).Value = userid;
 
-                return cmd.ExecuteScalar().ToString();
-            }
-        }
+        //        return cmd.ExecuteScalar().ToString();
+        //    }
+        //}
     }
 }

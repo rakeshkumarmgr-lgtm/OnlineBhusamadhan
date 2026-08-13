@@ -39,12 +39,7 @@ namespace Bhusamadhan.UC
             DataView dv = new DataView(dt);
             dv.Sort = "DisplayOrder ASC";
 
-            DataTable dtParent = dv.ToTable(true,
-                                            "ParentMenuID",
-                                            "ParentMenuName",
-                                            "ParentIcon",
-                                            "ParentNavigateUrl",
-                                            "DisplayOrder");
+            DataTable dtParent = dv.ToTable(true, "ParentMenuID", "ParentMenuName", "ParentIcon", "ParentNavigateUrl", "DisplayOrder");
 
             foreach (DataRow parent in dtParent.Rows)
             {
