@@ -50,7 +50,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             {
                 using (SqlCommand cmd = new SqlCommand(@"
                     SELECT evidence_id,  evidence_anya AS evidence_any_name,  Vadi_sakshya_File AS FullfileName
-                    FROM Vadi_Evidence_Entry
+                    FROM BS_Vadi_Evidence_Entry
                     WHERE a_id = @a_id
                     ORDER BY evidence_id", con))
                 {
@@ -76,7 +76,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             {
                 using (SqlCommand cmd = new SqlCommand(@"
                     SELECT evidence_id, evidence_anya AS evidence_any_name, Prativadi_sakshya_File AS FullfileName
-                    FROM Prativadi_Evidence_Entry
+                    FROM BS_Prativadi_Evidence_Entry
                     WHERE a_id = @a_id
                     ORDER BY evidence_id", con))
                 {

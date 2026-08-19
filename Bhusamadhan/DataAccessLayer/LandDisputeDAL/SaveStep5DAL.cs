@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,6 +7,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class SaveStep5DAL
     {
+        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
         public bool SaveStep5( long applicationId, string pulisPadadhikariVivarani, string pulisPadadhikarPatrFile, string halkaKarmchariVivran, string halkaKarmchariPatrFile,  string vivaditBhukhandMapiKiAvashyaktaHai,  string vivaditBhukhandMapi, string maapeeKeLieNirdhaaritTithi,  string vivaaditBhukhandMapiFile, string vivaaditBhukhandMapiReason,  SqlConnection con, SqlTransaction trans)
         {
             using (SqlCommand cmd = new SqlCommand("BS_SP_SaveStep5", con, trans))
@@ -37,5 +39,28 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
                 return rowsAffected > 0;
             }
         }
+
+        public DataTable GetStep5Details(long applicationId)
+        {
+            DataTable dt = new DataTable();
+
+
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(@" select pulis_padadhikari_vivarani,pulis_padadhikar_Patr_file,HalkaKarmchari_vivran ,HalkaKarmchari_Patr_file,vivadit_bhukhand_Mapi_ki_avashyakta_hai,vivadit_bhukhand_Mapi,convert (varchar(10),maapee_ke_lie_nirdhaarit_tithi,105) as maapee_ke_lie_nirdhaarit_tithi ,vivaadit_bhukhand_Mapi_File,vivaadit_bhukhand_Mapi_Reason from  BS_Matter_Registration where a_id=@a_id and isnull(vivadit_bhukhand_Mapi_ki_avashyakta_hai,'')<>''", con))
+                {
+                    cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
+        }
+
+
     }
 }

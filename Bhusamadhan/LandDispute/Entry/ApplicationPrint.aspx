@@ -1,10 +1,29 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ApplicationPreview.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.ApplicationPreview" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ApplicationPrint.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.ApplicationPrint" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<!DOCTYPE html>
 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Application Print</title>
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <style>
+        /* =========================================================
+       PRINT PAGE - BASE
+       Keep the same layout as ApplicationPreview.aspx
+       ========================================================= */
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            color: #000;
+            font-family: Arial, "Noto Sans Devanagari", sans-serif;
+            font-size: 13px;
+        }
+
         .application-header {
-            padding: 15px 0;
+            padding: 10px 0;
             text-align: center;
         }
 
@@ -19,85 +38,109 @@
             }
 
 
-        /* Application Number */
+        /* =========================================================
+       APPLICATION NUMBER
+       ========================================================= */
+
         .application-number {
-            padding: 8px 15px;
-            margin-top: 10px;
+            padding: 6px 10px;
+            margin-top: 5px;
             text-align: right;
             font-weight: 600;
         }
 
 
+        /* =========================================================
+       SECTION
+       ========================================================= */
+
         .preview-section {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .section-title {
             background-color: #d8d8d8;
-            padding: 8px 15px;
+            padding: 7px 10px;
             margin: 0;
-            min-height: 38px;
-            font-size: 18px;
+            min-height: 34px;
+            font-size: 17px;
             font-weight: 600;
-            line-height: 22px;
+            line-height: 20px;
             border: 1px solid #c8c8c8;
+            /* Important for printing */
+            page-break-after: avoid;
         }
 
 
 
+        /* =========================================================
+       NORMAL LABEL / VALUE
+       ========================================================= */
+
         .preview-field {
-            padding: 7px 15px;
-            line-height: 1.5;
+            padding: 5px 10px;
+            line-height: 1.4;
         }
 
         .preview-label {
-            display: inline-block;
+            display: inline !important;
             font-weight: 600;
-            color: #333;
+            color: #222;
         }
 
         .preview-value {
-            display: inline-block;
-            margin-left: 5px;
-            color: #555;
+            display: inline !important;
+            margin-left: 4px;
+            color: #333;
             word-break: break-word;
         }
 
 
-        /* Label and Value in Bootstrap row */
+        /* =========================================================
+       BLOCK LABEL / VALUE
+       ========================================================= */
+
         .preview-label-block {
             font-weight: 600;
-            color: #333;
+            color: #222;
         }
 
         .preview-value-block {
-            color: #555;
+            color: #333;
             word-break: break-word;
         }
 
 
+        /* =========================================================
+       VADI / PRATIVADI CARD
+       ========================================================= */
 
         .vadi-card {
-            margin: 15px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            overflow: hidden;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            overflow: visible;
             background-color: #fff;
+            /* Keep one person's details together where possible */
+            page-break-inside: avoid;
         }
 
         .vadi-header {
-            padding: 8px 15px;
+            padding: 6px 10px;
             background-color: #f1f1f1;
-            border-bottom: 1px solid #ddd;
-            font-size: 16px;
+            border-bottom: 1px solid #ccc;
+            font-size: 15px;
             font-weight: 600;
         }
 
         .vadi-body {
-            padding: 5px 0;
+            padding: 2px 0;
         }
 
 
+        /* =========================================================
+       TABLE
+       ========================================================= */
 
         .preview-table {
             width: 100%;
@@ -106,7 +149,7 @@
         }
 
             .preview-table th {
-                padding: 8px;
+                padding: 6px;
                 text-align: center;
                 vertical-align: middle;
                 font-weight: 600;
@@ -114,16 +157,20 @@
             }
 
             .preview-table td {
-                padding: 8px;
+                padding: 6px;
                 vertical-align: top;
                 word-break: break-word;
             }
 
 
+        /* =========================================================
+       GRIDVIEW
+       ========================================================= */
 
         .CSSTableGeneratorGrid {
             width: 100%;
             margin-bottom: 0;
+            border-collapse: collapse;
         }
 
             .CSSTableGeneratorGrid th {
@@ -131,23 +178,36 @@
                 vertical-align: middle;
                 font-weight: 600;
                 white-space: normal;
+                padding: 6px;
             }
 
             .CSSTableGeneratorGrid td {
                 vertical-align: top;
                 word-break: break-word;
+                padding: 6px;
             }
 
 
-        /* Long text inside GridView */
+        /* =========================================================
+       LONG TEXT
+       IMPORTANT:
+       Do NOT use fixed height in print.
+       ========================================================= */
+
         .preview-grid-text {
             display: block;
-            max-height: 60px;
-            overflow-y: auto;
-            overflow-x: hidden;
+            max-height: none;
+            height: auto;
+            overflow: visible;
             line-height: 1.4;
             word-break: break-word;
+            white-space: normal;
         }
+
+
+        /* =========================================================
+       PDF ICONS
+       ========================================================= */
 
         .getpdfdoc,
         .evidence-pdf,
@@ -162,14 +222,12 @@
         }
 
         .pdf-icon {
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
+            width: 35px;
+            height: 35px;
         }
 
-
         .document-field {
-            padding: 8px 15px;
+            padding: 6px 10px;
         }
 
             .document-field img {
@@ -177,18 +235,14 @@
             }
 
 
+        /* =========================================================
+       ACTION BUTTONS
+       Hide Print / Edit / Final Submit buttons
+       ========================================================= */
+
         .preview-actions {
-            margin-top: 25px;
-            padding: 15px;
-            text-align: center;
-            border-top: 1px solid #ddd;
+            display: none;
         }
-
-            .preview-actions .btn {
-                min-width: 150px;
-                margin: 0 5px 5px;
-            }
-
 
 
         .preview-value-highlight {
@@ -197,105 +251,107 @@
 
 
 
-        @media (max-width: 767px) {
+
+        /* =========================================================
+   PRINT - PRESERVE BOOTSTRAP COLUMN LAYOUT
+   ========================================================= */
+
+        @media print {
 
             .section-title {
-                font-size: 16px;
-                padding: 8px 10px;
+                background-color: #d8d8d8 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .row {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                margin-left: -15px !important;
+                margin-right: -15px !important;
+            }
+
+            /* col-md-12 */
+            .col-md-12 {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+
+            /* col-md-9 */
+            .col-md-9 {
+                flex: 0 0 75% !important;
+                max-width: 75% !important;
+            }
+
+            /* col-md-6 */
+            .col-md-6 {
+                flex: 0 0 50% !important;
+                max-width: 50% !important;
+            }
+
+            /* col-md-4 */
+            .col-md-4 {
+                flex: 0 0 33.333333% !important;
+                max-width: 33.333333% !important;
+            }
+
+            /* col-md-3 */
+            .col-md-3 {
+                flex: 0 0 25% !important;
+                max-width: 25% !important;
+            }
+
+            [class*="col-md-"] {
+                position: relative;
+                min-height: 1px;
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+                box-sizing: border-box;
+            }
+
+            .vadi-card {
+                page-break-inside: avoid;
+            }
+
+            .preview-section {
+                page-break-inside: auto;
             }
 
             .preview-field {
-                padding: 6px 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
             }
-
-            .preview-label,
-            .preview-value {
-                display: block;
-                margin-left: 0;
-            }
-
-            .application-number {
-                text-align: left;
-            }
-
-            .preview-actions .btn {
-                width: 100%;
-                margin: 5px 0;
-            }
-
-            .CSSTableGeneratorGrid {
-                font-size: 12px;
-            }
-
-                .CSSTableGeneratorGrid th,
-                .CSSTableGeneratorGrid td {
-                    padding: 6px;
-                }
         }
     </style>
+</head>
+<body>
+    <form id="form1" runat="server">
 
+        <div class="print-container">
 
-    <script>
-        function openPrintPage() {
+            <!-- Header -->
+            <div class="application-header">
 
-            var applicationId = new URLSearchParams(window.location.search).get('a_id');
+                <h3>भूमि विवाद समाधान  </h3>
 
-            if (!applicationId || applicationId === '0') {
-                alert('Application not found.');
-                return false;
-            }
+                <h5>आवेदन पत्र </h5>
 
-            var url = 'ApplicationPrint.aspx?a_id=' + encodeURIComponent(applicationId);
+            </div>
 
-            window.open(url, '_blank');
+            <!-- Application Number -->
+            <div class="application-number">
+                आवेदन संख्या :
+                <asp:Label ID="lblApplicationNo" runat="server" />
+            </div>
 
-            return false;
-        }
+            <div class="application-number">
+                आवेदन तिथि :<asp:Label ID="lblAppDate" runat="server" CssClass="preview-label"> </asp:Label>
 
-    </script>
+            </div>
 
-
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
-
-    <div class="container-fluid">
-        <div class="application-header">
-            <h3>भू-समाधान</h3>
-            <h5>गृह विभाग, बिहार सरकार</h5>
-        </div>
-
-        <div class="card">
-
-            <div class="card-body">
-
-                <!-- Application Details -->
-                <div class="section-title">
-                    आवेदन विवरण
-   
-                </div>
-
-                <div class="row align-items-center mb-3">
-
-                    <div class="col-md-8">
-                        <span class="form-label">आवेदन संख्या :</span>
-
-                        <asp:Label ID="lblApplicationNo" runat="server" CssClass="preview-label"> </asp:Label>
-                    </div>
-
-                    <div class="col-md-4">
-                        <span class="form-label">आवेदन तिथि :</span>
-
-                        <asp:Label ID="lblAppDate" runat="server" CssClass="preview-label"> </asp:Label>
-
-                        <asp:HiddenField ID="lbla_id" runat="server" />
-                    </div>
-
-                </div>
-
-
+            <div class="preview-section">
                 <!-- Vadi Details -->
                 <div class="section-title">
-                    <%--//--ok--%>
                     वादी का विवरण
                 </div>
 
@@ -309,7 +365,6 @@
 
                         <div class="vadi-card">
 
-                            <!-- Vadi Header -->
                             <div class="vadi-header">
                                 वादी <%# Container.ItemIndex + 1 %>
                             </div>
@@ -487,17 +542,17 @@
 
                 </asp:Repeater>
 
+            </div>
 
+            <div class="preview-section">
 
-                <!-- Land Dispute Details -->
-                <%--//--ok--%>
                 <div class="section-title">
                     भूमि विवाद का विवरण
                 </div>
 
                 <div class="preview-section">
 
-                    <!-- Location Details -->
+
                     <div class="row">
 
                         <div class="col-md-3 preview-field">
@@ -572,7 +627,7 @@
                     </div>
 
 
-                    <!-- Government Land Details -->
+
                     <div class="row">
 
                         <div class="col-md-3 preview-field">
@@ -594,7 +649,6 @@
                     </div>
 
 
-                    <!-- Land Dispute Type -->
                     <div class="row">
 
                         <div class="col-md-3 preview-field">
@@ -650,46 +704,13 @@
                     </div>
 
 
-
-                    <div class="row">
-
-                        <div class="col-md-3 preview-field">
-                            <span class="preview-label">वादी द्वारा प्रस्तुत आवेदन : </span>
-                        </div>
-
-                        <div class="col-md-9 preview-field" id="div29" runat="server">
-
-                            <asp:ImageButton ID="lnkAppDoc" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="getpdfdoc" />
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="row">
-
-                        <div class="col-md-3 preview-field">
-                            <span class="preview-label">प्रतिवादी द्वारा प्रस्तुत आवेदन :  </span>
-                        </div>
-
-                        <div class="col-md-9 preview-field" id="div30" runat="server">
-
-                            <asp:ImageButton ID="lnkPrativadiDoc" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="getpdfdoc" />
-
-                        </div>
-
-                    </div>
-
                 </div>
 
+            </div>
 
-                <!--
-                    Step 3 Information  Will be added here
-                -->
-                <!-- Pratiwadi Details -->
+            <div class="preview-section">
+
                 <div class="section-title">
-                    <%--ok--%>
                     प्रतिवादी का विवरण
                 </div>
 
@@ -708,7 +729,7 @@
                                 प्रतिवादी <%# Container.ItemIndex + 1 %>
                             </div>
 
-                            <!-- Basic Details -->
+
                             <div class="row">
 
                                 <div class="col-md-4 preview-field">
@@ -734,7 +755,7 @@
 
                             </div>
 
-                            <!-- Location Details -->
+
                             <div class="row">
 
                                 <div class="col-md-4 preview-field">
@@ -760,7 +781,6 @@
 
                             </div>
 
-                            <!-- Area Details -->
                             <div class="row">
 
                                 <div class="col-md-4 preview-field">
@@ -786,7 +806,6 @@
 
                             </div>
 
-                            <!-- Village / Ward -->
                             <div class="row">
 
                                 <div class="col-md-4 preview-field">
@@ -805,7 +824,6 @@
 
                             </div>
 
-                            <!-- Representative Details -->
                             <div class="row">
 
                                 <div class="col-md-4 preview-field">
@@ -857,11 +875,10 @@
 
                 </asp:Repeater>
 
-                <!-- Step 4 Information Will be added here -->
+            </div>
 
-                <!-- Other Details -->
+            <div class="preview-section">
                 <div class="section-title">
-                    <%--ok--%>
                     अन्य विवरण
                 </div>
 
@@ -887,7 +904,7 @@
 
                     <div class="row">
 
-                        <!-- Medium -->
+
                         <div class="col-md-6 preview-field">
                             <span class="preview-label">माध्यम :  </span>
 
@@ -916,12 +933,10 @@
                     </div>
 
                 </div>
-                <!--
-                    Step 5 Information Will be added here
-                -->
-                <!-- Land Khata-Khesra Details -->
+            </div>
+
+            <div class="preview-section">
                 <div class="section-title">
-                    <%--ok--%>
                     भूमि का खाता-खेसरा का विवरण
                 </div>
 
@@ -940,7 +955,7 @@
                                 भूमि विवरण <%# Container.ItemIndex + 1 %>
                             </div>
 
-                            <!-- Khata / Khesra / Rakba -->
+
                             <div class="row">
 
                                 <div class="col-md-4 preview-field">
@@ -972,7 +987,7 @@
 
                             </div>
 
-                            <!-- Land Type -->
+
                             <div class="row">
 
                                 <div class="col-md-6 preview-field">
@@ -1000,7 +1015,7 @@
 
                             </div>
 
-                            <!-- Chauhaddee -->
+
                             <div class="row">
 
                                 <div class="col-md-3 preview-field">
@@ -1050,20 +1065,14 @@
                     </FooterTemplate>
 
                 </asp:Repeater>
+            </div>
 
-                <!--
-                    Step 6 Information  Will be added here
-                -->
-
+            <div class="preview-section">
                 <div class="section-title">
-                    <%--ok--%>
                     वादी द्वारा प्रस्तुत साक्ष्य का विवरण
                 </div>
 
-                <%-- rptVadiEvidence--%>
-
-
-                <asp:Repeater ID="rptVadiEvidence" runat="server" OnItemCommand="rptVadiEvidence_ItemCommand">
+                <asp:Repeater ID="rptVadiEvidence" runat="server">
 
                     <HeaderTemplate>
                         <div class="evidence-list">
@@ -1091,14 +1100,6 @@
                                 </div>
 
 
-                                <div class="col-md-4 preview-field">
-
-                                    <span class="preview-label">साक्ष्य का दस्तावेज : </span>
-
-                                    <asp:ImageButton ID="imgVadiEvidence" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandArgument='<%# Eval("FullfileName") %>' CommandName="View" Visible='<%# !string.IsNullOrWhiteSpace(Convert.ToString(Eval("FullfileName"))) %>' />
-
-                                </div>
-
                             </div>
 
                         </div>
@@ -1111,16 +1112,14 @@
 
                 </asp:Repeater>
 
-                <!--
-                    Step 7 Information Will be added here
+            </div>
 
-                    <!-- Pratiwadi Evidence Details -->
+            <div class="preview-section">
                 <div class="section-title">
-                    <%--ok--%>
                     प्रतिवादी द्वारा प्रस्तुत साक्ष्य का विवरण
                 </div>
 
-                <asp:Repeater ID="rptPratiwadiEvidence" runat="server" OnItemCommand="rptPratiwadiEvidence_ItemCommand">
+                <asp:Repeater ID="rptPratiwadiEvidence" runat="server">
 
                     <HeaderTemplate>
                         <div class="evidence-list">
@@ -1130,7 +1129,6 @@
 
                         <div class="evidence-card">
 
-                            <!-- Evidence Number -->
                             <div class="evidence-number">
                                 साक्ष्य <%# Container.ItemIndex + 1 %>
                             </div>
@@ -1148,15 +1146,6 @@
 
                                 </div>
 
-
-                                <div class="col-md-4 preview-field">
-
-                                    <span class="preview-label">साक्ष्य का दस्तावेज :  </span>
-
-                                    <asp:ImageButton ID="imgPratiwadiEvidence" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandArgument='<%# Eval("FullfileName") %>' CommandName="View" Visible='<%# !string.IsNullOrWhiteSpace(Convert.ToString(Eval("FullfileName"))) %>' />
-
-                                </div>
-
                             </div>
 
                         </div>
@@ -1168,16 +1157,15 @@
                     </FooterTemplate>
 
                 </asp:Repeater>
+            </div>
 
-                <!-- Revenue / Police / Halka Employee Details -->
-                <%--ok--%>
+            <div class="preview-section">
                 <div class="section-title">
                     राजस्व अधिकारी / पुलिस पदाधिकारी / हल्का कर्मचारी द्वारा प्रस्तुत साक्ष्य का विवरण
                 </div>
 
                 <div class="preview-section">
 
-                    <!-- Police Officer Report -->
                     <div class="row">
 
                         <div class="col-md-4 preview-field">
@@ -1261,73 +1249,17 @@
                     </div>
 
 
-                    <%--  //-------------------------------------------------%>
-                    <div class="document-section">
-
-                        <div class="document-title">
-                            संबंधित दस्तावेज
-                        </div>
-
-
-                        <!-- Police Report Document -->
-                        <div class="row document-row">
-
-                            <div class="col-md-8 preview-field">
-                                <span class="preview-label">पुलिस पदाधिकारी द्वारा समर्पित जाँच प्रतिवेदन का दस्तावेज :  </span>
-                            </div>
-
-                            <div class="col-md-4 preview-field">
-
-                                <asp:ImageButton ID="lnkpulis_padadhikari_Patr_file" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandName="View" />
-
-                            </div>
-
-                        </div>
-
-                        <div class="row document-row">
-
-                            <div class="col-md-8 preview-field">
-                                <span class="preview-label">हल्का कर्मचारी / राजस्व अधिकारी द्वारा समर्पित जाँच प्रतिवेदन का दस्तावेज : </span>
-                            </div>
-
-                            <div class="col-md-4 preview-field">
-
-                                <asp:ImageButton ID="lnkfile_halkakarmchari_praptr" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandName="View" />
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="row document-row">
-
-                            <div class="col-md-8 preview-field">
-                                <span class="preview-label">विवादित भू-खंड की मापी का प्रतिवेदन : </span>
-                            </div>
-
-                            <div class="col-md-4 preview-field">
-
-                                <asp:ImageButton ID="lnkfile_bhukand_prativedan" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandName="View" />
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
                 </div>
+            </div>
 
-                <%--  //-------------------------------------------------%>
-
-                <!-- Land Dispute Incident Details -->
-                <%--ok--%>
+            <div class="preview-section">
                 <div class="section-title">
                     भूमि विवाद से संबंधित घटना / वारदात का विवरण
                 </div>
 
                 <div class="preview-section">
 
-                    <!-- FIR / Complaint / Sanha Status -->
+
                     <div class="row">
 
                         <div class="col-md-6 preview-field">
@@ -1489,8 +1421,6 @@
 
                                 </div>
 
-
-                                <!-- Aprathmiki Details -->
                                 <div class="sub-section-title">
                                     अप्राथमिकी का विवरण
                                 </div>
@@ -1580,16 +1510,16 @@
                     </asp:Repeater>
 
                 </div>
-                <%--  //-------------------------------------------------%>
+            </div>
 
+            <div class="preview-section">
                 <div class="section-title">
-                    <%--ok--%>
                     न्यायालय में प्रक्रियाधीन वाद का विवरण
                 </div>
 
                 <div class="preview-section">
 
-                    <!-- Availability -->
+
                     <div class="row">
 
                         <div class="col-md-6 preview-field">
@@ -1603,8 +1533,6 @@
 
                     </div>
 
-
-                    <!-- Court Case Details -->
                     <asp:Repeater ID="rptNyayalayVivran" runat="server">
 
                         <HeaderTemplate>
@@ -1727,8 +1655,6 @@
 
                                 </div>
 
-
-                                <!-- Current Status -->
                                 <div class="row">
 
                                     <div class="col-md-12 preview-field">
@@ -1754,9 +1680,9 @@
                     </asp:Repeater>
 
                 </div>
+            </div>
 
-                <%--  //-------------------------------------------------%>
-
+            <div class="preview-section">
                 <div class="section-title">
                     अंचलाधिकारी एवं थानाध्यक्ष द्वारा भूमि विवाद के निराकरण हेतु कृत कारवाई का विवरण
                 </div>
@@ -1900,74 +1826,20 @@
                     </div>
 
 
-                    <!-- Documents -->
-                    <div class="preview-documents">
-
-                        <!-- संयुक्त प्रतिवेदन -->
-                        <div class="row">
-
-                            <div class="col-md-4 preview-field">
-                                <span class="preview-label">थानाध्यक्ष एवं अंचलाधिकारी का संयुक्त प्रतिवेदन : </span>
-                            </div>
-
-                            <div class="col-md-8 preview-field">
-
-                                <asp:ImageButton ID="lnkJointDoc__letterOfIntent" runat="server" ImageUrl="~/images/pdf.gif" Width="45px" Height="45px" CssClass="preview-pdf" CommandArgument='<%# Eval("FullfileName") %>' ToolTip="संयुक्त प्रतिवेदन देखें" />
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <div class="col-md-4 preview-field">
-                                <span class="preview-label">अंचलाधिकारी का मंतव्य पत्र :   </span>
-                            </div>
-
-                            <div class="col-md-8 preview-field">
-
-                                <asp:ImageButton ID="lnkCircleOfficer_letterOfIntent" runat="server" ImageUrl="~/images/pdf.gif" Width="45px" Height="45px" CssClass="preview-pdf" CommandArgument='<%# Eval("FullfileName") %>' ToolTip="अंचलाधिकारी का मंतव्य पत्र देखें" />
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="row">
-
-                            <div class="col-md-4 preview-field">
-                                <span class="preview-label">थानाध्यक्ष का मंतव्य : </span>
-                            </div>
-
-                            <div class="col-md-8 preview-field">
-
-                                <asp:ImageButton ID="lnkPoliceOfficer_letterOfIntent" runat="server" ImageUrl="~/images/pdf.gif" Width="45px" Height="45px" CssClass="preview-pdf" CommandArgument='<%# Eval("FullfileName") %>' ToolTip="थानाध्यक्ष का मंतव्य देखें" />
-
-                            </div>
-
-                        </div>
-
-                    </div>
 
                 </div>
-
-
-                <div class="preview-actions">
-
-                    <asp:Button ID="btnEdit" runat="server" Text="Edit Application" CssClass="btn btn-warning" OnClick="btnEdit_Click" />
-
-                    <asp:Button ID="btnPrint" runat="server" Text="Print" CssClass="btn btn-primary" OnClientClick="return openPrintPage();" />
-
-                    <asp:Button ID="btnFinalSubmit" runat="server" Text="Final Submit" CssClass="btn btn-success" OnClientClick="return confirm('After Final Submit, application cannot be edited.\nDo you want to continue?');" OnClick="btnFinalSubmit_Click" />
-
-                </div>
-
             </div>
-
         </div>
 
+    </form>
+    <script type="text/javascript">
 
+        window.onload = function () {
 
-    </div>
-</asp:Content>
+            window.print();
+
+        };
+
+    </script>
+</body>
+</html>

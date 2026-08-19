@@ -12,15 +12,17 @@ using System.Web.UI.WebControls;
 
 namespace Bhusamadhan.LandDispute.Entry
 {
-    public partial class Unfinalize : System.Web.UI.Page
+    public partial class Unfinalize_test : System.Web.UI.Page
     {
         string thanacode = "";
         string userid = "";
         string userrole = "";
         int roleid;
         int thanaCode;
-    
+        DBHelper objDBHelper = new DBHelper();
+
         private readonly MatterRegistrationDAL _matterDAL = new MatterRegistrationDAL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt = Session["UserLogIn"] as DataTable;
@@ -44,6 +46,8 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 BindUnfinalizedApplications();
             }
+
+
         }
 
         private void BindUnfinalizedApplications()
@@ -52,7 +56,7 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 string mobileNo = txtSearch.Text.Trim();
 
-                DataTable dt = _matterDAL.GetUnfinalizedApplications(userid, mobileNo);
+                DataTable dt = _matterDAL.GetUnfinalizedApplications( userid, mobileNo);
 
                 gvUnfinalized.DataSource = dt;
                 gvUnfinalized.DataBind();
@@ -61,7 +65,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 if (dt.Rows.Count == 0)
                 {
-                    lblMsg.Text = string.IsNullOrWhiteSpace(mobileNo) ? "कोई Unfinalized Application उपलब्ध नहीं है।" : "इस मोबाइल नंबर से कोई Unfinalized Application नहीं मिला।";
+                    lblMsg.Text = string.IsNullOrWhiteSpace(mobileNo)  ? "कोई Unfinalized Application उपलब्ध नहीं है।"  : "इस मोबाइल नंबर से कोई Unfinalized Application नहीं मिला।";
                 }
                 else
                 {
@@ -78,7 +82,6 @@ namespace Bhusamadhan.LandDispute.Entry
 
         protected void gvUnfinalized_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
             gvUnfinalized.PageIndex = e.NewPageIndex;
 
             BindUnfinalizedApplications();
@@ -91,13 +94,14 @@ namespace Bhusamadhan.LandDispute.Entry
 
             long applicationId;
 
-            if (!long.TryParse(e.CommandArgument.ToString(), out applicationId))
+            if (!long.TryParse(  e.CommandArgument.ToString(), out applicationId))
             {
                 lblMsg.Text = "Invalid application.";
                 return;
             }
 
 
+            // Open selected unfinalized application
             Response.Redirect("~/LandDispute/Entry/EntryPage.aspx?a_id=" + applicationId);
         }
 

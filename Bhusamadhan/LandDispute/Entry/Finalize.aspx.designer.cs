@@ -15,6 +15,15 @@ namespace Bhusamadhan.LandDispute.Entry
     {
 
         /// <summary>
+        /// lblTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
+
+        /// <summary>
         /// lblMsg control.
         /// </summary>
         /// <remarks>
@@ -33,15 +42,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.DropDownList ddlaction;
 
         /// <summary>
-        /// ddlPageSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
-
-        /// <summary>
         /// txtSearch control.
         /// </summary>
         /// <remarks>
@@ -51,21 +51,12 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// grdMatterRegistration control.
+        /// gvFinalized control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdMatterRegistration;
-
-        /// <summary>
-        /// rptPager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPager;
+        protected global::System.Web.UI.WebControls.GridView gvFinalized;
     }
 }

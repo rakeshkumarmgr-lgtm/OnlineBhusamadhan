@@ -11,7 +11,7 @@ namespace Bhusamadhan.LandDispute.Entry
 {
 
 
-    public partial class Unfinalize
+    public partial class Unfinalize_test
     {
 
         /// <summary>

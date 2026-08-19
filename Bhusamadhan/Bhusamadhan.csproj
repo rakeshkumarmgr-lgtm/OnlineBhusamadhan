@@ -4189,13 +4189,15 @@
     <Content Include="images\User41.jpg" />
     <Content Include="LandDispute\Entry\AddMettingApplication.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPreview.aspx" />
+    <Content Include="LandDispute\Entry\ApplicationPrint.aspx" />
     <Content Include="LandDispute\Entry\EntryPage.aspx" />
-    <Content Include="LandDispute\Entry\Entry_Page.aspx" />
     <Content Include="LandDispute\Entry\Finalize.aspx" />
+    <Content Include="OldFiles\Entry_Page.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMetting.aspx" />
     <Content Include="LandDispute\Entry\Unfinalize.aspx" />
+    <Content Include="OldFiles\Unfinalize_test.aspx" />
     <Content Include="LandDispute\Entry\UserControls\UC_Step1.ascx" />
-    <Content Include="LandDispute\Entry\UserEntry.aspx" />
+    <Content Include="OldFiles\UserEntry.aspx" />
     <Content Include="LandDispute\Reports\LoginDetailsRPT.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -6062,6 +6064,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.Hi.resx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccessLayer\LandDisputeDAL\ApplicationPreviewDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\DashboardDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\FinalSubmitDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\MasterDAL.cs" />
@@ -6100,6 +6103,13 @@
     <Compile Include="LandDispute\Entry\ApplicationPreview.aspx.designer.cs">
       <DependentUpon>ApplicationPreview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LandDispute\Entry\ApplicationPrint.aspx.cs">
+      <DependentUpon>ApplicationPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\ApplicationPrint.aspx.designer.cs">
+      <DependentUpon>ApplicationPrint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Entry\EntryPage.aspx.cs">
       <DependentUpon>EntryPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6107,19 +6117,19 @@
     <Compile Include="LandDispute\Entry\EntryPage.aspx.designer.cs">
       <DependentUpon>EntryPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LandDispute\Entry\Entry_Page.aspx.cs">
-      <DependentUpon>Entry_Page.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LandDispute\Entry\Entry_Page.aspx.designer.cs">
-      <DependentUpon>Entry_Page.aspx</DependentUpon>
-    </Compile>
     <Compile Include="LandDispute\Entry\Finalize.aspx.cs">
       <DependentUpon>Finalize.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LandDispute\Entry\Finalize.aspx.designer.cs">
       <DependentUpon>Finalize.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OldFiles\Entry_Page.aspx.cs">
+      <DependentUpon>Entry_Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OldFiles\Entry_Page.aspx.designer.cs">
+      <DependentUpon>Entry_Page.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Entry\SearchAppForMetting.aspx.cs">
       <DependentUpon>SearchAppForMetting.aspx</DependentUpon>
@@ -6135,6 +6145,13 @@
     <Compile Include="LandDispute\Entry\Unfinalize.aspx.designer.cs">
       <DependentUpon>Unfinalize.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OldFiles\Unfinalize_test.aspx.cs">
+      <DependentUpon>Unfinalize_test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OldFiles\Unfinalize_test.aspx.designer.cs">
+      <DependentUpon>Unfinalize_test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Entry\UserControls\UC_Step1.ascx.cs">
       <DependentUpon>UC_Step1.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6142,11 +6159,11 @@
     <Compile Include="LandDispute\Entry\UserControls\UC_Step1.ascx.designer.cs">
       <DependentUpon>UC_Step1.ascx</DependentUpon>
     </Compile>
-    <Compile Include="LandDispute\Entry\UserEntry.aspx.cs">
+    <Compile Include="OldFiles\UserEntry.aspx.cs">
       <DependentUpon>UserEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LandDispute\Entry\UserEntry.aspx.designer.cs">
+    <Compile Include="OldFiles\UserEntry.aspx.designer.cs">
       <DependentUpon>UserEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Reports\LoginDetailsRPT.aspx.cs">

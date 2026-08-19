@@ -32,7 +32,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                using (SqlCommand cmd = new SqlCommand(  @"SELECT * FROM BS_ActionDetailsEntry WHERE a_id = @a_id ORDER BY id DESC", con))
+                using (SqlCommand cmd = new SqlCommand(@"SELECT top 1 * FROM BS_ActionDetailsEntry WHERE a_id = @a_id ORDER BY id DESC", con))
                 {
                     cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
 

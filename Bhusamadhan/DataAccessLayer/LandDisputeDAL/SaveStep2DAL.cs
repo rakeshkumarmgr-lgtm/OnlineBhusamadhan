@@ -64,5 +64,24 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             return dt;
         }
 
+        public DataTable GetPratiVadiAnyaVivranStep2(long applicationId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+
+                string query = @"select a_id, prativadi_ko_suchit_kiya_gaya_hai, given_info_type, given_info_desc,prativadi_ko_suchana_ka_taamila_praapt_hai, prativadi_upasthit_hua_hai from Matter_Registration where a_id=@a_id  and isnull(prativadi_ko_suchit_kiya_gaya_hai,'')<>''";
+
+                using (SqlDataAdapter da = new SqlDataAdapter(query, con))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@a_id", applicationId);
+                    da.Fill(dt);
+                }
+            }
+
+            return dt;
+        }
+
     }
 }

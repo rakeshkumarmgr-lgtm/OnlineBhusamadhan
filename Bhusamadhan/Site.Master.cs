@@ -34,6 +34,8 @@ namespace Bhusamadhan
                 lblUserID.Text = "<i class='fas fa-user-tag mr-2'></i> User ID : " + dt.Rows[0]["UserID"].ToString();
                 lblUseridSidebar.Text = dt.Rows[0]["UserID"].ToString();
                 lblName.Text = dt.Rows[0]["Name"].ToString();
+                lblDist.Text = "<i class='fas fa-map-marker-alt mr-2'></i> District : " + dt.Rows[0]["DISTRICTNAME"].ToString();
+                lblBlock.Text = "<i class='fas fa-map-marker-alt mr-2'></i> Block : " + dt.Rows[0]["BlockName"].ToString();
             }
 
 

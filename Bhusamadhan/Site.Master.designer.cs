@@ -51,6 +51,24 @@ namespace Bhusamadhan
         protected global::System.Web.UI.WebControls.Label lblUserID;
 
         /// <summary>
+        /// lblDist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDist;
+
+        /// <summary>
+        /// lblBlock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBlock;
+
+        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>

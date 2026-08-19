@@ -86,7 +86,12 @@
                             <asp:Label ID="lblUserID" runat="server" Text="UserId" CssClass="dropdown-item dropdown-footer text-left"></asp:Label>
                             <div class="dropdown-divider">
                             </div>
-
+                            <asp:Label ID="lblDist" runat="server" Text="UserId" CssClass="dropdown-item dropdown-footer text-left"></asp:Label>
+                            <div class="dropdown-divider">
+                            </div>
+                            <asp:Label ID="lblBlock" runat="server" Text="UserId" CssClass="dropdown-item dropdown-footer text-left"></asp:Label>
+                            <div class="dropdown-divider">
+                            </div>
                             <a class="dropdown-item" href="Public/ChangePassword.aspx" style="color: Black">
                                 <i class="fa fa-key mr-2 text-gray-400"></i>
                                 Change Password

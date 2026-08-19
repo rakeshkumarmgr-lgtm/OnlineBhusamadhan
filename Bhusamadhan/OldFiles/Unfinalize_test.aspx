@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Unfinalize.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.Unfinalize" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Unfinalize_test.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.Unfinalize_test" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
     <style>
         .unfinalized-title {
             font-size: 20px;
@@ -70,10 +71,10 @@
 
                         <div class="input-group">
 
-                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="वादी का मोबाइल नंबर खोजें..." MaxLength="10" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"> </asp:TextBox>
+                            <asp:TextBox  ID="txtSearch" runat="server"  CssClass="form-control"  placeholder="वादी का मोबाइल नंबर खोजें..."  MaxLength="10" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"  > </asp:TextBox>
 
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                <span class="input-group-text"> <i class="fa fa-search"></i> </span>
                             </div>
 
                         </div>
@@ -85,7 +86,7 @@
 
                 <div class="grid-wrapper">
 
-                    <asp:GridView ID="gvUnfinalized" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-sm unfinalized-grid" HeaderStyle-CssClass="thead-light" GridLines="None" AllowPaging="True" PageSize="10" EmptyDataText="कोई Unfinalized Application उपलब्ध नहीं है।" OnPageIndexChanging="gvUnfinalized_PageIndexChanging" OnRowCommand="gvUnfinalized_RowCommand" >
+                    <asp:GridView ID="gvUnfinalized" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-sm unfinalized-grid" HeaderStyle-CssClass="thead-light" GridLines="None" AllowPaging="True" PageSize="10" EmptyDataText="कोई Unfinalized Application उपलब्ध नहीं है।" OnPageIndexChanging="gvUnfinalized_PageIndexChanging" OnRowCommand="gvUnfinalized_RowCommand">
 
                         <Columns>
 
@@ -93,9 +94,9 @@
 
                             <%--<asp:BoundField DataField="DISTRICTNAME" HeaderText="District" />
 
-                          <asp:BoundField  DataField="Sd_Name_En" HeaderText="Sub Division" />
+                            <asp:BoundField  DataField="Sd_Name_En" HeaderText="Sub Division" />
 
-                          <asp:BoundField DataField="BlockName"  HeaderText="Block" />--%>
+                            <asp:BoundField DataField="BlockName"  HeaderText="Block" />--%>
                             <asp:TemplateField HeaderText="जिला / अनुमंडल / अंचल">
 
                                 <ItemTemplate>
@@ -115,9 +116,9 @@
 
                             <%-- <asp:BoundField DataField="Police_Station" HeaderText="Police Station" />
 
-                          <asp:BoundField DataField="PanchayatName" HeaderText="Panchayat" />
+                            <asp:BoundField DataField="PanchayatName" HeaderText="Panchayat" />
 
-                          <asp:BoundField DataField="VILLNAME" HeaderText="Village" />--%>
+                            <asp:BoundField DataField="VILLNAME" HeaderText="Village" />--%>
 
                             <asp:TemplateField HeaderText="थाना / ग्राम पंचायत / राजस्व ग्राम">
 
@@ -145,7 +146,7 @@
                             <asp:BoundField DataField="Bhumitype" HeaderText="Bhumi Type" />
 
                             <asp:BoundField DataField="vivadtype" HeaderText="Vivad Type" />
-                            <asp:BoundField DataField="CurrentStep" HeaderText="Current Step" />
+
 
                             <asp:TemplateField HeaderText="Action">
 

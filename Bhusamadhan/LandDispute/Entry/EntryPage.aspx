@@ -29,6 +29,7 @@
             return true;
         }
     </script>
+
     <script>
         function saveIPCSelection() {
             var list = document.getElementById('<%= ddldhara1.ClientID %>');
@@ -99,7 +100,8 @@
                     <li>
                         <a id="hstep3" runat="server" class="step disabled">
                             <span class="step-no">3</span>
-                            <span class="step-text">खाता-खेसरा</span>
+                            <%--<span class="step-text">खाता-खेसरा(विवादित भूमि का विवरण)</span>--%>
+                            <span class="step-text">विवादित भूमि का विवरण</span>
                         </a>
                     </li>
 
@@ -1097,20 +1099,20 @@
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <label class="form-label">पिता / पति का नाम <span class="required">*</span> </label>
+                                            <label class="form-label">पिता / पति का नाम </label>
 
                                             <asp:TextBox ID="txtPFName" runat="server" CssClass="form-control" placeholder="पिता / पति का नाम" AutoComplete="off" oninput="this.value=this.value.toUpperCase();">
                                             </asp:TextBox>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <label class="form-label">जिला  <span class="required">*</span>  </label>
+                                            <label class="form-label">जिला    </label>
 
                                             <asp:DropDownList ID="ddlPDistrict" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPDistrict_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <label class="form-label">अनुमंडल <span class="required">*</span> </label>
+                                            <label class="form-label">अनुमंडल  </label>
 
                                             <asp:DropDownList ID="ddlPSubdivision" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPSubdivision_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
@@ -1121,19 +1123,19 @@
                                     <div class="row">
 
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <label class="form-label">अंचल  <span class="required">*</span> </label>
+                                            <label class="form-label">अंचल  </label>
 
                                             <asp:DropDownList ID="ddlPBlock" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPBlock_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <label class="form-label">थाना<span class="required">*</span> </label>
+                                            <label class="form-label">थाना </label>
 
                                             <asp:DropDownList ID="ddlPThana" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
-                                            <label class="form-label">क्षेत्र का प्रकार<span class="required">*</span> </label>
+                                            <label class="form-label">क्षेत्र का प्रकार</label>
 
                                             <asp:DropDownList ID="ddlPAreatype" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPAreatype_SelectedIndexChanged">
 
@@ -1146,7 +1148,7 @@
 
                                         <div class="col-lg-3 col-md-6 mb-3" id="divPPanchyat" runat="server">
 
-                                            <label class="form-label">ग्राम पंचायत <span class="required">*</span> </label>
+                                            <label class="form-label">ग्राम पंचायत  </label>
 
                                             <asp:DropDownList ID="ddlPPanchyat" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPPanchyat_SelectedIndexChanged"></asp:DropDownList>
 
@@ -1159,7 +1161,7 @@
 
                                         <div class="col-lg-3 col-md-6 mb-3" id="divPPanchyat_Anya" runat="server" visible="false">
 
-                                            <label class="form-label">पंचायत (अगर अन्य है) <span class="required">*</span> </label>
+                                            <label class="form-label">पंचायत (अगर अन्य है)  </label>
 
                                             <asp:TextBox ID="txtPPanchyat_Anya" runat="server" CssClass="form-control" AutoComplete="off"> </asp:TextBox>
 
@@ -1167,7 +1169,7 @@
 
                                         <div class="col-lg-3 col-md-6 mb-3" id="divPVillage_Anya" runat="server" visible="false">
 
-                                            <label class="form-label">ग्राम (अगर अन्य है)<span class="required">*</span> </label>
+                                            <label class="form-label">ग्राम (अगर अन्य है)</label>
 
                                             <asp:TextBox ID="txtPVillage_Anya" runat="server" CssClass="form-control" AutoComplete="off">  </asp:TextBox>
 
@@ -1175,7 +1177,7 @@
 
                                         <div class="col-lg-3 col-md-6 mb-3" id="divPWard_Anya" runat="server" visible="false">
 
-                                            <label class="form-label">वार्ड (अगर अन्य है) <span class="required">*</span> </label>
+                                            <label class="form-label">वार्ड (अगर अन्य है) </label>
 
                                             <asp:TextBox ID="txtPWard_Anya" runat="server" CssClass="form-control" AutoComplete="off"> </asp:TextBox>
 
@@ -1196,7 +1198,7 @@
 
                                         <div class="col-lg-3 col-md-6 mb-3" id="divPWard" runat="server">
 
-                                            <label class="form-label">वार्ड <span class="required">*</span> </label>
+                                            <label class="form-label">वार्ड  </label>
 
                                             <asp:DropDownList ID="ddlPWard" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPWard_SelectedIndexChanged"></asp:DropDownList>
 
@@ -1235,7 +1237,7 @@
                                     <div class="row">
 
                                         <div class="col-md-4 mb-3">
-                                            <label class="form-label">क्या प्रतिवादी किसी विभाग का प्रतिनिधि है?  <span class="required">*</span> </label>
+                                            <label class="form-label">क्या प्रतिवादी किसी विभाग का प्रतिनिधि है?  </label>
 
                                             <asp:DropDownList ID="ddl_is_pratiVadi_from_an_dept" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_is_pratiVadi_from_an_dept_SelectedIndexChanged">
 
@@ -2051,7 +2053,7 @@
                                                             <asp:Label ID="lblEvidenceType" runat="server" Text='<%# (Convert.ToString(Eval("evidence_id")) != "9")  ? Eval("evidence_name")  : Eval("evidence_any_name") %>'>  </asp:Label></td>
 
                                                         <td>
-                                                            <asp:ImageButton ID="Image1" runat="server" ImageUrl="~/images/pdf.gif" Width="50px" Height="50px" Style="cursor: pointer;" CommandArgument='<%# Container.ItemIndex %>' CommandName="View" ToolTip="View Document" /></td>
+                                                            <asp:ImageButton ID="imgVadiEvidence" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandArgument='<%# Eval("FullfileName") %>' CommandName="View" Visible='<%# !string.IsNullOrWhiteSpace(Convert.ToString(Eval("FullfileName"))) %>' /></td>
 
                                                     </tr>
 
@@ -2213,8 +2215,7 @@
                                                             <asp:Label ID="lblEvidenceType" runat="server" Text='<%# (Convert.ToString(Eval("evidence_id")) != "9")  ? Eval("evidence_name")  : Eval("evidence_any_name") %>'>  </asp:Label></td>
 
                                                         <td>
-                                                            <asp:ImageButton ID="Image1" runat="server" ImageUrl="~/images/pdf.gif" Width="50px" Height="50px" Style="cursor: pointer;" CommandArgument='<%# Container.ItemIndex %>' CommandName="View" ToolTip="View Document" /></td>
-
+                                                            <asp:ImageButton ID="imgPratiwadiEvidence" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandArgument='<%# Eval("FullfileName") %>' CommandName="View" Visible='<%# !string.IsNullOrWhiteSpace(Convert.ToString(Eval("FullfileName"))) %>' />
                                                     </tr>
 
                                                 </ItemTemplate>
@@ -2424,7 +2425,7 @@
                                         <label class="form-label">प्राथमिकी / अप्राथमिकी / सनहा दर्ज है?<span class="required">*</span> </label>
 
                                         <asp:DropDownList ID="dd_IsBhumiVivad" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="dd_IsBhumiVivad_SelectedIndexChanged">
-                                            <asp:ListItem Value="0" >--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
                                             <asp:ListItem Value="N">नहीं</asp:ListItem>
                                         </asp:DropDownList>
@@ -2474,7 +2475,7 @@
 
                                         <asp:DropDownList ID="ddlPrathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPrathmiki_huyee_hai_SelectedIndexChanged">
 
-                                            <asp:ListItem Value="0" >--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
                                             <asp:ListItem Value="N">नहीं</asp:ListItem>
 
@@ -2613,7 +2614,7 @@
 
                                         <asp:HiddenField ID="hdnSelectedIPC" runat="server" />
 
-                                       
+
 
                                     </div>
 
@@ -3138,7 +3139,7 @@
 
                                         <asp:TextBox ID="txtbaithakDate" runat="server" CssClass="form-control" MaxLength="10" placeholder="dd-MM-yyyy"></asp:TextBox>
 
-                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtbaithakDate" Format="dd-MM-yyyy" ></cc1:CalendarExtender>
+                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtbaithakDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
 
                                     </div>
 
@@ -3340,9 +3341,12 @@
         <%-- ButtonSection--%>
         <div class="text-center mt-3 mb-4">
 
+            <asp:Button ID="btnHome" runat="server" Text="Home" CssClass="btn btn-primary" OnClick="btnHome_Click" /> 
+            &nbsp;
             <asp:Button ID="btnPrevious" runat="server" Text="Previous" CssClass="btn btn-secondary" OnClick="btnPrevious_Click" />
             &nbsp;
            <asp:Button ID="btnNext" runat="server" Text="Save & Next" CssClass="btn btn-success" OnClick="btnNext_Click" CausesValidation="false" />
+
 
         </div>
 
