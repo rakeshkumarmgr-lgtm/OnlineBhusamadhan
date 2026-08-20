@@ -78,15 +78,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Label lblAreaType;
 
         /// <summary>
-        /// lblVillage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVillage;
-
-        /// <summary>
         /// lblPanchayatName control.
         /// </summary>
         /// <remarks>
@@ -150,13 +141,13 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_vadi_Vivad_Ka_Vighatan;
 
         /// <summary>
-        /// lblvadi_Vivad_Ka_Vighatan control.
+        /// lblvadi_Vivad_Ki_Adyatan_Sthithi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvadi_Vivad_Ka_Vighatan;
+        protected global::System.Web.UI.WebControls.Label lblvadi_Vivad_Ki_Adyatan_Sthithi;
 
         /// <summary>
         /// div_vadi_rajashv_sankhaya control.
@@ -213,13 +204,13 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Preview_vadi_sarkari_bhumi_ka_prakar;
 
         /// <summary>
-        /// lblvadi_sarkari_bhumi_ka_prakar_Label control.
+        /// lblvadi_sarkari_bhumi_ka_prakar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvadi_sarkari_bhumi_ka_prakar_Label;
+        protected global::System.Web.UI.WebControls.Label lblvadi_sarkari_bhumi_ka_prakar;
 
         /// <summary>
         /// div_vadi_Sarkari_bhumi_ka_Prakar_ager_anya_Label control.

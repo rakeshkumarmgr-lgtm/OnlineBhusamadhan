@@ -259,5 +259,32 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
         }
 
 
+        public DataTable GetFinalizedApplicationsForMeeting(string userId, string searchText, long matterStatus)
+        {
+            DataTable dt1 = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(conStr))
+            {
+                using (SqlCommand cmd = new SqlCommand("BS_GetFinalizedApplicationForMeeting", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CUUser", SqlDbType.NVarChar, 50).Value = string.IsNullOrWhiteSpace(userId) ? (object)DBNull.Value : userId.Trim();
+
+                    cmd.Parameters.Add("@SearchText", SqlDbType.NVarChar, 50).Value = string.IsNullOrWhiteSpace(searchText) ? "" : searchText.Trim();
+
+                    cmd.Parameters.Add("@Matter_Status", SqlDbType.BigInt).Value = matterStatus;
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt1);
+                    }
+                }
+            }
+
+            return dt1;
+        }
+
+
     }
 }

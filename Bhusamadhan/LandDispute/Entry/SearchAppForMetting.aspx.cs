@@ -1,4 +1,5 @@
-﻿using Bhusamadhan.DB;
+﻿using Bhusamadhan.DataAccessLayer.LandDisputeDAL;
+using Bhusamadhan.DB;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,8 +20,8 @@ namespace Bhusamadhan.LandDispute.Entry
         int roleid;
         int thanaCode;
         DBHelper objDBHelper = new DBHelper();
-
-        clsDataAccessLandDispute clsData = new clsDataAccessLandDispute();
+        private readonly MatterRegistrationDAL _matterDAL = new MatterRegistrationDAL();
+        //clsDataAccessLandDispute clsData = new clsDataAccessLandDispute();
         protected void Page_Load(object sender, EventArgs e)
         {
             DataTable dt = Session["UserLogIn"] as DataTable;
@@ -59,6 +60,7 @@ namespace Bhusamadhan.LandDispute.Entry
             if (!IsPostBack)
             {
                 bindMasterData();
+                BindFinalizedApplicationsForMeeting();
             }
         }
 
@@ -402,220 +404,109 @@ namespace Bhusamadhan.LandDispute.Entry
             bindWard();
         }
 
+        private void BindFinalizedApplicationsForMeeting()
+        {
+            try
+            {
+               
+                string searchText = txtSearch.Text.Trim();
 
-        //private void bindGridData(int pageIndex)
+                long matterStatus = 0;
+
+                DataTable dt = _matterDAL.GetFinalizedApplicationsForMeeting(userid, searchText, matterStatus);
+
+                gvFinalizedForMeeting.DataSource = dt;
+                gvFinalizedForMeeting.DataBind();
+
+                lblTotal.Text = "Total : " + dt.Rows.Count;
+
+                if (dt.Rows.Count == 0)
+                {
+                    lblMsg.Text = "कोई Finalized Application उपलब्ध नहीं है।";
+                }
+                else
+                {
+                    lblMsg.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMsg.Text = ex.Message;
+                //lblMsg.Text = "Finalized Application list load करने में समस्या हुई।";
+
+                // Log ex
+            }
+        }
+        //protected void lnkView_Click(object sender, EventArgs e)
         //{
         //    try
         //    {
-        //        List<SqlParameter> listSQLP = new List<SqlParameter>();
 
-        //        listSQLP.Add(new SqlParameter("@PageIndex", pageIndex));
-        //        listSQLP.Add(new SqlParameter("@PageSize", Convert.ToInt32(ddlPageSize.SelectedValue)));
+        //        LinkButton linkbtn = sender as LinkButton;
+        //        string UrlRedirect = linkbtn.CommandArgument;// enc.Encrypt(linkbtn.CommandArgument);
+        //        //Response.Redirect("~/LandDispute/Entry/EntryPage.aspx?RegId=" + UrlRedirect);
+        //        Response.Redirect("~/LandDispute/Entry/AddMettingApplication.aspx?RegId=" + UrlRedirect, false);
 
-        //        SqlParameter outRecordCount = new SqlParameter("@RecordCount", SqlDbType.Int);
-        //        outRecordCount.Direction = ParameterDirection.Output;
-        //        listSQLP.Add(outRecordCount);
-
-
-        //        listSQLP.Add(new SqlParameter("@Comm_Code", Convert.ToInt32(ddlCommissionary.SelectedValue.Trim())));
-        //        listSQLP.Add(new SqlParameter("@District_Code", Convert.ToInt32(ddlDistrict.SelectedValue.Trim())));
-        //        listSQLP.Add(new SqlParameter("@Sub_DivCode", Convert.ToInt32(ddlSubDivision.SelectedValue.Trim())));
-        //        listSQLP.Add(new SqlParameter("@Block_Code", Convert.ToInt32(ddlBlock.SelectedValue.Trim())));
-        //        listSQLP.Add(new SqlParameter("@Thana_code", Convert.ToInt32(ddlPoliceStation.SelectedValue.Trim())));
-        //        listSQLP.Add(new SqlParameter("@Panchayat_Code", Convert.ToInt32(ddlPanchayat.SelectedValue.Trim())));
-        //        listSQLP.Add(new SqlParameter("@Village", Convert.ToInt32(ddlVillage.SelectedValue.Trim())));
-        //        listSQLP.Add(new SqlParameter("@WardNo", Convert.ToInt32(ddlWard.SelectedValue.Trim())));
-
-        //        DataTable dt = objDBHelper.GetResults("SP_SearchMatterRegistrationNew", listSQLP, true);
-
-        //        GridView1.DataSource = dt;
-        //        GridView1.DataBind();
-
-        //        int recordCount = 0;
-
-        //        if (outRecordCount.Value != DBNull.Value)
-        //            recordCount = Convert.ToInt32(outRecordCount.Value);
-
-        //        PopulatePager(recordCount, pageIndex);
         //    }
         //    catch (Exception ex)
         //    {
-        //        lblMsg.Text = ex.Message;
+        //        //Response.Write(ex.Message.ToString());
+        //        lblMsg.Text = ex.Message.ToString();
+
         //    }
+
         //}
 
-
-        private void bindGridData(int pageIndex)
+        protected void lnkView_Click(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            SqlParameter[] p = new SqlParameter[12];
             try
             {
+                LinkButton linkbtn = sender as LinkButton;
 
-                p[0] = new SqlParameter("@QueryType", "2");
-                p[1] = new SqlParameter("@Comm_Code", Convert.ToInt32(ddlCommissionary.SelectedValue.Trim()));
-                p[2] = new SqlParameter("@District_Code", Convert.ToInt32(ddlDistrict.SelectedValue.Trim()));
-                p[3] = new SqlParameter("@Sub_DivCode", Convert.ToInt32(ddlSubDivision.SelectedValue.Trim()));
-                p[4] = new SqlParameter("@Block_Code", Convert.ToInt32(ddlBlock.SelectedValue.Trim()));
-                p[5] = new SqlParameter("@Thana_code", Convert.ToInt32(ddlPoliceStation.SelectedValue.Trim()));
-                p[6] = new SqlParameter("@Panchayat_Code", Convert.ToInt32(ddlPanchayat.SelectedValue.Trim()));
-                p[7] = new SqlParameter("@Village", Convert.ToInt32(ddlVillage.SelectedValue.Trim()));
-                p[8] = new SqlParameter("@WardNo", Convert.ToInt32(ddlWard.SelectedValue.Trim()));
+                if (linkbtn == null)
+                    return;
 
-                p[9] = new SqlParameter("@PageIndex", pageIndex);
-                p[10] = new SqlParameter("@PageSize", int.Parse(ddlPageSize.SelectedValue));
+                string applicationId = linkbtn.CommandArgument;
 
-
-                p[11] = new SqlParameter("@RecordCount", SqlDbType.Int, 4);
-                p[11].Direction = System.Data.ParameterDirection.Output;
-
-                dt = clsData.GetDataTableWithProc("SP_SearchMatterRegistrationNew", p);
-                int totalRecord = 0;
-                if (p[11].Value != null)
+                if (string.IsNullOrWhiteSpace(applicationId))
                 {
-                    int.TryParse(p[11].Value.ToString(), out totalRecord);
+                    lblMsg.Text = "Application ID not found.";
+                    return;
                 }
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
 
+                string encryptedId = QueryStringHelper.Encrypt(applicationId);
 
-                int recordCount = Convert.ToInt32(p[11].Value);
-                this.PopulatePager(recordCount, pageIndex);
+                string url = "~/LandDispute/Entry/AddMettingApplication.aspx?RegId=" + encryptedId;
+
+                Response.Redirect(url, false);
+
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {
                 lblMsg.Text = ex.Message;
             }
         }
-        private void PopulatePager(int recordCount, int currentPage)
+
+
+        protected void gvFinalized_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            double dblPageCount = (double)((decimal)recordCount / decimal.Parse(ddlPageSize.SelectedValue));
-            int pageCount = (int)Math.Ceiling(dblPageCount);
-            List<ListItem> pages = new List<ListItem>();
-            if (pageCount > 0)
-            {
-                pages.Add(new ListItem("First", "1", currentPage > 1));
-                for (int i = 1; i <= pageCount; i++)
-                {
-                    pages.Add(new ListItem(i.ToString(), i.ToString(), i != currentPage));
-                }
-                pages.Add(new ListItem("Last", pageCount.ToString(), currentPage < pageCount));
-            }
-            rptPager.DataSource = pages;
-            rptPager.DataBind();
+            gvFinalizedForMeeting.PageIndex = e.NewPageIndex;
+
+            BindFinalizedApplicationsForMeeting();
         }
 
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            gvFinalizedForMeeting.PageIndex = 0;
+
+            BindFinalizedApplicationsForMeeting();
+        }
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            bindGridData(1);
+            lblMsg.Text = "";
+            BindFinalizedApplicationsForMeeting();
         }
-
-        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.bindGridData(1);
-        }
-
-        protected void Page_Changed(object sender, CommandEventArgs e)
-        {
-            int pageIndex = Convert.ToInt32(e.CommandArgument);
-
-            this.bindGridData(pageIndex);
-        }
-
-        protected void lnkView_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                LinkButton linkbtn = sender as LinkButton;
-                string UrlRedirect = linkbtn.CommandArgument;// enc.Encrypt(linkbtn.CommandArgument);
-                //Response.Redirect("~/LandDispute/Entry/EntryPage.aspx?RegId=" + UrlRedirect);
-                Response.Redirect("~/LandDispute/Entry/AddMettingApplication.aspx?RegId=" + UrlRedirect, false);
-
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message.ToString());
-            }
-
-        }
-
-        //----------------what is the use of below function used?----------------------------------
-        public bool CheckImage(object url)
-        {
-            if (url.ToString() != "")
-            {
-                string p = (url.ToString()).Replace("~", "");
-                url = "http://localhost:8080" + p;
-                try
-                {
-                    using (var webClient = new WebClient())
-                    {
-                        byte[] imageBytes = webClient.DownloadData(url.ToString());
-                        string imreBase64Data = Convert.ToBase64String(imageBytes);
-                        string imgDataURL = string.Format("data:Application/pdf;base64,{0}", imreBase64Data);
-
-                    }
-                    return true;
-                }
-                catch (Exception ex)
-                {
-
-                    return false;
-                }
-                //return true;
-            }
-
-
-            else
-            {
-                return false;
-            }
-
-
-        }
-
-
-        public bool CheckNull(object myValue)
-        {
-            if (myValue == null || myValue.ToString() == "")
-            {
-                return false;
-            }
-
-            if (myValue is DBNull)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        //[System.Web.Services.WebMethod()]
-        //public static string Getpdf(string url)
-        //{
-        //    //string urlpath = "";
-        //    //try
-        //    //{
-        //    //    using (var webClient = new WebClient())
-        //    //    {
-        //    //        byte[] imageBytes = webClient.DownloadData(url);
-        //    //        string imreBase64Data = Convert.ToBase64String(imageBytes);
-        //    //        string imgDataURL = string.Format("data:Application/pdf;base64,{0}", imreBase64Data);
-        //    //        urlpath = imgDataURL;
-        //    //    }
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    urlpath = ex.Message;
-        //    //}
-        //    Encryptor enc = new Encryptor(Encryptor.PrivateKey);
-        //    string urlpath = "";
-        //    string encPathgov = enc.EncodeTo64(url);
-        //    encPathgov = Aes256CbcEncrypterApp.Encrypt(encPathgov, System.Web.HttpContext.Current.Session["aes256key"].ToString());
-        //    urlpath = encPathgov;
-        //    return urlpath;
-        //}
     }
 }

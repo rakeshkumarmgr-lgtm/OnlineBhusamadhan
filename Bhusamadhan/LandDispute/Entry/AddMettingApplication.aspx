@@ -71,16 +71,17 @@
                         <asp:Label ID="lblAreaType" runat="server"></asp:Label>
                     </div>
 
-                    <div class="col-md-3 fw-bold">
-                        <asp:Label ID="lblVillage" runat="server"></asp:Label>
-                    </div>
+                    <div class="col-md-3 fw-bold">ग्राम पंचायत </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3 fw-bold">
+
                         <asp:Label ID="lblPanchayatName" runat="server"></asp:Label>
                     </div>
 
-                </div>
 
+
+                </div>
+            
 
                 <div class="row border-bottom py-2">
 
@@ -105,7 +106,7 @@
                     </div>
 
                     <div class="col-md-3" id="div_vadi_Vivad_Ka_Vighatan" runat="server">
-                        <asp:Label ID="lblvadi_Vivad_Ka_Vighatan" runat="server"></asp:Label>
+                        <asp:Label ID="lblvadi_Vivad_Ki_Adyatan_Sthithi" runat="server"></asp:Label>
                     </div>
 
                     <div class="col-md-3 fw-bold">
@@ -134,7 +135,7 @@
                     </div>
 
                     <div class="col-md-3" id="div_Preview_vadi_sarkari_bhumi_ka_prakar" runat="server">
-                        <asp:Label ID="lblvadi_sarkari_bhumi_ka_prakar_Label" runat="server"></asp:Label>
+                        <asp:Label ID="lblvadi_sarkari_bhumi_ka_prakar" runat="server"></asp:Label>
                     </div>
 
                 </div>
@@ -275,7 +276,7 @@
 
                             <asp:BoundField DataField="Vadi_Father_Husband_Name" HeaderText="पिता / पति का नाम" />
 
-                           
+
                             <asp:TemplateField HeaderText="लिंग">
                                 <HeaderStyle CssClass="text-center" />
                                 <ItemStyle CssClass="text-center" />
@@ -653,7 +654,7 @@
 
                 <div class="table-responsive">
 
-                    <asp:GridView ID="gdVadiEvidence" runat="server" AutoGenerateColumns="false" EmptyDataText="No Record Found!"  CssClass="table table-bordered table-hover table-striped mb-0">
+                    <asp:GridView ID="gdVadiEvidence" runat="server" AutoGenerateColumns="false" EmptyDataText="No Record Found!" CssClass="table table-bordered table-hover table-striped mb-0">
 
                         <Columns>
 
@@ -710,7 +711,7 @@
 
                 <div class="table-responsive">
 
-                    <asp:GridView ID="gdPrativadiEvidence" runat="server" AutoGenerateColumns="false" EmptyDataText="No Record Found!"  CssClass="table table-bordered table-hover table-striped mb-0">
+                    <asp:GridView ID="gdPrativadiEvidence" runat="server" AutoGenerateColumns="false" EmptyDataText="No Record Found!" CssClass="table table-bordered table-hover table-striped mb-0">
 
                         <Columns>
 
@@ -912,7 +913,7 @@
 
                         <Columns>
 
-                           
+
                             <asp:TemplateField HeaderText="Sl. No.">
                                 <HeaderStyle CssClass="text-center" Width="5%" />
                                 <ItemStyle CssClass="text-center align-middle" />
@@ -921,12 +922,12 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                          
+
                             <asp:BoundField DataField="Ghatna_Vardat_date" HeaderText="घटना की तिथि">
                                 <ItemStyle Width="8%" />
                             </asp:BoundField>
 
-                          
+
                             <asp:TemplateField HeaderText="घटना की संक्षिप्त विवरण">
                                 <ItemStyle Width="18%" />
                                 <ItemTemplate>
@@ -1111,7 +1112,7 @@
 
                         <Columns>
 
-                          
+
                             <asp:TemplateField HeaderText="Sl. No.">
                                 <ItemTemplate>
                                     <%# Container.DataItemIndex + 1 %>
@@ -1120,7 +1121,7 @@
                                 <ItemStyle CssClass="text-center align-middle" />
                             </asp:TemplateField>
 
-                          
+
                             <asp:TemplateField HeaderText="भूमि विवाद की संवेदनशीलता">
                                 <ItemTemplate>
                                     <%# Eval("SensitivityType") %>
@@ -1128,7 +1129,7 @@
                                 <ItemStyle CssClass="align-middle" Width="13%" />
                             </asp:TemplateField>
 
-                           
+
                             <asp:TemplateField HeaderText="बैठक की तिथि">
                                 <ItemTemplate>
                                     <%# Eval("Meeting_date", "{0:dd MMM yyyy}") %>
@@ -1136,7 +1137,7 @@
                                 <ItemStyle CssClass="align-middle" Width="8%" />
                             </asp:TemplateField>
 
-                         
+
                             <asp:TemplateField HeaderText="क्या वादी उपस्थित है ?">
                                 <ItemTemplate>
                                     <%# Eval("Is_Vadi_Present") %>
@@ -1144,7 +1145,7 @@
                                 <ItemStyle CssClass="align-middle" Width="10%" />
                             </asp:TemplateField>
 
-                           
+
                             <asp:TemplateField HeaderText="क्या प्रतिवादी उपस्थित है ?">
                                 <ItemTemplate>
                                     <%# Eval("Is_PratiVadi_Present") %>
@@ -1152,7 +1153,7 @@
                                 <ItemStyle CssClass="align-middle" Width="12%" />
                             </asp:TemplateField>
 
-                         
+
                             <asp:TemplateField HeaderText="बैठक का निष्कर्ष">
                                 <ItemTemplate>
                                     <%# Eval("Action") %>
@@ -1167,7 +1168,7 @@
                                 <ItemStyle CssClass="align-middle" Width="12%" />
                             </asp:TemplateField>
 
-                       
+
                             <asp:TemplateField HeaderText="थानाध्यक्ष का मंतव्य">
                                 <ItemTemplate>
                                     <%# Eval("thana_prabhari_mantavy") %>
@@ -1175,7 +1176,7 @@
                                 <ItemStyle CssClass="align-middle" Width="12%" />
                             </asp:TemplateField>
 
-                        
+
                             <asp:TemplateField HeaderText="थानाध्यक्ष एवं अंचलाधिकारी का संयुक्त प्रतिवेदन">
                                 <ItemTemplate>
 
@@ -1217,7 +1218,7 @@
 
                 <div class="table-responsive">
 
-                    <asp:GridView ID="GridView1" runat="server" Width="100%" AutoGenerateColumns="False" CssClass="table table-bordered table-striped table-hover" EmptyDataText="No Record Found" ShowHeaderWhenEmpty="True" ShowFooter="True" AllowPaging="False" PageSize="25" >
+                    <asp:GridView ID="GridView1" runat="server" Width="100%" AutoGenerateColumns="False" CssClass="table table-bordered table-striped table-hover" EmptyDataText="No Record Found" ShowHeaderWhenEmpty="True" ShowFooter="True" AllowPaging="False" PageSize="25">
 
                         <Columns>
 

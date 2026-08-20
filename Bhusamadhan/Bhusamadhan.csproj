@@ -6082,6 +6082,7 @@
     <Compile Include="DB\FileSaveServer.cs" />
     <Compile Include="DB\FileUploadValidator.cs" />
     <Compile Include="DB\MenuHelper.cs" />
+    <Compile Include="DB\QueryStringHelper.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -15,6 +15,15 @@ namespace Bhusamadhan.LandDispute.Entry
     {
 
         /// <summary>
+        /// lblTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
+
+        /// <summary>
         /// lblMsg control.
         /// </summary>
         /// <remarks>
@@ -96,15 +105,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.DropDownList ddlWard;
 
         /// <summary>
-        /// ddlPageSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
-
-        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>
@@ -114,21 +114,21 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
-        /// GridView1 control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// rptPager control.
+        /// gvFinalizedForMeeting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptPager;
+        protected global::System.Web.UI.WebControls.GridView gvFinalizedForMeeting;
     }
 }
