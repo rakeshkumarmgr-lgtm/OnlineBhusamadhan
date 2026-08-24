@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>भू-समाधान | बिहार सरकार</title>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <%-- <link rel="icon" type="Image/x-icon" href="Image/favicon.ico" />--%>
     <link href="images/bihar_homedept_logo.png" rel="icon" />
     <!-- Google Font: Source Sans Pro -->
@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="dist/css/adminlte.min.css" />
     <link href="assets/css/sidebar1.css" rel="stylesheet" />
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -217,8 +218,10 @@
 
 
     </form>
-    <!-- REQUIRED SCRIPTS -->
 
+    <!-- REQUIRED SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="<%=ResolveClientUrl("~/plugins/bootstrap/js/bootstrap.bundle.min.js")%>"></script>
     <!-- jquery-validation -->
     <script src="<%=ResolveClientUrl("~/plugins/jquery-validation/jquery.validate.min.js")%>"></script>
@@ -226,6 +229,25 @@
 
     <script src="<%=ResolveClientUrl("~/dist/js/adminlte.min.js")%>"></script>
 
+    <script>
+        function initSelect2() {
+            $('.select2').select2({
+                width: '100%',
+                placeholder: 'Select'
+            });
+        }
+
+        $(document).ready(function () {
+            initSelect2();
+        });
+
+        // Safe for UpdatePanel / Postback
+        if (typeof (Sys) !== "undefined") {
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                initSelect2();
+            });
+        }
+    </script>
 
 
     <script>
@@ -239,6 +261,8 @@
             window.setTimeout(ShowTime, 1000);
         }
     </script>
+
+
 
 
 </body>

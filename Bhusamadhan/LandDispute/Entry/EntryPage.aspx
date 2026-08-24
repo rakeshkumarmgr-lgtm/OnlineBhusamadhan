@@ -8,6 +8,25 @@
     <link href="../../assets/css/cssSteps.css" rel="stylesheet" />
     <link href="../../assets/css/cssEntryPage.css" rel="stylesheet" />
 
+    <style type="text/css">
+     .zindex {
+         background-color: #FAF5EF;
+         z-index: 10001;
+     }
+
+     .dharaType input[type="radio"] {
+         margin-right: 6px;
+         cursor: pointer;
+     }
+
+     .dharaType label {
+         margin-right: 25px;
+         font-weight: 500;
+         cursor: pointer;
+     }
+ </style>
+    
+
     <script type="text/javascript">
         function checkDate(sender, args) {
             //if (sender._selectedDate > new Date()) {
@@ -29,7 +48,6 @@
             return true;
         }
     </script>
-
     <script>
         function saveIPCSelection() {
             var list = document.getElementById('<%= ddldhara1.ClientID %>');
@@ -51,22 +69,140 @@
         });
     </script>
 
-    <style>
-        .selected-dhara {
-            display: inline-block;
-            margin: 5px;
-            padding: 5px 10px;
-            background-color: #e0f7fa;
-            border-radius: 4px;
+    <script>
+        $(document).ready(function () {
+            $('#<%= ddlbsn_dhara_hai.ClientID %>').select2({
+                placeholder: "धारा चुनें",
+                width: '100%',
+                allowClear: true,
+                tags: true   // <-- enables tag mode with cross button
+            });
+
+            $('#<%= ddldhara1.ClientID %>').select2({
+                placeholder: "चयनित धाराएँ",
+                width: '100%',
+                allowClear: true,
+                tags: true
+            });
+        });
+    </script>
+
+
+    <script type="text/javascript">
+
+        function initializeDharaSelect2() {
+
+            var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
+        var $ipc = $('#<%= ddldhara1.ClientID %>');
+
+            // -----------------------------------------
+            // BNS Select2
+            // -----------------------------------------
+            if ($bns.length) {
+
+                if ($bns.hasClass("select2-hidden-accessible")) {
+                    $bns.select2('destroy');
+                }
+
+                $bns.select2({
+                    width: '100%',
+                    closeOnSelect: false,
+                    placeholder: 'BNS धाराएँ चुनें',
+                    allowClear: true
+                });
+            }
+
+
+            // -----------------------------------------
+            // IPC Select2
+            // -----------------------------------------
+            if ($ipc.length) {
+
+                if ($ipc.hasClass("select2-hidden-accessible")) {
+                    $ipc.select2('destroy');
+                }
+
+                $ipc.select2({
+                    width: '100%',
+                    closeOnSelect: false,
+                    placeholder: 'IPC धाराएँ चुनें',
+                    allowClear: false
+                });
+            }
         }
 
-        .remove-cross {
-            color: red;
-            margin-left: 8px;
-            text-decoration: none;
-            font-weight: bold;
+
+        // =========================================================
+        // Synchronize selected IPC values with HiddenField
+        // =========================================================
+        function syncSelectedIPC() {
+
+            var $ipc = $('#<%= ddldhara1.ClientID %>');
+        var $hidden = $('#<%= hdnSelectedIPC.ClientID %>');
+
+        if (!$ipc.length || !$hidden.length)
+            return;
+
+        var selectedValues = $ipc.val() || [];
+
+        $hidden.val(selectedValues.join(','));
+    }
+
+
+    // =========================================================
+    // IPC changed by user
+    // =========================================================
+    function ipcSelectionChanged() {
+
+        syncSelectedIPC();
+    }
+
+
+    // =========================================================
+    // BNS changed
+    //
+    // AutoPostBack is already handled by ASP.NET.
+    // We only synchronize the current BNS selection before
+    // postback occurs.
+    // =========================================================
+    function bnsSelectionChanged() {
+
+        // Nothing special required here because ASP.NET
+        // AutoPostBack will submit the selected BNS values.
+    }
+
+
+    // =========================================================
+    // Document ready
+    // =========================================================
+    $(document).ready(function () {
+
+        initializeDharaSelect2();
+
+        var $ipc = $('#<%= ddldhara1.ClientID %>');
+        var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
+
+        if ($ipc.length) {
+
+            $ipc.on('change', function () {
+
+                ipcSelectionChanged();
+
+            });
         }
-    </style>
+
+        if ($bns.length) {
+
+            $bns.on('change', function () {
+
+                bnsSelectionChanged();
+
+            });
+        }
+    });
+
+    </script>
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
@@ -75,8 +211,7 @@
         <div class="card shadow-sm mb-3">
 
             <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Application Entry
-                </h5>
+                <h5 class="mb-0">Application Entry</h5>
             </div>
 
             <div class="card-body">
@@ -2406,7 +2541,6 @@
 
                 <ContentTemplate>
 
-
                     <div class="card mt-3">
 
                         <div class="card-header bg-light">
@@ -2603,19 +2737,18 @@
 
                                         <asp:ListBox ID="ddlbsn_dhara_hai" runat="server" CssClass="form-control select2" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlbsn_dhara_hai_SelectedIndexChanged"></asp:ListBox>
 
+
                                     </div>
 
                                     <!-- IPC -->
                                     <div class="col-md-3 mb-3" id="divdhara1" runat="server" visible="false">
 
-                                        <label class="form-label">IPC धाराएँ </label>
+                                        <label class="form-label">IPC धाराएँ चयन करें </label>
 
                                         <asp:ListBox ID="ddldhara1" runat="server" CssClass="form-control select2" SelectionMode="Multiple"></asp:ListBox>
 
                                         <asp:HiddenField ID="hdnSelectedIPC" runat="server" />
-
-
-
+                                  
                                     </div>
 
                                     <row>
@@ -3341,7 +3474,7 @@
         <%-- ButtonSection--%>
         <div class="text-center mt-3 mb-4">
 
-            <asp:Button ID="btnHome" runat="server" Text="Home" CssClass="btn btn-primary" OnClick="btnHome_Click" /> 
+            <asp:Button ID="btnHome" runat="server" Text="Home" CssClass="btn btn-primary" OnClick="btnHome_Click" />
             &nbsp;
             <asp:Button ID="btnPrevious" runat="server" Text="Previous" CssClass="btn btn-secondary" OnClick="btnPrevious_Click" />
             &nbsp;

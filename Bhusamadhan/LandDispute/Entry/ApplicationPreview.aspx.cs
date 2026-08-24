@@ -129,11 +129,11 @@ namespace Bhusamadhan.LandDispute.Entry
             DataRow dr = dt.Rows[0];
 
     
-            lblprativadi_ka_suchit.Text= dr["PrativadiKoSuchit"].ToString();
-            lblprativadi_ka_Karan.Text = dr["PrativadiKoSuchitKaran"].ToString();
-            lblprativadi_ka_madham.Text = dr["SuchnaKaMadhyam"].ToString();
-            lblprativadi_ka_SuchnaTamil.Text = dr["SuchnaTaamila"].ToString();
-            lblprativadi_ka_Upashtith.Text = dr["PrativadiUpasthit"].ToString();
+            lblprativadi_ka_suchit.Text= ": " + dr["PrativadiKoSuchit"].ToString();
+            lblprativadi_ka_Karan.Text = ": " + dr["PrativadiKoSuchitKaran"].ToString();
+            lblprativadi_ka_madham.Text = ": " + dr["SuchnaKaMadhyam"].ToString();
+            lblprativadi_ka_SuchnaTamil.Text = ": " + dr["SuchnaTaamila"].ToString();
+            lblprativadi_ka_Upashtith.Text = ": " + dr["PrativadiUpasthit"].ToString();
         }
 
         // 4 - Khata-Khesra
@@ -166,12 +166,12 @@ namespace Bhusamadhan.LandDispute.Entry
 
             DataRow dr = dt.Rows[0];
 
-            lblPoliceAdhikariVivarni.Text= dr["PoliceAdhikariVivran"].ToString();
-            lblHalkaKarmchariVivarni.Text = dr["HalkaKarmchariVivran"].ToString();
-            lblVivaditBhukandKiMapiKaReasonHai.Text = dr["VivaditBhukhandMapiAvashyakta"].ToString();
-            lblMapiValue.Text = dr["VivaditBhukhandMapi"].ToString();
-            lblVivaditBhumiKaMapiNahiHoneKaKaran.Text = dr["VivaditBhukhandMapiReason"].ToString();
-            lblMapiKeNirdharnKiThithiValue.Text = dr["MapiKeLieNirdharitTithi"].ToString();
+            lblPoliceAdhikariVivarni.Text= ": " + dr["PoliceAdhikariVivran"].ToString();
+            lblHalkaKarmchariVivarni.Text = ": " + dr["HalkaKarmchariVivran"].ToString();
+            lblVivaditBhukandKiMapiKaReasonHai.Text = ": " + dr["VivaditBhukhandMapiAvashyakta"].ToString();
+            lblMapiValue.Text = ": " + dr["VivaditBhukhandMapi"].ToString();
+            lblVivaditBhumiKaMapiNahiHoneKaKaran.Text = ": " + dr["VivaditBhukhandMapiReason"].ToString();
+            lblMapiKeNirdharnKiThithiValue.Text = ": " + dr["MapiKeLieNirdharitTithi"].ToString();
 
             SetPdfButton(lnkpulis_padadhikari_Patr_file, dr["PoliceReportFile"]);
             SetPdfButton(lnkfile_halkakarmchari_praptr, dr["HalkaReportFile"]);
@@ -201,7 +201,7 @@ namespace Bhusamadhan.LandDispute.Entry
                 return;
 
             DataRow dr = dt.Rows[0];
-            lblPrakiriyadhinVadAvailable.Text= dt.Rows[0]["dispute_in_court_available"].ToString();
+            lblPrakiriyadhinVadAvailable.Text= ": "+ dt.Rows[0]["dispute_in_court_available"].ToString();
 
             rptNyayalayVivran.DataSource = dt;
             rptNyayalayVivran.DataBind();
@@ -215,18 +215,18 @@ namespace Bhusamadhan.LandDispute.Entry
 
             DataRow dr = dt.Rows[0];
 
-            lblVivaadKiSanvedanasheelata.Text = dt.Rows[0]["SensitivityType"].ToString();
-            lblBaithakKiTithi.Text = dt.Rows[0]["Meeting_date"].ToString();
-            lblkyaVaadeeUpasthitHai.Text = dt.Rows[0]["Is_Vadi_Present"].ToString();
-            lblKyaPrativaadeeUpasthitHai.Text = dt.Rows[0]["Is_PratiVadi_Present"].ToString();
-            lblBaithakKaNishkarsh.Text = dt.Rows[0]["BaithakKaNishkarsh"].ToString();
+            lblVivaadKiSanvedanasheelata.Text = ": " + dt.Rows[0]["SensitivityType"].ToString();
+            lblBaithakKiTithi.Text = ": " + dt.Rows[0]["Meeting_date"].ToString();
+            lblkyaVaadeeUpasthitHai.Text = ": " + dt.Rows[0]["Is_Vadi_Present"].ToString();
+            lblKyaPrativaadeeUpasthitHai.Text = ": " + dt.Rows[0]["Is_PratiVadi_Present"].ToString();
+            lblBaithakKaNishkarsh.Text = ": " + dt.Rows[0]["BaithakKaNishkarsh"].ToString();
 
-            lblAsveekrtiKaKaaran.Text = dt.Rows[0]["reason_for_rejection"].ToString();
-            lblvadikaVadSankhyaVarsh.Text = dt.Rows[0]["vaadi_ki_vaad_sankhya_varsh"].ToString();
+            lblAsveekrtiKaKaaran.Text = ": " + dt.Rows[0]["reason_for_rejection"].ToString();
+            lblvadikaVadSankhyaVarsh.Text = ": " + dt.Rows[0]["vaadi_ki_vaad_sankhya_varsh"].ToString();
 
-            lblBaithakMeinLiyaGayaNirnay.Text = dt.Rows[0]["conclusion_of_the_meeting"].ToString();
-            lblAnchalaadhikaareeKaMantavy.Text = dt.Rows[0]["anchala_dhikari_mantavy"].ToString();
-            lblThaanaadhyakshKaMantavy.Text = dt.Rows[0]["thana_prabhari_mantavy"].ToString();
+            lblBaithakMeinLiyaGayaNirnay.Text = ": " + dt.Rows[0]["conclusion_of_the_meeting"].ToString();
+            lblAnchalaadhikaareeKaMantavy.Text = ": " + dt.Rows[0]["anchala_dhikari_mantavy"].ToString();
+            lblThaanaadhyakshKaMantavy.Text = ": " + dt.Rows[0]["thana_prabhari_mantavy"].ToString();
 
             // -------Matter Status dependent information----------------------------------
           
@@ -314,42 +314,42 @@ namespace Bhusamadhan.LandDispute.Entry
             DataRow dr = dt.Rows[0];
 
             // Application information
-            lblApplicationNo.Text = dr["ApplicationNo"].ToString();
+            lblApplicationNo.Text = ": " + dr["ApplicationNo"].ToString();
          
-            lblAppDate.Text = dr["AavedanKiTithi"].ToString();
+            lblAppDate.Text = ": " + dr["AavedanKiTithi"].ToString();
 
-            lbla_id.Value = dr["a_id"].ToString();
+            lbla_id.Value = ": " + dr["a_id"].ToString();
 
             // भूमि विवाद का विवरण
-            lblDistrict.Text = dr["District"].ToString();
-            lblSubdivision.Text = dr["Subdivision"].ToString();
-            lblBlock.Text = dr["Block"].ToString();
-            lblPolice_Station.Text = dr["Police_Station"].ToString();
+            lblDistrict.Text = ": " + dr["District"].ToString();
+            lblSubdivision.Text = ": " + dr["Subdivision"].ToString();
+            lblBlock.Text = ": " + dr["Block"].ToString();
+            lblPolice_Station.Text = ": " + dr["Police_Station"].ToString();
 
-            lblAreaType.Text = dr["AreaType"].ToString();
+            lblAreaType.Text = ": " + dr["AreaType"].ToString();
 
-            lblPanchayatName.Text = dr["Panchayat"].ToString();
-            lblVILLNAME.Text = dr["Village"].ToString();
-            lblWARDNAME.Text = dr["Ward"].ToString();
+            lblPanchayatName.Text = ": " + dr["Panchayat"].ToString();
+            lblVILLNAME.Text = ": " + dr["Village"].ToString();
+            lblWARDNAME.Text = ": " + dr["Ward"].ToString();
 
-            lblvadi_Vivad_Ka_AadyatanKaran.Text = dr["BhumiVivadType"].ToString();
+            lblvadi_Vivad_Ka_AadyatanKaran.Text = ": " + dr["BhumiVivadType"].ToString();
 
-            lblvadi_rajashv_sankhaya.Text = dr["RajasvThanaSankhya"].ToString();
+            lblvadi_rajashv_sankhaya.Text = ": " + dr["RajasvThanaSankhya"].ToString();
 
-            lblVadi_BhumiKaPrakar.Text = dr["Bhumitype_Ka_Prakar"].ToString();
+            lblVadi_BhumiKaPrakar.Text = ": " + dr["Bhumitype_Ka_Prakar"].ToString();
 
-            lblvadi_sarkari_bhumi_ka_prakar.Text = dr["Sarkari_Bhumitype"].ToString();
+            lblvadi_sarkari_bhumi_ka_prakar.Text = ": " + dr["Sarkari_Bhumitype"].ToString();
 
-            lblvadi_Sarkari_bhumi_ka_Prakar_ager_anya.Text = dr["SarkariBhumiType_Anya"].ToString();
+            lblvadi_Sarkari_bhumi_ka_Prakar_ager_anya.Text = ": " + dr["SarkariBhumiType_Anya"].ToString();
 
-            lblBhumiKa_VivadPrakar.Text = dr["BhumiVivadType"].ToString();
+            lblBhumiKa_VivadPrakar.Text = ": " + dr["BhumiVivadType"].ToString();
 
-            lblvadi_Bhumivivad_Prakar_Anaya.Text = dr["BhumiVivadType_Anya"].ToString();
+            lblvadi_Bhumivivad_Prakar_Anaya.Text = ": " + dr["BhumiVivadType_Anya"].ToString();
 
      
-            lblVadiKabhumiVivaran.Text = dr["VadiVivarani"].ToString();
+            lblVadiKabhumiVivaran.Text = ": " + dr["VadiVivarani"].ToString();
 
-            lblPrativadiKabhumiVivaran.Text = dr["PrativadiVivarani"].ToString();
+            lblPrativadiKabhumiVivaran.Text = ": " + dr["PrativadiVivarani"].ToString();
 
             SetPdfButton( lnkAppDoc, dr["Vadi_sakshya_File"]);
 
@@ -447,8 +447,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
             string script = "window.open('" + HttpUtility.JavaScriptStringEncode(url) + "', '_blank');";
 
-            ScriptManager.RegisterStartupScript( this,  GetType(), "ViewVadiPdf_" + Guid.NewGuid().ToString("N"), script, true
-            );
+            ScriptManager.RegisterStartupScript( this,  GetType(), "ViewVadiPdf_" + Guid.NewGuid().ToString("N"), script, true );
         }
 
         protected void rptPratiwadiEvidence_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -464,8 +463,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
             string script = "window.open('" +  HttpUtility.JavaScriptStringEncode(url) +  "', '_blank');";
 
-            ScriptManager.RegisterStartupScript(  this, GetType(), "ViewPratiwadiPdf_" + Guid.NewGuid().ToString("N"), script, true
-            );
+            ScriptManager.RegisterStartupScript(  this, GetType(), "ViewPratiwadiPdf_" + Guid.NewGuid().ToString("N"), script, true );
         }
 
         //private string GenerateApplicationNo(long applicationId)

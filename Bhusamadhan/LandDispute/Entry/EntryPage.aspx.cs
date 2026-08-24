@@ -213,7 +213,6 @@ namespace Bhusamadhan.LandDispute.Entry
             bindLandEvidence();
 
             //-------Step 6----------------
-
             BindNyayalaya();
             BindNyayalayaType();
             BindNyayalayaType_dist();
@@ -238,28 +237,28 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
-        private long GetDraftApplicationId()
-        {
-            long applicationId = 0;
+        //private long GetDraftApplicationId()
+        //{
+        //    long applicationId = 0;
 
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                SqlCommand cmd = new SqlCommand(@" SELECT TOP (1) a_id FROM BS_Matter_Registration WHERE CUUser=@UserID  AND Final = 0 ORDER BY a_id DESC", con);
+        //    using (SqlConnection con = new SqlConnection(connectionString))
+        //    {
+        //        SqlCommand cmd = new SqlCommand(@" SELECT TOP (1) a_id FROM BS_Matter_Registration WHERE CUUser=@UserID  AND Final = 0 ORDER BY a_id DESC", con);
 
-                cmd.Parameters.AddWithValue("@UserID", userid);
+        //        cmd.Parameters.AddWithValue("@UserID", userid);
 
-                con.Open();
+        //        con.Open();
 
-                object obj = cmd.ExecuteScalar();
+        //        object obj = cmd.ExecuteScalar();
 
-                if (obj != null)
-                {
-                    applicationId = Convert.ToInt64(obj);
-                }
-            }
+        //        if (obj != null)
+        //        {
+        //            applicationId = Convert.ToInt64(obj);
+        //        }
+        //    }
 
-            return applicationId;
-        }
+        //    return applicationId;
+        //}
 
         private int GetCurrentStep(long applicationId)
         {
@@ -5818,156 +5817,495 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
+        //---------------Old Code-------------------------------------------
+
+        //protected void ddlbsn_dhara_hai_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    // 🔥 STEP 0: SAVE selected IPC values (HiddenField priority)
+        //    List<string> selectedIPC = new List<string>();
+
+        //    if (!string.IsNullOrEmpty(hdnSelectedIPC.Value))
+        //    {
+        //        selectedIPC = hdnSelectedIPC.Value.Split(',').ToList();
+        //    }
+        //    else
+        //    {
+        //        foreach (ListItem item in ddldhara1.Items)
+        //        {
+        //            if (item.Selected)
+        //            {
+        //                selectedIPC.Add(item.Value);
+        //            }
+        //        }
+        //    }
+
+        //    ViewState["SelectedIPC"] = selectedIPC;
+
+        //    // 🔹 STEP 1: Get selected BNS items
+        //    var selectedItems = ddlbsn_dhara_hai.Items
+        //                        .Cast<ListItem>()
+        //                        .Where(i => i.Selected)
+        //                        .ToList();
+
+        //    bool contains41 = selectedItems.Any(i => i.Value == "41");
+        //    int selectedCount = selectedItems.Count;
+
+        //    // 🔹 STEP 2: UI Visibility Logic
+        //    if (contains41 && selectedCount == 1)
+        //    {
+        //        div_tbnm.Visible = true;
+        //        div_tdhara.Visible = true;
+        //        divdhara1.Visible = false;
+        //    }
+        //    else if (contains41 && selectedCount > 1)
+        //    {
+        //        div_tbnm.Visible = true;
+        //        div_tdhara.Visible = true;
+        //        divdhara1.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        div_tbnm.Visible = false;
+        //        div_tdhara.Visible = false;
+        //        divdhara1.Visible = true;
+        //    }
+
+        //    // 🔥 STEP 3: Bind IPC based on BNS
+        //    Binddhara();
+
+        //}
+
+        //void Binddhara()
+        //{
+        //    try
+        //    {
+        //        // 🔥 GUARD (MOST IMPORTANT FIX)
+        //        string ctrl = Request["__EVENTTARGET"];
+
+        //        if (ctrl != ddlbsn_dhara_hai.UniqueID)
+        //        {
+        //            return;
+        //        }
+
+        //        // 🔹 Step 0: ViewState se lo
+        //        List<string> previouslySelected = new List<string>();
+
+        //        if (ViewState["SelectedIPC"] != null)
+        //        {
+        //            previouslySelected = (List<string>)ViewState["SelectedIPC"];
+        //        }
+
+        //        // 🔹 Step 1: BNS selected IDs
+        //        List<string> selectedIds = new List<string>();
+
+        //        foreach (ListItem item in ddlbsn_dhara_hai.Items)
+        //        {
+        //            if (item.Selected)
+        //            {
+        //                selectedIds.Add(item.Value);
+        //            }
+        //        }
+
+        //        if (selectedIds.Count == 0)
+        //        {
+        //            ddldhara1.Items.Clear();
+        //            return;
+        //        }
+
+        //        string ids = string.Join(",", selectedIds);
+
+
+
+        //        // DataTable dt = clsData.GetDataTable(sql);
+
+        //        List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
+
+        //        string sql = @"SELECT ID, IPC_Sec  FROM Bns_dhara   WHERE ID IN (" + ids + ")";
+
+        //        DataTable dt = objDBHelper.GetResults(sql, listSQLP, false);
+        //        if (dt.Rows.Count > 0)
+        //        {
+        //            ddldhara1.DataSource = dt;
+        //            ddldhara1.DataTextField = "IPC_Sec";
+        //            ddldhara1.DataValueField = "IPC_Sec";
+        //            ddldhara1.DataBind();
+        //        }
+        //        else
+        //        {
+        //            ddlbsn_dhara_hai.DataSource = null;
+
+        //            ddlbsn_dhara_hai.DataBind();
+        //        }
+
+
+        //        // 🔥 restore selection
+        //        foreach (ListItem item in ddldhara1.Items)
+        //        {
+        //            if (previouslySelected.Contains(item.Value))
+        //            {
+        //                item.Selected = true;
+        //            }
+        //        }
+
+        //        // 🔥 NEW: updated selection ko dobara ViewState me save karo
+        //        List<string> updatedSelected = new List<string>();
+
+        //        foreach (ListItem item in ddldhara1.Items)
+        //        {
+        //            if (item.Selected)
+        //            {
+        //                updatedSelected.Add(item.Value);
+        //            }
+        //        }
+
+        //        ViewState["SelectedIPC"] = updatedSelected;
+
+        //        dt.Dispose();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMsg.Text = ex.Message.ToString();
+        //    }
+        //}
+
+
+        //----------------------
+
+        //----------New Code--------------------------------------------------
+
+
+        //protected void ddlbsn_dhara_hai_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    var selectedItems = ddlbsn_dhara_hai.Items.Cast<ListItem>().Where(i => i.Selected).ToList();
+
+        //    bool contains41 = selectedItems.Any(i => i.Value == "41");
+        //    int selectedCount = selectedItems.Count;
+
+        //    // CASE 1 → Only 41 selected
+        //    if (contains41 && selectedCount == 1)
+        //    {
+        //        div_tbnm.Visible = true;
+        //        div_tdhara.Visible = true;
+        //        divdhara1.Visible = false;
+        //    }
+        //    // CASE 2 → 41 + other IDs selected
+        //    else if (contains41 && selectedCount > 1)
+        //    {
+        //        div_tbnm.Visible = true;
+        //        div_tdhara.Visible = true;
+        //        divdhara1.Visible = true;
+        //    }
+        //    // CASE 3 → 41 not selected
+        //    else
+        //    {
+        //        div_tbnm.Visible = false;
+        //        div_tdhara.Visible = false;
+        //        divdhara1.Visible = true;
+        //    }
+
+        //    Binddhara();
+        //}
+
 
         protected void ddlbsn_dhara_hai_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // 🔥 STEP 0: SAVE selected IPC values (HiddenField priority)
-            List<string> selectedIPC = new List<string>();
-
-            if (!string.IsNullOrEmpty(hdnSelectedIPC.Value))
-            {
-                selectedIPC = hdnSelectedIPC.Value.Split(',').ToList();
-            }
-            else
-            {
-                foreach (ListItem item in ddldhara1.Items)
-                {
-                    if (item.Selected)
-                    {
-                        selectedIPC.Add(item.Value);
-                    }
-                }
-            }
-
-            ViewState["SelectedIPC"] = selectedIPC;
-
-            // 🔹 STEP 1: Get selected BNS items
-            var selectedItems = ddlbsn_dhara_hai.Items
-                                .Cast<ListItem>()
-                                .Where(i => i.Selected)
-                                .ToList();
-
-            bool contains41 = selectedItems.Any(i => i.Value == "41");
-            int selectedCount = selectedItems.Count;
-
-            // 🔹 STEP 2: UI Visibility Logic
-            if (contains41 && selectedCount == 1)
-            {
-                div_tbnm.Visible = true;
-                div_tdhara.Visible = true;
-                divdhara1.Visible = false;
-            }
-            else if (contains41 && selectedCount > 1)
-            {
-                div_tbnm.Visible = true;
-                div_tdhara.Visible = true;
-                divdhara1.Visible = true;
-            }
-            else
-            {
-                div_tbnm.Visible = false;
-                div_tdhara.Visible = false;
-                divdhara1.Visible = true;
-            }
-
-            // 🔥 STEP 3: Bind IPC based on BNS
-            Binddhara();
-           
-        }
-
-        void Binddhara()
-        {
             try
             {
-                // 🔥 GUARD (MOST IMPORTANT FIX)
-                string ctrl = Request["__EVENTTARGET"];
+                List<string> selectedBnsIds = ddlbsn_dhara_hai.Items
+                    .Cast<ListItem>()
+                    .Where(i => i.Selected)
+                    .Select(i => i.Value)
+                    .ToList();
 
-                if (ctrl != ddlbsn_dhara_hai.UniqueID)
+
+                bool contains41 = selectedBnsIds.Contains("41");
+
+                int selectedCount = selectedBnsIds.Count;
+
+
+                // =====================================================
+                // CASE 1 - Only 41 selected
+                // =====================================================
+                if (contains41 && selectedCount == 1)
                 {
-                    return;
+                    div_tbnm.Visible = true;
+                    div_tdhara.Visible = true;
+                    divdhara1.Visible = false;
                 }
 
-                // 🔹 Step 0: ViewState se lo
-                List<string> previouslySelected = new List<string>();
-
-                if (ViewState["SelectedIPC"] != null)
+                // =====================================================
+                // CASE 2 - 41 + other BNS
+                // =====================================================
+                else if (contains41 && selectedCount > 1)
                 {
-                    previouslySelected = (List<string>)ViewState["SelectedIPC"];
+                    div_tbnm.Visible = true;
+                    div_tdhara.Visible = true;
+                    divdhara1.Visible = true;
                 }
 
-                // 🔹 Step 1: BNS selected IDs
-                List<string> selectedIds = new List<string>();
-
-                foreach (ListItem item in ddlbsn_dhara_hai.Items)
-                {
-                    if (item.Selected)
-                    {
-                        selectedIds.Add(item.Value);
-                    }
-                }
-
-                if (selectedIds.Count == 0)
-                {
-                    ddldhara1.Items.Clear();
-                    return;
-                }
-
-                string ids = string.Join(",", selectedIds);
-
-
-
-                // DataTable dt = clsData.GetDataTable(sql);
-
-                List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
-
-                string sql = @"SELECT ID, IPC_Sec  FROM Bns_dhara   WHERE ID IN (" + ids + ")";
-
-                DataTable dt = objDBHelper.GetResults(sql, listSQLP, false);
-                if (dt.Rows.Count > 0)
-                {
-                    ddldhara1.DataSource = dt;
-                    ddldhara1.DataTextField = "IPC_Sec";
-                    ddldhara1.DataValueField = "IPC_Sec";
-                    ddldhara1.DataBind();
-                }
+                // =====================================================
+                // CASE 3 - 41 not selected
+                // =====================================================
                 else
                 {
-                    ddlbsn_dhara_hai.DataSource = null;
-
-                    ddlbsn_dhara_hai.DataBind();
+                    div_tbnm.Visible = false;
+                    div_tdhara.Visible = false;
+                    divdhara1.Visible = true;
                 }
 
 
-                // 🔥 restore selection
-                foreach (ListItem item in ddldhara1.Items)
-                {
-                    if (previouslySelected.Contains(item.Value))
-                    {
-                        item.Selected = true;
-                    }
-                }
+                // Bind corresponding IPC
+                Binddhara();
 
-                // 🔥 NEW: updated selection ko dobara ViewState me save karo
-                List<string> updatedSelected = new List<string>();
 
-                foreach (ListItem item in ddldhara1.Items)
-                {
-                    if (item.Selected)
-                    {
-                        updatedSelected.Add(item.Value);
-                    }
-                }
-
-                ViewState["SelectedIPC"] = updatedSelected;
-
-                dt.Dispose();
+                // Reinitialize Select2 after WebForms postback
+                RegisterSelect2Script();
             }
             catch (Exception ex)
             {
-                lblMsg.Text = ex.Message.ToString();
+                lblMsg.Text = ex.Message;
             }
         }
 
+        private void Binddhara()
+        {
+            try
+            {
+               
+                List<string> selectedBnsIds = ddlbsn_dhara_hai.Items .Cast<ListItem>().Where(i => i.Selected) .Select(i => i.Value).ToList();
+
+                if (selectedBnsIds.Count == 0)
+                {
+                    ddldhara1.Items.Clear();
+
+                    hdnSelectedIPC.Value = "";
+
+                    PreviousBnsIds = new List<string>();
+
+                    RegisterSelect2Script();
+
+                    return;
+                }
+
+                List<string> previouslySelectedIPC = new List<string>();
+
+                if (!string.IsNullOrWhiteSpace(hdnSelectedIPC.Value))
+                {
+                    previouslySelectedIPC = hdnSelectedIPC.Value.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                }
+
+                List<string> previousBnsIds = PreviousBnsIds;
+
+
+                string ids = string.Join(",", selectedBnsIds);
+
+                List<SqlParameter> listSQLP = new List<SqlParameter>();
+
+
+                string sql = @" SELECT ID, IPC_Sec FROM Bns_dhara WHERE ID IN (" + ids + @") ORDER BY ID";
+
+
+                DataTable dt = objDBHelper.GetResults( sql, listSQLP, false);
+
+                ddldhara1.Items.Clear();
+    
+                //--------Add IPC values
+            
+                foreach (DataRow row in dt.Rows)
+                {
+                    string id = row["ID"].ToString();
+
+                    string ipcSec = row["IPC_Sec"].ToString();
+
+
+                    ListItem item = new ListItem(ipcSec, id);
+
+                    bool isPreviouslySelected = previouslySelectedIPC.Contains(id);
+
+                    bool isNewBns = !previousBnsIds.Contains(id);
+
+                    if (isNewBns)
+                    {
+                        item.Selected = true;
+                    }
+                    else if (isPreviouslySelected)
+                    {
+                        item.Selected = true;
+                    }
+
+
+                    ddldhara1.Items.Add(item);
+                }
+
+
+           
+                //-----------Update HiddenField
+          
+                List<string> finalSelectedIPC = ddldhara1.Items .Cast<ListItem>().Where(i => i.Selected) .Select(i => i.Value).ToList();
+
+
+                hdnSelectedIPC.Value = string.Join(",", finalSelectedIPC);
+
+
+                //----------Remember current BNS selection
+
+                PreviousBnsIds = selectedBnsIds;
+
+
+                dt.Dispose();
+
+                RegisterSelect2Script();
+            }
+            catch (Exception ex)
+            {
+                lblMsg.Text = ex.Message;
+            }
+        }
+
+        private void RegisterSelect2Script()
+        {
+            string script = @"setTimeout(function () {
+
+            initializeDharaSelect2();
+
+            var $ipc = $('#" + ddldhara1.ClientID + @"');
+
+            if ($ipc.length) {
+
+                $ipc.off('change.dhara');
+
+                $ipc.on('change.dhara', function () {
+
+                    var values = $(this).val() || [];
+
+                    $('#" + hdnSelectedIPC.ClientID + @"')
+                        .val(values.join(','));
+
+                });
+            }
+
+        }, 100);
+    ";
+
+
+            ScriptManager.RegisterStartupScript( this, this.GetType(), "InitializeDharaSelect2", script, true );
+        }
+
+        //void Binddhara()
+        //{
+        //    try
+        //    {
+        //        // 🔹 Step 0: Save already selected values of second listbox
+        //        List<string> previouslySelected = new List<string>();
+
+        //        foreach (ListItem item in ddldhara1.Items)
+        //        {
+        //            if (item.Selected)
+        //            {
+        //                previouslySelected.Add(item.Value);
+        //            }
+        //        }
+
+        //        // 🔹 Step 1: Get all selected IDs from first listbox
+        //        List<string> selectedIds = new List<string>();
+
+        //        foreach (ListItem item in ddlbsn_dhara_hai.Items)
+        //        {
+        //            if (item.Selected)
+        //            {
+        //                selectedIds.Add(item.Value);
+        //            }
+        //        }
+
+        //        if (selectedIds.Count == 0)
+        //        {
+        //            ddldhara1.Items.Clear();
+        //            return;
+        //        }
+
+        //        // 🔹 Step 2: Create comma separated IDs
+        //        string ids = string.Join(",", selectedIds);
+
+        //        // 🔹 Step 3: Fetch data
+        //        List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
+
+        //        string sql = @"SELECT ID, IPC_Sec  FROM Bns_dhara   WHERE ID IN (" + ids + ")";
+
+        //        DataTable dt = objDBHelper.GetResults(sql, listSQLP, false);
+
+        //        // 🔹 Step 4: Bind
+        //        ddldhara1.DataSource = dt;
+        //        ddldhara1.DataTextField = "IPC_Sec";
+        //        ddldhara1.DataValueField = "ID";
+        //        ddldhara1.DataBind();
+        //        ddldhara1.Items.Insert(0, new ListItem("--Select--", "0"));
+
+        //        // 🔹 Step 5: Restore previous selections
+        //        foreach (ListItem item in ddldhara1.Items)
+        //        {
+        //            if (previouslySelected.Contains(item.Value))
+        //            {
+        //                item.Selected = true;
+        //            }
+        //        }
+
+        //        dt.Dispose();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblMsg.Text = ex.Message.ToString();
+        //    }
+        //}
+
+
+        protected void DharaChanged(object sender, EventArgs e)
+        {
+            if (rdoOld.Checked)
+            {
+                divDhara.Visible = true;
+                divbsn.Visible = false;
+                divdhara1.Visible = false;
+                div_tbnm.Visible = false;
+                div_tdhara.Visible = false;
+            }
+            else if (rdoNew.Checked)
+            {
+
+                //divDhara.Visible = false;
+                //divbsn.Visible = true;
+                //divdhara1.Visible = true;
+
+                divDhara.Visible = false;
+
+                divbsn.Visible = true;
+                divdhara1.Visible = true;
+
+                div_tbnm.Visible = false;
+                div_tdhara.Visible = false;
+
+                RegisterSelect2Script();
+            }
+        }
+
+        private List<string> PreviousBnsIds
+        {
+            get
+            {
+                if (ViewState["PreviousBnsIds"] == null)
+                    return new List<string>();
+
+                return ViewState["PreviousBnsIds"]
+                    .ToString()
+                    .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+            }
+            set
+            {
+                ViewState["PreviousBnsIds"] = string.Join(",", value);
+            }
+        }
+
+        //---------------------------New Code-------------------------------------
         protected void ddlSanhaStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSanahaSankhiyan.Text = "";
@@ -6092,24 +6430,7 @@ namespace Bhusamadhan.LandDispute.Entry
             BindNyayalayaType_SubDivision();
         }
 
-        protected void DharaChanged(object sender, EventArgs e)
-        {
-            if (rdoOld.Checked)
-            {
-                divDhara.Visible = true;
-                divbsn.Visible = false;
-                divdhara1.Visible = false;
-                div_tbnm.Visible = false;
-                div_tdhara.Visible = false;
-            }
-            else if (rdoNew.Checked)
-            {
-
-                divDhara.Visible = false;
-                divbsn.Visible = true;
-                divdhara1.Visible = true;
-            }
-        }
+       
 
 
 
@@ -6649,6 +6970,8 @@ namespace Bhusamadhan.LandDispute.Entry
         {
             Response.Redirect("~/Default.aspx");
         }
+
+        
     }
 }
 

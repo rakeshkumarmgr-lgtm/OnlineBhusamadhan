@@ -339,49 +339,22 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.ImageButton lnkPrativadiDoc;
 
         /// <summary>
-        /// gvWadi control.
+        /// rptWadi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvWadi;
+        protected global::System.Web.UI.WebControls.Repeater rptWadi;
 
         /// <summary>
-        /// divPratiwadi control.
+        /// rptPratiWadi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPratiwadi;
-
-        /// <summary>
-        /// pratiWadi_grid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView pratiWadi_grid;
-
-        /// <summary>
-        /// divprativadi_ka_suchit_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_suchit_Label;
-
-        /// <summary>
-        /// divprativadi_ka_suchit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_suchit;
+        protected global::System.Web.UI.WebControls.Repeater rptPratiWadi;
 
         /// <summary>
         /// lblprativadi_ka_suchit control.
@@ -393,24 +366,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Label lblprativadi_ka_suchit;
 
         /// <summary>
-        /// divprativadi_ka_Karan_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_Karan_Label;
-
-        /// <summary>
-        /// divprativadi_ka_Karan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_Karan;
-
-        /// <summary>
         /// lblprativadi_ka_Karan control.
         /// </summary>
         /// <remarks>
@@ -420,76 +375,22 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Label lblprativadi_ka_Karan;
 
         /// <summary>
-        /// divprativadi_ka_madham_Label control.
+        /// lblprativadi_ka_madhayam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_madham_Label;
+        protected global::System.Web.UI.WebControls.Label lblprativadi_ka_madhayam;
 
         /// <summary>
-        /// divprativadi_ka_madham control.
+        /// lblprativadi_ka_SuchnaTamil control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_madham;
-
-        /// <summary>
-        /// lblprativadi_ka_madham control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprativadi_ka_madham;
-
-        /// <summary>
-        /// divprativadi_ka_Suchna_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_Suchna_Label;
-
-        /// <summary>
-        /// divprativadi_ka_Suchna control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_Suchna;
-
-        /// <summary>
-        /// lblprativadi_ka_Suchna control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblprativadi_ka_Suchna;
-
-        /// <summary>
-        /// divprativadi_ka_Upashtith_Label control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_Upashtith_Label;
-
-        /// <summary>
-        /// divprativadi_ka_Upashtith control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divprativadi_ka_Upashtith;
+        protected global::System.Web.UI.WebControls.Label lblprativadi_ka_SuchnaTamil;
 
         /// <summary>
         /// lblprativadi_ka_Upashtith control.
@@ -501,49 +402,31 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Label lblprativadi_ka_Upashtith;
 
         /// <summary>
-        /// divbhumikhata_shekher_ka_vivaran control.
+        /// rptBhumiKhataKhesra control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divbhumikhata_shekher_ka_vivaran;
+        protected global::System.Web.UI.WebControls.Repeater rptBhumiKhataKhesra;
 
         /// <summary>
-        /// grd_bhumivivad control.
+        /// rptVadiEvidence control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grd_bhumivivad;
+        protected global::System.Web.UI.WebControls.Repeater rptVadiEvidence;
 
         /// <summary>
-        /// gdVadiEvidence control.
+        /// rptPratiwadiEvidence control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdVadiEvidence;
-
-        /// <summary>
-        /// gdPrativadiEvidence control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdPrativadiEvidence;
-
-        /// <summary>
-        /// div2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div2;
+        protected global::System.Web.UI.WebControls.Repeater rptPratiwadiEvidence;
 
         /// <summary>
         /// divPoliceAdhikari control.
@@ -555,31 +438,13 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPoliceAdhikari;
 
         /// <summary>
-        /// lblPoliceAdhikari control.
+        /// lblPoliceAdhikariVivarni control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPoliceAdhikari;
-
-        /// <summary>
-        /// divHalkaKarmchari control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHalkaKarmchari;
-
-        /// <summary>
-        /// div4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div4;
+        protected global::System.Web.UI.WebControls.Label lblPoliceAdhikariVivarni;
 
         /// <summary>
         /// divHalkaKarmchariValue control.
@@ -591,22 +456,13 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divHalkaKarmchariValue;
 
         /// <summary>
-        /// lblHalkaKarmchariValue control.
+        /// lblHalkaKarmchariVivarni control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHalkaKarmchariValue;
-
-        /// <summary>
-        /// div1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
+        protected global::System.Web.UI.WebControls.Label lblHalkaKarmchariVivarni;
 
         /// <summary>
         /// lnkpulis_padadhikari_Patr_file control.
@@ -627,15 +483,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.ImageButton lnkfile_halkakarmchari_praptr;
 
         /// <summary>
-        /// divVivaditBhukand control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVivaditBhukand;
-
-        /// <summary>
         /// div6 control.
         /// </summary>
         /// <remarks>
@@ -645,49 +492,13 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div6;
 
         /// <summary>
-        /// divVivaditBhukandValue control.
+        /// lblVivaditBhukandKiMapiKaReasonHai control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVivaditBhukandValue;
-
-        /// <summary>
-        /// lblVivaditBhukandValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVivaditBhukandValue;
-
-        /// <summary>
-        /// divMapi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMapi;
-
-        /// <summary>
-        /// div8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div8;
-
-        /// <summary>
-        /// divMapiValue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMapiValue;
+        protected global::System.Web.UI.WebControls.Label lblVivaditBhukandKiMapiKaReasonHai;
 
         /// <summary>
         /// lblMapiValue control.
@@ -699,24 +510,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Label lblMapiValue;
 
         /// <summary>
-        /// divVivaditBhukandKaMapi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVivaditBhukandKaMapi;
-
-        /// <summary>
-        /// div10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div10;
-
-        /// <summary>
         /// divVivaditBhukandKaMapiValue control.
         /// </summary>
         /// <remarks>
@@ -726,13 +519,13 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divVivaditBhukandKaMapiValue;
 
         /// <summary>
-        /// lblVivaditBhukandKaMapiValue control.
+        /// lblVivaditBhumiKaMapiNahiHoneKaKaran control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblVivaditBhukandKaMapiValue;
+        protected global::System.Web.UI.WebControls.Label lblVivaditBhumiKaMapiNahiHoneKaKaran;
 
         /// <summary>
         /// div7 control.
@@ -762,24 +555,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.ImageButton lnkfile_bhukand_prativedan;
 
         /// <summary>
-        /// MapiKeNirdharnKiThithi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MapiKeNirdharnKiThithi;
-
-        /// <summary>
-        /// div5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div5;
-
-        /// <summary>
         /// divMapiKeNirdharnKiThithiValue control.
         /// </summary>
         /// <remarks>
@@ -798,40 +573,22 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Label lblMapiKeNirdharnKiThithiValue;
 
         /// <summary>
-        /// div3 control.
+        /// lblPrathamikHai control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div3;
+        protected global::System.Web.UI.WebControls.Label lblPrathamikHai;
 
         /// <summary>
-        /// div_Prathamik control.
+        /// rptBhumiVivAdIncident control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Prathamik;
-
-        /// <summary>
-        /// lblPrathamik control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrathamik;
-
-        /// <summary>
-        /// grdbhumivivad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdbhumivivad;
+        protected global::System.Web.UI.WebControls.Repeater rptBhumiVivAdIncident;
 
         /// <summary>
         /// div11 control.
@@ -852,40 +609,211 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPrakiriyaVad;
 
         /// <summary>
-        /// lblPrakiriyaVad control.
+        /// lblPrakiriyadhinVadAvailable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrakiriyaVad;
+        protected global::System.Web.UI.WebControls.Label lblPrakiriyadhinVadAvailable;
 
         /// <summary>
-        /// grdnyayalay_vivran control.
+        /// rptNyayalayVivran control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdnyayalay_vivran;
+        protected global::System.Web.UI.WebControls.Repeater rptNyayalayVivran;
 
         /// <summary>
-        /// GVAnchalaDhakari control.
+        /// lblVivaadKiSanvedanasheelata control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVAnchalaDhakari;
+        protected global::System.Web.UI.WebControls.Label lblVivaadKiSanvedanasheelata;
 
         /// <summary>
-        /// GridView1 control.
+        /// lblBaithakKiTithi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label lblBaithakKiTithi;
+
+        /// <summary>
+        /// lblkyaVaadeeUpasthitHai control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblkyaVaadeeUpasthitHai;
+
+        /// <summary>
+        /// lblKyaPrativaadeeUpasthitHai control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblKyaPrativaadeeUpasthitHai;
+
+        /// <summary>
+        /// lblBaithakKaNishkarsh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBaithakKaNishkarsh;
+
+        /// <summary>
+        /// divtithi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divtithi;
+
+        /// <summary>
+        /// lbltithi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltithi;
+
+        /// <summary>
+        /// lbltithivalue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltithivalue;
+
+        /// <summary>
+        /// divAsveekrtiKaKaaranLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAsveekrtiKaKaaranLabel;
+
+        /// <summary>
+        /// lblAsveekrtiKaKaaran control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAsveekrtiKaKaaran;
+
+        /// <summary>
+        /// divvadikavarsh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divvadikavarsh;
+
+        /// <summary>
+        /// lblvadikaVadSankhyaVarsh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblvadikaVadSankhyaVarsh;
+
+        /// <summary>
+        /// lblBaithakMeinLiyaGayaNirnay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBaithakMeinLiyaGayaNirnay;
+
+        /// <summary>
+        /// lblAnchalaadhikaareeKaMantavy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAnchalaadhikaareeKaMantavy;
+
+        /// <summary>
+        /// lblThaanaadhyakshKaMantavy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblThaanaadhyakshKaMantavy;
+
+        /// <summary>
+        /// lnkJointDoc__letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton lnkJointDoc__letterOfIntent;
+
+        /// <summary>
+        /// lnkCircleOfficer_letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton lnkCircleOfficer_letterOfIntent;
+
+        /// <summary>
+        /// lnkPoliceOfficer_letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton lnkPoliceOfficer_letterOfIntent;
+
+        /// <summary>
+        /// rptRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptRemarks;
+
+        /// <summary>
+        /// pnlupdate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel pnlupdate1;
+
+        /// <summary>
+        /// lblMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMsg;
 
         /// <summary>
         /// lastAction control.
@@ -1149,6 +1077,51 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.HiddenField hdPoliceOfficer_letterOfIntent;
 
         /// <summary>
+        /// lastActionMapi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lastActionMapi;
+
+        /// <summary>
+        /// lastActionMapiKaPrativadan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload lastActionMapiKaPrativadan;
+
+        /// <summary>
+        /// HiddenField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+
+        /// <summary>
+        /// txtMapikiNirdharitThiti control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMapikiNirdharitThiti;
+
+        /// <summary>
+        /// CalendarExtender3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender3;
+
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
@@ -1165,23 +1138,5 @@ namespace Bhusamadhan.LandDispute.Entry
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
-
-        /// <summary>
-        /// btnDraft control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDraft;
-
-        /// <summary>
-        /// lblMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
     }
 }
