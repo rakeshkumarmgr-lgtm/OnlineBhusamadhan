@@ -4798,7 +4798,7 @@ namespace Bhusamadhan.LandDispute.Entry
         private void BindVadi_Prativadi_Anya_Type()
         {
             ddlWsanstha_naam.Items.Clear();
-
+            ddlPsanstha_naam.Items.Clear();
             try
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
@@ -4842,7 +4842,7 @@ namespace Bhusamadhan.LandDispute.Entry
         {
            
             ddlWsanshaanya_naam.Items.Clear();
-
+            ddlPsanshaanya_naam.Items.Clear();
             try
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
@@ -4885,7 +4885,7 @@ namespace Bhusamadhan.LandDispute.Entry
         {
 
             ddlWvibhaag_naam.Items.Clear();
-
+            ddlPvibhaag_naam.Items.Clear();
             try
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
@@ -4914,6 +4914,10 @@ namespace Bhusamadhan.LandDispute.Entry
                     ddlWvibhaag_naam.DataSource = null;
 
                     ddlWvibhaag_naam.DataBind();
+
+                    ddlPvibhaag_naam.DataSource = null;
+
+                    ddlPvibhaag_naam.DataBind();
                 }
 
             }
@@ -5605,6 +5609,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
         }
 
+        //-------------------------Events-----------------------------------------------------------------------------
     
         protected void ddlIsVadiEvi_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -6618,7 +6623,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
         private void RefreshSarkariBhumiType()
         {
-            ddlsarkaribhumitype_SelectedIndexChanged(ddlsarkaribhumitype, EventArgs.Empty);
+            ddlsarkaribhumitype_SelectedIndexChanged(ddlsarkaribhumitype, EventArgs.Empty);//-----------need to correct
         }
 
         protected void ddlsarkaribhumitype_SelectedIndexChanged(object sender, EventArgs e)
@@ -6862,8 +6867,6 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
-
-
         //-----------------------Step7----------------------------------------
 
         private void bind_BhumiSanvedanshilta()// भूमि विवाद कि सवेदनशीलता
@@ -6917,8 +6920,9 @@ namespace Bhusamadhan.LandDispute.Entry
             }
             else if (ddlaction.SelectedIndex == 2)
             {
-
-                divCancelReason.Visible = true;
+                divNextDate.Visible = true;
+                labNextDate.Text = "मापी की तिथि";
+                //divCancelReason.Visible = true;
 
             }
             else if (ddlaction.SelectedIndex == 3)

@@ -17,14 +17,24 @@ namespace Bhusamadhan.DB
 
             listSQLP.Add(new SqlParameter("@RoleID", roleId));
 
-            string sql = @" SELECT T.ParentMenuID, T.MenuName  AS ParentMenuName,  T.NavigateUrl  AS ParentNavigateUrl,T.IconClass  AS ParentIcon,
-                        T.DisplayOrder, C.ChildMenuID, C.MenuName  AS ChildMenuName, C.NavigateUrl, C.IconClass AS ChildIcon, C.DisplayOrder AS ChildDisplayOrder
+            //string sql = @" SELECT T.ParentMenuID, T.MenuName  AS ParentMenuName,  T.NavigateUrl  AS ParentNavigateUrl,T.IconClass  AS ParentIcon,
+            //            T.DisplayOrder, C.ChildMenuID, C.MenuName  AS ChildMenuName, C.NavigateUrl, C.IconClass AS ChildIcon, C.DisplayOrder AS ChildDisplayOrder
 
-                        FROM BS_UserMenuPermission P INNER JOIN BS_TopMenuMst T ON P.ParentMenuID = T.ParentMenuID
+            //            FROM BS_UserMenuPermission P INNER JOIN BS_TopMenuMst T ON P.ParentMenuID = T.ParentMenuID
 
-                        LEFT JOIN BS_ChildMenuMst C ON T.ParentMenuID = C.ParentMenuID AND C.IsActive = 1
+            //            LEFT JOIN BS_ChildMenuMst C ON T.ParentMenuID = C.ParentMenuID AND C.IsActive = 1
 
-                        WHERE P.RoleID = @RoleID AND T.IsActive = 1 ORDER BY T.DisplayOrder, C.DisplayOrder;";
+            //            WHERE P.RoleID = @RoleID AND T.IsActive = 1 ORDER BY T.DisplayOrder, C.DisplayOrder;";
+
+            string sql = @" SELECT  T.ParentMenuID, T.MenuName AS ParentMenuName, T.NavigateUrl AS ParentNavigateUrl, T.IconClass AS ParentIcon, T.DisplayOrder,
+
+                                    C.ChildMenuID,C.MenuName AS ChildMenuName, C.NavigateUrl, C.IconClass AS ChildIcon, C.DisplayOrder AS ChildDisplayOrder
+
+                                FROM BS_UserMenuPermission P INNER JOIN BS_TopMenuMst T ON P.ParentMenuID = T.ParentMenuID
+
+                                LEFT JOIN BS_ChildMenuMst C  ON P.ParentMenuID = C.ParentMenuID  AND P.ChildMenuID = C.ChildMenuID AND C.IsActive = 1
+
+                                WHERE  P.RoleID = @RoleID AND T.IsActive = 1 ORDER BY   T.DisplayOrder,  C.DisplayOrder;";
 
             return objDBHelper.GetResults(sql, listSQLP, false);
         }

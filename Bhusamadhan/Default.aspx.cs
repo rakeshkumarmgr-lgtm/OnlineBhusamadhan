@@ -36,7 +36,7 @@ namespace Bhusamadhan
 
             if (!IsPostBack)
             {
-                LoadDashboard();
+                //LoadDashboard();
             }
         }
 

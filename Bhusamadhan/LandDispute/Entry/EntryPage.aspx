@@ -9,25 +9,25 @@
     <link href="../../assets/css/cssEntryPage.css" rel="stylesheet" />
 
     <style type="text/css">
-     .zindex {
-         background-color: #FAF5EF;
-         z-index: 10001;
-     }
+        .zindex {
+            background-color: #FAF5EF;
+            z-index: 10001;
+        }
 
-     .dharaType input[type="radio"] {
-         margin-right: 6px;
-         cursor: pointer;
-     }
+        .dharaType input[type="radio"] {
+            margin-right: 6px;
+            cursor: pointer;
+        }
 
-     .dharaType label {
-         margin-right: 25px;
-         font-weight: 500;
-         cursor: pointer;
-     }
- </style>
-    
+        .dharaType label {
+            margin-right: 25px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+    </style>
 
-    <script type="text/javascript">
+
+    <%--   <script type="text/javascript">
         function checkDate(sender, args) {
             //if (sender._selectedDate > new Date()) {
             //    alert("You cannot select a day latter than today!");
@@ -47,7 +47,26 @@
 
             return true;
         }
-    </script>
+    </script>--%>
+
+    <%-- <script>
+       $(document).ready(function () {
+           $('#<%= ddlbsn_dhara_hai.ClientID %>').select2({
+               placeholder: "धारा चुनें",
+               width: '100%',
+               allowClear: true,
+               tags: true   // <-- enables tag mode with cross button
+           });
+
+           $('#<%= ddldhara1.ClientID %>').select2({
+               placeholder: "चयनित धाराएँ",
+               width: '100%',
+               allowClear: true,
+               tags: true
+           });
+       });
+   </script>--%>
+
     <script>
         function saveIPCSelection() {
             var list = document.getElementById('<%= ddldhara1.ClientID %>');
@@ -69,23 +88,6 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function () {
-            $('#<%= ddlbsn_dhara_hai.ClientID %>').select2({
-                placeholder: "धारा चुनें",
-                width: '100%',
-                allowClear: true,
-                tags: true   // <-- enables tag mode with cross button
-            });
-
-            $('#<%= ddldhara1.ClientID %>').select2({
-                placeholder: "चयनित धाराएँ",
-                width: '100%',
-                allowClear: true,
-                tags: true
-            });
-        });
-    </script>
 
 
     <script type="text/javascript">
@@ -93,7 +95,7 @@
         function initializeDharaSelect2() {
 
             var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
-        var $ipc = $('#<%= ddldhara1.ClientID %>');
+            var $ipc = $('#<%= ddldhara1.ClientID %>');
 
             // -----------------------------------------
             // BNS Select2
@@ -112,10 +114,6 @@
                 });
             }
 
-
-            // -----------------------------------------
-            // IPC Select2
-            // -----------------------------------------
             if ($ipc.length) {
 
                 if ($ipc.hasClass("select2-hidden-accessible")) {
@@ -132,54 +130,40 @@
         }
 
 
-        // =========================================================
-        // Synchronize selected IPC values with HiddenField
-        // =========================================================
         function syncSelectedIPC() {
 
             var $ipc = $('#<%= ddldhara1.ClientID %>');
-        var $hidden = $('#<%= hdnSelectedIPC.ClientID %>');
+            var $hidden = $('#<%= hdnSelectedIPC.ClientID %>');
 
-        if (!$ipc.length || !$hidden.length)
-            return;
+            if (!$ipc.length || !$hidden.length)
+                return;
 
-        var selectedValues = $ipc.val() || [];
+            var selectedValues = $ipc.val() || [];
 
-        $hidden.val(selectedValues.join(','));
-    }
-
-
-    // =========================================================
-    // IPC changed by user
-    // =========================================================
-    function ipcSelectionChanged() {
-
-        syncSelectedIPC();
-    }
+            $hidden.val(selectedValues.join(','));
+        }
 
 
-    // =========================================================
-    // BNS changed
-    //
-    // AutoPostBack is already handled by ASP.NET.
-    // We only synchronize the current BNS selection before
-    // postback occurs.
-    // =========================================================
-    function bnsSelectionChanged() {
+        // =========================================================
+        // IPC changed by user
+        // =========================================================
+        function ipcSelectionChanged() {
 
-        // Nothing special required here because ASP.NET
-        // AutoPostBack will submit the selected BNS values.
-    }
+            syncSelectedIPC();
+        }
 
 
-    // =========================================================
-    // Document ready
-    // =========================================================
-    $(document).ready(function () {
+        function bnsSelectionChanged() {
 
-        initializeDharaSelect2();
+            // Nothing special required here because ASP.NET
+            // AutoPostBack will submit the selected BNS values.
+        }
 
-        var $ipc = $('#<%= ddldhara1.ClientID %>');
+        $(document).ready(function () {
+
+            initializeDharaSelect2();
+
+            var $ipc = $('#<%= ddldhara1.ClientID %>');
         var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
 
         if ($ipc.length) {
@@ -211,7 +195,7 @@
         <div class="card shadow-sm mb-3">
 
             <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Application Entry</h5>
+                <h5 class="mb-0">Application Entry (STATION HOUSE OFFICER)</h5>
             </div>
 
             <div class="card-body">
@@ -2572,9 +2556,9 @@
 
                                         <label class="form-label">घटना / वारदात की तिथि <span class="required">*</span></label>
 
-                                        <asp:TextBox ID="txtghatanaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy" AutoComplete="off"> </asp:TextBox>
+                                        <asp:TextBox ID="txtghatanaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy" > </asp:TextBox>
 
-                                        <cc1:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtghatanaDate" Format="dd-MM-yyyy" CssClass="zindex"></cc1:CalendarExtender>
+                                        <cc1:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtghatanaDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
 
                                     </div>
 
@@ -2748,7 +2732,7 @@
                                         <asp:ListBox ID="ddldhara1" runat="server" CssClass="form-control select2" SelectionMode="Multiple"></asp:ListBox>
 
                                         <asp:HiddenField ID="hdnSelectedIPC" runat="server" />
-                                  
+
                                     </div>
 
                                     <row>

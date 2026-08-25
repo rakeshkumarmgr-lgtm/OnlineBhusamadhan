@@ -4191,10 +4191,12 @@
     <Content Include="images\UploadPhoto100-115.jpg" />
     <Content Include="images\User.png" />
     <Content Include="images\User41.jpg" />
+    <Content Include="LandDispute\Entry\AddHoliday.aspx" />
     <Content Include="LandDispute\Entry\AddMettingApplication.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPreview.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPrint.aspx" />
     <Content Include="LandDispute\Entry\EntryPage.aspx" />
+    <Content Include="LandDispute\Entry\EntryPageCo.aspx" />
     <Content Include="LandDispute\Entry\Finalize.aspx" />
     <Content Include="OldFiles\Entry_Page.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMetting.aspx" />
@@ -6095,6 +6097,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LandDispute\Entry\AddHoliday.aspx.cs">
+      <DependentUpon>AddHoliday.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\AddHoliday.aspx.designer.cs">
+      <DependentUpon>AddHoliday.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Entry\AddMettingApplication.aspx.cs">
       <DependentUpon>AddMettingApplication.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6122,6 +6131,13 @@
     </Compile>
     <Compile Include="LandDispute\Entry\EntryPage.aspx.designer.cs">
       <DependentUpon>EntryPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Entry\EntryPageCo.aspx.cs">
+      <DependentUpon>EntryPageCo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\EntryPageCo.aspx.designer.cs">
+      <DependentUpon>EntryPageCo.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Entry\Finalize.aspx.cs">
       <DependentUpon>Finalize.aspx</DependentUpon>
