@@ -14,11 +14,11 @@ namespace Bhusamadhan.LandDispute.Entry
 {
     public partial class Finalize : System.Web.UI.Page
     {
-        string thanacode = "";
+        //string thanacode = "";
         string userid = "";
         string userrole = "";
         int roleid;
-        int thanaCode;
+        //int thanaCode;
 
         private readonly MatterRegistrationDAL _matterDAL = new MatterRegistrationDAL();
         protected void Page_Load(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace Bhusamadhan.LandDispute.Entry
                 roleid = Convert.ToInt32(dt.Rows[0]["RoleID"]);
                 userrole = dt.Rows[0]["Userrole"].ToString();
                 userid = dt.Rows[0]["UserID"].ToString();
-                thanaCode = Convert.ToInt32(dt.Rows[0]["Thana_Code"]);
+               // thanaCode = Convert.ToInt32(dt.Rows[0]["Thana_Code"]);
             }
             else
             {

@@ -525,7 +525,7 @@
                                         <div class="col-md-12">
                                             <div class="table-responsive">
 
-                                                <asp:Repeater ID="rptWadi" runat="server" OnItemCommand="rptWadi_ItemCommand" >
+                                                <asp:Repeater ID="rptWadi" runat="server" OnItemCommand="rptWadi_ItemCommand">
 
                                                     <HeaderTemplate>
 
@@ -743,7 +743,7 @@
 
                                     <label class="form-label">क्षेत्र का प्रकार <span class="required">*</span>  </label>
 
-                                    <asp:DropDownList ID="ddlareatype" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlareatype_SelectedIndexChanged" >
+                                    <asp:DropDownList ID="ddlareatype" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlareatype_SelectedIndexChanged">
 
                                         <asp:ListItem Value="0">--चुनें--</asp:ListItem>
                                         <asp:ListItem Value="R">Rural</asp:ListItem>
@@ -760,7 +760,7 @@
 
                                     <label class="form-label">ग्राम पंचायत <span class="required">*</span> </label>
 
-                                    <asp:DropDownList ID="ddlPanchyat" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPanchyat_SelectedIndexChanged" >
+                                    <asp:DropDownList ID="ddlPanchyat" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPanchyat_SelectedIndexChanged">
                                     </asp:DropDownList>
 
                                 </div>
@@ -1056,13 +1056,13 @@
                                         <div class="col-lg-3 col-md-6 mb-3">
                                             <label class="form-label">जिला    </label>
 
-                                            <asp:DropDownList ID="ddlPDistrict" runat="server" CssClass="form-control" AutoPostBack="true" ></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPDistrict" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPDistrict_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
                                             <label class="form-label">अनुमंडल  </label>
 
-                                            <asp:DropDownList ID="ddlPSubdivision" runat="server" CssClass="form-control" AutoPostBack="true" ></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPSubdivision" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPSubdivision_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
 
                                     </div>
@@ -1073,7 +1073,7 @@
                                         <div class="col-lg-3 col-md-6 mb-3">
                                             <label class="form-label">अंचल  </label>
 
-                                            <asp:DropDownList ID="ddlPBlock" runat="server" CssClass="form-control" AutoPostBack="true" ></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPBlock" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPBlock_SelectedIndexChanged"></asp:DropDownList>
                                         </div>
 
                                         <div class="col-lg-3 col-md-6 mb-3">
@@ -1085,11 +1085,11 @@
                                         <div class="col-lg-3 col-md-6 mb-3">
                                             <label class="form-label">क्षेत्र का प्रकार</label>
 
-                                            <asp:DropDownList ID="ddlPAreatype" runat="server" CssClass="form-control" AutoPostBack="true" >
+                                            <asp:DropDownList ID="ddlPAreatype" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPAreatype_SelectedIndexChanged">
 
                                                 <asp:ListItem Value="0">--चुने--</asp:ListItem>
-                                                <asp:ListItem Value="R">ग्रामीण</asp:ListItem>
-                                                <asp:ListItem Value="U">शहरी</asp:ListItem>
+                                                <asp:ListItem Value="R">Rural</asp:ListItem>
+                                                <asp:ListItem Value="U">Urban</asp:ListItem>
 
                                             </asp:DropDownList>
                                         </div>
@@ -1098,7 +1098,7 @@
 
                                             <label class="form-label">ग्राम पंचायत  </label>
 
-                                            <asp:DropDownList ID="ddlPPanchyat" runat="server" CssClass="form-control" AutoPostBack="true" ></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPPanchyat" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPPanchyat_SelectedIndexChanged"></asp:DropDownList>
 
                                         </div>
 
@@ -1140,7 +1140,7 @@
 
                                             <label class="form-label">राजस्व ग्राम </label>
 
-                                            <asp:DropDownList ID="ddlPVillage" runat="server" CssClass="form-control" AutoPostBack="true" ></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPVillage" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPVillage_SelectedIndexChanged"></asp:DropDownList>
 
                                         </div>
 
@@ -1148,7 +1148,7 @@
 
                                             <label class="form-label">वार्ड  </label>
 
-                                            <asp:DropDownList ID="ddlPWard" runat="server" CssClass="form-control" AutoPostBack="true" ></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPWard" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPWard_SelectedIndexChanged"></asp:DropDownList>
 
                                         </div>
 
@@ -1187,7 +1187,7 @@
                                         <div class="col-md-4 mb-3">
                                             <label class="form-label">क्या प्रतिवादी किसी विभाग का प्रतिनिधि है?  </label>
 
-                                            <asp:DropDownList ID="ddl_is_pratiVadi_from_an_dept" runat="server" CssClass="form-control" AutoPostBack="true" >
+                                            <asp:DropDownList ID="ddl_is_pratiVadi_from_an_dept" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_is_pratiVadi_from_an_dept_SelectedIndexChanged">
 
                                                 <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                                 <asp:ListItem Value="Y">हाँ</asp:ListItem>
@@ -1242,7 +1242,7 @@
 
                                             <label class="form-label">क्या प्रतिवादी किसी संस्था का प्रतिनिधि है? <span class="required">*</span>  </label>
 
-                                            <asp:DropDownList ID="ddl_is_pratiVadi_from_an_org" runat="server" CssClass="form-control" AutoPostBack="true" >
+                                            <asp:DropDownList ID="ddl_is_pratiVadi_from_an_org" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_is_pratiVadi_from_an_org_SelectedIndexChanged">
 
                                                 <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                                 <asp:ListItem Value="Y">हाँ</asp:ListItem>
@@ -1265,7 +1265,7 @@
                                 <div class="col-md-3 mb-2 p-1">
 
                                     <label class="form-label">संस्था का प्रकार<span class="text-danger">*</span></label>
-                                    <asp:DropDownList ID="ddlPsanstha_naam" runat="server" CssClass="form-control" AutoPostBack="true">
+                                    <asp:DropDownList ID="ddlPsanstha_naam" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator43" runat="server" ErrorMessage="select संस्था का प्रकार..."
                                         ControlToValidate="ddlPsanstha_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
@@ -1273,7 +1273,7 @@
                                 <div class="col-md-3 mb-2 p-1">
 
                                     <label class="form-label">संस्था का सम्बन्ध<span class="text-danger">*</span></label>
-                                    <asp:DropDownList ID="ddlPsanshaanya_naam" runat="server" CssClass="form-control" AutoPostBack="true">
+                                    <asp:DropDownList ID="ddlPsanshaanya_naam" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator45" runat="server" ErrorMessage="select संस्था का प्रकार..."
                                         ControlToValidate="ddlPsanshaanya_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
@@ -1297,7 +1297,7 @@
                             <div class="row mb-2">
                                 <div class="col-md-12 text-center">
 
-                                    <asp:Button ID="btnAddPratiVadiDetail" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="PratiVadi"  />
+                                    <asp:Button ID="btnAddPratiVadiDetail" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="PratiVadi" OnClick="btnAddPratiVadiDetail_Click" />
                                 </div>
                             </div>
 
@@ -1307,7 +1307,7 @@
                                 <div class="col-md-12">
                                     <div class="table-responsive">
 
-                                        <asp:Repeater ID="Pratiwadi_repeater" runat="server" >
+                                        <asp:Repeater ID="Pratiwadi_repeater" runat="server" OnItemCommand="Pratiwadi_repeater_ItemCommand">
 
                                             <HeaderTemplate>
 
@@ -1446,7 +1446,7 @@
 
                                     <label class="form-label">प्रतिवादी को सूचित किया गया है या नहीं? <span class="required">*</span> </label>
 
-                                    <asp:DropDownList ID="ddlwadi_pratiwadi_sunwai" runat="server" CssClass="form-control" AutoPostBack="true" >
+                                    <asp:DropDownList ID="ddlwadi_pratiwadi_sunwai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlwadi_pratiwadi_sunwai_SelectedIndexChanged">
 
                                         <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                         <asp:ListItem Value="Y">हाँ</asp:ListItem>
@@ -1490,7 +1490,7 @@
 
                                     <label class="form-label">प्रतिवादी को सूचना तामिला प्राप्त है या नहीं? <span class="required">*</span> </label>
 
-                                    <asp:DropDownList ID="ddlSuchana_ka_tamila" runat="server" CssClass="form-control" AutoPostBack="true" >
+                                    <asp:DropDownList ID="ddlSuchana_ka_tamila" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSuchana_ka_tamila_SelectedIndexChanged">
 
                                         <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                         <asp:ListItem Value="Y">हाँ</asp:ListItem>
@@ -1531,18 +1531,1523 @@
 
         <!-- Step-3  -->
         <asp:Panel ID="pnlStep3" runat="server">
+
+            <div class="card mt-3">
+
+                <div class="card-header bg-light">
+                    <h5>Step-3 : खाता-खेसरा</h5>
+                </div>
+                <div class="section-card">
+
+                    <div class="section-header">खाता / खेसरा विवरण </div>
+
+                    <div class="section-body">
+
+                        <asp:UpdatePanel runat="server" ID="UpdatePanel3" UpdateMode="Conditional">
+                            <ContentTemplate>
+
+                                <div class="row mb-2">
+
+                                    <div class="col-md-3">
+
+                                        <label class="form-label">ज़िला का नाम <span class="required">*</span> </label>
+                                        <asp:DropDownList ID="ddldistrict_old" runat="server" CssClass="form-control" AutoPostBack="true" />
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <label class="form-label">अंचल का नाम <span class="required">*</span> </label>
+                                        <asp:DropDownList ID="ddl_anchalold" runat="server" CssClass="form-control" AutoPostBack="true" />
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <label class="form-label">हल्का का नाम <span class="required">*</span> </label>
+                                        <asp:DropDownList ID="ddlhalka_old" runat="server" CssClass="form-control" AutoPostBack="true" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label61" runat="server" Text="मौजा का नाम" />
+                                        <span class="text-danger">*</span>
+
+                                        <asp:DropDownList ID="ddlmowja_old" runat="server" CssClass="form-control" AutoPostBack="true" />
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <!-- Khata Number -->
+                                    <div class="col-lg-3 col-md-6 mb-3">
+
+                                        <label class="form-label">खाता संख्या <span class="required">*</span>  </label>
+
+                                        <asp:TextBox ID="txtkhatasankhya" runat="server" CssClass="form-control" AutoComplete="off"> </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator52" runat="server" CssClass="validator" ControlToValidate="txtkhatasankhya" ValidationGroup="4" Display="Dynamic" SetFocusOnError="true" ErrorMessage="कृपया खाता संख्या दर्ज करें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- Khesra Number -->
+                                    <div class="col-lg-3 col-md-6 mb-3">
+
+                                        <label class="form-label">खेसरा संख्या<span class="required">*</span> </label>
+
+                                        <asp:TextBox ID="txtkhesarasankhya" runat="server" CssClass="form-control" AutoComplete="off"> </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator53" runat="server" CssClass="validator" ControlToValidate="txtkhesarasankhya" ValidationGroup="4" Display="Dynamic" SetFocusOnError="true" ErrorMessage="कृपया खेसरा संख्या दर्ज करें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Verification Link -->
+                                <div class="mt-2">
+
+                                    <a href="http://land.bihar.gov.in/Ror/RoR.aspx" target="_blank" class="text-primary font-weight-bold"><i class="fa fa-external-link-alt"></i>खाता-खेसरा सत्यापित करने के लिए यहाँ क्लिक करें </a>
+
+                                </div>
+
+
+                                <div class="note-box mt-3"><strong>नोट :</strong>   यदि एक से अधिक खेसरा संख्या हो, तो उन्हें कॉमा (<strong>,</strong>) से अलग-अलग दर्ज करें। </div>
+
+
+                                <!-- =================== Area Details =================== -->
+                                <div class="section-card mb-4">
+
+                                    <div class="section-header">रकबा का विवरण </div>
+
+                                    <div class="section-body">
+
+                                        <!-- Area 1 -->
+                                        <div class="row align-items-end mb-3">
+
+                                            <div class="col-lg-4 col-md-6">
+
+                                                <label class="form-label">क्षेत्रफल (बड़ी इकाई) <span class="required">*</span> </label>
+
+                                                <asp:TextBox ID="txtrakabasankhya1" runat="server" CssClass="form-control" MaxLength="15"> </asp:TextBox>
+
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator54" runat="server" CssClass="validator" ValidationGroup="4" Display="Dynamic" ControlToValidate="txtrakabasankhya1" ErrorMessage="क्षेत्रफल दर्ज करें">  </asp:RequiredFieldValidator>
+
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6">
+
+                                                <label class="form-label">यूनिट <span class="required">*</span> </label>
+
+                                                <asp:DropDownList ID="ddlrakabaunit1" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator57" runat="server" CssClass="validator" ValidationGroup="4" InitialValue="0" Display="Dynamic" ControlToValidate="ddlrakabaunit1" ErrorMessage="यूनिट चुनें"> </asp:RequiredFieldValidator>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Area 2 -->
+                                        <div class="row align-items-end mb-3">
+
+                                            <div class="col-lg-4 col-md-6">
+
+                                                <label class="form-label">क्षेत्रफल (मध्यम इकाई)</label>
+
+                                                <asp:TextBox ID="txtrakabasankhya2" runat="server" CssClass="form-control" MaxLength="15"> </asp:TextBox>
+
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6">
+
+                                                <label class="form-label">यूनिट </label>
+
+                                                <asp:DropDownList ID="ddlrakabaunit2" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Area 3 -->
+                                        <div class="row align-items-end mb-3">
+
+                                            <div class="col-lg-4 col-md-6">
+
+                                                <label class="form-label">क्षेत्रफल (सबसे छोटी इकाई) </label>
+
+                                                <asp:TextBox ID="txtrakabasankhya3" runat="server" CssClass="form-control" MaxLength="15">  </asp:TextBox>
+
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6">
+
+                                                <label class="form-label">यूनिट  </label>
+
+                                                <asp:DropDownList ID="ddlrakabaunit3" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="note-box">
+
+                                            <strong>नोट :</strong> सबसे बड़ी इकाई पहले दर्ज करें, फिर छोटी तथा अंत में सबसे छोटी इकाई दर्ज करें।
+                                 
+                                 <br />
+                                            <strong>उदाहरण :</strong> 0 हेक्टेयर → 0 एकड़ → 1.5 डेसिमल
+    
+                                        </div>
+
+                                        <hr class="my-4" />
+
+                                        <div class="row">
+
+                                            <div class="col-lg-4 col-md-6 mb-3">
+
+                                                <label class="form-label">खतियान में जमीन की किस्म <span class="required">*</span>  </label>
+
+                                                <asp:DropDownList ID="ddlkhatiyan_me_jaminvivran" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator60" runat="server" CssClass="validator" ValidationGroup="4" InitialValue="0" Display="Dynamic" ControlToValidate="ddlkhatiyan_me_jaminvivran" ErrorMessage="जमीन की किस्म चुनें"> </asp:RequiredFieldValidator>
+
+                                            </div>
+
+                                            <div class="col-lg-8 col-md-6 mb-3">
+
+                                                <label class="form-label">खतियान में जमीन का विवरण </label>
+
+                                                <asp:TextBox ID="txtkhatiyan_me_jaminvivran_text" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- =================== Boundary Details =================== -->
+
+                                <div class="section-card">
+
+                                    <div class="section-header">चौहद्दी का विवरण </div>
+
+                                    <div class="section-body">
+
+                                        <div class="row">
+
+                                            <div class="col-lg-3 col-md-6 mb-3">
+
+                                                <label class="form-label">उत्तर</label>
+
+                                                <asp:TextBox ID="txtuttari_chohaddi" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2" MaxLength="100"> </asp:TextBox>
+
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6 mb-3">
+
+                                                <label class="form-label">दक्षिण</label>
+
+                                                <asp:TextBox ID="txtdakshini_chohaddi" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2" MaxLength="100"> </asp:TextBox>
+
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6 mb-3">
+
+                                                <label class="form-label">पूर्व</label>
+
+                                                <asp:TextBox ID="txtpurvi_chohaddi" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2" MaxLength="100"> </asp:TextBox>
+
+                                            </div>
+
+                                            <div class="col-lg-3 col-md-6 mb-3">
+
+                                                <label class="form-label">पश्चिम</label>
+
+                                                <asp:TextBox ID="txtpashchimi_chohaddi" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="2" MaxLength="100">  </asp:TextBox>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Save Button -->
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12 text-center">
+
+                                        <asp:Button ID="btnsaveBhumiKaVivaran" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="4" />
+                                    </div>
+                                </div>
+
+                                <!-- Repeater -->
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+
+                                            <asp:Repeater ID="rptKhataKhesraVivarni" runat="server">
+
+                                                <HeaderTemplate>
+
+                                                    <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                                                        <thead class="thead-dark text-center">
+                                                            <tr>
+                                                                <th style="width: 70px;">Action</th>
+                                                                <th style="width: 50px;">#</th>
+                                                                <th>खाता संख्या</th>
+                                                                <th>खेसरा संख्या</th>
+
+                                                                <th>रकबा</th>
+
+                                                                <th>जमीन की किस्म</th>
+                                                                <th>ख़तियन में जमीन का विवरण</th>
+                                                                <th>उत्तर</th>
+
+                                                                <th>दक्षिण</th>
+                                                                <th>पूर्व</th>
+                                                                <th>पश्चिम</th>
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                </HeaderTemplate>
+
+                                                <ItemTemplate>
+
+                                                    <tr>
+
+                                                        <td class="text-center">
+
+                                                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" CommandName="Remove" CommandArgument='<%# Container.ItemIndex %>' ToolTip="Delete Record" OnClientClick="return confirm('Are you sure you want to delete this record?');"> <i class="fa fa-trash"></i> </asp:LinkButton>
+
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <%# Container.ItemIndex + 1 %>
+                                                        </td>
+
+                                                        <td><%# Eval("khataNo") %></td>
+
+                                                        <td><%# Eval("khesraNo") %></td>
+
+
+                                                        <td class="text-center">
+                                                            <%# Eval("Rakba") %>
+                                                        </td>
+
+
+                                                        <td>
+                                                            <%# Eval("Landdesciption") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("LandDetailsInKhatian") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("North_chauhaddee") %>
+
+                                                        </td>
+                                                        <td>
+                                                            <%# Eval("South_chauhaddee") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("East_chauhaddee") %>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <%# Eval("West_chauhaddee") %>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    </tbody>
+
+                                         </table>
+
+                                                </FooterTemplate>
+
+                                            </asp:Repeater>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Repeater End -->
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </div>
+
+            </div>
         </asp:Panel>
 
         <!-- Step-4  -->
-        <asp:Panel ID="pnlStep4" runat="server">
+        <asp:Panel ID="pnlStep4" runat="server" Visible="false">
+
+            <div class="card mt-3">
+
+                <div class="card-header bg-light">
+                    <h5>Step-4 : वादी/प्रतिवादी का साक्ष्य</h5>
+                </div>
+
+                <div class="section-card">
+
+                    <div class="section-header">
+                        वादी द्वारा प्रस्तुत साक्ष्य का विवरण
+                    </div>
+
+                    <div class="section-body">
+
+                        <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional">
+
+                            <ContentTemplate>
+
+                                <div class="row">
+
+                                    <!-- Evidence Available -->
+                                    <div class="col-lg-4 col-md-6 mb-3">
+
+                                        <label class="form-label">वादी द्वारा साक्ष्य का दस्तावेज उपलब्ध है? <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlIsVadiEvi" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlIsVadiEvi_SelectedIndexChanged">
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator62" runat="server" CssClass="validator" ControlToValidate="ddlIsVadiEvi" InitialValue="0" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="कृपया विकल्प चुनें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- Evidence Type -->
+                                    <div class="col-lg-3 col-md-6 mb-3" id="divVadiEvidenceType" runat="server" visible="false">
+
+                                        <label class="form-label">साक्ष्य का प्रकार  <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlVadiEvidenceType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlVadiEvidenceType_SelectedIndexChanged"></asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator63" runat="server" CssClass="validator" ControlToValidate="ddlVadiEvidenceType" InitialValue="0" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="साक्ष्य का प्रकार चुनें।">   </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- Other Evidence -->
+                                    <div class="col-lg-5 col-md-12 mb-3" id="divtxtVadiEvidenceType" runat="server" visible="false">
+
+                                        <label class="form-label">अन्य होने पर दस्तावेज का नाम <span class="required">*</span> </label>
+
+                                        <asp:TextBox ID="txtVadiEvidenceType" runat="server" CssClass="form-control" MaxLength="100" AutoComplete="off" placeholder="दस्तावेज का नाम"> </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator64" runat="server" CssClass="validator" ControlToValidate="txtVadiEvidenceType" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="दस्तावेज का नाम दर्ज करें।">  </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- File Upload -->
+
+                                <div class="row" id="divvadi_dastavej" runat="server" visible="false">
+
+                                    <div class="col-lg-6 col-md-12 mb-3">
+
+                                        <label class="form-label">वादी द्वारा प्रस्तुत साक्ष्य का दस्तावेज</label>
+
+                                        <asp:FileUpload ID="file_vadi_dastavej_new" runat="server" CssClass="form-control" accept=".pdf" />
+
+                                        <small class="text-danger">केवल PDF (.pdf) फ़ाइल अपलोड करें (अधिकतम 3 MB)  </small>
+
+                                        <br />
+
+                                        <a id="lnkvadikashachhDoc" runat="server" class="btn btn-link p-0 mt-2 getpdfdoc" path="display" visible="false"><i class="fa fa-file-pdf text-danger"></i>अपलोड किया गया दस्तावेज़ देखें </a>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Save Button -->
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12 text-center">
+
+                                        <asp:Button ID="btnAddVadiEvidenceDetail" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnAddVadiEvidenceDetail_Click" />
+                                    </div>
+                                </div>
+
+                                <!-- Repeater -->
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+
+                                            <asp:Repeater ID="rptVadiEvidence" runat="server" OnItemCommand="rptVadiEvidence_ItemCommand">
+
+                                                <HeaderTemplate>
+
+                                                    <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                                                        <thead class="thead-dark text-center">
+                                                            <tr>
+                                                                <th style="width: 70px;">Action</th>
+                                                                <th style="width: 50px;">#</th>
+                                                                <th>साक्ष्य का प्रकार</th>
+                                                                <th>साक्ष्य का दस्तावेज</th>
+
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                </HeaderTemplate>
+
+                                                <ItemTemplate>
+
+                                                    <tr>
+
+                                                        <td class="text-center">
+
+                                                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" CommandName="Remove" CommandArgument='<%# Container.ItemIndex %>' ToolTip="Delete Record" OnClientClick="return confirm('Are you sure you want to delete this record?');"> <i class="fa fa-trash"></i> </asp:LinkButton>
+
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <%# Container.ItemIndex + 1 %>
+                                                        </td>
+
+                                                        <td>
+                                                            <asp:Label ID="lblEvidenceType" runat="server" Text='<%# (Convert.ToString(Eval("evidence_id")) != "9")  ? Eval("evidence_name")  : Eval("evidence_any_name") %>'>  </asp:Label></td>
+
+                                                        <td>
+                                                            <asp:ImageButton ID="imgVadiEvidence" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandArgument='<%# Eval("FullfileName") %>' CommandName="View" Visible='<%# !string.IsNullOrWhiteSpace(Convert.ToString(Eval("FullfileName"))) %>' /></td>
+
+                                                    </tr>
+
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    </tbody>
+
+                                             </table>
+
+                                                </FooterTemplate>
+
+                                            </asp:Repeater>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </ContentTemplate>
+                            <Triggers>
+
+                                <asp:PostBackTrigger ControlID="btnAddVadiEvidenceDetail" />
+                            </Triggers>
+
+                        </asp:UpdatePanel>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="section-card">
+
+                    <div class="section-header">
+                        प्रतिवादी द्वारा प्रस्तुत साक्ष्य का विवरण
+                    </div>
+
+                    <div class="section-body">
+
+                        <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional">
+
+                            <ContentTemplate>
+
+                                <div class="row">
+
+                                    <!-- Evidence Available -->
+                                    <div class="col-lg-4 col-md-6 mb-3">
+
+                                        <label class="form-label">प्रतिवादी द्वारा साक्ष्य का दस्तावेज उपलब्ध है?  <span class="required">*</span>  </label>
+
+                                        <asp:DropDownList ID="ddlIsPvadiEvi" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlIsPvadiEvi_SelectedIndexChanged">
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator65" runat="server" CssClass="validator" ControlToValidate="ddlIsPvadiEvi" InitialValue="0" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="कृपया विकल्प चुनें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- Evidence Type -->
+                                    <div class="col-lg-3 col-md-6 mb-3" id="divPrativadiEvidence" runat="server" visible="false">
+
+                                        <label class="form-label">साक्ष्य का प्रकार <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlPrativadiEvidenceType" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPrativadiEvidenceType_SelectedIndexChanged"></asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator66" runat="server" CssClass="validator" ControlToValidate="ddlPrativadiEvidenceType" InitialValue="0" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="साक्ष्य का प्रकार चुनें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- Other Evidence Name -->
+                                    <div class="col-lg-5 col-md-12 mb-3" id="divtxtPrativadiEvidenceType" runat="server" visible="false">
+
+                                        <label class="form-label">अन्य होने पर दस्तावेज का नाम <span class="required">*</span>  </label>
+
+                                        <asp:TextBox ID="txtPrativadiEvidenceType" runat="server" CssClass="form-control" MaxLength="100" AutoComplete="off" placeholder="दस्तावेज का नाम">  </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator67" runat="server" CssClass="validator" ControlToValidate="txtPrativadiEvidenceType" Display="Dynamic" ValidationGroup="5" SetFocusOnError="true" ErrorMessage="दस्तावेज का नाम दर्ज करें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- File Upload -->
+                                <div class="row" id="divPrativadi_dastavej_new" runat="server" visible="false">
+
+                                    <div class="col-lg-6 col-md-12 mb-3">
+
+                                        <label class="form-label">प्रतिवादी द्वारा प्रस्तुत साक्ष्य का दस्तावेज  </label>
+
+                                        <asp:FileUpload ID="file_Prativadi_dastavej_new" runat="server" CssClass="form-control" accept=".pdf" />
+
+                                        <small class="text-danger">केवल PDF (.pdf) फ़ाइल अपलोड करें (अधिकतम 3 MB) </small>
+
+                                        <br />
+
+                                        <a id="lnkPrativadiKashachhDoc" runat="server" class="btn btn-link p-0 mt-2 getpdfdoc" path="display" visible="false"><i class="fa fa-file-pdf text-danger"></i>अपलोड किया गया दस्तावेज़ देखें </a>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Save Button -->
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12 text-center">
+
+                                        <asp:Button ID="btnAddPrativadiEvidenceDetail" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnAddPrativadiEvidenceDetail_Click" />
+                                    </div>
+                                </div>
+
+                                <!-- Repeater -->
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+
+
+                                            <asp:Repeater ID="rptPrativadiEvidence" runat="server" OnItemCommand="rptPrativadiEvidence_ItemCommand">
+
+                                                <HeaderTemplate>
+
+                                                    <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                                                        <thead class="thead-dark text-center">
+                                                            <tr>
+                                                                <th style="width: 70px;">Action</th>
+                                                                <th style="width: 50px;">#</th>
+                                                                <th>साक्ष्य का प्रकार</th>
+                                                                <th>साक्ष्य का दस्तावेज</th>
+
+
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                </HeaderTemplate>
+
+                                                <ItemTemplate>
+
+                                                    <tr>
+
+                                                        <td class="text-center">
+
+                                                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" CommandName="Remove" CommandArgument='<%# Container.ItemIndex %>' ToolTip="Delete Record" OnClientClick="return confirm('Are you sure you want to delete this record?');"> <i class="fa fa-trash"></i> </asp:LinkButton>
+
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <%# Container.ItemIndex + 1 %>
+                                                        </td>
+
+                                                        <td>
+                                                            <asp:Label ID="lblEvidenceType" runat="server" Text='<%# (Convert.ToString(Eval("evidence_id")) != "9")  ? Eval("evidence_name")  : Eval("evidence_any_name") %>'>  </asp:Label></td>
+
+                                                        <td>
+                                                            <asp:ImageButton ID="imgPratiwadiEvidence" runat="server" ImageUrl="~/images/pdf.gif" Width="40px" Height="40px" CssClass="evidence-pdf" CommandArgument='<%# Eval("FullfileName") %>' CommandName="View" Visible='<%# !string.IsNullOrWhiteSpace(Convert.ToString(Eval("FullfileName"))) %>' />
+                                                    </tr>
+
+                                                </ItemTemplate>
+
+                                                <FooterTemplate>
+                                                    </tbody>
+
+                                              </table>
+
+                                                </FooterTemplate>
+
+                                            </asp:Repeater>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+
+                                <asp:PostBackTrigger ControlID="btnAddPrativadiEvidenceDetail" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
         </asp:Panel>
 
         <!-- Step-5  -->
-        <asp:Panel ID="pnlStep5" runat="server">
+        <asp:Panel ID="pnlStep5" runat="server" Visible="false">
+
+            <div class="card mt-3">
+
+                <div class="card-header bg-light">
+                    <h5>Step-5 : प्रस्तुत साक्ष्य</h5>
+                </div>
+                <div class="section-header">राजस्व अधिकारी / पुलिस पदाधिकारी / हल्का कर्मचारी द्वारा प्रस्तुत साक्ष्य का विवरण </div>
+
+                <div class="section-body">
+
+                    <asp:UpdatePanel ID="UPanel3" runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+
+                            <!-- Police Report -->
+                            <div class="row mb-4">
+
+                                <div class="col-md-6">
+                                    <label class="form-label">पुलिस पदाधिकारी द्वारा समर्पित जाँच प्रतिवेदन की संक्षिप्त विवरणी  </label>
+
+                                    <asp:TextBox ID="txtpulis_padadhikari_vivarani" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">पुलिस पदाधिकारी द्वारा समर्पित जाँच प्रतिवेदन का दस्तावेज </label>
+
+                                    <asp:FileUpload ID="pulis_padadhikari_Patr_file" runat="server" CssClass="form-control" accept=".pdf" />
+
+                                    <small class="text-danger">केवल PDF (अधिकतम 3 MB)</small>
+
+                                    <br />
+
+                                    <a id="lnkpulis_padadhikari_Patr_file" runat="server" visible="false" class="getpdfdoc" path="display" href="#">View Document </a>
+                                </div>
+
+                            </div>
+
+                            <!-- Revenue Officer Report -->
+                            <div class="row mb-4">
+
+                                <div class="col-md-6">
+                                    <label class="form-label">हल्का कर्मचारी / राजस्व अधिकारी द्वारा समर्पित जाँच प्रतिवेदन की संक्षिप्त विवरणी </label>
+
+                                    <asp:TextBox ID="txthalkakarmchari_prativedan" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">
+                                        हल्का कर्मचारी / राजस्व अधिकारी द्वारा समर्पित जाँच प्रतिवेदन का दस्तावेज<br />
+                                        <br />
+                                    </label>
+
+                                    <asp:FileUpload ID="file_halkakarmchari_praptr" runat="server" CssClass="form-control" accept=".pdf" />
+
+                                    <small class="text-danger">केवल PDF (अधिकतम 3 MB) </small>
+
+                                    <br />
+
+                                    <a id="lnkfile_halkakarmchari_praptr" runat="server" visible="false" class="getpdfdoc" path="display" href="#">View Document </a>
+                                </div>
+
+                            </div>
+
+                            <!-- Land Measurement -->
+                            <div class="row mb-3">
+
+                                <div class="col-md-3" id="divbhukhand_mapi" runat="server">
+
+                                    <label class="form-label">विवादित भू-खंड की मापी <span class="required">*</span> </label>
+
+                                    <asp:DropDownList ID="ddlbhukhand_mapi" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlbhukhand_mapi_SelectedIndexChanged">
+
+                                        <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                        <asp:ListItem Value="Y">मापी आवश्यक है</asp:ListItem>
+                                        <asp:ListItem Value="N">मापी आवश्यक नहीं है</asp:ListItem>
+
+                                    </asp:DropDownList>
+
+
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator68" runat="server" CssClass="validator" ControlToValidate="ddlbhukhand_mapi" ValidationGroup="4" InitialValue="0" Display="Dynamic"> विवादित भू-खंड की मापी </asp:RequiredFieldValidator>
+
+                                </div>
+
+                                <div class="col-md-3" id="divbhukhand_Copy" runat="server" visible="false">
+
+                                    <label class="form-label">मापी <span class="required">*</span> </label>
+
+                                    <asp:DropDownList ID="ddlbhukhand_Copy" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlbhukhand_Copy_SelectedIndexChanged">
+
+                                        <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                        <asp:ListItem Value="Y">मापी हुई है</asp:ListItem>
+                                        <asp:ListItem Value="N">मापी नहीं हुई है</asp:ListItem>
+
+                                    </asp:DropDownList>
+
+
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator69" runat="server" CssClass="validator" ControlToValidate="ddlbhukhand_Copy" ValidationGroup="6" InitialValue="0" Display="Dynamic"> मापी  </asp:RequiredFieldValidator>
+
+                                </div>
+
+                                <div class="col-md-3" id="divMapiKeNirdharit_tithi" runat="server" visible="false">
+
+                                    <label class="form-label">मापी के लिए निर्धारित तिथि <span class="required">*</span></label>
+
+                                    <asp:TextBox ID="txtMapiKeNirdharit_tithi" runat="server" CssClass="form-control" MaxLength="10" placeholder="dd-MM-yyyy" AutoComplete="off" oncopy="return false" onpaste="return false" oncut="return false" onkeypress="return dateValidate(event)"></asp:TextBox>
+
+                                    <cc1:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="txtMapiKeNirdharit_tithi" Format="dd-MM-yyyy" CssClass="zindex"></cc1:CalendarExtender>
+
+                                </div>
+
+                                <div class="col-md-3" id="divBhukhandReport" runat="server">
+
+                                    <label class="form-label">विवादित भू-खंड की मापी का प्रतिवेदन</label>
+
+                                    <asp:FileUpload ID="file_bhukand_prativedan" runat="server" CssClass="form-control" accept=".pdf" />
+
+
+                                    <small class="text-danger">केवल PDF (अधिकतम 3 MB) </small>
+
+                                    <br />
+
+                                    <a id="lnkfile_bhukand_prativedan" runat="server" visible="false" class="getpdfdoc" path="display" href="#">View Document  </a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-6" id="divBhukhandReason" runat="server" visible="false">
+
+                                    <label class="form-label">विवादित भू-खंड की मापी नहीं होने का कारण  </label>
+
+                                    <asp:TextBox ID="txtbhukhand_reason" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500">  </asp:TextBox>
+
+                                </div>
+
+                            </div>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+
+                </div>
+
+            </div>
+
         </asp:Panel>
 
         <!-- Step-6  -->
-        <asp:Panel ID="pnlStep6" runat="server">
+        <asp:Panel ID="pnlStep6" runat="server" Visible="false">
+            <asp:UpdatePanel ID="upStep6" runat="server" UpdateMode="Conditional">
+
+                <ContentTemplate>
+
+                    <div class="card mt-3">
+
+                        <div class="card-header bg-light">
+                            <h5>Step-6 : घटना एवं न्यायालय</h5>
+                        </div>
+                        <div class="section-card">
+
+                            <div class="section-header">भूमि विवाद से संबंधित घटना / वारदात का विवरण </div>
+
+                            <div class="section-body">
+
+                                <div class="row">
+
+                                    <!-- FIR / Sanha -->
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">प्राथमिकी / अप्राथमिकी / सनहा दर्ज है?<span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="dd_IsBhumiVivad" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="dd_IsBhumiVivad_SelectedIndexChanged" >
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+                                        </asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator71" runat="server" CssClass="validator" ControlToValidate="dd_IsBhumiVivad" InitialValue="0" Display="Dynamic" ValidationGroup="7" SetFocusOnError="true" ErrorMessage="प्राथमिकी / अप्राथमिकी / सनहा दर्ज है?"> </asp:RequiredFieldValidator>
+                                    </div>
+
+                                    <!-- Incident Date -->
+                                    <div class="col-md-3 mb-3" id="btnBhumiVivadVivran1" runat="server" visible="false">
+
+                                        <label class="form-label">घटना / वारदात की तिथि <span class="required">*</span></label>
+
+                                        <asp:TextBox ID="txtghatanaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy"> </asp:TextBox>
+
+                                        <cc1:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtghatanaDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
+
+                                    </div>
+
+                                    <!-- Incident Details -->
+                                    <div class="col-md-5 mb-3" id="btnBhumiVivadVivran2" runat="server" visible="false">
+
+                                        <label class="form-label">घटना / वारदात का संक्षिप्त विवरण </label>
+
+                                        <asp:TextBox ID="txtghatanavivran" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500" placeholder="अधिकतम 500 शब्द">  </asp:TextBox>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="section-card" id="btnBhumiVivadVivran3" runat="server" visible="false">
+
+                            <div class="section-header">प्राथमिकी का विवरण</div>
+
+                            <div class="section-body">
+
+                                <div class="row">
+
+                                    <!-- FIR Available -->
+                                    <div class="col-md-3 mb-3">
+
+                                        <label class="form-label">प्राथमिकी दर्ज है?<span class="required">*</span>  </label>
+
+                                        <asp:DropDownList ID="ddlPrathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPrathmiki_huyee_hai_SelectedIndexChanged" >
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator73" runat="server" CssClass="validator" ControlToValidate="ddlPrathmiki_huyee_hai" InitialValue="0" ValidationGroup="7" Display="Dynamic" SetFocusOnError="true" ErrorMessage="प्राथमिकी दर्ज है?"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- FIR Number -->
+                                    <div class="col-md-3 mb-3" id="divPrathmiki_sankhiyan" runat="server" visible="false">
+
+                                        <label class="form-label">प्राथमिकी संख्या <span class="required">*</span>  </label>
+
+                                        <asp:TextBox ID="txtFIR_sankhya" runat="server" CssClass="form-control" placeholder="प्राथमिकी संख्या" AutoComplete="off">  </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator74" runat="server" CssClass="validator" ControlToValidate="txtFIR_sankhya" ValidationGroup="7" Display="Dynamic" SetFocusOnError="true" ErrorMessage="प्राथमिकी संख्या दर्ज करें"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- FIR Details -->
+                                    <div class="col-md-6 mb-3" id="divPrathmiki_vivaran" runat="server" visible="false">
+
+                                        <label class="form-label">प्राथमिकी का संक्षिप्त विवरण</label>
+
+                                        <asp:TextBox ID="txtPrathmik_vivran" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="section-card" id="btnBhumiVivadVivran4" runat="server" visible="false">
+
+                            <div class="section-header">अप्राथमिकी का विवरण </div>
+
+                            <div class="section-body">
+
+                                <div class="row">
+
+                                    <!-- Aprathmiki Available -->
+                                    <div class="col-md-3 mb-3">
+
+                                        <label class="form-label">अप्राथमिकी दर्ज है?(aaaaaaa)<span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlAprathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlAprathmiki_huyee_hai_SelectedIndexChanged" >
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator75" runat="server" CssClass="validator" ControlToValidate="ddlAprathmiki_huyee_hai" InitialValue="0" ValidationGroup="7" Display="Dynamic" ErrorMessage="अप्राथमिकी दर्ज है?">  </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                    <!-- IPC / BNS Type -->
+                                    <div class="col-md-3 mb-3" id="divdharabsn" runat="server" visible="false">
+
+                                        <label class="form-label">कानून का प्रकार<span class="required">*</span></label>
+
+                                        <div class="pt-2">
+
+                                            <asp:RadioButton ID="rdoOld" runat="server" Text="IPC" GroupName="dhara" AutoPostBack="true" OnCheckedChanged="DharaChanged" />
+
+                                            &nbsp;&nbsp;
+
+                                     <asp:RadioButton ID="rdoNew" runat="server" Text="BNS" GroupName="dhara" AutoPostBack="true" OnCheckedChanged="DharaChanged" />
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Aprathmiki Number -->
+                                    <div class="col-md-3 mb-3" id="divAPrathmiki_sankhiyan" runat="server" visible="false">
+
+                                        <label class="form-label">अप्राथमिकी संख्या  <span class="required">*</span>  </label>
+
+                                        <asp:TextBox ID="txtAFIR_sankhya" runat="server" CssClass="form-control" AutoComplete="off" placeholder="अप्राथमिकी संख्या">  </asp:TextBox>
+
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div class="col-md-3 mb-3" id="divAPrathmiki_vivaran" runat="server" visible="false">
+
+                                        <label class="form-label">अप्राथमिकी का विवरण </label>
+
+                                        <asp:TextBox ID="txtAprathmik_vivran" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                    </div>
+
+                                </div>
+                                <!-- IPC Checkboxes -->
+                                <div class="row">
+
+                                    <div class="col-md-6 mb-3" id="divDhara" runat="server" visible="false">
+
+                                        <label class="form-label">IPC धाराएँ </label>
+
+                                        <div class="border rounded p-2">
+
+                                            <asp:CheckBox ID="chk107" runat="server" Text="107" />
+                                            <asp:CheckBox ID="chk109" runat="server" Text="109" />
+                                            <asp:CheckBox ID="chk110" runat="server" Text="110" />
+                                            <asp:CheckBox ID="chk113" runat="server" Text="113" />
+                                            <asp:CheckBox ID="chk116" runat="server" Text="116" />
+                                            <asp:CheckBox ID="chk133" runat="server" Text="133" />
+                                            <asp:CheckBox ID="chk144" runat="server" Text="144" />
+                                            <asp:CheckBox ID="chk145" runat="server" Text="145" />
+                                            <asp:CheckBox ID="chk147" runat="server" Text="147" />
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- BNS -->
+                                    <div class="col-md-3 mb-3" id="divbsn" runat="server" visible="false">
+
+                                        <label class="form-label">BNS धाराएँ</label><asp:ListBox ID="ddlbsn_dhara_hai" runat="server" CssClass="form-control select2" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlbsn_dhara_hai_SelectedIndexChanged" ></asp:ListBox>
+
+
+                                    </div>
+
+                                    <!-- IPC -->
+                                    <div class="col-md-3 mb-3" id="divdhara1" runat="server" visible="false">
+
+                                        <label class="form-label">IPC धाराएँ चयन करें </label>
+
+                                        <asp:ListBox ID="ddldhara1" runat="server" CssClass="form-control select2" SelectionMode="Multiple"></asp:ListBox>
+
+                                        <asp:HiddenField ID="hdnSelectedIPC" runat="server" />
+
+                                    </div>
+
+                                    <row>
+                                        <div class="col-md-3" id="div_tbnm" runat="server" visible="false">
+                                            <asp:Label ID="lblnm" runat="server" Text="Add BNS"></asp:Label>
+                                            <asp:TextBox ID="txtbnm" runat="server" CssClass="form-control" Style="height: 43px;"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-3" id="div_tdhara" runat="server" visible="false">
+                                            <asp:Label ID="lbldhara" runat="server" Text="Add IPC "></asp:Label>
+                                            <asp:TextBox ID="txtdhara" runat="server" CssClass="form-control" Style="height: 43px;"></asp:TextBox>
+                                        </div>
+                                    </row>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="section-card" id="btnBhumiVivadVivran5" runat="server" visible="false">
+
+                            <div class="section-header">सनहा</div>
+
+                            <div class="section-body">
+
+                                <!-- Sanha Details -->
+                                <div class="row">
+
+                                    <!-- Sanha Registered -->
+                                    <div class="col-md-3 mb-3">
+                                        <label class="form-label">सनहा दर्ज है ? <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlSanhaStatus" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSanhaStatus_SelectedIndexChanged" >
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator77" runat="server" ControlToValidate="ddlSanhaStatus" InitialValue="0" ValidationGroup="7" Display="Dynamic" SetFocusOnError="true" ErrorMessage="सनहा दर्ज है ?" CssClass="validator" />
+                                    </div>
+
+
+                                    <!-- Sanha Number -->
+                                    <div class="col-md-3 mb-3" id="divSanahaSankhiyan1" runat="server" visible="false">
+
+                                        <label class="form-label">सनहा संख्या  <span class="required">*</span> </label>
+
+                                        <asp:TextBox ID="txtSanahaSankhiyan" runat="server" CssClass="form-control" placeholder="सनहा संख्या"></asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator78" runat="server" ControlToValidate="txtSanahaSankhiyan" ValidationGroup="7" Display="Dynamic" SetFocusOnError="true" ErrorMessage="सनहा संख्या" CssClass="validator" />
+                                    </div>
+
+                                    <!-- Sanha Description -->
+                                    <div class="col-md-6 mb-3" id="divSanahaSankhiyan2" runat="server" visible="false">
+
+                                        <label class="form-label">सनहा का विवरण </label>
+
+                                        <asp:TextBox ID="txtSanhaDesc" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Allegation -->
+                                <div class="row">
+
+                                    <div class="col-md-6 mb-3">
+
+                                        <label class="form-label">अभियुक्ति </label>
+
+                                        <asp:TextBox ID="txtabhiyukt_vaad" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <%--button + grid display section--%>
+                        <div id="btnBhumiVivadVivran6" runat="server" visible="false">
+
+                            <div class="row mb-3">
+                                <div class="col-md-12 text-center">
+                                    <asp:Button ID="btnbhumivivad" runat="server" Text="Save" CssClass="btn btn-primary" Visible="false" OnClick="btnbhumivivad_Click"  />
+                                </div>
+                            </div>
+
+                            <!-- Incident Details Grid -->
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <asp:Panel ID="Panelgrdbhumivivad" runat="server" ScrollBars="Auto">
+
+                                        <asp:GridView ID="grdbhumivivad" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdbhumivivad_RowCommand" >
+
+                                            <Columns>
+
+                                                <asp:TemplateField HeaderText="Action" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="btnRowDel" runat="server" CssClass="btn btn-danger btn-sm" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
+                                                            OnClientClick="return confirm('Are you sure you want to delete this data?');"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </asp:LinkButton>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Sl. No." ItemStyle-Width="60px" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:BoundField DataField="Ghatna_Vardat_date" HeaderText="घटना की तिथि" ItemStyle-Width="100px" />
+
+
+                                                <asp:TemplateField HeaderText="घटना की संक्षिप्त विवरण" ItemStyle-Width="220px">
+
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("Ghatna_Short_vivran") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:BoundField DataField="is_FIR_registered" HeaderText="प्राथमिकी" ItemStyle-Width="80px" />
+
+
+                                                <asp:BoundField DataField="praathamiki_sankhya" HeaderText="प्राथमिकी संख्या" ItemStyle-Width="110px" />
+
+
+                                                <asp:TemplateField HeaderText="प्राथमिकी का विवरण" ItemStyle-Width="220px">
+
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("praathamiki_ka_vivaran") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+
+                                                <asp:BoundField DataField="is_complaint_filed" HeaderText="अप्राथमिकी" ItemStyle-Width="100px" />
+
+
+                                                <asp:BoundField DataField="dhaara" HeaderText="धारा (Old)" ItemStyle-Width="100px" />
+
+
+                                                <asp:TemplateField HeaderText="BNS (New)" ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("bnm").ToString()) ? "--" : Eval("bnm") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="New IPC" ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("newdhara").ToString()) ? "--" : Eval("newdhara") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="BNS Other" ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("bnm1").ToString()) ? "--" : Eval("bnm1") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="IPC Other" ItemStyle-Width="120px">
+
+                                                    <ItemTemplate>
+                                                        <%# string.IsNullOrEmpty(Eval("newdhara1").ToString())  ? "--" : Eval("newdhara1") %>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+
+                                                <asp:BoundField DataField="apraathamiki_sankhya" HeaderText="अप्राथमिकी संख्या" ItemStyle-Width="110px" />
+
+                                                <asp:TemplateField HeaderText="अप्राथमिकी का विवरण" ItemStyle-Width="220px">
+
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("apraathamiki_ka_vivaran") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                                <asp:BoundField DataField="is_Sanha_recorded" HeaderText="सनहा" ItemStyle-Width="80px" />
+
+                                                <asp:BoundField DataField="sanha_sankhya" HeaderText="सनहा संख्या" ItemStyle-Width="110px" />
+
+                                                <asp:TemplateField HeaderText="अभियुक्ति" ItemStyle-Width="220px">
+
+                                                    <ItemTemplate>
+                                                        <div style="max-height: 80px; overflow: auto;">
+                                                            <%# Eval("Abhiyukt") %>
+                                                        </div>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
+
+                                            </Columns>
+
+                                        </asp:GridView>
+
+                                    </asp:Panel>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="section-card">
+
+                            <div class="section-header text-center">
+                                न्यायालय में प्रक्रियाधीन वाद का विवरण
+                            </div>
+
+                            <div class="section-body">
+
+                                <!-- Case Availability -->
+                                <div class="row">
+
+                                    <div class="col-md-3 mb-3">
+
+                                        <label class="form-label">प्रक्रियाधीन वाद का विवरण उपलब्ध है ? <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddl_Isbhumi_Viviad_available" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_Isbhumi_Viviad_available_SelectedIndexChanged" >
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">उपलब्ध है</asp:ListItem>
+                                            <asp:ListItem Value="N">उपलब्ध नहीं है</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator79" runat="server" ControlToValidate="ddl_Isbhumi_Viviad_available" InitialValue="0" ValidationGroup="4" Display="Dynamic" SetFocusOnError="true" CssClass="validator" ErrorMessage="प्रक्रियाधीन वाद का विवरण उपलब्ध है" />
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Court Details -->
+
+                                <div class="row">
+
+                                    <!-- Court -->
+                                    <div class="col-md-3 mb-3" id="btnnyayalay1" runat="server" visible="false">
+
+                                        <label class="form-label">न्यायालय <span class="required">*</span>  </label>
+
+                                        <asp:DropDownList ID="ddlnyayalaya" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlnyayalaya_SelectedIndexChanged" ></asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator80" runat="server" ControlToValidate="ddlnyayalaya" InitialValue="0" ValidationGroup="4" Display="Dynamic" CssClass="validator" ErrorMessage="न्यायालय चुनें" />
+
+                                    </div>
+
+                                    <!-- Court Type -->
+                                    <div class="col-md-3 mb-3" id="div_rajasw_vevhar_nyalay" runat="server" visible="false">
+
+                                        <%-- <label class="form-label">न्यायालय का प्रकार <span class="required">*</span> </label>--%>
+                                        <asp:Label ID="labNyayalaya_type" runat="server" Text="न्यायालय का प्रकार"></asp:Label>
+
+                                        <asp:DropDownList ID="ddlnyayalaya_type" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlnyayalaya_type_SelectedIndexChanged" ></asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator81" runat="server" ControlToValidate="ddlnyayalaya_type" InitialValue="0" ValidationGroup="4" Display="Dynamic" CssClass="validator" ErrorMessage="न्यायालय का प्रकार चुनें" />
+
+                                    </div>
+
+                                    <!-- District -->
+                                    <div class="col-md-3 mb-3" id="divDist_nyayalaya_type" runat="server" visible="false">
+
+                                        <label class="form-label">जिला <span class="required">*</span>  </label>
+
+                                        <asp:DropDownList ID="ddlDist_nyayalaya_type" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDist_nyayalaya_type_SelectedIndexChanged" ></asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator82" runat="server" ControlToValidate="ddlDist_nyayalaya_type" InitialValue="0" ValidationGroup="4" Display="Dynamic" CssClass="validator" ErrorMessage="जिला चुनें" />
+
+                                    </div>
+
+                                    <!-- Sub Division -->
+                                    <div class="col-md-3 mb-3" id="divSubdivision_nyayalaya_type" runat="server" visible="false">
+
+                                        <label class="form-label">अनुमंडल <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlSubdivision_nyayalaya_type" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator83" runat="server" ControlToValidate="ddlSubdivision_nyayalaya_type" InitialValue="0" ValidationGroup="4" Display="Dynamic" CssClass="validator" ErrorMessage="अनुमंडल चुनें" />
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row">
+
+                                    <!-- विभाग -->
+                                    <div class="col-md-3 mb-3" id="divVibhag_nyayalay_type" runat="server" visible="false">
+
+                                        <label class="form-label">विभाग <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlVibhag_nyayalay_type" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                    </div>
+
+
+                                    <!-- वादी की वाद संख्या / वर्ष -->
+                                    <div class="col-md-3 mb-3" id="btnnyayalay3" runat="server" visible="false">
+
+                                        <label class="form-label">वादी की वाद संख्या / वर्ष <span class="required">*</span>  </label>
+
+                                        <asp:TextBox ID="txtdayarvaadsankhya_nayalay" runat="server" CssClass="form-control" placeholder="वादी की वाद संख्या / वर्ष"> </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator84" runat="server" ControlToValidate="txtdayarvaadsankhya_nayalay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="वादी की वाद संख्या / वर्ष दर्ज करें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+
+                                    <!-- वादी की वाद का वर्ष -->
+                                    <div class="col-md-3 mb-3">
+
+                                        <label class="form-label">वादी की वाद का वर्ष <span class="required">*</span> </label>
+
+                                        <asp:TextBox ID="txtdayaryear_nayayaly" runat="server" CssClass="form-control">  </asp:TextBox>
+
+                                    </div>
+
+
+                                    <!-- वादी का नाम -->
+                                    <div class="col-md-3 mb-3" id="btnnyayalay4" runat="server" visible="false">
+
+                                        <label class="form-label">वादी का नाम <span class="required">*</span>  </label>
+
+                                        <asp:TextBox ID="txtvaadiname_nayaylay" runat="server" CssClass="form-control" placeholder="वादी का नाम">
+                                        </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator85" runat="server" ControlToValidate="txtvaadiname_nayaylay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="वादी का नाम दर्ज करें।">  </asp:RequiredFieldValidator>
+
+                                    </div>
+
+
+                                    <!-- प्रतिवादी का नाम -->
+                                    <div class="col-md-3 mb-3" id="btnnyayalay5" runat="server" visible="false">
+
+                                        <label class="form-label">प्रतिवादी का नाम <span class="required">*</span> </label>
+
+                                        <asp:TextBox ID="txtprativadi_nayaylay" runat="server" CssClass="form-control" placeholder="प्रतिवादी का नाम"> </asp:TextBox>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator86" runat="server" ControlToValidate="txtprativadi_nayaylay" ValidationGroup="4" CssClass="validator" Display="Dynamic" SetFocusOnError="true" ErrorMessage="प्रतिवादी का नाम दर्ज करें।"> </asp:RequiredFieldValidator>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- अद्यतन स्थिति -->
+                                <div class="row" id="btnnyayalay6" runat="server" visible="false">
+
+                                    <div class="col-md-6 mb-3">
+
+                                        <label class="form-label">वाद की अद्यतन स्थिति का विवरण </label>
+
+                                        <asp:TextBox ID="txtwadKiAddhatan_Sthiti_nayayaly" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                        <small class="text-muted">अधिकतम 500 शब्द </small>
+
+                                    </div>
+
+                                </div>
+
+                                <%--Grid+Button--%>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-12" id="btnnyayalay7" runat="server" visible="false">
+                                        <center>
+                                            <asp:Button ID="btnnayaylaysave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnnayaylaysave_Click"  />
+                                        </center>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <asp:Panel ID="Panelgrdnyayalay_vivran" runat="server" ScrollBars="Auto">
+                                            <asp:GridView ID="grdnyayalay_vivran" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdnyayalay_vivran_RowCommand" >
+
+                                                <Columns>
+
+                                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="btnRowDel" runat="server" CssClass="btn btn-danger btn-sm" CommandArgument='<%# Container.DataItemIndex %>' CommandName="Remove"
+                                                                OnClientClick="return confirm('Are you sure you want to delete this data?');"> <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </asp:LinkButton>
+                                                        </ItemTemplate>
+
+                                                    </asp:TemplateField>
+
+
+                                                    <asp:TemplateField HeaderText="Sl. No." ItemStyle-Width="60px" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1 %>
+                                                        </ItemTemplate>
+
+                                                    </asp:TemplateField>
+
+
+                                                    <asp:BoundField DataField="court" HeaderText="न्यायालय" ItemStyle-Width="100px" />
+
+
+                                                    <asp:BoundField DataField="courtType" HeaderText="न्यायालय का प्रकार" ItemStyle-Width="120px" />
+
+
+                                                    <asp:BoundField DataField="Dst" HeaderText="जिला" ItemStyle-Width="90px" />
+
+                                                    <asp:BoundField DataField="SubDiv" HeaderText="अनुमंडल" ItemStyle-Width="90px" />
+
+                                                    <asp:BoundField DataField="Vibhag" HeaderText="विभाग" ItemStyle-Width="90px" />
+
+                                                    <asp:BoundField DataField="vaadi_ki_vaad_sankhya_varsh" HeaderText="वाद संख्या / वर्ष" ItemStyle-Width="120px" />
+
+                                                    <asp:BoundField DataField="vadi_name" HeaderText="वादी का नाम" ItemStyle-Width="120px" />
+
+                                                    <asp:BoundField DataField="prativadi_name" HeaderText="प्रतिवादी का नाम" ItemStyle-Width="120px" />
+
+                                                    <asp:TemplateField HeaderText="अद्धतन स्थिति का विवरण" ItemStyle-Width="220px">
+
+                                                        <ItemTemplate>
+                                                            <div style="max-height: 80px; overflow: auto;">
+                                                                <%# Eval("vaad_ki_addhatan_sthiti_vivaran") %>
+                                                            </div>
+                                                        </ItemTemplate>
+
+                                                    </asp:TemplateField>
+
+                                                </Columns>
+
+                                            </asp:GridView>
+                                        </asp:Panel>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </ContentTemplate>
+
+            </asp:UpdatePanel>
+
         </asp:Panel>
 
         <!-- Step-7  -->

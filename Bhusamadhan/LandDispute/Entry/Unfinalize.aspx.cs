@@ -14,11 +14,11 @@ namespace Bhusamadhan.LandDispute.Entry
 {
     public partial class Unfinalize : System.Web.UI.Page
     {
-        string thanacode = "";
+        //string thanacode = "";
         string userid = "";
         string userrole = "";
         int roleid;
-        int thanaCode;
+        //int thanaCode;
     
         private readonly MatterRegistrationDAL _matterDAL = new MatterRegistrationDAL();
         protected void Page_Load(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace Bhusamadhan.LandDispute.Entry
                 roleid = Convert.ToInt32(dt.Rows[0]["RoleID"]);
                 userrole = dt.Rows[0]["Userrole"].ToString();
                 userid = dt.Rows[0]["UserID"].ToString();
-                thanaCode = Convert.ToInt32(dt.Rows[0]["Thana_Code"]);
+               // thanaCode = Convert.ToInt32(dt.Rows[0]["Thana_Code"]);
             }
             else
             {
@@ -98,7 +98,20 @@ namespace Bhusamadhan.LandDispute.Entry
             }
 
 
-            Response.Redirect("~/LandDispute/Entry/EntryPage.aspx?a_id=" + applicationId);
+            //Response.Redirect("~/LandDispute/Entry/EntryPage.aspx?a_id=" + applicationId);
+
+            string url;
+
+            if (userrole.Equals("COOPT", StringComparison.OrdinalIgnoreCase))
+            {
+                url = "~/LandDispute/Entry/EntryPageCo.aspx?a_id=" + applicationId;
+            }
+            else
+            {
+                url = "~/LandDispute/Entry/EntryPage.aspx?a_id=" + applicationId;
+            }
+
+            Response.Redirect(url);
         }
 
         protected void txtSearch_TextChanged(object sender, EventArgs e)

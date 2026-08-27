@@ -326,7 +326,7 @@ namespace Bhusamadhan.LandDispute.Reports
                 //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@QueryType", Convert.ToInt32("9")));
                 //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@SubDivision", Convert.ToInt32(ddlSubDivision.SelectedValue.ToString())));
                 
-                DataTable dt = objDBHelper.GetResults("Select Id,RoleDesc From mst_Role  WHERE ID NOT IN(13,1,2) order by ID", listSQLP, false);
+                DataTable dt = objDBHelper.GetResults("Select Id,RoleDesc From mst_Role  WHERE ID NOT IN(13,1,2,17) order by ID", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlRole.DataSource = dt;

@@ -502,7 +502,9 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
-        //=========================Global Methods==============================================
+        // =====================================================
+        // Global Methods
+        // =====================================================
 
         private void DisplayApplicationInfo()
         {
@@ -585,7 +587,102 @@ namespace Bhusamadhan.LandDispute.Entry
         }
 
 
-        //=======================================================================================
+        bool validateFile(FileUpload fuFile, string FileType)
+        {
+            if (fuFile.HasFile)
+            {
+                int contentLength = fuFile.PostedFile.ContentLength;
+                string extension = Path.GetExtension(fuFile.PostedFile.FileName);
+                long maxFileSize = 5000000;
+
+                string mimeType = fuFile.PostedFile.ContentType;
+                string allowedMimeType = "application/pdf";
+
+                if (mimeType == allowedMimeType)
+                {
+                    switch (FileType)
+                    {
+                        case "zip":
+                            switch (extension.ToLower())
+                            {
+                                case ".zip":
+                                    break;
+                                default:
+                                    lblMsg.Text = "This file type is not allowed.";
+                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
+                                    return false;
+                            }
+
+                            if (contentLength > (1 * 1024 * 1024))
+                            {
+                                lblMsg.Text = "File size must be less than or equal to 3 MB";
+                                return false;
+                            }
+                            break;
+                        case "doc":
+
+                            switch (extension.ToLower())
+                            {
+                                //case ".jMD":
+                                //case ".jpeg":
+                                case ".pdf":
+
+                                    break;
+                                default:
+                                    lblMsg.Text = "This file type is not allowed.";
+                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
+                                    return false;
+                            }
+                            if (contentLength > (3 * 1024 * 1024))
+                            {
+                                lblMsg.Text = "File size must be less than or equal to 3 MB";
+                                return false;
+                            }
+                            break;
+                        case "Image":
+
+                            switch (extension.ToLower())
+                            {
+
+                                case ".png":
+                                case ".PNG":
+                                case ".jpg":
+                                case ".JPG":
+                                case ".jpeg":
+                                case ".JPEG":
+
+
+                                    break;
+                                default:
+                                    lblMsg.Text = "This file type is not allowed.";
+                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
+                                    return false;
+                            }
+                            if (contentLength > (0.4 * 1024 * 1024))
+                            {
+                                lblMsg.Text = "File size must be less than or equal to 400KB";
+                                return false;
+                            }
+                            break;
+
+
+
+                        default:
+                            lblMsg.Text = "Unknown File Type !!";
+                            return false;
+                    }
+                }
+                else
+                {
+
+                    lblMsg.Text = "Invalid file type. Only PDF files are allowed.";
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //==================Global Method Ends Here=====================================================================
 
 
         //---------------------------Step 1 form entry ---------------------------------------------------
@@ -798,39 +895,27 @@ namespace Bhusamadhan.LandDispute.Entry
                 return;
             }
 
-            //if (!ValidateVadiDetail())
-            //{
-            //    return;
-            //}
-
             try
             {
                 DataTable dt = ViewState["vadiDetails"] as DataTable;
-            
-                //if (dt == null)
-                //{
-                //    lblMsg.Text = "ViewState[vadiDetails] is NULL";
-                //    return;
-                //}
 
+                if (dt == null)
+                {
+                    lblMsg.Text = "वादी विवरण तालिका उपलब्ध नहीं है।";
+                    return;
+                }
 
                 DataRow dr = dt.NewRow();
 
-
                 dr["vadi_Name"] = txtNamePerAadhaar.Text.Trim();
 
-                dr["is_vadi_from_an_org"] = ddl_is_vadi_from_an_org.SelectedValue.ToString();
-
-                dr["vadi_org_type"] = ddlWsanstha_naam.SelectedValue.ToString();
-
+                dr["is_vadi_from_an_org"] = ddl_is_vadi_from_an_org.SelectedValue;
+                dr["vadi_org_type"] = ddlWsanstha_naam.SelectedValue;
                 dr["vadi_org_name"] = txtWsanstha_naam.Text.Trim();
-
                 dr["vadi_org_pad_name"] = txtWsanstha_padanaam.Text.Trim();
 
-                dr["is_vadi_from_an_dept"] = ddl_is_vadi_from_an_dept.SelectedValue.ToString();
-
-                dr["vadi_dept_name"] = ddlWvibhaag_naam.SelectedValue.ToString();
-
+                dr["is_vadi_from_an_dept"] = ddl_is_vadi_from_an_dept.SelectedValue;
+                dr["vadi_dept_name"] = ddlWvibhaag_naam.SelectedValue;
                 dr["vadi_dept_pad_name"] = txtWvibhaag_padanaam.Text.Trim();
 
                 dr["Vadi_Father_Husband_Name"] = txtFName.Text.Trim();
@@ -839,28 +924,51 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 dr["AadharNo"] = "";
 
-                dr["YearOfBirthAsPerAadhaar"] = ddlYear.SelectedValue.ToString();
+                dr["YearOfBirthAsPerAadhaar"] = ddlYear.SelectedValue;
 
                 dr["SexAsPerAadhaar"] = ddlgender.SelectedValue.ToUpper();
 
-                dr["Vadi_District_Code"] = ddlUserDist.SelectedValue.ToString();
-              
+                dr["Vadi_District_Code"] = ddlUserDist.SelectedValue;
 
-                dr["Vadi_Sub_DivCode"] = ddlUserSubdivision.SelectedValue.ToString();
-               
+                dr["Vadi_Sub_DivCode"] = ddlUserSubdivision.SelectedValue;
 
-                dr["Vadi_Block_Code"] = ddlUserBlock.SelectedValue.ToString();
-              
-                dr["Vadi_Thana_code"] = ddlUserThana.SelectedValue.ToString();
-                
-                dr["Vadi_AreaType"] = ddlUserAreatype.SelectedValue.ToString();
-                
-                dr["Vadi_Panchayat_Code"] = ddlUserPanchyat.SelectedValue.ToString();
-              
-                dr["Vadi_Village_Code"] = ddlUserVillage.SelectedValue.ToString();
-               
-                dr["Vadi_WardNo"] = ddlUserWard.SelectedValue.ToString();
-               
+                dr["Vadi_Block_Code"] = ddlUserBlock.SelectedValue;
+
+                dr["Vadi_Thana_code"] = ddlUserThana.SelectedValue;
+
+
+                //--------- Area Type-------------------
+                bool isUrban = ddlUserAreatype.SelectedValue == "U";
+
+                dr["Vadi_AreaType"] = ddlUserAreatype.SelectedValue;
+
+                dr["Vadi_Panchayat_Code"] = ddlUserPanchyat.SelectedValue;
+
+                if (isUrban)
+                {
+
+                    // Nagar Nikay -> Ward -> Mohalla
+
+                    dr["Vadi_Village_Code"] = "";
+                    dr["Vadi_WardNo"] = ddlUserWard.SelectedValue;
+
+                    dr["VillageName"] = "";
+
+                    dr["WardName"] = ddlUserWard.SelectedItem != null ? ddlUserWard.SelectedItem.Text : "";
+                }
+                else
+                {
+
+                    // Gram Panchayat -> Revenue Village
+
+                    dr["Vadi_Village_Code"] = ddlUserVillage.SelectedValue;
+                    dr["Vadi_WardNo"] = "";
+
+                    dr["VillageName"] = ddlUserVillage.SelectedItem != null ? ddlUserVillage.SelectedItem.Text : "";
+
+                    dr["WardName"] = "";
+                }
+
                 dr["Vadi_MobileNo"] = txtvadimobile.Text.Trim();
 
                 dr["IsVerifyAadhaa"] = 'N';
@@ -873,25 +981,20 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 dr["mohalla"] = txtUserMohalla.Text.Trim();
 
-                dr["sanstha_sambandh_type"] = ddlWsanshaanya_naam.SelectedValue.ToString();
+                dr["sanstha_sambandh_type"] = ddlWsanshaanya_naam.SelectedValue;
 
-                //------------------------Display Column----------------------
+                //--------- Display Columns--------------------------
 
-                dr["DistrictName"] = ddlUserDist.SelectedItem.Text;
+                dr["DistrictName"] = ddlUserDist.SelectedItem != null ? ddlUserDist.SelectedItem.Text : "";
 
-                dr["SubDivisionName"] = ddlUserSubdivision.SelectedItem.Text;
+                dr["SubDivisionName"] = ddlUserSubdivision.SelectedItem != null ? ddlUserSubdivision.SelectedItem.Text : "";
 
-                dr["BlockName"] = ddlUserBlock.SelectedItem.Text;
+                dr["BlockName"] = ddlUserBlock.SelectedItem != null ? ddlUserBlock.SelectedItem.Text : "";
 
-                //dr["ThanaName"] = ddlUserThana.SelectedItem.Text;
+                dr["AreaTypeName"] = isUrban ? "शहरी" : "ग्रामीण";
 
-                dr["AreaTypeName"] = ddlUserAreatype.SelectedValue == "R" ? "ग्रामीण" : "शहरी";
+                dr["PanchayatName"] = ddlUserPanchyat.SelectedItem != null ? ddlUserPanchyat.SelectedItem.Text : "";
 
-                dr["PanchayatName"] = ddlUserPanchyat.SelectedItem.Text;
-
-                dr["VillageName"] = ddlUserVillage.SelectedItem.Text;
-
-                dr["WardName"] = ddlUserWard.SelectedItem.Text;
 
                 dt.Rows.Add(dr);
 
@@ -900,7 +1003,6 @@ namespace Bhusamadhan.LandDispute.Entry
                 BindWadiRepeater();
 
                 ClearVadiFields();
-
             }
             catch (Exception ex)
             {
@@ -1522,6 +1624,7 @@ namespace Bhusamadhan.LandDispute.Entry
         protected void btnAddPratiVadiDetail_Click(object sender, EventArgs e)
         {
             Page.Validate("PratiVadi");
+
             if (!Page.IsValid)
                 return;
 
@@ -1535,72 +1638,61 @@ namespace Bhusamadhan.LandDispute.Entry
 
             dr["pratiVadi_MobileNo"] = txtprativadi_Mobile.Text.Trim();
 
+            dr["is_pratiVadi_from_an_dept"] = ddl_is_pratiVadi_from_an_dept.SelectedValue;
 
-            dr["is_pratiVadi_from_an_dept"] = ddl_is_pratiVadi_from_an_dept.SelectedValue.ToString(); ;
-
-            dr["pratiVadi_dept_name"] = ddlPvibhaag_naam.SelectedValue.ToString();
+            dr["pratiVadi_dept_name"] = string.IsNullOrWhiteSpace(ddlPvibhaag_naam.SelectedValue) ? 0L : Convert.ToInt64(ddlPvibhaag_naam.SelectedValue);
 
             dr["pratiVadi_dept_pad_name"] = txtPvibhaag_padanaam.Text.Trim();
 
+            dr["is_pratiVadi_from_an_org"] = ddl_is_pratiVadi_from_an_org.SelectedValue;
 
-            dr["is_pratiVadi_from_an_org"] = ddl_is_pratiVadi_from_an_org.SelectedValue.ToString();
-
-            dr["pratiVadi_org_type"] = ddlPsanstha_naam.SelectedValue.ToString();
+            dr["pratiVadi_org_type"] = string.IsNullOrWhiteSpace(ddlPsanstha_naam.SelectedValue) ? 0L : Convert.ToInt64(ddlPsanstha_naam.SelectedValue);
 
             dr["pratiVadi_org_name"] = txtPsanstha_naam.Text.Trim();
 
             dr["pratiVadi_org_pad_name"] = txtPsanstha_padanaam.Text.Trim();
 
+            dr["pratiVadi_District_Code"] = string.IsNullOrWhiteSpace(ddlPDistrict.SelectedValue) ? 0L : Convert.ToInt64(ddlPDistrict.SelectedValue);
 
-            dr["pratiVadi_District_Code"] = ddlPDistrict.SelectedValue.ToString();
+            dr["pratiVadi_Sub_DivCode"] = string.IsNullOrWhiteSpace(ddlPSubdivision.SelectedValue) ? 0L : Convert.ToInt64(ddlPSubdivision.SelectedValue);
 
-            dr["pratiVadi_Sub_DivCode"] = ddlPSubdivision.SelectedValue.ToString();
+            dr["pratiVadi_Block_Code"] = string.IsNullOrWhiteSpace(ddlPBlock.SelectedValue) ? 0L : Convert.ToInt64(ddlPBlock.SelectedValue);
 
-            dr["pratiVadi_Block_Code"] = ddlPBlock.SelectedValue.ToString();
+            dr["pratiVadi_Thana_code"] = string.IsNullOrWhiteSpace(ddlPThana.SelectedValue) ? 0L : Convert.ToInt64(ddlPThana.SelectedValue);
 
-            dr["pratiVadi_Thana_code"] = ddlPThana.SelectedValue.ToString();
+            dr["pratiVadi_AreaType"] = ddlPAreatype.SelectedValue;
 
-
-            dr["pratiVadi_AreaType"] = ddlPAreatype.SelectedValue.ToString(); ;
-
-
-            dr["pratiVadi_Panchayat_Code"] = ddlPPanchyat.SelectedValue.ToString();
+            dr["pratiVadi_Panchayat_Code"] = string.IsNullOrWhiteSpace(ddlPPanchyat.SelectedValue) ? 0L : Convert.ToInt64(ddlPPanchyat.SelectedValue);
 
             dr["pratiVadi_Panchayat_Anya"] = txtPPanchyat_Anya.Text.Trim();
 
-
-
-            dr["pratiVadi_Village_Code"] = ddlPVillage.SelectedValue.ToString();
+            dr["pratiVadi_Village_Code"] = string.IsNullOrWhiteSpace(ddlPVillage.SelectedValue) ? 0L : Convert.ToInt64(ddlPVillage.SelectedValue);
 
             dr["pratiVadi_Village_Anya"] = txtPVillage_Anya.Text.Trim();
 
+            dr["pratiVadi_WardNo"] = string.IsNullOrWhiteSpace(ddlPWard.SelectedValue) ? 0L : Convert.ToInt64(ddlPWard.SelectedValue);
 
-            dr["pratiVadi_WardNo"] = ddlPWard.SelectedValue.ToString();
-            //-------------------------
             dr["pratiVadi_WardNo_Anya"] = txtPWard_Anya.Text.Trim();
-            //---------------------------------
 
             dr["mohalla"] = txtPMohalla.Text.Trim();
 
-            dr["sanstha_sambandh_type"] = ddlPsanshaanya_naam.SelectedValue.ToString();
+            dr["sanstha_sambandh_type"] = string.IsNullOrWhiteSpace(ddlPsanshaanya_naam.SelectedValue) ? 0 : Convert.ToInt32(ddlPsanshaanya_naam.SelectedValue);
 
-           
-            //-------------- Display Names------------------------------------
-           
+            //--------- Display Names-----------------------------
 
-            dr["DistrictName"] = ddlPDistrict.SelectedItem.Text;
+            dr["DistrictName"] = ddlPDistrict.SelectedItem != null ? ddlPDistrict.SelectedItem.Text : "";
 
-            dr["SubDivisionName"] = ddlPSubdivision.SelectedItem.Text;
+            dr["SubDivisionName"] = ddlPSubdivision.SelectedItem != null ? ddlPSubdivision.SelectedItem.Text : "";
 
-            dr["BlockName"] = ddlPBlock.SelectedItem.Text;
+            dr["BlockName"] = ddlPBlock.SelectedItem != null ? ddlPBlock.SelectedItem.Text : "";
 
-            dr["AreaTypeName"] = ddlPAreatype.SelectedItem.Text;
+            dr["AreaTypeName"] = ddlPAreatype.SelectedItem != null ? ddlPAreatype.SelectedItem.Text : "";
 
-            dr["PanchayatName"] = ddlPPanchyat.SelectedItem.Text;
+            dr["PanchayatName"] = ddlPPanchyat.SelectedItem != null ? ddlPPanchyat.SelectedItem.Text : "";
 
-            dr["VillageName"] = ddlPVillage.SelectedItem.Text;
+            dr["VillageName"] = ddlPVillage.SelectedItem != null ? ddlPVillage.SelectedItem.Text : "";
 
-            dr["WardName"] = ddlPWard.SelectedItem.Text;
+            dr["WardName"] = ddlPWard.SelectedItem != null ? ddlPWard.SelectedItem.Text : "";
 
             dt.Rows.Add(dr);
 
@@ -1641,8 +1733,12 @@ namespace Bhusamadhan.LandDispute.Entry
 
             ddlPAreatype.SelectedIndex = 0;
 
-            ddlPPanchyat.SelectedIndex = 0;
-            ddlPVillage.SelectedIndex = 0;
+            //ddlPPanchyat.SelectedIndex = 0;
+            if (ddlPPanchyat.Items.Count > 0)
+                ddlPPanchyat.SelectedIndex = 0;
+            //ddlPVillage.SelectedIndex = 0;
+            if (ddlPVillage.Items.Count > 0)
+                ddlPVillage.SelectedIndex = 0;
             ddlPWard.SelectedIndex = 0;
 
             txtPPanchyat_Anya.Text = "";
@@ -2131,78 +2227,6 @@ namespace Bhusamadhan.LandDispute.Entry
             return dt;
         }
 
-        protected void rptVadiEvidence_ItemCommand(  object source, RepeaterCommandEventArgs e)
-        {
-            if (e.CommandName == "Remove")
-            {
-                int index;
-
-                if (!int.TryParse(Convert.ToString(e.CommandArgument), out index))
-                    return;
-
-                DataTable dt = CreateVadiEvidenceDetailTable();
-
-                if (index >= 0 && index < dt.Rows.Count)
-                {
-                    dt.Rows.RemoveAt(index);
-                    dt.AcceptChanges();
-
-                    ViewState["VadiEvidenceDetail"] = dt;
-
-                    BindVadiEvidenceRepeater();
-                }
-
-                return;
-            }
-
-            if (e.CommandName == "View")
-            {
-             
-                string filePath = Convert.ToString(e.CommandArgument);
-
-                if (string.IsNullOrWhiteSpace(filePath))
-                {
-                    lblMsg.Text = "दस्तावेज़ उपलब्ध नहीं है।";
-                    return;
-                }
-
-             
-                string baseUrl =  ConfigurationManager.AppSettings["DocumentServer"];
-
-                if (string.IsNullOrWhiteSpace(baseUrl))
-                {
-                    lblMsg.Text = "Document Server उपलब्ध नहीं है।";
-                    return;
-                }
-
-                baseUrl = baseUrl.TrimEnd('/');
-
-                filePath = filePath.Trim().Replace("~", "");
-
-                if (!filePath.StartsWith("/"))
-                    filePath = "/" + filePath;
-
-                string documentUrl = baseUrl + filePath;
-
-               
-                string script = "window.open('" +  HttpUtility.JavaScriptStringEncode(documentUrl) + "', '_blank');";
-
-                ScriptManager.RegisterStartupScript( this, GetType(), "ViewVadiPdf_" + Guid.NewGuid().ToString("N"), script, true );
-
-                return;
-            }
-        }
-
-        private DataTable GetVadiEvidenceDetails()
-        {
-            if (ViewState["VadiEvidenceDetail"] == null)
-            {
-                ViewState["VadiEvidenceDetail"] = CreateVadiEvidenceDetailTable();
-            }
-
-            return (DataTable)ViewState["VadiEvidenceDetail"];
-        }
-
         protected void btnAddVadiEvidenceDetail_Click(object sender, EventArgs e)
         {
 
@@ -2346,6 +2370,79 @@ namespace Bhusamadhan.LandDispute.Entry
             rptVadiEvidence.DataSource = dt;
             rptVadiEvidence.DataBind();
         }
+
+        private DataTable GetVadiEvidenceDetails()
+        {
+            if (ViewState["VadiEvidenceDetail"] == null)
+            {
+                ViewState["VadiEvidenceDetail"] = CreateVadiEvidenceDetailTable();
+            }
+
+            return (DataTable)ViewState["VadiEvidenceDetail"];
+        }
+        protected void rptVadiEvidence_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Remove")
+            {
+                int index;
+
+                if (!int.TryParse(Convert.ToString(e.CommandArgument), out index))
+                    return;
+
+                DataTable dt = CreateVadiEvidenceDetailTable();
+
+                if (index >= 0 && index < dt.Rows.Count)
+                {
+                    dt.Rows.RemoveAt(index);
+                    dt.AcceptChanges();
+
+                    ViewState["VadiEvidenceDetail"] = dt;
+
+                    BindVadiEvidenceRepeater();
+                }
+
+                return;
+            }
+
+            if (e.CommandName == "View")
+            {
+
+                string filePath = Convert.ToString(e.CommandArgument);
+
+                if (string.IsNullOrWhiteSpace(filePath))
+                {
+                    lblMsg.Text = "दस्तावेज़ उपलब्ध नहीं है।";
+                    return;
+                }
+
+
+                string baseUrl = ConfigurationManager.AppSettings["DocumentServer"];
+
+                if (string.IsNullOrWhiteSpace(baseUrl))
+                {
+                    lblMsg.Text = "Document Server उपलब्ध नहीं है।";
+                    return;
+                }
+
+                baseUrl = baseUrl.TrimEnd('/');
+
+                filePath = filePath.Trim().Replace("~", "");
+
+                if (!filePath.StartsWith("/"))
+                    filePath = "/" + filePath;
+
+                string documentUrl = baseUrl + filePath;
+
+
+                string script = "window.open('" + HttpUtility.JavaScriptStringEncode(documentUrl) + "', '_blank');";
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "ViewVadiPdf_" + Guid.NewGuid().ToString("N"), script, true);
+
+                return;
+            }
+        }
+
+      
 
 
         //---------------------------Prativadi Evidence--------------------------------------
@@ -2515,6 +2612,15 @@ namespace Bhusamadhan.LandDispute.Entry
             rptPrativadiEvidence.DataBind();
         }
 
+        private DataTable GetPratiVadiEvidenceDetails()
+        {
+            if (ViewState["PratiVadiEvidenceDetail"] == null)
+            {
+                ViewState["PratiVadiEvidenceDetail"] = CreatePrativadiEvidenceDetailTable();
+            }
+
+            return (DataTable)ViewState["PratiVadiEvidenceDetail"];
+        }
         protected void rptPrativadiEvidence_ItemCommand( object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "Remove")
@@ -2576,15 +2682,7 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
-        private DataTable GetPratiVadiEvidenceDetails()
-        {
-            if (ViewState["PratiVadiEvidenceDetail"] == null)
-            {
-                ViewState["PratiVadiEvidenceDetail"] = CreatePrativadiEvidenceDetailTable();
-            }
-
-            return (DataTable)ViewState["PratiVadiEvidenceDetail"];
-        }
+       
         private bool SaveStep4()
         {
             if (ApplicationId == 0)
@@ -2743,100 +2841,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
         //-----------------------------------------Step5---------------------------------------------------
 
-        bool validateFile(FileUpload fuFile, string FileType)
-        {
-            if (fuFile.HasFile)
-            {
-                int contentLength = fuFile.PostedFile.ContentLength;
-                string extension = Path.GetExtension(fuFile.PostedFile.FileName);
-                long maxFileSize = 5000000;
-
-                string mimeType = fuFile.PostedFile.ContentType;
-                string allowedMimeType = "application/pdf";
-
-                if (mimeType == allowedMimeType)
-                {
-                    switch (FileType)
-                    {
-                        case "zip":
-                            switch (extension.ToLower())
-                            {
-                                case ".zip":
-                                    break;
-                                default:
-                                    lblMsg.Text = "This file type is not allowed.";
-                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
-                                    return false;
-                            }
-
-                            if (contentLength > (1 * 1024 * 1024))
-                            {
-                                lblMsg.Text = "File size must be less than or equal to 3 MB";
-                                return false;
-                            }
-                            break;
-                        case "doc":
-
-                            switch (extension.ToLower())
-                            {
-                                //case ".jMD":
-                                //case ".jpeg":
-                                case ".pdf":
-
-                                    break;
-                                default:
-                                    lblMsg.Text = "This file type is not allowed.";
-                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
-                                    return false;
-                            }
-                            if (contentLength > (3 * 1024 * 1024))
-                            {
-                                lblMsg.Text = "File size must be less than or equal to 3 MB";
-                                return false;
-                            }
-                            break;
-                        case "Image":
-
-                            switch (extension.ToLower())
-                            {
-
-                                case ".png":
-                                case ".PNG":
-                                case ".jpg":
-                                case ".JPG":
-                                case ".jpeg":
-                                case ".JPEG":
-
-
-                                    break;
-                                default:
-                                    lblMsg.Text = "This file type is not allowed.";
-                                    // ClientScript.ALLIMMisterStartupScript(this.GetType(), "msgFu", "alert('This file type is not allowed.');", true);
-                                    return false;
-                            }
-                            if (contentLength > (0.4 * 1024 * 1024))
-                            {
-                                lblMsg.Text = "File size must be less than or equal to 400KB";
-                                return false;
-                            }
-                            break;
-
-
-
-                        default:
-                            lblMsg.Text = "Unknown File Type !!";
-                            return false;
-                    }
-                }
-                else
-                {
-
-                    lblMsg.Text = "Invalid file type. Only PDF files are allowed.";
-                    return false;
-                }
-            }
-            return true;
-        }
+       
         private bool ValidateStep5()
         {
             if (ddlbhukhand_mapi.SelectedIndex == 0)
@@ -4342,6 +4347,10 @@ namespace Bhusamadhan.LandDispute.Entry
                     ddlDistrict.DataSource = null;
 
                     ddlDistrict.DataBind();
+
+                    ddlPDistrict.DataSource = null;
+
+                    ddlPDistrict.DataBind();
                 }
 
             }
@@ -6473,9 +6482,24 @@ namespace Bhusamadhan.LandDispute.Entry
         //----------------------------------------------------------------------
         protected void ddlUserBlock_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //RefreshBlock();
+            //ddlUserAreatype_SelectedIndexChanged(sender, e);//---------need to correct
+            //ddlUserAreatype.SelectedIndex = 0;
             RefreshBlock();
-            ddlUserAreatype_SelectedIndexChanged(sender, e);//---------need to correct
-            ddlUserAreatype.SelectedIndex = 0;
+            ddlUserAreatype.SelectedValue = "0";
+            labUVillage.Text = "ग्राम पंचायत";
+            divUserMohalla.Visible = false;
+            divUserVillageCol.Visible = true;
+            UWard.Visible = false;
+
+            ddlUserPanchyat.Items.Clear();
+            ddlUserPanchyat.Items.Insert(0, new ListItem("--Select--", "0"));
+
+            ddlUserVillage.Items.Clear();
+            ddlUserVillage.Items.Insert(0, new ListItem("--Select--", "0"));
+
+            ddlUserWard.Items.Clear();
+            ddlUserWard.Items.Insert(0, new ListItem("--Select--", "0"));
         }
 
         private void RefreshBlock()
@@ -6504,7 +6528,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
         protected void ddlUserAreatype_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlUserAreatype.SelectedIndex == 2)
+            if (ddlUserAreatype.SelectedValue == "U")
             {
                 labUVillage.Text = "नगर निकाय";
                 divUserMohalla.Visible = true;

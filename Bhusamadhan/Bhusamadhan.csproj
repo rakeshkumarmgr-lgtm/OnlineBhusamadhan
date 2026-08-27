@@ -4195,6 +4195,7 @@
     <Content Include="LandDispute\Entry\AddMettingApplication.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPreview.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPrint.aspx" />
+    <Content Include="LandDispute\Entry\ApplicationStepManagement.aspx" />
     <Content Include="LandDispute\Entry\EntryPage.aspx" />
     <Content Include="LandDispute\Entry\EntryPageCo.aspx" />
     <Content Include="LandDispute\Entry\Finalize.aspx" />
@@ -6072,6 +6073,7 @@
     </Compile>
     <Compile Include="DataAccessLayer\LandDisputeDAL\AddAnotherMeetingDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\ApplicationPreviewDAL.cs" />
+    <Compile Include="DataAccessLayer\LandDisputeDAL\ApplicationStepMgmtDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\DashboardDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\FinalSubmitDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\MasterDAL.cs" />
@@ -6124,6 +6126,13 @@
     </Compile>
     <Compile Include="LandDispute\Entry\ApplicationPrint.aspx.designer.cs">
       <DependentUpon>ApplicationPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Entry\ApplicationStepManagement.aspx.cs">
+      <DependentUpon>ApplicationStepManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\ApplicationStepManagement.aspx.designer.cs">
+      <DependentUpon>ApplicationStepManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Entry\EntryPage.aspx.cs">
       <DependentUpon>EntryPage.aspx</DependentUpon>

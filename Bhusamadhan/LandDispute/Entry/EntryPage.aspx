@@ -1259,8 +1259,8 @@
                                             <asp:DropDownList ID="ddlPAreatype" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPAreatype_SelectedIndexChanged">
 
                                                 <asp:ListItem Value="0">--चुने--</asp:ListItem>
-                                                <asp:ListItem Value="R">ग्रामीण</asp:ListItem>
-                                                <asp:ListItem Value="U">शहरी</asp:ListItem>
+                                                <asp:ListItem Value="R">Rural</asp:ListItem>
+                                                <asp:ListItem Value="U">Urban</asp:ListItem>
 
                                             </asp:DropDownList>
                                         </div>
@@ -1436,7 +1436,7 @@
                                 <div class="col-md-3 mb-2 p-1">
 
                                     <label class="form-label">संस्था का प्रकार<span class="text-danger">*</span></label>
-                                    <asp:DropDownList ID="ddlPsanstha_naam" runat="server" CssClass="form-control" AutoPostBack="true">
+                                    <asp:DropDownList ID="ddlPsanstha_naam" runat="server" CssClass="form-control" >
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator43" runat="server" ErrorMessage="select संस्था का प्रकार..."
                                         ControlToValidate="ddlPsanstha_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
@@ -1444,7 +1444,7 @@
                                 <div class="col-md-3 mb-2 p-1">
 
                                     <label class="form-label">संस्था का सम्बन्ध<span class="text-danger">*</span></label>
-                                    <asp:DropDownList ID="ddlPsanshaanya_naam" runat="server" CssClass="form-control" AutoPostBack="true">
+                                    <asp:DropDownList ID="ddlPsanshaanya_naam" runat="server" CssClass="form-control" >
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator45" runat="server" ErrorMessage="select संस्था का प्रकार..."
                                         ControlToValidate="ddlPsanshaanya_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
