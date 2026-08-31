@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bhusamadhan.DB;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -10,8 +11,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class ApplicationPreviewDAL
     {
-        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
-
+        string conStr = DBConHelper.GetConnectionString();
         public DataSet GetApplicationPreview(long applicationId)
         {
             DataSet ds = new DataSet();

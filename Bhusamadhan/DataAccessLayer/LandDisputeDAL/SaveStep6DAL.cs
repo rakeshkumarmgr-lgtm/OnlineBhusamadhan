@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bhusamadhan.DB;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,7 +8,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class SaveStep6DAL
     {
-        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
+        string conStr = DBConHelper.GetConnectionString();
         public bool SaveStep6( long applicationId,  string bhumiVivadAvailable,  string disputeInCourtAvailable,  DataTable landDisputeDetails, DataTable courtDisputeDetails, string cuUser, SqlConnection con,  SqlTransaction trans)
         {
             using (SqlCommand cmd = new SqlCommand("BS_SP_SaveStep6", con, trans))
@@ -40,23 +41,23 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             }
         }
 
-        public DataTable GetStep6MatterDetails(long applicationId)
-        {
-            using (SqlConnection con = new SqlConnection( conStr))
-            {
-                using (SqlCommand cmd = new SqlCommand( @"SELECT  bhumi_vivad_Vivran_Available,  dispute_in_court_available  FROM BS_Matter_Registration  WHERE a_id = @a_id", con))
-                {
-                    cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
+        //public DataTable GetStep6MatterDetails(long applicationId)
+        //{
+        //    using (SqlConnection con = new SqlConnection( conStr))
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand( @"SELECT  bhumi_vivad_Vivran_Available,  dispute_in_court_available  FROM BS_Matter_Registration  WHERE a_id = @a_id", con))
+        //        {
+        //            cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
 
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-                        return dt;
-                    }
-                }
-            }
-        }
+        //            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+        //            {
+        //                DataTable dt = new DataTable();
+        //                da.Fill(dt);
+        //                return dt;
+        //            }
+        //        }
+        //    }
+        //}
 
         public DataTable GetIncidentDetails(long applicationId)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bhusamadhan.DB;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,7 +8,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class SaveStep7DAL
     {
-        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
+        string conStr = DBConHelper.GetConnectionString();
         public void SaveStep7( long applicationId, string userid,  DataTable dtAction, SqlConnection con, SqlTransaction trans)
         {
             using (SqlCommand cmd = new SqlCommand("BS_SP_SaveStep7", con, trans))

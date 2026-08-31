@@ -4199,6 +4199,7 @@
     <Content Include="LandDispute\Entry\EntryPage.aspx" />
     <Content Include="LandDispute\Entry\EntryPageCo.aspx" />
     <Content Include="LandDispute\Entry\Finalize.aspx" />
+    <Content Include="LandDispute\Entry\MenuManagement.aspx" />
     <Content Include="OldFiles\Entry_Page.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMetting.aspx" />
     <Content Include="LandDispute\Entry\Unfinalize.aspx" />
@@ -6154,6 +6155,13 @@
     </Compile>
     <Compile Include="LandDispute\Entry\Finalize.aspx.designer.cs">
       <DependentUpon>Finalize.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Entry\MenuManagement.aspx.cs">
+      <DependentUpon>MenuManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\MenuManagement.aspx.designer.cs">
+      <DependentUpon>MenuManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="OldFiles\Entry_Page.aspx.cs">
       <DependentUpon>Entry_Page.aspx</DependentUpon>

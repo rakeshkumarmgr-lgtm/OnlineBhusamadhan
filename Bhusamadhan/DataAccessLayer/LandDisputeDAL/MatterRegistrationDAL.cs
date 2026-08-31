@@ -11,7 +11,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class MatterRegistrationDAL
     {
-        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
+        string conStr = DBConHelper.GetConnectionString();
 
         public long SaveStep1( long applicationId, long commCode, string rajasvThaanaSankhya, long bhumiType, long sarkariBhumiType,  string sarkariBhumiTypeAnya, long bhumiVivadType, string bhumiVivadTypeAnya, long bhumiVivadKaAdyatanSthiti, long districtCode, long subDivCode, long blockCode, long thanaCode, long panchayatCode, string panchayatAnya, string areaType, long village,  string villageAnya,long wardNo, string wardNoAnya, string vadiSakshyaFile, string prativadiSakshyaFile,  DateTime? aavedanKiTithi,  string vadiVivarani,  string prativadiVivarani, string guid,  string userId, string ipAddress, SqlConnection con, SqlTransaction trans)
         {

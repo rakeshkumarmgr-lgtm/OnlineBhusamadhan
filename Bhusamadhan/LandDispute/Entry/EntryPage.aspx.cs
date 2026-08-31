@@ -405,102 +405,8 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
-        //---------------Butto previous & next ------------------------
-        protected void btnPrevious_Click(object sender, EventArgs e)
-        {
-            if (CurrentStep > 1)
-            {
-                CurrentStep--;
+       
 
-                ShowStep(CurrentStep);
-            }
-        }
-
-        protected void btnNext_Click(object sender, EventArgs e)
-        {
-            bool result = false;
-
-            switch (CurrentStep)
-            {
-                case 1:
-                    Page.Validate("2");
-
-                    if (!Page.IsValid)
-                    {
-                        return;
-                    }
-
-
-                    result = SaveStep1();
-                    break;
-
-                case 2:
-                    Page.Validate("3");
-
-                    if (!Page.IsValid)
-                        return;
-
-                    result = SaveStep2();
-                    break;
-
-                case 3:
-                    //Page.Validate("4");
-
-                    //if (!Page.IsValid)
-                    //    return;
-
-                    result = SaveStep3();
-                    break;
-
-                case 4:
-                    //Page.Validate("5");
-
-                    //if (!Page.IsValid)
-                    //    return;
-
-                    result = SaveStep4();
-                    break;
-
-                case 5:
-                    //Page.Validate("6");
-
-                    //if (!Page.IsValid)
-                    //    return;
-
-                    result = SaveStep5();
-                    break;
-
-                case 6:
-                    //Page.Validate("7");
-
-                    //if (!Page.IsValid)
-                    //    return;
-
-                    result = SaveStep6();
-                    break;
-
-                case 7:
-                    Page.Validate("8");
-
-                    if (!Page.IsValid)
-                        return;
-
-                    result = SaveStep7();
-                    if (result)
-                    {
-                        Response.Redirect("~/LandDispute/Entry/ApplicationPreview.aspx?a_id=" + ApplicationId);
-                    }
-
-                    return;
-            }
-
-            if (result)
-            {
-                CurrentStep = GetCurrentStep(ApplicationId);
-
-                ShowStep(CurrentStep);
-            }
-        }
 
         // =====================================================
         // Global Methods
@@ -1962,20 +1868,23 @@ namespace Bhusamadhan.LandDispute.Entry
                 dt.Columns.Add("khesraNo", typeof(string));
 
                 dt.Columns.Add("RakbaNo1", typeof(string));
-                dt.Columns.Add("Rakba_unit1", typeof(int));
-                dt.Columns.Add("RakbaNo2", typeof(string));
-                dt.Columns.Add("Rakba_unit2", typeof(int));
-                dt.Columns.Add("RakbaNo3", typeof(string));
-                dt.Columns.Add("Rakba_unit3", typeof(int));
+                dt.Columns.Add("Rakba_unit1", typeof(long));
 
-                dt.Columns.Add("LandTypesInKhatian", typeof(int));
+                dt.Columns.Add("RakbaNo2", typeof(string));
+                dt.Columns.Add("Rakba_unit2", typeof(long));
+
+                dt.Columns.Add("RakbaNo3", typeof(string));
+                dt.Columns.Add("Rakba_unit3", typeof(long));
+
+                dt.Columns.Add("LandTypesInKhatian", typeof(long));
                 dt.Columns.Add("LandDetailsInKhatian", typeof(string));
                 dt.Columns.Add("North_chauhaddee", typeof(string));
                 dt.Columns.Add("South_chauhaddee", typeof(string));
                 dt.Columns.Add("East_chauhaddee", typeof(string));
                 dt.Columns.Add("West_chauhaddee", typeof(string));
 
-                dt.Columns.Add("LandTypesInKhatianDesc", typeof(string));
+                //dt.Columns.Add("LandTypesInKhatianDesc", typeof(string));
+                dt.Columns.Add("Landdesciption", typeof(string));
                 dt.Columns.Add("Rakba", typeof(string));
 
               
@@ -2006,18 +1915,18 @@ namespace Bhusamadhan.LandDispute.Entry
 
             dr["RakbaNo1"] = txtrakabasankhya1.Text.Trim();
 
-            dr["Rakba_unit1"] = ddlrakabaunit1.SelectedValue.ToString(); ;
+            dr["Rakba_unit1"] = Convert.ToInt64(ddlrakabaunit1.SelectedValue);
 
             dr["RakbaNo2"] = txtrakabasankhya2.Text.Trim();
 
-            dr["Rakba_unit2"] = ddlrakabaunit2.SelectedValue.ToString();
+            dr["Rakba_unit2"] = Convert.ToInt64(ddlrakabaunit2.SelectedValue);
 
             dr["RakbaNo3"] = txtrakabasankhya3.Text.Trim();
 
-            dr["Rakba_unit3"] = ddlrakabaunit3.SelectedValue.ToString();
+            dr["Rakba_unit3"] = Convert.ToInt64(ddlrakabaunit3.SelectedValue);
 
 
-            dr["LandTypesInKhatian"] = ddlkhatiyan_me_jaminvivran.SelectedValue.ToString();
+            dr["LandTypesInKhatian"] = Convert.ToInt64(ddlkhatiyan_me_jaminvivran.SelectedValue);
 
             dr["LandDetailsInKhatian"] = txtkhatiyan_me_jaminvivran_text.Text.Trim();
 
@@ -2032,6 +1941,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
             //------------display-------------------------------
 
+            //dr["LandTypesInKhatianDesc"] = ddlkhatiyan_me_jaminvivran.SelectedItem.Text;
             dr["Landdesciption"] = ddlkhatiyan_me_jaminvivran.SelectedItem.Text;
             dr["Rakba"] = txtrakabasankhya1.Text.Trim() + " " + ddlrakabaunit1.SelectedItem.ToString() + "," + txtrakabasankhya2.Text.Trim() + " " + ddlrakabaunit2.SelectedItem.ToString() + ", " + txtrakabasankhya3.Text.Trim() + "," + ddlrakabaunit3.SelectedItem.ToString();
 
@@ -3717,22 +3627,22 @@ namespace Bhusamadhan.LandDispute.Entry
             try
             {
 
-                DataTable dtMatter = _step6DAL.GetStep6MatterDetails(applicationId);
+                //DataTable dtMatter = _step6DAL.GetStep6MatterDetails(applicationId);
 
-                if (dtMatter.Rows.Count > 0)
-                {
-                    DataRow dr = dtMatter.Rows[0];
+                //if (dtMatter.Rows.Count > 0)
+                //{
+                //    DataRow dr = dtMatter.Rows[0];
 
-                    string bhumiVivad = dr["bhumi_vivad_Vivran_Available"].ToString();
+                //    string bhumiVivad = dr["bhumi_vivad_Vivran_Available"].ToString();
 
-                    string courtDispute = dr["dispute_in_court_available"].ToString();
+                //    string courtDispute = dr["dispute_in_court_available"].ToString();
 
-                    if (dd_IsBhumiVivad.Items.FindByValue(bhumiVivad) != null)
-                        dd_IsBhumiVivad.SelectedValue = bhumiVivad;
+                //    if (dd_IsBhumiVivad.Items.FindByValue(bhumiVivad) != null)
+                //        dd_IsBhumiVivad.SelectedValue = bhumiVivad;
 
-                    if (ddl_Isbhumi_Viviad_available.Items.FindByValue(courtDispute) != null)
-                        ddl_Isbhumi_Viviad_available.SelectedValue = courtDispute;
-                }
+                //    if (ddl_Isbhumi_Viviad_available.Items.FindByValue(courtDispute) != null)
+                //        ddl_Isbhumi_Viviad_available.SelectedValue = courtDispute;
+                //}
 
                 DataTable dtIncident = _step6DAL.GetIncidentDetails(applicationId);
 
@@ -4902,8 +4812,8 @@ namespace Bhusamadhan.LandDispute.Entry
                 //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@Panchayat", ddlUserPanchyat.SelectedValue.ToString()));
                 //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@AreaType", ddlUserAreatype.SelectedValue.ToString()));
 
-              
-                DataTable dt = objDBHelper.GetResults("SP_BindDepartment", listSQLP, true);
+
+                DataTable dt = objDBHelper.GetResults("SELECT id ,name FROM mst_department", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlWvibhaag_naam.DataSource = dt;
@@ -4949,7 +4859,8 @@ namespace Bhusamadhan.LandDispute.Entry
                 //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@AreaType", ddlUserAreatype.SelectedValue.ToString()));
 
 
-                DataTable dt = objDBHelper.GetResults("SP_GetBhumi_Vivad_adyatan_sthiti", listSQLP, true);
+                DataTable dt = objDBHelper.GetResults("SELECT id,status_name ,isActive FROM mst_bhumiVivad_ki_adyatan_sthiti", listSQLP, false);
+
                 if (dt.Rows.Count > 0)
                 {
                     ddl_vivad_adyatan_sthiti.DataSource = dt;
@@ -4987,7 +4898,7 @@ namespace Bhusamadhan.LandDispute.Entry
                 //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@AreaType", ddlUserAreatype.SelectedValue.ToString()));
 
 
-                DataTable dt = objDBHelper.GetResults("SP_BindBhumitype", listSQLP, true);
+                DataTable dt = objDBHelper.GetResults("SELECT id ,bhumitype FROM mst_bhumitype", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlbhumitype.DataSource = dt;
@@ -5021,7 +4932,7 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
 
-                DataTable dt = objDBHelper.GetResults("SP_GetBhumi_VivadType", listSQLP, true);
+                DataTable dt = objDBHelper.GetResults("SELECT id ,vivadtype ,isActive FROM mst_bhumiVivad_type", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlbhumivivadtype.DataSource = dt;
@@ -5055,7 +4966,7 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
 
-                DataTable dt = objDBHelper.GetResults("SP_GetSarkariBhumi_type", listSQLP, true);
+                DataTable dt = objDBHelper.GetResults("SELECT id,BhumiType ,IsActive FROM mst_SarkariBhumiType", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlsarkaribhumitype.DataSource = dt;
@@ -5342,7 +5253,7 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
 
-                DataTable dt = objDBHelper.GetResults("SP_GetKhatiyan_Type", listSQLP, true);
+                DataTable dt = objDBHelper.GetResults("SELECT id ,Landdesciption,IsActive FROM mst_KhatiyanLandDesc WHERE ISNULL(IsActive,'N')='Y' ORDER BY id", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlkhatiyan_me_jaminvivran.DataSource = dt;
@@ -5375,7 +5286,7 @@ namespace Bhusamadhan.LandDispute.Entry
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
 
-                DataTable dt = objDBHelper.GetResults("SP_BindLandEvidence", listSQLP, true);
+                DataTable dt = objDBHelper.GetResults("SELECT id ,name FROM mst_LandEvidence", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlVadiEvidenceType.DataSource = dt;
@@ -6903,7 +6814,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@District_Code", ddlDistrict.SelectedValue.ToString()));
 
-                DataTable dt = objDBHelper.GetResults("SP_SensitivityType", listSQLP, true);
+                DataTable dt = objDBHelper.GetResults("SELECT id,SensitivityType FROM mst_SensitivityType", listSQLP, false);
                 if (dt.Rows.Count > 0)
                 {
                     ddlbhumivivadki_sanvedanshilta.DataSource = dt;
@@ -6994,12 +6905,110 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
+        //---------------Button Events ------------------------
+        protected void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (CurrentStep > 1)
+            {
+                CurrentStep--;
+
+                ShowStep(CurrentStep);
+            }
+        }
+
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Default.aspx");
         }
 
-        
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            bool result = false;
+
+            switch (CurrentStep)
+            {
+                case 1:
+                    Page.Validate("2");
+
+                    if (!Page.IsValid)
+                    {
+                        return;
+                    }
+
+
+                    result = SaveStep1();
+                    break;
+
+                case 2:
+                    Page.Validate("3");
+
+                    if (!Page.IsValid)
+                        return;
+
+                    result = SaveStep2();
+                    break;
+
+                case 3:
+                    //Page.Validate("4");
+
+                    //if (!Page.IsValid)
+                    //    return;
+
+                    result = SaveStep3();
+                    break;
+
+                case 4:
+                    //Page.Validate("5");
+
+                    //if (!Page.IsValid)
+                    //    return;
+
+                    result = SaveStep4();
+                    break;
+
+                case 5:
+                    //Page.Validate("6");
+
+                    //if (!Page.IsValid)
+                    //    return;
+
+                    result = SaveStep5();
+                    break;
+
+                case 6:
+                    //Page.Validate("7");
+
+                    //if (!Page.IsValid)
+                    //    return;
+
+                    result = SaveStep6();
+                    break;
+
+                case 7:
+                    Page.Validate("8");
+
+                    if (!Page.IsValid)
+                        return;
+
+                    result = SaveStep7();
+                    if (result)
+                    {
+                        Response.Redirect("~/LandDispute/Entry/ApplicationPreview.aspx?a_id=" + ApplicationId);
+                    }
+
+                    return;
+            }
+
+            if (result)
+            {
+                CurrentStep = GetCurrentStep(ApplicationId);
+
+                ShowStep(CurrentStep);
+            }
+        }
+
+
     }
 }
 

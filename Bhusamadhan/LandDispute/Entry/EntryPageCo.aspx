@@ -22,6 +22,126 @@
             cursor: pointer;
         }
     </style>
+
+     <script>
+     function saveIPCSelection() {
+         var list = document.getElementById('<%= ddldhara1.ClientID %>');
+         var selected = [];
+
+         for (var i = 0; i < list.options.length; i++) {
+             if (list.options[i].selected) {
+                 selected.push(list.options[i].value);
+             }
+         }
+
+         document.getElementById('<%= hdnSelectedIPC.ClientID %>').value = selected.join(',');
+     }
+
+     $(document).ready(function () {
+         $('#<%= ddlbsn_dhara_hai.ClientID %>').on('change', function () {
+             saveIPCSelection();
+         });
+     });
+ </script>
+
+
+
+ <script type="text/javascript">
+
+     function initializeDharaSelect2() {
+
+         var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
+         var $ipc = $('#<%= ddldhara1.ClientID %>');
+
+         // -----------------------------------------
+         // BNS Select2
+         // -----------------------------------------
+         if ($bns.length) {
+
+             if ($bns.hasClass("select2-hidden-accessible")) {
+                 $bns.select2('destroy');
+             }
+
+             $bns.select2({
+                 width: '100%',
+                 closeOnSelect: false,
+                 placeholder: 'BNS धाराएँ चुनें',
+                 allowClear: true
+             });
+         }
+
+         if ($ipc.length) {
+
+             if ($ipc.hasClass("select2-hidden-accessible")) {
+                 $ipc.select2('destroy');
+             }
+
+             $ipc.select2({
+                 width: '100%',
+                 closeOnSelect: false,
+                 placeholder: 'IPC धाराएँ चुनें',
+                 allowClear: false
+             });
+         }
+     }
+
+
+     function syncSelectedIPC() {
+
+         var $ipc = $('#<%= ddldhara1.ClientID %>');
+         var $hidden = $('#<%= hdnSelectedIPC.ClientID %>');
+
+         if (!$ipc.length || !$hidden.length)
+             return;
+
+         var selectedValues = $ipc.val() || [];
+
+         $hidden.val(selectedValues.join(','));
+     }
+
+
+     // =========================================================
+     // IPC changed by user
+     // =========================================================
+     function ipcSelectionChanged() {
+
+         syncSelectedIPC();
+     }
+
+
+     function bnsSelectionChanged() {
+
+         // Nothing special required here because ASP.NET
+         // AutoPostBack will submit the selected BNS values.
+     }
+
+     $(document).ready(function () {
+
+         initializeDharaSelect2();
+
+         var $ipc = $('#<%= ddldhara1.ClientID %>');
+     var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
+
+     if ($ipc.length) {
+
+         $ipc.on('change', function () {
+
+             ipcSelectionChanged();
+
+         });
+     }
+
+     if ($bns.length) {
+
+         $bns.on('change', function () {
+
+             bnsSelectionChanged();
+
+         });
+     }
+ });
+
+ </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
 
@@ -29,7 +149,7 @@
 
         <div class="card shadow-sm mb-3">
 
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-purple text-white">
                 <h5 class="mb-0">Application Entry (Circle Officer)</h5>
             </div>
 
@@ -1551,26 +1671,26 @@
                                     <div class="col-md-3">
 
                                         <label class="form-label">ज़िला का नाम <span class="required">*</span> </label>
-                                        <asp:DropDownList ID="ddldistrict_old" runat="server" CssClass="form-control" AutoPostBack="true" />
+                                        <asp:DropDownList ID="ddldistrict_old" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddldistrict_old_SelectedIndexChanged" />
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <label class="form-label">अनुमंडल का नाम <span class="required">*</span> </label>
+                                        <asp:DropDownList ID="ddlsubdivision_old" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlsubdivision_old_SelectedIndexChanged" />
                                     </div>
 
                                     <div class="col-md-3">
 
                                         <label class="form-label">अंचल का नाम <span class="required">*</span> </label>
-                                        <asp:DropDownList ID="ddl_anchalold" runat="server" CssClass="form-control" AutoPostBack="true" />
+                                        <asp:DropDownList ID="ddl_anchalold" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_anchalold_SelectedIndexChanged" />
                                     </div>
 
                                     <div class="col-md-3">
 
-                                        <label class="form-label">हल्का का नाम <span class="required">*</span> </label>
-                                        <asp:DropDownList ID="ddlhalka_old" runat="server" CssClass="form-control" AutoPostBack="true" />
-                                    </div>
+                                        <label class="form-label">मौजा का नाम <span class="required">*</span> </label>
 
-                                    <div class="col-md-3">
-                                        <asp:Label ID="Label61" runat="server" Text="मौजा का नाम" />
-                                        <span class="text-danger">*</span>
-
-                                        <asp:DropDownList ID="ddlmowja_old" runat="server" CssClass="form-control" AutoPostBack="true" />
+                                        <asp:DropDownList ID="ddlmowja_old" runat="server" CssClass="form-control" />
                                     </div>
 
                                 </div>
@@ -1776,7 +1896,7 @@
                                 <div class="row mb-2">
                                     <div class="col-md-12 text-center">
 
-                                        <asp:Button ID="btnsaveBhumiKaVivaran" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="4" />
+                                        <asp:Button ID="btnsaveBhumiKaVivaran" runat="server" Text="Save" CssClass="btn btn-primary" ValidationGroup="4" OnClick="btnsaveBhumiKaVivaran_Click" />
                                     </div>
                                 </div>
 
@@ -1786,7 +1906,7 @@
                                     <div class="col-md-12">
                                         <div class="table-responsive">
 
-                                            <asp:Repeater ID="rptKhataKhesraVivarni" runat="server">
+                                            <asp:Repeater ID="rptKhataKhesraVivarni_CO" runat="server" OnItemCommand="rptKhataKhesraVivarni_CO_ItemCommand">
 
                                                 <HeaderTemplate>
 
@@ -1795,6 +1915,10 @@
                                                             <tr>
                                                                 <th style="width: 70px;">Action</th>
                                                                 <th style="width: 50px;">#</th>
+                                                                <th>ज़िला</th>
+                                                                <th>अंचल</th>
+                                                                <th>मौजा</th>
+
                                                                 <th>खाता संख्या</th>
                                                                 <th>खेसरा संख्या</th>
 
@@ -1827,16 +1951,15 @@
                                                         <td class="text-center">
                                                             <%# Container.ItemIndex + 1 %>
                                                         </td>
+                                                        <td><%# Eval("Vivadith_District_Name") %></td>
+                                                        <td><%# Eval("Vivadith_Block_Name") %></td>
+                                                        <td><%# Eval("Vivadith_Mauza_Name") %></td>
+
 
                                                         <td><%# Eval("khataNo") %></td>
 
                                                         <td><%# Eval("khesraNo") %></td>
-
-
-                                                        <td class="text-center">
-                                                            <%# Eval("Rakba") %>
-                                                        </td>
-
+                                                        <td class="text-center"><%# Eval("Rakba") %> </td>
 
                                                         <td>
                                                             <%# Eval("Landdesciption") %>
@@ -2396,7 +2519,7 @@
                                     <div class="col-md-4 mb-3">
                                         <label class="form-label">प्राथमिकी / अप्राथमिकी / सनहा दर्ज है?<span class="required">*</span> </label>
 
-                                        <asp:DropDownList ID="dd_IsBhumiVivad" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="dd_IsBhumiVivad_SelectedIndexChanged" >
+                                        <asp:DropDownList ID="dd_IsBhumiVivad" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="dd_IsBhumiVivad_SelectedIndexChanged">
                                             <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
                                             <asp:ListItem Value="N">नहीं</asp:ListItem>
@@ -2445,7 +2568,7 @@
 
                                         <label class="form-label">प्राथमिकी दर्ज है?<span class="required">*</span>  </label>
 
-                                        <asp:DropDownList ID="ddlPrathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPrathmiki_huyee_hai_SelectedIndexChanged" >
+                                        <asp:DropDownList ID="ddlPrathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPrathmiki_huyee_hai_SelectedIndexChanged">
 
                                             <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
@@ -2497,7 +2620,7 @@
 
                                         <label class="form-label">अप्राथमिकी दर्ज है?(aaaaaaa)<span class="required">*</span> </label>
 
-                                        <asp:DropDownList ID="ddlAprathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlAprathmiki_huyee_hai_SelectedIndexChanged" >
+                                        <asp:DropDownList ID="ddlAprathmiki_huyee_hai" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlAprathmiki_huyee_hai_SelectedIndexChanged">
 
                                             <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
@@ -2571,7 +2694,7 @@
                                     <!-- BNS -->
                                     <div class="col-md-3 mb-3" id="divbsn" runat="server" visible="false">
 
-                                        <label class="form-label">BNS धाराएँ</label><asp:ListBox ID="ddlbsn_dhara_hai" runat="server" CssClass="form-control select2" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlbsn_dhara_hai_SelectedIndexChanged" ></asp:ListBox>
+                                        <label class="form-label">BNS धाराएँ</label><asp:ListBox ID="ddlbsn_dhara_hai" runat="server" CssClass="form-control select2" SelectionMode="Multiple" AutoPostBack="true" OnSelectedIndexChanged="ddlbsn_dhara_hai_SelectedIndexChanged"></asp:ListBox>
 
 
                                     </div>
@@ -2618,7 +2741,7 @@
                                     <div class="col-md-3 mb-3">
                                         <label class="form-label">सनहा दर्ज है ? <span class="required">*</span> </label>
 
-                                        <asp:DropDownList ID="ddlSanhaStatus" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSanhaStatus_SelectedIndexChanged" >
+                                        <asp:DropDownList ID="ddlSanhaStatus" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSanhaStatus_SelectedIndexChanged">
 
                                             <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">हाँ</asp:ListItem>
@@ -2673,7 +2796,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-12 text-center">
-                                    <asp:Button ID="btnbhumivivad" runat="server" Text="Save" CssClass="btn btn-primary" Visible="false" OnClick="btnbhumivivad_Click"  />
+                                    <asp:Button ID="btnbhumivivad" runat="server" Text="Save" CssClass="btn btn-primary" Visible="false" OnClick="btnbhumivivad_Click" />
                                 </div>
                             </div>
 
@@ -2683,7 +2806,7 @@
 
                                     <asp:Panel ID="Panelgrdbhumivivad" runat="server" ScrollBars="Auto">
 
-                                        <asp:GridView ID="grdbhumivivad" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdbhumivivad_RowCommand" >
+                                        <asp:GridView ID="grdbhumivivad" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdbhumivivad_RowCommand">
 
                                             <Columns>
 
@@ -2826,7 +2949,7 @@
 
                                         <label class="form-label">प्रक्रियाधीन वाद का विवरण उपलब्ध है ? <span class="required">*</span> </label>
 
-                                        <asp:DropDownList ID="ddl_Isbhumi_Viviad_available" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_Isbhumi_Viviad_available_SelectedIndexChanged" >
+                                        <asp:DropDownList ID="ddl_Isbhumi_Viviad_available" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddl_Isbhumi_Viviad_available_SelectedIndexChanged">
 
                                             <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="Y">उपलब्ध है</asp:ListItem>
@@ -2849,7 +2972,7 @@
 
                                         <label class="form-label">न्यायालय <span class="required">*</span>  </label>
 
-                                        <asp:DropDownList ID="ddlnyayalaya" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlnyayalaya_SelectedIndexChanged" ></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlnyayalaya" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlnyayalaya_SelectedIndexChanged"></asp:DropDownList>
 
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator80" runat="server" ControlToValidate="ddlnyayalaya" InitialValue="0" ValidationGroup="4" Display="Dynamic" CssClass="validator" ErrorMessage="न्यायालय चुनें" />
 
@@ -2861,7 +2984,7 @@
                                         <%-- <label class="form-label">न्यायालय का प्रकार <span class="required">*</span> </label>--%>
                                         <asp:Label ID="labNyayalaya_type" runat="server" Text="न्यायालय का प्रकार"></asp:Label>
 
-                                        <asp:DropDownList ID="ddlnyayalaya_type" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlnyayalaya_type_SelectedIndexChanged" ></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlnyayalaya_type" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlnyayalaya_type_SelectedIndexChanged"></asp:DropDownList>
 
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator81" runat="server" ControlToValidate="ddlnyayalaya_type" InitialValue="0" ValidationGroup="4" Display="Dynamic" CssClass="validator" ErrorMessage="न्यायालय का प्रकार चुनें" />
 
@@ -2872,7 +2995,7 @@
 
                                         <label class="form-label">जिला <span class="required">*</span>  </label>
 
-                                        <asp:DropDownList ID="ddlDist_nyayalaya_type" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDist_nyayalaya_type_SelectedIndexChanged" ></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDist_nyayalaya_type" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDist_nyayalaya_type_SelectedIndexChanged"></asp:DropDownList>
 
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator82" runat="server" ControlToValidate="ddlDist_nyayalaya_type" InitialValue="0" ValidationGroup="4" Display="Dynamic" CssClass="validator" ErrorMessage="जिला चुनें" />
 
@@ -2972,14 +3095,14 @@
                                 <div class="row mb-2">
                                     <div class="col-md-12" id="btnnyayalay7" runat="server" visible="false">
                                         <center>
-                                            <asp:Button ID="btnnayaylaysave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnnayaylaysave_Click"  />
+                                            <asp:Button ID="btnnayaylaysave" runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnnayaylaysave_Click" />
                                         </center>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12" style="text-align: center">
                                         <asp:Panel ID="Panelgrdnyayalay_vivran" runat="server" ScrollBars="Auto">
-                                            <asp:GridView ID="grdnyayalay_vivran" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdnyayalay_vivran_RowCommand" >
+                                            <asp:GridView ID="grdnyayalay_vivran" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped table-hover" OnRowCommand="grdnyayalay_vivran_RowCommand">
 
                                                 <Columns>
 
@@ -3051,7 +3174,247 @@
         </asp:Panel>
 
         <!-- Step-7  -->
-        <asp:Panel ID="pnlStep7" runat="server">
+        <asp:Panel ID="pnlStep7" runat="server" Visible="false">
+
+            <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional">
+
+                <ContentTemplate>
+
+                    <div class="card mt-3">
+
+                        <div class="card-header bg-light">
+                            <h5>Step-7 : अंचलाधिकारी एवं थानाध्यक्ष बैठक</h5>
+                        </div>
+
+                        <div class="section-card">
+
+                            <div class="section-header">
+                                अंचलाधिकारी एवं थानाध्यक्ष द्वारा भूमि विवाद के निराकरण हेतु कृत कारवाई का विवरण
+                            </div>
+
+                            <div class="section-body">
+
+                                <!-- =========================
+                                     Meeting Information
+                                    ==========================-->
+
+                                <div class="row g-3 mb-4">
+
+                                    <div class="col-lg-3 col-md-6">
+
+                                        <label class="form-label">विवाद की संवेदनशीलता<span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlbhumivivadki_sanvedanshilta" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator87" runat="server" ControlToValidate="ddlbhumivivadki_sanvedanshilta" Display="Dynamic" ForeColor="Red"> विवाद की संवेदनशीलता </asp:RequiredFieldValidator>
+                                    </div>
+
+
+                                  
+
+                                    <div class="col-lg-3 col-md-6">
+
+                                        <label class="form-label">बैठक की तिथि <span class="required">*</span> </label>
+
+                                        <asp:TextBox ID="txtbaithakDate" runat="server" CssClass="form-control" MaxLength="10" placeholder="dd-MM-yyyy"></asp:TextBox>
+
+                                        <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtbaithakDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
+
+                                    </div>
+
+
+                                    <div class="col-lg-2 col-md-6">
+
+                                        <label class="form-label">क्या वादी उपस्थित है? <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlIsVadiAvailable" runat="server" CssClass="form-control">
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                    </div>
+
+
+                                    <div class="col-lg-3 col-md-6">
+
+                                        <label class="form-label">क्या प्रतिवादी उपस्थित है? <span class="required">*</span>  </label>
+
+                                        <asp:DropDownList ID="ddl_IsprativadiAvailable" runat="server" CssClass="form-control">
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="Y">हाँ</asp:ListItem>
+                                            <asp:ListItem Value="N">नहीं</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                    </div>
+
+                                </div>
+
+
+                                <hr />
+
+
+                                <!-- =========================
+                                    Meeting Result
+                                 ==========================-->
+
+                                <div class="row g-3 mb-4">
+
+                                    <div class="col-lg-3">
+
+                                        <label class="form-label">बैठक का निष्कर्ष <span class="required">*</span> </label>
+
+                                        <asp:DropDownList ID="ddlaction" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlaction_SelectedIndexChanged" >
+
+                                            <asp:ListItem Value="0">--चुने--</asp:ListItem>
+                                            <asp:ListItem Value="1">प्रारंभिक निष्पादन</asp:ListItem>
+                                            <asp:ListItem Value="2">मापी के लिए निर्धारित</asp:ListItem>
+                                            <asp:ListItem Value="3">प्रक्रियाधीन</asp:ListItem>
+                                            <asp:ListItem Value="4">अस्वीकृत</asp:ListItem>
+                                            <asp:ListItem Value="5">अंतिम निष्पादन</asp:ListItem>
+                                            <asp:ListItem Value="6">न्यायालय में लंबित</asp:ListItem>
+
+                                        </asp:DropDownList>
+
+                                    </div>
+
+
+                                    <div class="col-lg-3" id="divNextDate" runat="server" visible="false">
+
+                                        <%--<label class="form-label">अगली सुनवाई की तिथि </label>--%>
+                                        <asp:Label ID="labNextDate" runat="server" Text="अगली सुनवाई की तिथि"></asp:Label>
+                                        <asp:TextBox ID="txtAgalaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy"> </asp:TextBox>
+
+                                        <cc1:CalendarExtender ID="PopCalendar2" runat="server" TargetControlID="txtAgalaDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
+
+                                    </div>
+
+
+                                    <div class="col-lg-3" id="divvadkavars" runat="server" visible="false">
+
+                                        <label class="form-label">वादी की वाद संख्या / वर्ष </label>
+
+                                        <asp:TextBox ID="txtvadkavars" runat="server" CssClass="form-control"></asp:TextBox>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6" id="divCancelReason" runat="server" visible="false">
+
+                                        <label class="form-label">अस्वीकृति का कारण </label>
+
+                                        <asp:TextBox ID="txtCancelReason" runat="server" CssClass="form-control" TextMode="MultiLine" MaxLength="500" Rows="3" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- =========================
+                                      Decision
+                                 ==========================-->
+
+                                <div class="row g-3 mb-4">
+
+                                    <div class="col-lg-6">
+
+                                        <label class="form-label">बैठक में लिया गया निर्णय </label>
+
+                                        <asp:TextBox ID="txtfalafal" runat="server" CssClass="form-control" Rows="4" TextMode="MultiLine" MaxLength="500" placeholder="अधिकतम 500 शब्द"> </asp:TextBox>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <label class="form-label">थानाध्यक्ष एवं अंचलाधिकारी का संयुक्त प्रतिवेदन </label>
+
+                                        <asp:HiddenField ID="hdLandDoc" runat="server" />
+
+                                        <asp:FileUpload ID="LandDoc" runat="server" CssClass="form-control" accept=".pdf" />
+
+                                        <small class="text-danger">केवल PDF (3 MB) </small>
+
+                                        <a id="lnkLandDoc" runat="server" class="getpdfdoc" path="display" visible="false">View Document  </a>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- =========================
+                                   Circle Officer
+                                ==========================-->
+
+                                <div class="row g-3 mb-4">
+
+                                    <div class="col-lg-6">
+
+                                        <label class="form-label">अंचलाधिकारी का मंतव्य </label>
+
+                                        <asp:TextBox ID="txtabhiyukt_anchaladhikari" runat="server" CssClass="form-control" Rows="4" MaxLength="500" TextMode="MultiLine"> </asp:TextBox>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <label class="form-label">अंचलाधिकारी का मंतव्य पत्र </label>
+
+                                        <asp:HiddenField ID="hdCircleOfficer_letterofintent" runat="server" />
+
+                                        <asp:FileUpload ID="CircleOfficer_letterOfIntent" runat="server" CssClass="form-control" accept=".pdf" />
+
+                                        <small class="text-danger">केवल PDF (3 MB) </small>
+
+                                        <a id="lnkCircleOfficer_letterOfIntent" runat="server" class="getpdfdoc" path="display" visible="false">View Document </a>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <%-----SHO--%>
+
+
+                                <div class="row g-3">
+
+                                    <div class="col-lg-6">
+
+                                        <label class="form-label">थानाध्यक्ष का मंतव्य </label>
+
+                                        <asp:TextBox ID="txtabhiyukt_thaanprabhaaree" runat="server" CssClass="form-control" Rows="4" MaxLength="500" TextMode="MultiLine"> </asp:TextBox>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <label class="form-label">थानाध्यक्ष का मंतव्य पत्र </label>
+
+                                        <asp:HiddenField ID="hdPoliceOfficer_letterOfIntent" runat="server" />
+
+                                        <asp:FileUpload ID="PoliceOfficer_letterOfIntent" runat="server" CssClass="form-control" accept=".pdf" />
+
+                                        <small class="text-danger">केवल PDF (3 MB)</small>
+
+                                        <a id="lnkPoliceOfficer_letterOfIntent" runat="server" class="getpdfdoc" path="display" visible="false">View Document </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
         </asp:Panel>
 
         <%-- ButtonSection--%>

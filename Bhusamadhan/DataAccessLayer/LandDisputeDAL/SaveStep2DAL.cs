@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
+﻿using Bhusamadhan.DB;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,7 +12,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class SaveStep2DAL
     {
-        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
+        string conStr = DBConHelper.GetConnectionString();
         public long SaveStep2( long applicationId, string prativadiKoSuchitKiyaGayaHai, string givenInfoType, string givenInfoDesc, string prativadiKoSuchanaKaTaamilaPraaptHai, string prativadiUpasthitHuaHai, DataTable dtPratiVadiForDb, string userid, SqlConnection con, SqlTransaction trans)
         {
             using (SqlCommand cmd = new SqlCommand("BS_SP_SaveStep2", con, trans))

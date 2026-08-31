@@ -1581,6 +1581,15 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.DropDownList ddldistrict_old;
 
         /// <summary>
+        /// ddlsubdivision_old control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlsubdivision_old;
+
+        /// <summary>
         /// ddl_anchalold control.
         /// </summary>
         /// <remarks>
@@ -1588,24 +1597,6 @@ namespace Bhusamadhan.LandDispute.Entry
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddl_anchalold;
-
-        /// <summary>
-        /// ddlhalka_old control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlhalka_old;
-
-        /// <summary>
-        /// Label61 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label61;
 
         /// <summary>
         /// ddlmowja_old control.
@@ -1797,13 +1788,13 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Button btnsaveBhumiKaVivaran;
 
         /// <summary>
-        /// rptKhataKhesraVivarni control.
+        /// rptKhataKhesraVivarni_CO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptKhataKhesraVivarni;
+        protected global::System.Web.UI.WebControls.Repeater rptKhataKhesraVivarni_CO;
 
         /// <summary>
         /// pnlStep4 control.
@@ -3118,6 +3109,258 @@ namespace Bhusamadhan.LandDispute.Entry
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlStep7;
+
+        /// <summary>
+        /// UpdatePanel6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel6;
+
+        /// <summary>
+        /// ddlbhumivivadki_sanvedanshilta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlbhumivivadki_sanvedanshilta;
+
+        /// <summary>
+        /// RequiredFieldValidator87 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator87;
+
+        /// <summary>
+        /// txtbaithakDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbaithakDate;
+
+        /// <summary>
+        /// CalendarExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+
+        /// <summary>
+        /// ddlIsVadiAvailable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlIsVadiAvailable;
+
+        /// <summary>
+        /// ddl_IsprativadiAvailable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddl_IsprativadiAvailable;
+
+        /// <summary>
+        /// ddlaction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlaction;
+
+        /// <summary>
+        /// divNextDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNextDate;
+
+        /// <summary>
+        /// labNextDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labNextDate;
+
+        /// <summary>
+        /// txtAgalaDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAgalaDate;
+
+        /// <summary>
+        /// PopCalendar2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender PopCalendar2;
+
+        /// <summary>
+        /// divvadkavars control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divvadkavars;
+
+        /// <summary>
+        /// txtvadkavars control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtvadkavars;
+
+        /// <summary>
+        /// divCancelReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCancelReason;
+
+        /// <summary>
+        /// txtCancelReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCancelReason;
+
+        /// <summary>
+        /// txtfalafal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfalafal;
+
+        /// <summary>
+        /// hdLandDoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdLandDoc;
+
+        /// <summary>
+        /// LandDoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload LandDoc;
+
+        /// <summary>
+        /// lnkLandDoc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkLandDoc;
+
+        /// <summary>
+        /// txtabhiyukt_anchaladhikari control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtabhiyukt_anchaladhikari;
+
+        /// <summary>
+        /// hdCircleOfficer_letterofintent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdCircleOfficer_letterofintent;
+
+        /// <summary>
+        /// CircleOfficer_letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload CircleOfficer_letterOfIntent;
+
+        /// <summary>
+        /// lnkCircleOfficer_letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkCircleOfficer_letterOfIntent;
+
+        /// <summary>
+        /// txtabhiyukt_thaanprabhaaree control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtabhiyukt_thaanprabhaaree;
+
+        /// <summary>
+        /// hdPoliceOfficer_letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdPoliceOfficer_letterOfIntent;
+
+        /// <summary>
+        /// PoliceOfficer_letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload PoliceOfficer_letterOfIntent;
+
+        /// <summary>
+        /// lnkPoliceOfficer_letterOfIntent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkPoliceOfficer_letterOfIntent;
 
         /// <summary>
         /// btnHome control.

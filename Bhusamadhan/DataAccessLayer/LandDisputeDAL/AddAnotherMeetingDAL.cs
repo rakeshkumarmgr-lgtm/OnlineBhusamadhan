@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Bhusamadhan.DB;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+
 
 namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class AddAnotherMeetingDAL
     {
-        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
+        //private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
 
-
+        string conStr = DBConHelper.GetConnectionString();
         public int GetPreviousMeetingCount(long applicationId)
         {
             const string sql = @" SELECT COUNT(1) FROM BS_ActionDetailsEntry  WHERE a_id = @a_id;";

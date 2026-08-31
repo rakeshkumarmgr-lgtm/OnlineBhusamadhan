@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bhusamadhan.DB;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -10,7 +11,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 {
     public class ApplicationStepMgmtDAL
     {
-        private readonly string conStr = ConfigurationManager.ConnectionStrings["conns"].ConnectionString;
+        string conStr = DBConHelper.GetConnectionString();
 
         public DataTable SearchApplication(string searchValue)
         {
