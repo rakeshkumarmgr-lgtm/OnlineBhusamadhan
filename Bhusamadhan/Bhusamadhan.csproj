@@ -4192,6 +4192,7 @@
     <Content Include="images\User.png" />
     <Content Include="images\User41.jpg" />
     <Content Include="LandDispute\Entry\AddHoliday.aspx" />
+    <Content Include="LandDispute\Entry\AddMenu.aspx" />
     <Content Include="LandDispute\Entry\AddMettingApplication.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPreview.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPrint.aspx" />
@@ -4199,7 +4200,11 @@
     <Content Include="LandDispute\Entry\EntryPage.aspx" />
     <Content Include="LandDispute\Entry\EntryPageCo.aspx" />
     <Content Include="LandDispute\Entry\Finalize.aspx" />
-    <Content Include="LandDispute\Entry\MenuManagement.aspx" />
+    <Content Include="LandDispute\Entry\MenuAccessControl.aspx" />
+    <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx" />
+    <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx" />
+    <Content Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx" />
+    <Content Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx" />
     <Content Include="OldFiles\Entry_Page.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMetting.aspx" />
     <Content Include="LandDispute\Entry\Unfinalize.aspx" />
@@ -6079,6 +6084,7 @@
     <Compile Include="DataAccessLayer\LandDisputeDAL\FinalSubmitDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\MasterDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\MatterRegistrationDAL.cs" />
+    <Compile Include="DataAccessLayer\LandDisputeDAL\MenuPermissionDAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\SaveStep2DAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\SaveStep3DAL.cs" />
     <Compile Include="DataAccessLayer\LandDisputeDAL\SaveStep4DAL.cs" />
@@ -6106,6 +6112,13 @@
     </Compile>
     <Compile Include="LandDispute\Entry\AddHoliday.aspx.designer.cs">
       <DependentUpon>AddHoliday.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Entry\AddMenu.aspx.cs">
+      <DependentUpon>AddMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\AddMenu.aspx.designer.cs">
+      <DependentUpon>AddMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Entry\AddMettingApplication.aspx.cs">
       <DependentUpon>AddMettingApplication.aspx</DependentUpon>
@@ -6156,12 +6169,40 @@
     <Compile Include="LandDispute\Entry\Finalize.aspx.designer.cs">
       <DependentUpon>Finalize.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LandDispute\Entry\MenuManagement.aspx.cs">
-      <DependentUpon>MenuManagement.aspx</DependentUpon>
+    <Compile Include="LandDispute\Entry\MenuAccessControl.aspx.cs">
+      <DependentUpon>MenuAccessControl.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LandDispute\Entry\MenuManagement.aspx.designer.cs">
-      <DependentUpon>MenuManagement.aspx</DependentUpon>
+    <Compile Include="LandDispute\Entry\MenuAccessControl.aspx.designer.cs">
+      <DependentUpon>MenuAccessControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx.cs">
+      <DependentUpon>ApplicationConsolidateBlockRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx.designer.cs">
+      <DependentUpon>ApplicationConsolidateBlockRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx.cs">
+      <DependentUpon>ApplicationConsolidateRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx.designer.cs">
+      <DependentUpon>ApplicationConsolidateRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx.cs">
+      <DependentUpon>ApplicationDistConsolidateRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx.designer.cs">
+      <DependentUpon>ApplicationDistConsolidateRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx.cs">
+      <DependentUpon>SearchApplicationwise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx.designer.cs">
+      <DependentUpon>SearchApplicationwise.aspx</DependentUpon>
     </Compile>
     <Compile Include="OldFiles\Entry_Page.aspx.cs">
       <DependentUpon>Entry_Page.aspx</DependentUpon>

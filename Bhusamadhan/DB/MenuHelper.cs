@@ -34,7 +34,7 @@ namespace Bhusamadhan.DB
 
                                 LEFT JOIN BS_ChildMenuMst C  ON P.ParentMenuID = C.ParentMenuID  AND P.ChildMenuID = C.ChildMenuID AND C.IsActive = 1
 
-                                WHERE  P.RoleID = @RoleID AND T.IsActive = 1 ORDER BY   T.DisplayOrder,  C.DisplayOrder;";
+                                WHERE  P.RoleID = @RoleID AND T.IsActive = 1  AND P.HasAccess = 1 ORDER BY   T.DisplayOrder,  C.DisplayOrder;";
 
             return objDBHelper.GetResults(sql, listSQLP, false);
         }

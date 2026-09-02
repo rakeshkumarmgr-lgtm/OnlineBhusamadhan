@@ -11,7 +11,7 @@ namespace Bhusamadhan.LandDispute.Entry
 {
 
 
-    public partial class MenuManagement
+    public partial class AddMenu
     {
 
         /// <summary>
@@ -58,15 +58,6 @@ namespace Bhusamadhan.LandDispute.Entry
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtChildNavigateUrl;
-
-        /// <summary>
-        /// txtChildIconClass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtChildIconClass;
 
         /// <summary>
         /// txtChildDisplayOrder control.

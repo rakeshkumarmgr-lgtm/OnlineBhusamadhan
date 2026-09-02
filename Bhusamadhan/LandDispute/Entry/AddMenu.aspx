@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MenuManagement.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.MenuManagement" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddMenu.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.AddMenu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
     <style>
         .menu-card {
             margin-bottom: 20px;
@@ -42,7 +41,7 @@
 
             <div class="card-header bg-primary text-white">
 
-                <h5 class="mb-0"><i class="fas fa-bars mr-2"></i>Menu Management </h5>
+                <h5 class="mb-0"><i class="fas fa-bars mr-2"></i>Add Menu </h5>
 
             </div>
 
@@ -65,7 +64,7 @@
 
                         <div class="row">
 
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
 
                                 <label>Parent Menu</label>
 
@@ -74,7 +73,7 @@
                             </div>
 
 
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
 
                                 <label>Page / Menu Name</label>
 
@@ -83,7 +82,7 @@
                             </div>
 
 
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
 
                                 <label>Navigate URL</label>
 
@@ -91,21 +90,7 @@
 
                             </div>
 
-                        </div>
-
-
-                        <div class="row">
-
-                            <div class="col-md-4 mb-3">
-
-                                <label>Icon Class</label>
-
-                                <asp:TextBox ID="txtChildIconClass" runat="server" CssClass="form-control" MaxLength="100"> </asp:TextBox>
-
-                            </div>
-
-
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
 
                                 <label>Display Order</label>
 
@@ -114,7 +99,6 @@
                             </div>
 
                         </div>
-
 
                         <div class="form-check mb-3">
 
@@ -146,8 +130,14 @@
 
                             <Columns>
 
+                                <asp:TemplateField HeaderText="Sl. No." ItemStyle-Width="60px" ItemStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
 
-                                <asp:BoundField DataField="ChildMenuID" HeaderText="ID" ReadOnly="true" />
+                                    <ItemTemplate>
+                                        <%# Container.DataItemIndex + 1 %>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="ChildMenuID" HeaderText="Child ID" ReadOnly="true" />
 
                                 <asp:TemplateField HeaderText="Parent Menu">
 
@@ -159,7 +149,7 @@
 
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Page Name">
+                                <asp:TemplateField HeaderText="Menu Name">
 
                                     <ItemTemplate>
 
@@ -179,15 +169,7 @@
 
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Icon Class">
-
-                                    <ItemTemplate>
-
-                                        <asp:TextBox ID="txtGridIconClass" runat="server" Text='<%# Eval("IconClass") %>' CssClass="form-control form-control-sm" MaxLength="100">  </asp:TextBox>
-
-                                    </ItemTemplate>
-
-                                </asp:TemplateField>
+                             
 
                                 <asp:TemplateField HeaderText="Order">
 
@@ -224,6 +206,7 @@
                     </div>
 
                 </div>
+
 
 
             </div>
