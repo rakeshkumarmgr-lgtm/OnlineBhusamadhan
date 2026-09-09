@@ -4197,10 +4197,12 @@
     <Content Include="LandDispute\Entry\ApplicationPreview.aspx" />
     <Content Include="LandDispute\Entry\ApplicationPrint.aspx" />
     <Content Include="LandDispute\Entry\ApplicationStepManagement.aspx" />
+    <Content Include="LandDispute\Entry\EditProfile.aspx" />
     <Content Include="LandDispute\Entry\EntryPage.aspx" />
     <Content Include="LandDispute\Entry\EntryPageCo.aspx" />
     <Content Include="LandDispute\Entry\Finalize.aspx" />
     <Content Include="LandDispute\Entry\MenuAccessControl.aspx" />
+    <Content Include="LandDispute\Entry\SearchAppForMettingCO.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx" />
@@ -6148,6 +6150,13 @@
     <Compile Include="LandDispute\Entry\ApplicationStepManagement.aspx.designer.cs">
       <DependentUpon>ApplicationStepManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LandDispute\Entry\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Entry\EntryPage.aspx.cs">
       <DependentUpon>EntryPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6175,6 +6184,13 @@
     </Compile>
     <Compile Include="LandDispute\Entry\MenuAccessControl.aspx.designer.cs">
       <DependentUpon>MenuAccessControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Entry\SearchAppForMettingCO.aspx.cs">
+      <DependentUpon>SearchAppForMettingCO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\SearchAppForMettingCO.aspx.designer.cs">
+      <DependentUpon>SearchAppForMettingCO.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx.cs">
       <DependentUpon>ApplicationConsolidateBlockRpt.aspx</DependentUpon>

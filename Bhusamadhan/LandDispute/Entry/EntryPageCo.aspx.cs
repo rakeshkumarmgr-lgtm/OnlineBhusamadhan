@@ -537,49 +537,55 @@ namespace Bhusamadhan.LandDispute.Entry
         {
             DataTable dt = new DataTable();
 
-            dt.Columns.Add("vadi_Name");
-            dt.Columns.Add("is_vadi_from_an_org");
-            dt.Columns.Add("vadi_org_type");
-            dt.Columns.Add("vadi_org_name");
-            dt.Columns.Add("vadi_org_pad_name");
-            dt.Columns.Add("is_vadi_from_an_dept");
-            dt.Columns.Add("vadi_dept_name");
-            dt.Columns.Add("vadi_dept_pad_name");
-            dt.Columns.Add("Vadi_Father_Husband_Name");
-            dt.Columns.Add("NameAsPerAadhaar");
-            dt.Columns.Add("AadharNo");
-            dt.Columns.Add("YearOfBirthAsPerAadhaar");
-            dt.Columns.Add("SexAsPerAadhaar");
-            dt.Columns.Add("Vadi_District_Code");
-            dt.Columns.Add("Vadi_Sub_DivCode");
-            dt.Columns.Add("Vadi_Block_Code");
-            dt.Columns.Add("Vadi_Thana_code");
-            dt.Columns.Add("Vadi_AreaType");
-            dt.Columns.Add("Vadi_Panchayat_Code");
-            dt.Columns.Add("Vadi_Village_Code");
-            dt.Columns.Add("Vadi_WardNo");
-            dt.Columns.Add("Vadi_MobileNo");
-            dt.Columns.Add("IsVerifyAadhaa");
+            dt.Columns.Add("vadi_Name", typeof(string));
+            dt.Columns.Add("is_vadi_from_an_org", typeof(string));
+            dt.Columns.Add("vadi_org_type", typeof(long));
+            dt.Columns.Add("vadi_org_name", typeof(string));
+            dt.Columns.Add("vadi_org_pad_name", typeof(string));
 
-            dt.Columns.Add("Vadi_Panchayat_Anya");
-            dt.Columns.Add("Vadi_Village_Anya");
-            dt.Columns.Add("Vadi_WardNo_Anya");
-            dt.Columns.Add("mohalla");
-            dt.Columns.Add("sanstha_sambandh_type");
+            dt.Columns.Add("is_vadi_from_an_dept", typeof(string));
+            dt.Columns.Add("vadi_dept_name", typeof(long));
+            dt.Columns.Add("vadi_dept_pad_name", typeof(string));
 
-            //--------------------------------------------------
-            // Display columns
-            //--------------------------------------------------
+            dt.Columns.Add("Vadi_Father_Husband_Name", typeof(string));
+            dt.Columns.Add("NameAsPerAadhaar", typeof(string));
+            dt.Columns.Add("AadharNo", typeof(string));
 
-            dt.Columns.Add("DistrictName");
-            dt.Columns.Add("SubDivisionName");
-            dt.Columns.Add("BlockName");
-            //dt.Columns.Add("ThanaName");
-            dt.Columns.Add("AreaTypeName");
-            dt.Columns.Add("PanchayatName");
-            dt.Columns.Add("VillageName");
-            dt.Columns.Add("WardName");
+            dt.Columns.Add("YearOfBirthAsPerAadhaar", typeof(int));
+            dt.Columns.Add("SexAsPerAadhaar", typeof(string));
 
+            dt.Columns.Add("Vadi_District_Code", typeof(long));
+            dt.Columns.Add("Vadi_Sub_DivCode", typeof(long));
+            dt.Columns.Add("Vadi_Block_Code", typeof(long));
+            dt.Columns.Add("Vadi_Thana_code", typeof(long));
+
+            dt.Columns.Add("Vadi_AreaType", typeof(string));
+
+            dt.Columns.Add("Vadi_Panchayat_Code", typeof(long));
+            dt.Columns.Add("Vadi_Village_Code", typeof(long));
+            dt.Columns.Add("Vadi_WardNo", typeof(long));
+
+            dt.Columns.Add("Vadi_MobileNo", typeof(string));
+            dt.Columns.Add("IsVerifyAadhaa", typeof(string));
+
+            dt.Columns.Add("Vadi_Panchayat_Anya", typeof(string));
+            dt.Columns.Add("Vadi_Village_Anya", typeof(string));
+            dt.Columns.Add("Vadi_WardNo_Anya", typeof(string));
+
+            dt.Columns.Add("mohalla", typeof(string));
+
+            dt.Columns.Add("sanstha_sambandh_type", typeof(int));
+
+        
+            //-----Display-only columns
+        
+            dt.Columns.Add("DistrictName", typeof(string));
+            dt.Columns.Add("SubDivisionName", typeof(string));
+            dt.Columns.Add("BlockName", typeof(string));
+            dt.Columns.Add("AreaTypeName", typeof(string));
+            dt.Columns.Add("PanchayatName", typeof(string));
+            dt.Columns.Add("VillageName", typeof(string));
+            dt.Columns.Add("WardName", typeof(string));
 
             return dt;
         }
@@ -606,8 +612,8 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 dr["vadi_Name"] = txtNamePerAadhaar.Text.Trim();
 
-                dr["is_vadi_from_an_org"] = ddl_is_vadi_from_an_org.SelectedValue;
-                dr["vadi_org_type"] = ddlWsanstha_naam.SelectedValue;
+                dr["is_vadi_from_an_org"] = string.IsNullOrWhiteSpace(ddl_is_vadi_from_an_org.SelectedValue) ? (object)DBNull.Value : ddl_is_vadi_from_an_org.SelectedValue;
+                dr["vadi_org_type"] =ddlWsanstha_naam.SelectedValue == "0"? (object)DBNull.Value: Convert.ToInt64(ddlWsanstha_naam.SelectedValue);
                 dr["vadi_org_name"] = txtWsanstha_naam.Text.Trim();
                 dr["vadi_org_pad_name"] = txtWsanstha_padanaam.Text.Trim();
 
@@ -621,49 +627,56 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 dr["AadharNo"] = "";
 
-                dr["YearOfBirthAsPerAadhaar"] = ddlYear.SelectedValue;
+                dr["YearOfBirthAsPerAadhaar"] = Convert.ToInt32(ddlYear.SelectedValue);
 
                 dr["SexAsPerAadhaar"] = ddlgender.SelectedValue.ToUpper();
 
-                dr["Vadi_District_Code"] = ddlUserDist.SelectedValue;
+                dr["Vadi_District_Code"] = Convert.ToInt64(ddlUserDist.SelectedValue);
 
-                dr["Vadi_Sub_DivCode"] = ddlUserSubdivision.SelectedValue;
+                dr["Vadi_Sub_DivCode"] = Convert.ToInt64(ddlUserSubdivision.SelectedValue);
 
-                dr["Vadi_Block_Code"] = ddlUserBlock.SelectedValue;
+                dr["Vadi_Block_Code"] = Convert.ToInt64(ddlUserBlock.SelectedValue);
 
-                dr["Vadi_Thana_code"] = ddlUserThana.SelectedValue;
+                dr["Vadi_Thana_code"] = Convert.ToInt64(ddlUserThana.SelectedValue);
 
-               
+
                 //--------- Area Type-------------------
                 bool isUrban = ddlUserAreatype.SelectedValue == "U";
 
                 dr["Vadi_AreaType"] = ddlUserAreatype.SelectedValue;
 
-                dr["Vadi_Panchayat_Code"] = ddlUserPanchyat.SelectedValue;
+                dr["Vadi_Panchayat_Code"] = Convert.ToInt64(ddlUserPanchyat.SelectedValue);
+
+                
 
                 if (isUrban)
                 {
+                  
+                    //Urban: Nagar Nikay -> Ward -> Mohalla
                    
-                    // Nagar Nikay -> Ward -> Mohalla
 
-                    dr["Vadi_Village_Code"] = "";
-                    dr["Vadi_WardNo"] = ddlUserWard.SelectedValue;
+                    dr["Vadi_Village_Code"] = DBNull.Value;
+
+                    dr["Vadi_WardNo"] = Convert.ToInt64(ddlUserWard.SelectedValue);
 
                     dr["VillageName"] = "";
 
-                    dr["WardName"] = ddlUserWard.SelectedItem != null ? ddlUserWard.SelectedItem.Text : "";
+                    dr["WardName"] = ddlUserWard.SelectedItem != null  ? ddlUserWard.SelectedItem.Text : "";
                 }
                 else
                 {
-                   
-                    // Gram Panchayat -> Revenue Village
+                 
+                 
+                    // Rural: Gram Panchayat -> Revenue Village
+                  
 
-                    dr["Vadi_Village_Code"] = ddlUserVillage.SelectedValue;
-                    dr["Vadi_WardNo"] = "";
+                    dr["Vadi_Village_Code"] = Convert.ToInt64(ddlUserVillage.SelectedValue);
+
+                    dr["Vadi_WardNo"] = Convert.ToInt64(ddlUserWard.SelectedValue);
 
                     dr["VillageName"] = ddlUserVillage.SelectedItem != null ? ddlUserVillage.SelectedItem.Text : "";
 
-                    dr["WardName"] = "";
+                    dr["WardName"] = ddlUserWard.SelectedItem != null ? ddlUserWard.SelectedItem.Text : "";
                 }
 
                 dr["Vadi_MobileNo"] = txtvadimobile.Text.Trim();
@@ -678,8 +691,8 @@ namespace Bhusamadhan.LandDispute.Entry
 
                 dr["mohalla"] = txtUserMohalla.Text.Trim();
 
-                dr["sanstha_sambandh_type"] = ddlWsanshaanya_naam.SelectedValue;
-  
+                dr["sanstha_sambandh_type"] = Convert.ToInt32(ddlWsanshaanya_naam.SelectedValue);
+
                 //--------- Display Columns--------------------------
 
                 dr["DistrictName"] = ddlUserDist.SelectedItem != null ? ddlUserDist.SelectedItem.Text : "";
@@ -707,49 +720,68 @@ namespace Bhusamadhan.LandDispute.Entry
             }
         }
 
+
         public void ClearVadiFields()
         {
+            // Text fields
             txtNamePerAadhaar.Text = "";
-            ddl_is_vadi_from_an_org.SelectedIndex = 0;
-            ddlWsanstha_naam.SelectedIndex = 0;
-
             txtWsanstha_naam.Text = "";
-
             txtWsanstha_padanaam.Text = "";
-            ddl_is_vadi_from_an_dept.SelectedIndex = 0;
-            ddlWvibhaag_naam.SelectedIndex = 0;
-
             txtWvibhaag_padanaam.Text = "";
-
             txtFName.Text = "";
-
-            txtNamePerAadhaar.Text = "";
-
-            ddlYear.SelectedIndex = 0;
-            ddlgender.SelectedIndex = 0;
-            ddlUserDist.SelectedIndex = 0;
-            ddlUserSubdivision.SelectedIndex = 0;
-            ddlUserBlock.SelectedIndex = 0;
-            ddlUserThana.SelectedIndex = 0;
-            ddlUserAreatype.SelectedIndex = 0;
-
-            ddlUserPanchyat.SelectedIndex = 0;
-            ddlUserVillage.SelectedIndex = 0;
-
-            ddlUserWard.SelectedIndex = 0;
-
             txtvadimobile.Text = "";
-
             txtUserPanchyat_Anya.Text = "";
-
             txtUserVillage_Anya.Text = "";
-
             txtUserWard_Anya.Text = "";
-
             txtUserMohalla.Text = "";
 
-            ddlWsanshaanya_naam.SelectedIndex = 0;
+            // Dropdowns
+            if (ddl_is_vadi_from_an_org.Items.Count > 0)
+                ddl_is_vadi_from_an_org.SelectedIndex = 0;
+
+            if (ddlWsanstha_naam.Items.Count > 0)
+                ddlWsanstha_naam.SelectedIndex = 0;
+
+            if (ddl_is_vadi_from_an_dept.Items.Count > 0)
+                ddl_is_vadi_from_an_dept.SelectedIndex = 0;
+
+            if (ddlWvibhaag_naam.Items.Count > 0)
+                ddlWvibhaag_naam.SelectedIndex = 0;
+
+            if (ddlYear.Items.Count > 0)
+                ddlYear.SelectedIndex = 0;
+
+            if (ddlgender.Items.Count > 0)
+                ddlgender.SelectedIndex = 0;
+
+            if (ddlUserDist.Items.Count > 0)
+                ddlUserDist.SelectedIndex = 0;
+
+            if (ddlUserSubdivision.Items.Count > 0)
+                ddlUserSubdivision.SelectedIndex = 0;
+
+            if (ddlUserBlock.Items.Count > 0)
+                ddlUserBlock.SelectedIndex = 0;
+
+            if (ddlUserThana.Items.Count > 0)
+                ddlUserThana.SelectedIndex = 0;
+
+            if (ddlUserAreatype.Items.Count > 0)
+                ddlUserAreatype.SelectedIndex = 0;
+
+            if (ddlUserPanchyat.Items.Count > 0)
+                ddlUserPanchyat.SelectedIndex = 0;
+
+            if (ddlUserVillage.Items.Count > 0)
+                ddlUserVillage.SelectedIndex = 0;
+
+            if (ddlUserWard.Items.Count > 0)
+                ddlUserWard.SelectedIndex = 0;
+
+            if (ddlWsanshaanya_naam.Items.Count > 0)
+                ddlWsanshaanya_naam.SelectedIndex = 0;
         }
+
 
         private void LoadVadiDetails(long applicationId)
         {

@@ -164,26 +164,26 @@
             initializeDharaSelect2();
 
             var $ipc = $('#<%= ddldhara1.ClientID %>');
-        var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
+            var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
 
-        if ($ipc.length) {
+            if ($ipc.length) {
 
-            $ipc.on('change', function () {
+                $ipc.on('change', function () {
 
-                ipcSelectionChanged();
+                    ipcSelectionChanged();
 
-            });
-        }
+                });
+            }
 
-        if ($bns.length) {
+            if ($bns.length) {
 
-            $bns.on('change', function () {
+                $bns.on('change', function () {
 
-                bnsSelectionChanged();
+                    bnsSelectionChanged();
 
-            });
-        }
-    });
+                });
+            }
+        });
 
     </script>
 
@@ -1337,7 +1337,8 @@
                                             <label class="form-label">मोबाइल नंबर </label>
 
                                             <asp:TextBox ID="txtprativadi_Mobile" runat="server" CssClass="form-control" MaxLength="10" placeholder="मोबाइल नंबर"> </asp:TextBox>
-
+                                            <asp:RegularExpressionValidator Display="Dynamic" SetFocusOnError="true" ControlToValidate="txtprativadi_Mobile" ID="RegularExpressionValidator1"
+                                                ValidationExpression="^[\s\S]{10,10}$" runat="server" ValidationGroup="PratiVadi" ErrorMessage="10 numbers required."></asp:RegularExpressionValidator>
                                         </div>
 
                                     </div>
@@ -1436,7 +1437,7 @@
                                 <div class="col-md-3 mb-2 p-1">
 
                                     <label class="form-label">संस्था का प्रकार<span class="text-danger">*</span></label>
-                                    <asp:DropDownList ID="ddlPsanstha_naam" runat="server" CssClass="form-control" >
+                                    <asp:DropDownList ID="ddlPsanstha_naam" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator43" runat="server" ErrorMessage="select संस्था का प्रकार..."
                                         ControlToValidate="ddlPsanstha_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
@@ -1444,7 +1445,7 @@
                                 <div class="col-md-3 mb-2 p-1">
 
                                     <label class="form-label">संस्था का सम्बन्ध<span class="text-danger">*</span></label>
-                                    <asp:DropDownList ID="ddlPsanshaanya_naam" runat="server" CssClass="form-control" >
+                                    <asp:DropDownList ID="ddlPsanshaanya_naam" runat="server" CssClass="form-control">
                                     </asp:DropDownList>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator45" runat="server" ErrorMessage="select संस्था का प्रकार..."
                                         ControlToValidate="ddlPsanshaanya_naam" SetFocusOnError="true" Display="Dynamic" ValidationGroup="PratiVadi" InitialValue="0">संस्था का प्रकार</asp:RequiredFieldValidator>
@@ -2556,7 +2557,7 @@
 
                                         <label class="form-label">घटना / वारदात की तिथि <span class="required">*</span></label>
 
-                                        <asp:TextBox ID="txtghatanaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy" > </asp:TextBox>
+                                        <asp:TextBox ID="txtghatanaDate" runat="server" CssClass="form-control" placeholder="dd-MM-yyyy"> </asp:TextBox>
 
                                         <cc1:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtghatanaDate" Format="dd-MM-yyyy"></cc1:CalendarExtender>
 

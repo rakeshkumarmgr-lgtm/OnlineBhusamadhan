@@ -109,7 +109,7 @@
                         </div>
 
 
-                        <asp:Button ID="btnAddChild" runat="server" Text="Add Page" CssClass="btn btn-success mr-2" OnClick="btnAddChild_Click" />
+                        <asp:Button ID="btnAddChild" runat="server" Text="Add Page" CssClass="btn btn-success mr-2" OnClientClick="return confirm('Are you sure you want to add menu/page?');" OnClick="btnAddChild_Click" />
 
 
                     </div>
@@ -199,7 +199,7 @@
 
                         <div class="mt-3">
 
-                            <asp:Button ID="btnSaveChildMenus" runat="server" Text="Save All Changes" CssClass="btn btn-success" OnClick="btnSaveChildMenus_Click" />
+                            <asp:Button ID="btnSaveChildMenus" runat="server" Text="Save All Changes" CssClass="btn btn-success"  OnClick="btnSaveChildMenus_Click" />
 
                         </div>
 

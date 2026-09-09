@@ -23,9 +23,9 @@
         }
     </style>
 
-     <script>
-     function saveIPCSelection() {
-         var list = document.getElementById('<%= ddldhara1.ClientID %>');
+    <script>
+        function saveIPCSelection() {
+            var list = document.getElementById('<%= ddldhara1.ClientID %>');
          var selected = [];
 
          for (var i = 0; i < list.options.length; i++) {
@@ -35,113 +35,113 @@
          }
 
          document.getElementById('<%= hdnSelectedIPC.ClientID %>').value = selected.join(',');
-     }
+        }
 
-     $(document).ready(function () {
-         $('#<%= ddlbsn_dhara_hai.ClientID %>').on('change', function () {
+        $(document).ready(function () {
+            $('#<%= ddlbsn_dhara_hai.ClientID %>').on('change', function () {
              saveIPCSelection();
          });
      });
- </script>
+    </script>
 
 
 
- <script type="text/javascript">
+    <script type="text/javascript">
 
-     function initializeDharaSelect2() {
+        function initializeDharaSelect2() {
 
-         var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
+            var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
          var $ipc = $('#<%= ddldhara1.ClientID %>');
 
-         // -----------------------------------------
-         // BNS Select2
-         // -----------------------------------------
-         if ($bns.length) {
+            // -----------------------------------------
+            // BNS Select2
+            // -----------------------------------------
+            if ($bns.length) {
 
-             if ($bns.hasClass("select2-hidden-accessible")) {
-                 $bns.select2('destroy');
-             }
+                if ($bns.hasClass("select2-hidden-accessible")) {
+                    $bns.select2('destroy');
+                }
 
-             $bns.select2({
-                 width: '100%',
-                 closeOnSelect: false,
-                 placeholder: 'BNS धाराएँ चुनें',
-                 allowClear: true
-             });
-         }
+                $bns.select2({
+                    width: '100%',
+                    closeOnSelect: false,
+                    placeholder: 'BNS धाराएँ चुनें',
+                    allowClear: true
+                });
+            }
+
+            if ($ipc.length) {
+
+                if ($ipc.hasClass("select2-hidden-accessible")) {
+                    $ipc.select2('destroy');
+                }
+
+                $ipc.select2({
+                    width: '100%',
+                    closeOnSelect: false,
+                    placeholder: 'IPC धाराएँ चुनें',
+                    allowClear: false
+                });
+            }
+        }
+
+
+        function syncSelectedIPC() {
+
+            var $ipc = $('#<%= ddldhara1.ClientID %>');
+         var $hidden = $('#<%= hdnSelectedIPC.ClientID %>');
+
+            if (!$ipc.length || !$hidden.length)
+                return;
+
+            var selectedValues = $ipc.val() || [];
+
+            $hidden.val(selectedValues.join(','));
+        }
+
+
+        // =========================================================
+        // IPC changed by user
+        // =========================================================
+        function ipcSelectionChanged() {
+
+            syncSelectedIPC();
+        }
+
+
+        function bnsSelectionChanged() {
+
+            // Nothing special required here because ASP.NET
+            // AutoPostBack will submit the selected BNS values.
+        }
+
+        $(document).ready(function () {
+
+            initializeDharaSelect2();
+
+            var $ipc = $('#<%= ddldhara1.ClientID %>');
+         var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
 
          if ($ipc.length) {
 
-             if ($ipc.hasClass("select2-hidden-accessible")) {
-                 $ipc.select2('destroy');
-             }
+             $ipc.on('change', function () {
 
-             $ipc.select2({
-                 width: '100%',
-                 closeOnSelect: false,
-                 placeholder: 'IPC धाराएँ चुनें',
-                 allowClear: false
+                 ipcSelectionChanged();
+
              });
          }
-     }
 
+         if ($bns.length) {
 
-     function syncSelectedIPC() {
+             $bns.on('change', function () {
 
-         var $ipc = $('#<%= ddldhara1.ClientID %>');
-         var $hidden = $('#<%= hdnSelectedIPC.ClientID %>');
+                 bnsSelectionChanged();
 
-         if (!$ipc.length || !$hidden.length)
-             return;
+             });
+         }
+     });
 
-         var selectedValues = $ipc.val() || [];
-
-         $hidden.val(selectedValues.join(','));
-     }
-
-
-     // =========================================================
-     // IPC changed by user
-     // =========================================================
-     function ipcSelectionChanged() {
-
-         syncSelectedIPC();
-     }
-
-
-     function bnsSelectionChanged() {
-
-         // Nothing special required here because ASP.NET
-         // AutoPostBack will submit the selected BNS values.
-     }
-
-     $(document).ready(function () {
-
-         initializeDharaSelect2();
-
-         var $ipc = $('#<%= ddldhara1.ClientID %>');
-     var $bns = $('#<%= ddlbsn_dhara_hai.ClientID %>');
-
-     if ($ipc.length) {
-
-         $ipc.on('change', function () {
-
-             ipcSelectionChanged();
-
-         });
-     }
-
-     if ($bns.length) {
-
-         $bns.on('change', function () {
-
-             bnsSelectionChanged();
-
-         });
-     }
- });
-
- </script>
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
 
@@ -1286,7 +1286,8 @@
                                             <label class="form-label">मोबाइल नंबर </label>
 
                                             <asp:TextBox ID="txtprativadi_Mobile" runat="server" CssClass="form-control" MaxLength="10" placeholder="मोबाइल नंबर"> </asp:TextBox>
-
+                                            <asp:RegularExpressionValidator Display="Dynamic" SetFocusOnError="true" ControlToValidate="txtprativadi_Mobile" ID="RegularExpressionValidator1"
+                                                ValidationExpression="^[\s\S]{10,10}$" runat="server" ValidationGroup="PratiVadi" ErrorMessage="10 numbers required."></asp:RegularExpressionValidator>
                                         </div>
 
                                     </div>
@@ -3210,7 +3211,7 @@
                                     </div>
 
 
-                                  
+
 
                                     <div class="col-lg-3 col-md-6">
 
@@ -3268,7 +3269,7 @@
 
                                         <label class="form-label">बैठक का निष्कर्ष <span class="required">*</span> </label>
 
-                                        <asp:DropDownList ID="ddlaction" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlaction_SelectedIndexChanged" >
+                                        <asp:DropDownList ID="ddlaction" runat="server" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlaction_SelectedIndexChanged">
 
                                             <asp:ListItem Value="0">--चुने--</asp:ListItem>
                                             <asp:ListItem Value="1">प्रारंभिक निष्पादन</asp:ListItem>

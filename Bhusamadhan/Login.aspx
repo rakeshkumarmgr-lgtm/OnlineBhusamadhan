@@ -61,6 +61,8 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
+
+
         <div class="top-header">
 
             <div class="container-fluid">
@@ -235,99 +237,140 @@
 
                         <div class="login-body">
 
-                            <!-- Username -->
-                            <div class="form-group">
+                           <%-- <div class="form-group text-center mb-4">
 
-                                <label class="font-weight-bold text-dark">
-                                    Username
-               
-                                </label>
+                                <asp:RadioButtonList ID="rblogintype" runat="server" RepeatDirection="Horizontal" TextAlign="Right" RepeatLayout="Table" CssClass="login-type-radio" onchange="Loginpanelhide()">
 
-                                <div class="input-group">
+                                    <asp:ListItem Text="Web Login" Value="0" Selected="True"></asp:ListItem>
 
-                                    <asp:TextBox ID="txtUserid" runat="server" CssClass="form-control" placeholder="Enter Username" autocomplete="off" MaxLength="50"> </asp:TextBox>
+                                    <asp:ListItem Text="Public (JanParichay) Login" Value="1"></asp:ListItem>
+                                </asp:RadioButtonList>
 
-                                    <div class="input-group-append">
-                                        <span class="input-group-text bg-light">
-                                            <i class="fa fa-user text-primary"></i>
-                                        </span>
+                            </div>--%>
+
+                            <%--<asp:Panel ID="pnlWebLogin" runat="server" Style="display: block;">--%>
+
+                                <!-- Username -->
+                                <div class="form-group">
+
+                                    <label class="font-weight-bold text-dark"> Username </label>
+
+                                    <div class="input-group">
+
+                                        <asp:TextBox ID="txtUserid" runat="server" CssClass="form-control" placeholder="Enter Username" autocomplete="off" MaxLength="50"> </asp:TextBox>
+
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-light">
+                                                <i class="fa fa-user text-primary"></i>
+                                            </span>
+                                        </div>
+
                                     </div>
+
+                                    <asp:RequiredFieldValidator ID="rfvUserid" runat="server" ControlToValidate="txtUserid" ErrorMessage="Username is required." Display="Dynamic" CssClass="text-danger small" ValidationGroup="L">* </asp:RequiredFieldValidator>
 
                                 </div>
 
-                                <asp:RequiredFieldValidator ID="rfvUserid" runat="server" ControlToValidate="txtUserid" ErrorMessage="Username is required." Display="Dynamic" CssClass="text-danger small" ValidationGroup="L">* </asp:RequiredFieldValidator>
+                                <!-- Password -->
+                                <div class="form-group">
 
-                            </div>
+                                    <label class="font-weight-bold text-dark"> Password </label>
 
-                            <!-- Password -->
-                            <div class="form-group">
+                                    <div class="input-group">
 
-                                <label class="font-weight-bold text-dark">
-                                    Password
-               
-                                </label>
+                                        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Enter Password"
+                                            TextMode="Password" autocomplete="off" ToolTip="Password is required."></asp:TextBox>
 
-                                <div class="input-group">
+                                        <div class="input-group-append">
 
-                                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="Enter Password"
-                                        TextMode="Password" autocomplete="off" ToolTip="Password is required."></asp:TextBox>
+                                            <button type="button" id="btnTogglePassword" class="btn btn-light">
 
-                                    <div class="input-group-append">
+                                                <i id="togglePassword" class="fa fa-eye"></i>
 
-                                        <button type="button" id="btnTogglePassword" class="btn btn-light">
+                                            </button>
+                                        </div>
 
-                                            <i id="togglePassword" class="fa fa-eye"></i>
-
-                                        </button>
                                     </div>
+
+                                    <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." Display="Dynamic" CssClass="text-danger small" ValidationGroup="L"> *</asp:RequiredFieldValidator>
 
                                 </div>
 
-                                <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required." Display="Dynamic" CssClass="text-danger small" ValidationGroup="L"> *</asp:RequiredFieldValidator>
+                                <%--<label>Captcha</label>--%>
 
-                            </div>
+                                <asp:UpdatePanel ID="upCaptcha" runat="server" UpdateMode="Conditional">
+                                    <ContentTemplate>
 
-                            <%--<label>Captcha</label>--%>
+                                        <div class="form-row align-items-center mb-3">
 
-                            <asp:UpdatePanel ID="upCaptcha" runat="server" UpdateMode="Conditional">
-                                <ContentTemplate>
+                                            <!-- Captcha TextBox -->
+                                            <div class="col-5">
 
-                                    <div class="form-row align-items-center mb-3">
+                                                <asp:TextBox ID="txtCaptha" runat="server" CssClass="form-control" placeholder="Enter Code"></asp:TextBox>
 
-                                        <!-- Captcha TextBox -->
-                                        <div class="col-5">
+                                            </div>
 
-                                            <asp:TextBox ID="txtCaptha" runat="server" CssClass="form-control" placeholder="Enter Code"></asp:TextBox>
+                                            <!-- Captcha Image -->
+                                            <div class="col-5 text-center">
 
-                                        </div>
+                                                <asp:Image ID="imgCaptcha" runat="server" ImageUrl="~/Public/CreateCaptcha.aspx" CssClass="img-fluid border rounded shadow-sm" Style="height: 46px;" />
 
-                                        <!-- Captcha Image -->
-                                        <div class="col-5 text-center">
+                                            </div>
 
-                                            <asp:Image ID="imgCaptcha" runat="server" ImageUrl="~/Public/CreateCaptcha.aspx" CssClass="img-fluid border rounded shadow-sm" Style="height: 46px;" />
+                                            <!-- Refresh Button -->
+                                            <div class="col-2 text-center">
 
-                                        </div>
+                                                <asp:ImageButton ID="btnRefreshCaptcha" runat="server" OnClick="btnRefreshCaptcha_Click" CausesValidation="false" ImageUrl="~/images/refresh.png" Width="36" Height="36" />
 
-                                        <!-- Refresh Button -->
-                                        <div class="col-2 text-center">
-
-                                            <asp:ImageButton ID="btnRefreshCaptcha" runat="server" OnClick="btnRefreshCaptcha_Click" CausesValidation="false" ImageUrl="~/images/refresh.png" Width="36" Height="36" />
+                                            </div>
 
                                         </div>
+
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                                <div>
+                                    <asp:Button ID="btnLogin" runat="server" Text="LOGIN" CssClass="btn login-btn" ValidationGroup="L" OnClick="btnLogin_Click" />
+
+                                </div>
+
+                                <div class="text-right mb-3">
+
+                                    <a href="Public/ForgotPassword.aspx" class="text-primary font-weight-bold">Forgot Password?</a>
+
+                                </div>
+                                <div>
+                                    <asp:Label ID="lblErrorMsg" runat="server" CssClass="error-msg"></asp:Label>
+                                </div>
+                          <%--  </asp:Panel>--%>
+                            <%--Janparichay section--%>
+                           <%-- <asp:Panel ID="pnlJanParichayLogin" runat="server" Style="display: none;">
+
+                                <div class="text-center">
+
+                                    <div class="mb-3">
+
+                                        <i class="fa fa-id-card-o" style="font-size: 55px;"></i>
 
                                     </div>
 
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                                    <h5 class="font-weight-bold text-dark">Public Login </h5>
 
-                            <asp:Button ID="btnLogin" runat="server" Text="LOGIN" CssClass="btn login-btn" ValidationGroup="L" OnClick="btnLogin_Click" />
-                            <div class="text-right mb-3">
+                                    <p class="text-muted">Login through JanParichay  </p>
 
-                                <a href="Public/ForgotPassword.aspx" class="text-primary font-weight-bold">Forgot Password?</a>
+                                </div>
 
-                            </div>
 
-                            <asp:Label ID="lblErrorMsg" runat="server" CssClass="error-msg"></asp:Label>
+                                <div class="form-group mt-4">
+                                    <asp:Button ID="btnJanParichayLogin" runat="server" Text="Login with JanParichay" CssClass="btn login-btn"  CausesValidation="false" OnClick="btnJanParichayLogin_Click" />
+                                </div>
+
+
+                                <div class="text-center mt-3">
+                                    <asp:Label ID="lblJanParichayMsg" runat="server" CssClass="error-msg">  </asp:Label>
+
+                                </div>
+
+                            </asp:Panel>--%>
 
                         </div>
                     </div>
@@ -351,9 +394,9 @@
 
                             <i class="fa fa-university mr-1"></i><strong>Home Department, Government of Bihar</strong> <span class="footer-divider">|</span>
 
-                                <i class="fa fa-copyright mr-1"></i>All Rights Reserved <span class="footer-divider">|</span>
+                            <i class="fa fa-copyright mr-1"></i>All Rights Reserved <span class="footer-divider">|</span>
 
-                                <i class="fa fa-desktop mr-1"></i>Designed &amp; Developed by
+                            <i class="fa fa-desktop mr-1"></i>Designed &amp; Developed by
 
                              <a href="https://www.nic.in/" target="_blank">National Informatics Centre (NIC), Bihar </a>
                         </p>
@@ -365,7 +408,6 @@
             </div>
 
         </footer>
-
 
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.js" type="text/javascript"></script>
@@ -419,5 +461,34 @@
         });
 
     </script>
+ <%--   <script type="text/javascript">
+
+        function Loginpanelhide() {
+
+            var selectedValue =
+                $("input[name$='rblogintype']:checked").val();
+
+            if (selectedValue === "0") {
+
+                $("#<%= pnlWebLogin.ClientID %>").css("display", "block");
+                $("#<%= pnlJanParichayLogin.ClientID %>").css("display", "none");
+
+            }
+            else if (selectedValue === "1") {
+
+                $("#<%= pnlWebLogin.ClientID %>").css("display", "none");
+                $("#<%= pnlJanParichayLogin.ClientID %>").css("display", "block");
+
+            }
+        }
+
+
+        $(document).ready(function () {
+
+            Loginpanelhide();
+
+        });
+
+    </script>--%>
 </body>
 </html>

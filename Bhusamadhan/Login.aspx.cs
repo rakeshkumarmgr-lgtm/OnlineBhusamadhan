@@ -221,5 +221,38 @@ namespace Bhusamadhan
             txtCaptha.Text = "";
             LoadCaptcha();
         }
+
+        //---------------------------Public Login Section----------------------------------
+
+        //protected void btnJanParichayLogin_Click(object sender, EventArgs e)
+        //{
+        //    lblJanParichayMsg.Text = "JanParichay login...";
+        //}
+
+
+
+        //----------------JanParichay Code------------------------------
+        //protected void rblogintype_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (rblogintype.SelectedValue == "0")
+        //        {
+        //            pnlWebLogin.Visible = true;
+        //            pnlJanParichayLogin.Visible = false;
+        //        }
+        //        else
+        //        {
+        //            pnlWebLogin.Visible = false;
+        //            pnlJanParichayLogin.Visible = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblErrorMsg.Text = "Unable to change login type.";
+
+        //        // Log ex here
+        //    }
+        //}
     }
 }

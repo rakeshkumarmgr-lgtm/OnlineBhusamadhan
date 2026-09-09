@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchAppForMetting.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.SearchAppForMetting" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SearchAppForMettingCO.aspx.cs" Inherits="Bhusamadhan.LandDispute.Entry.SearchAppForMettingCO" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../assets/css/cssEntryPage.css" rel="stylesheet" />
@@ -275,53 +275,50 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
+
     <div class="container-fluid application-container">
 
-        <!-- Page Header -->
         <div class="card application-card shadow-sm">
 
             <div class="card-header application-card-header">
                 <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="unfinalized-title"> <i class="fa fa-folder-open mr-2"></i> आवेदन का विवरण  </div>
+                    <div class="unfinalized-title"><i class="fa fa-folder-open mr-2"></i> आवेदन का विवरण  </div>
 
-                    <asp:Label ID="lblTotal" runat="server" CssClass="badge badge-primary application-count"> </asp:Label>
+                    <asp:Label ID="lblTotal" runat="server" CssClass="badge badge-primary application-count">
+                    </asp:Label>
 
                 </div>
             </div>
 
-            <!-- Search / Filter -->
             <div class="filter-card">
 
-                <div class="section-header">
-                    <i class="fa fa-filter mr-2"></i> Search &amp; Filter
-                </div>
+                <div class="section-header"> <i class="fa fa-filter mr-2"></i> Search &amp; Filter </div>
 
                 <div class="card-body">
 
-                    <asp:Label ID="lblMsg" runat="server"  CssClass="text-danger d-block mb-3">
-                    </asp:Label>
+                    <asp:Label ID="lblMsg" runat="server" CssClass="text-danger d-block mb-3"> </asp:Label>
 
                     <div class="row">
 
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 filter-item">
                             <label class="form-label">Commissionary</label>
-                            <asp:DropDownList ID="ddlCommissionary" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCommissionary_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlCommissionary" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCommissionary_SelectedIndexChanged" ></asp:DropDownList>
                         </div>
 
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 filter-item">
                             <label class="form-label">District</label>
-                            <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" ></asp:DropDownList>
                         </div>
 
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 filter-item">
                             <label class="form-label">Sub-Division</label>
-                            <asp:DropDownList ID="ddlSubDivision" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSubDivision_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlSubDivision" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSubDivision_SelectedIndexChanged" ></asp:DropDownList>
                         </div>
 
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 filter-item">
                             <label class="form-label">Circle</label>
-                            <asp:DropDownList ID="ddlBlock" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlBlock_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlBlock" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlBlock_SelectedIndexChanged" ></asp:DropDownList>
                         </div>
 
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 filter-item">
@@ -331,7 +328,7 @@
 
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 filter-item">
                             <label class="form-label">Panchayat</label>
-                            <asp:DropDownList ID="ddlPanchayat" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPanchayat_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlPanchayat" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlPanchayat_SelectedIndexChanged" ></asp:DropDownList>
                         </div>
 
                         <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 filter-item">
@@ -360,11 +357,9 @@
 
                             <div class="input-group">
 
-                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="वादी का मोबाइल नंबर / Application No खोजें..." MaxLength="50" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged"> </asp:TextBox>
+                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="वादी का मोबाइल नंबर / Application No खोजें..." MaxLength="50" AutoPostBack="true" OnTextChanged="txtSearch_TextChanged" > </asp:TextBox>
 
-                                <div class="input-group-append">
-                                    <span class="input-group-text search-icon"><i class="fa fa-search"></i> </span>
-                                </div>
+                                <div class="input-group-append"> <span class="input-group-text search-icon"> <i class="fa fa-search"></i> </span> </div>
 
                             </div>
 
@@ -379,7 +374,7 @@
 
                 <div class="grid-wrapper">
 
-                    <asp:GridView ID="gvFinalizedForMeeting" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-sm finalized-grid" HeaderStyle-CssClass="thead-light" GridLines="None" AllowPaging="True" PageSize="10" EmptyDataText="कोई Finalized Application उपलब्ध नहीं है।" OnPageIndexChanging="gvFinalized_PageIndexChanging">
+                    <asp:GridView ID="gvFinalizedForMeetingCO" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover table-sm finalized-grid" HeaderStyle-CssClass="thead-light" GridLines="None" AllowPaging="True" PageSize="10" EmptyDataText="कोई Finalized Application उपलब्ध नहीं है।" OnPageIndexChanging="gvFinalizedForMeetingCO_PageIndexChanging" >
 
                         <Columns>
 
@@ -391,7 +386,7 @@
                                         <%# Eval("ApplicationNo") %>
                                     </div>
 
-                                    <asp:LinkButton ID="lnkApplicationNo" runat="server" CssClass="btn btn-sm btn-primary action-btn" Text="Add Meeting" CommandArgument='<%# Eval("a_id") %>' Font-Underline="false" OnClientClick="openwindow(this);" OnClick="lnkView_Click"> </asp:LinkButton>
+                                    <asp:LinkButton ID="lnkApplicationNo" runat="server" CssClass="btn btn-sm btn-primary action-btn" Text="Add Meeting" CommandArgument='<%# Eval("a_id") %>' Font-Underline="false" OnClientClick="openwindow(this);" OnClick="lnkView_Click" > </asp:LinkButton>
 
                                 </ItemTemplate>
 
@@ -442,15 +437,8 @@
                             </asp:TemplateField>
 
 
-                            <%--<asp:BoundField DataField="vadi_Name" HeaderText="वादी का नाम" />
-
-                            <asp:BoundField DataField="Vadi_MobileNo" HeaderText="वादी का मोबाइल नंबर"/> --%>
-
                             <asp:BoundField DataField="pratiVadi_Name" HeaderText="प्रतिवादी का नाम" />
 
-                            <%-- <asp:BoundField DataField="Bhumitype" HeaderText="भूमि का प्रकार" />
-
-                            <asp:BoundField DataField="vivadtype" HeaderText="भूमि विवाद का प्रकार" />--%>
 
                             <asp:TemplateField HeaderText="भूमि का प्रकार / भूमि विवाद का प्रकार">
 

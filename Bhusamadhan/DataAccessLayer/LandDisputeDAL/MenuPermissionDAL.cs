@@ -20,7 +20,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             {
                 using (SqlConnection con =new SqlConnection(conStr))
                 {
-                    string sql = @" SELECT ID, Role,  RoleDesc, Role + ' - ' + ISNULL(RoleDesc, '') AS RoleDisplay FROM mst_Role ORDER BY Role";
+                    string sql = @"SELECT ID, Role,  RoleDesc, Role + ' - ' + ISNULL(RoleDesc, '') AS RoleDisplay FROM mst_Role where role!='NICADMIN' ORDER BY Role";
 
 
                     using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -40,9 +40,9 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             }
         }
 
-        // ---------------------------------------------------------
-        // Get Menu Permission for Selected Role
-        // ---------------------------------------------------------
+    
+        //--- Get Menu Permission for Selected Role
+      
         public DataTable GetMenuPermissions(int roleId)
         {
             DataTable dt = new DataTable();
@@ -59,7 +59,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 
                 CASE WHEN UP.ChildMenuID IS NULL THEN P.NavigateUrl ELSE C.NavigateUrl END AS NavigateUrl,
 
-                CASE WHEN UP.HasAccess = 1 THEN 'Granted' ELSE 'Revoked' END AS AccessStatus
+                CASE WHEN UP.HasAccess = 1 THEN 'Granted' ELSE 'Revoked' END AS AccessStatus,UP.SL_No
 
             FROM BS_UserMenuPermission UP
 
@@ -244,6 +244,44 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             catch (Exception ex)
             {
 
+                throw;
+            }
+        }
+
+        public bool UpdateUserProfile( string userId, string userrole, string name, string email, string mobile)
+        {
+            try
+            {
+                string query = @"  UPDATE UserLogin SET  Name = @Name, Email = @Email, Mobile = @Mobile,Attempt_Count=0 WHERE UserID = @UserID AND Userrole = @Userrole";
+
+
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    using (SqlCommand cmd =  new SqlCommand(query, con))
+                    {
+                        //cmd.Parameters.Add( "@username",  SqlDbType.NVarChar, 100).Value = username;
+
+                        cmd.Parameters.Add( "@Name", SqlDbType.NVarChar, 150).Value = name;
+
+                        cmd.Parameters.Add( "@Email", SqlDbType.NVarChar, 150).Value = string.IsNullOrWhiteSpace(email)  ? (object)DBNull.Value : email;
+
+                        cmd.Parameters.Add("@Mobile", SqlDbType.VarChar, 15).Value = mobile;
+
+                        cmd.Parameters.Add(  "@UserID", SqlDbType.VarChar, 50).Value =  userId;
+
+                        cmd.Parameters.Add( "@Userrole", SqlDbType.VarChar, 50).Value = userrole;
+
+
+                        con.Open();
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch
+            {
                 throw;
             }
         }

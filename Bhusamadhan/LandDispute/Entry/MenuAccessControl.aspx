@@ -33,7 +33,7 @@
 
                         <label class="font-weight-bold">Select Role </label>
 
-                        <asp:DropDownList  ID="ddlRole" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged"> </asp:DropDownList>
+                        <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged"></asp:DropDownList>
 
                     </div>
 
@@ -73,17 +73,17 @@
 
                             <div class="col-md-4">
 
-                                <label class="font-weight-bold"> Parent Menu </label>
+                                <label class="font-weight-bold">Parent Menu </label>
 
-                                <asp:DropDownList ID="ddlParentMenu"  runat="server"  CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlParentMenu_SelectedIndexChanged" > </asp:DropDownList>
+                                <asp:DropDownList ID="ddlParentMenu" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlParentMenu_SelectedIndexChanged"></asp:DropDownList>
 
                             </div>
 
                             <div class="col-md-5">
 
-                                <label class="font-weight-bold"> Menu / Page </label>
+                                <label class="font-weight-bold">Menu / Page </label>
 
-                                <asp:DropDownList ID="ddlChildMenu" runat="server"  CssClass="form-control"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlChildMenu" runat="server" CssClass="form-control"></asp:DropDownList>
 
                             </div>
 
@@ -93,7 +93,7 @@
                                     &nbsp;
                                 </label>
 
-                                <asp:Button  ID="btnGrantAccess" runat="server" Text="Grant Access New Menu" CssClass="btn btn-success btn-block" OnClick="btnGrantAccess_Click"  OnClientClick="return confirm('Are you sure you want to grant access to this menu/page?');" />
+                                <asp:Button ID="btnGrantAccess" runat="server" Text="Grant Access New Menu" CssClass="btn btn-success btn-block" OnClick="btnGrantAccess_Click" OnClientClick="return confirm('Are you sure you want to grant access to this menu/page?');" />
 
                             </div>
 
@@ -108,7 +108,7 @@
 
                     <div class="card-header bg-light">
 
-                        <h6 class="mb-0 text-primary"><i class="fas fa-list mr-2"></i> Existing Menu Permissions </h6>
+                        <h6 class="mb-0 text-primary"><i class="fas fa-list mr-2"></i>Existing Menu Permissions </h6>
 
                     </div>
 
@@ -118,10 +118,10 @@
 
                         <div class="table-responsive">
 
-                            <asp:GridView ID="gvMenuPermission"  runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover" DataKeyNames="ParentMenuID,ChildMenuID,MenuType" OnRowCommand="gvMenuPermission_RowCommand" >
+                            <asp:GridView ID="gvMenuPermission" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover" DataKeyNames="ParentMenuID,ChildMenuID,MenuType" OnRowCommand="gvMenuPermission_RowCommand">
 
                                 <Columns>
-
+                                    <asp:BoundField DataField="SL_No" HeaderText="Access SL" />
 
                                     <asp:TemplateField HeaderText="Type">
 
@@ -148,7 +148,7 @@
 
                                         <ItemTemplate>
 
-                                            <asp:Label  ID="lblAccessStatus" runat="server" Text='<%# Eval("AccessStatus") %>'  CssClass='<%# GetStatusCss(Eval("AccessStatus").ToString()) %>'> </asp:Label>
+                                            <asp:Label ID="lblAccessStatus" runat="server" Text='<%# Eval("AccessStatus") %>' CssClass='<%# GetStatusCss(Eval("AccessStatus").ToString()) %>'> </asp:Label>
 
                                         </ItemTemplate>
 
@@ -161,7 +161,7 @@
 
                                         <ItemTemplate>
 
-                                            <asp:LinkButton ID="btnPermission" runat="server" CommandName="TogglePermission"  CommandArgument='<%# Container.DataItemIndex %>'  CssClass='<%# GetButtonCss(Eval("AccessStatus").ToString()) %>' OnClientClick='<%# GetConfirmMessage(Eval("AccessStatus").ToString()) %>'>
+                                            <asp:LinkButton ID="btnPermission" runat="server" CommandName="TogglePermission" CommandArgument='<%# Container.DataItemIndex %>' CssClass='<%# GetButtonCss(Eval("AccessStatus").ToString()) %>' OnClientClick='<%# GetConfirmMessage(Eval("AccessStatus").ToString()) %>'>
 
                                             <i class='<%# GetButtonIcon(Eval("AccessStatus").ToString()) %>'></i>
 

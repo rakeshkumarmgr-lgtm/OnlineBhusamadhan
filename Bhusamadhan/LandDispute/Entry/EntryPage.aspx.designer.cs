@@ -1275,6 +1275,15 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.TextBox txtprativadi_Mobile;
 
         /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+
+        /// <summary>
         /// ddl_is_pratiVadi_from_an_dept control.
         /// </summary>
         /// <remarks>

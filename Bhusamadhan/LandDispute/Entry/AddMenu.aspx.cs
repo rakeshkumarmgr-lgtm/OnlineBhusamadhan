@@ -161,6 +161,9 @@ namespace Bhusamadhan.LandDispute.Entry
 
 
                 lblMsg.Text = "Page added successfully.";
+                txtChildMenuName.Text = "";
+                txtChildNavigateUrl.Text = "";
+                txtChildDisplayOrder.Text = "";
                 LoadChildMenus();
             }
             catch (Exception ex)

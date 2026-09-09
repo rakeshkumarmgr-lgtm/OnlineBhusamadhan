@@ -132,7 +132,7 @@
                                             <HeaderTemplate>
 
                                                 <tr>
-                                                    <td colspan="9" class="fw-bold text-center">
+                                                    <td colspan="8" class="fw-bold text-center">
                                                         <asp:Label ID="lblHeaderInfo" runat="server"></asp:Label>
                                                     </td>
                                                 </tr>
