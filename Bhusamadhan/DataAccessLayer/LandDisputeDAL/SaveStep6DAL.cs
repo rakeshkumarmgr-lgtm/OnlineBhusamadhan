@@ -66,7 +66,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
                 using (SqlCommand cmd = new SqlCommand(
                     @"SELECT  Ghatna_Vardat_date, Ghatna_Short_vivran, is_FIR_registered, praathamiki_sankhya, praathamiki_ka_vivaran,
                 is_complaint_filed, dhaara, apraathamiki_sankhya, apraathamiki_ka_vivaran, Abhiyukt, is_Sanha_recorded,
-                sanha_sankhya, bns as bnm, dhaaranew as newdhara, bns_oth as bnm1, dhaara_oth as newdhara1 FROM BS_LandDisputeDetailsEntry WHERE a_id = @a_id", con))
+                sanha_sankhya, bns as bnm, dhaaranew as newdhara, bns_oth as bnm1, dhaara_oth as newdhara1 FROM LandDisputeDetailsEntry WHERE a_id = @a_id", con))
                 {
                     cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
 

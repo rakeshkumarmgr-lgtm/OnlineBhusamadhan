@@ -266,7 +266,7 @@ namespace Bhusamadhan.LandDispute.Entry
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand(@" SELECT ISNULL(CurrentStep,1) FROM BS_Matter_Registration WHERE a_id=@a_id and CUUser=@UserID AND ISNULL(Final, 0) = 0", con);
+                SqlCommand cmd = new SqlCommand(@" SELECT ISNULL(CurrentStep,1) FROM Matter_Registration WHERE a_id=@a_id and CUUser=@UserID AND ISNULL(Final, 0) = 0", con);
 
                 cmd.Parameters.AddWithValue("@a_id", applicationId);
                 cmd.Parameters.AddWithValue("@UserID", userid);
@@ -3881,9 +3881,9 @@ namespace Bhusamadhan.LandDispute.Entry
                 fileNo = GetStep7FileCount() + 1;
             }
 
-            // --------------------------------------------------
-            // Land Document - OPTIONAL
-            // --------------------------------------------------
+            
+            // Land Document 
+          
 
             if (LandDoc.HasFile)
             {
@@ -3981,7 +3981,7 @@ namespace Bhusamadhan.LandDispute.Entry
         private int GetStep7FileCount()
         {
             using (SqlConnection con = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM BS_ActionDetailsEntry WHERE a_id = @a_id", con))
+            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ActionDetailsEntry WHERE a_id = @a_id", con))
             {
                 cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = ApplicationId;
 

@@ -48,7 +48,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                using (SqlCommand cmd = new SqlCommand(@" select pulis_padadhikari_vivarani,pulis_padadhikar_Patr_file,HalkaKarmchari_vivran ,HalkaKarmchari_Patr_file,vivadit_bhukhand_Mapi_ki_avashyakta_hai,vivadit_bhukhand_Mapi,convert (varchar(10),maapee_ke_lie_nirdhaarit_tithi,105) as maapee_ke_lie_nirdhaarit_tithi ,vivaadit_bhukhand_Mapi_File,vivaadit_bhukhand_Mapi_Reason from  BS_Matter_Registration where a_id=@a_id and isnull(vivadit_bhukhand_Mapi_ki_avashyakta_hai,'')<>''", con))
+                using (SqlCommand cmd = new SqlCommand(@" select pulis_padadhikari_vivarani,pulis_padadhikar_Patr_file,HalkaKarmchari_vivran ,HalkaKarmchari_Patr_file,vivadit_bhukhand_Mapi_ki_avashyakta_hai,vivadit_bhukhand_Mapi,convert (varchar(10),maapee_ke_lie_nirdhaarit_tithi,105) as maapee_ke_lie_nirdhaarit_tithi ,vivaadit_bhukhand_Mapi_File,vivaadit_bhukhand_Mapi_Reason from  Matter_Registration where a_id=@a_id and isnull(vivadit_bhukhand_Mapi_ki_avashyakta_hai,'')<>''", con))
                 {
                     cmd.Parameters.Add("@a_id", SqlDbType.BigInt).Value = applicationId;
 

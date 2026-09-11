@@ -100,7 +100,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
         }
         public void UpdateCurrentStep(long applicationId, int currentStep, SqlConnection con, SqlTransaction trans)
         {
-            using (SqlCommand cmd = new SqlCommand( @"UPDATE BS_Matter_Registration SET CurrentStep=@CurrentStep WHERE a_id=@a_id", con, trans))
+            using (SqlCommand cmd = new SqlCommand( @"UPDATE Matter_Registration SET CurrentStep=@CurrentStep WHERE a_id=@a_id", con, trans))
             {
                 cmd.Parameters.AddWithValue("@CurrentStep", currentStep);
                 cmd.Parameters.AddWithValue("@a_id", applicationId);
@@ -111,7 +111,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 
         public string GetApplicationGuid(long applicationId,SqlConnection con, SqlTransaction trans)
         {
-            using (SqlCommand cmd = new SqlCommand("SELECT Guid FROM BS_Matter_Registration WHERE a_id=@a_id", con,  trans))
+            using (SqlCommand cmd = new SqlCommand("SELECT Guid FROM Matter_Registration WHERE a_id=@a_id", con,  trans))
             {
                 cmd.Parameters.AddWithValue("@a_id", applicationId);
 
@@ -123,7 +123,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 
         public DataRow GetUploadedFiles(long applicationId, SqlConnection con,  SqlTransaction trans)
         {
-            using (SqlDataAdapter da = new SqlDataAdapter(@" SELECT Vadi_sakshya_File, Prativadi_sakshya_File, Guid FROM BS_Matter_Registration WHERE a_id=@a_id", con))
+            using (SqlDataAdapter da = new SqlDataAdapter(@" SELECT Vadi_sakshya_File, Prativadi_sakshya_File, Guid FROM Matter_Registration WHERE a_id=@a_id", con))
             {
                 da.SelectCommand.Transaction = trans;
                 da.SelectCommand.Parameters.AddWithValue("@a_id", applicationId);
@@ -146,7 +146,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             using (SqlConnection con = new SqlConnection(conStr))
             {
 
-                string query = @"select   Range_Code,Comm_Code,rajasv_thaana_sankhya ,Bhumitype ,SarkariBhumiType,SarkariBhumiType_Anya ,BhumiVivadType ,BhumiVivadType_Anya  ,bhumi_vivad_ka_adyatan_sthiti ,District_Code,Sub_DivCode,Block_Code,Thana_code ,Panchayat_Code ,Panchayat_Anya ,AreaType,Village ,Village_Anya  ,WardNo,WardNo_Anya ,rtrim(ltrim(Vadi_sakshya_File)) as Vadi_sakshya_File ,rtrim(ltrim(Prativadi_sakshya_File)) as Prativadi_sakshya_File  ,dispute_sensitivity ,convert(varchar(10),AavedanKiTithi ,105) as AavedanKiTithi,VadiVivarani,PrativadiVivarani from BS_Matter_Registration  WHERE a_id=@a_id";
+                string query = @"select   Range_Code,Comm_Code,rajasv_thaana_sankhya ,Bhumitype ,SarkariBhumiType,SarkariBhumiType_Anya ,BhumiVivadType ,BhumiVivadType_Anya  ,bhumi_vivad_ka_adyatan_sthiti ,District_Code,Sub_DivCode,Block_Code,Thana_code ,Panchayat_Code ,Panchayat_Anya ,AreaType,Village ,Village_Anya  ,WardNo,WardNo_Anya ,rtrim(ltrim(Vadi_sakshya_File)) as Vadi_sakshya_File ,rtrim(ltrim(Prativadi_sakshya_File)) as Prativadi_sakshya_File  ,dispute_sensitivity ,convert(varchar(10),AavedanKiTithi ,105) as AavedanKiTithi,VadiVivarani,PrativadiVivarani from Matter_Registration  WHERE a_id=@a_id";
 
                 using (SqlDataAdapter da = new SqlDataAdapter(query, con))
                 {
@@ -238,7 +238,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
 
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                using (SqlCommand cmd = new SqlCommand(  "BS_GetFinalizedApplication", con))
+                using (SqlCommand cmd = new SqlCommand("BS_GetFinalizedApplication", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 

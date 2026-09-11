@@ -55,7 +55,9 @@ namespace Bhusamadhan.DataAccessLayer.DashboardDAL
                 }
             };
 
-            return _dbHelper.GetResults("BS_sp_GetDasboardData", parameters, true);
+            //return _dbHelper.GetResults("BS_sp_GetDasboardData", parameters, true);
+            return _dbHelper.GetResults("sp_GetDasboardData_ForDistrictWiseNew", parameters, true);
+            //return _dbHelper.GetResults("BS_sp_GetDasboardData_ForDistrictWiseNew", parameters, true);
         }
     }
 }

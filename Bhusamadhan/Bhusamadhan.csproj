@@ -4205,7 +4205,9 @@
     <Content Include="LandDispute\Entry\SearchAppForMettingCO.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx" />
+    <Content Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateDashboard.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx" />
+    <Content Include="LandDispute\Reports\Consolidate\DistrictSensitivityType.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx" />
     <Content Include="OldFiles\Entry_Page.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMetting.aspx" />
@@ -6206,12 +6208,26 @@
     <Compile Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx.designer.cs">
       <DependentUpon>ApplicationConsolidateRpt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateDashboard.aspx.cs">
+      <DependentUpon>ApplicationDistConsolidateDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateDashboard.aspx.designer.cs">
+      <DependentUpon>ApplicationDistConsolidateDashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx.cs">
       <DependentUpon>ApplicationDistConsolidateRpt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx.designer.cs">
       <DependentUpon>ApplicationDistConsolidateRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\DistrictSensitivityType.aspx.cs">
+      <DependentUpon>DistrictSensitivityType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\DistrictSensitivityType.aspx.designer.cs">
+      <DependentUpon>DistrictSensitivityType.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx.cs">
       <DependentUpon>SearchApplicationwise.aspx</DependentUpon>

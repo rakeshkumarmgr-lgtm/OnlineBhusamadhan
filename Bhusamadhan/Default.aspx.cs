@@ -36,6 +36,7 @@ namespace Bhusamadhan
 
             if (!IsPostBack)
             {
+                SetDashboardVisibility(userrole);
                 //LoadDashboard();
             }
         }
@@ -52,9 +53,7 @@ namespace Bhusamadhan
 
             DataRow user = login.Rows[0];
 
-            string userRole = Convert.ToString(user["Userrole"]);
-
-            SetDashboardVisibility(userRole);
+            //string userRole = Convert.ToString(user["Userrole"]);
 
             DataTable dt = _dashboardDAL.GetDashboardData(
                 "HQ",
@@ -72,7 +71,7 @@ namespace Bhusamadhan
             }
             else
             {
-                SetDashboardZero();
+                ResetDashboard();
             }
         }
 
@@ -123,7 +122,7 @@ namespace Bhusamadhan
             lblNaylayNilambit.Text = Convert.ToString(row["NayalayNilambit"]);
         }
 
-        private void SetDashboardZero()
+        private void ResetDashboard()
         {
             lbltotalapplication1.Text = "0";
             lbltotalapplication2.Text = "0";
