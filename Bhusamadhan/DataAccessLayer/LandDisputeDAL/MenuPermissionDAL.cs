@@ -20,7 +20,8 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
             {
                 using (SqlConnection con =new SqlConnection(conStr))
                 {
-                    string sql = @"SELECT ID, Role,  RoleDesc, Role + ' - ' + ISNULL(RoleDesc, '') AS RoleDisplay FROM mst_Role where role!='NICADMIN' ORDER BY Role";
+                    //string sql = @"SELECT ID, Role,  RoleDesc, Role + ' - ' + ISNULL(RoleDesc, '') AS RoleDisplay FROM mst_Role where role!='NICADMIN' ORDER BY Role";
+                    string sql = @"SELECT ID, Role,  RoleDesc, Role + ' - ' + ISNULL(RoleDesc, '') AS RoleDisplay FROM mst_Role  ORDER BY Role";
 
 
                     using (SqlCommand cmd = new SqlCommand(sql, con))

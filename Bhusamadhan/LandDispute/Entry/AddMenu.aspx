@@ -36,7 +36,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH" runat="server">
     <div class="container-fluid mt-4">
+       <%-- <div class="mb-1"><span class=" bg-warning font-weight-bold"></span></div>--%>
 
+         <div class="alert alert-info"><i class="fas fa-info-circle mr-2"></i> Note:- Add Top Menu from Database then proceed to add child men</div>
         <div class="card shadow">
 
             <div class="card-header bg-primary text-white">
@@ -109,7 +111,7 @@
                         </div>
 
 
-                        <asp:Button ID="btnAddChild" runat="server" Text="Add Page" CssClass="btn btn-success mr-2" OnClientClick="return confirm('Are you sure you want to add menu/page?');" OnClick="btnAddChild_Click" />
+                        <asp:Button ID="btnAddChild" runat="server" Text="Add Child Menu Page" CssClass="btn btn-success mr-2" OnClientClick="return confirm('Are you sure you want to add menu/page?');" OnClick="btnAddChild_Click" />
 
 
                     </div>

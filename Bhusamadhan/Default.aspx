@@ -56,7 +56,7 @@
 
     <div class="container my-4">
 
-        <h3 class="text-center mb-4">Dashboard</h3>
+        <h3 class="text-center mb-4">Data Dashboard (Summary Information)</h3>
 
         <!-- आवेदन -->
         <h4 class="dashboard-section">आवेदन</h4>
@@ -90,13 +90,13 @@
                     <div class="card-body">
 
                         <a href="~/LandDispute/Reports/Consolidate/Finalize.aspx" id="Finalize1" runat="server">
-                            <asp:Label ID="lblFinalize1" runat="server" CssClass="card-value"></asp:Label>
+                            <asp:Label ID="lblFinalize1" runat="server" CssClass="card-value" Text="3"></asp:Label>
                         </a>
 
                         <br />
 
                         <a href="~/LandDispute/Reports/Consolidate/ApplicationDistConsolidateDashboard.aspx" id="Finalize2" runat="server">
-                            <asp:Label ID="lblFinalize2" runat="server" CssClass="card-value"></asp:Label>
+                            <asp:Label ID="lblFinalize2" runat="server" CssClass="card-value" Text="4"></asp:Label>
                         </a>
                     </div>
                 </div>
@@ -110,13 +110,13 @@
                     <div class="card-body">
 
                         <a href="~/LandDispute/Entry/Unfinalize.aspx" id="UnFinalize1" runat="server">
-                            <asp:Label ID="lblUnFinalize1" runat="server" CssClass="card-value"></asp:Label>
+                            <asp:Label ID="lblUnFinalize1" runat="server" CssClass="card-value" Text="5"></asp:Label>
                         </a>
 
                         <br />
 
                         <a href="~/LandDispute/Reports/Consolidate/ApplicationDistConsolidateDashboard.aspx" id="UnFinalize2" runat="server">
-                            <asp:Label ID="lblUnFinalize2" runat="server" CssClass="card-value"></asp:Label>
+                            <asp:Label ID="lblUnFinalize2" runat="server" CssClass="card-value" Text="6" ></asp:Label>
                         </a>
 
                     </div>
@@ -136,7 +136,7 @@
                     <div class="card-title">अति संवेदनशील</div>
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/DistrictSensitivityType.aspx">
-                            <asp:Label ID="lblatiSavedansheel" runat="server" CssClass="card-value"></asp:Label>
+                            <asp:Label ID="lblatiSavedansheel" runat="server" CssClass="card-value" Text="7"></asp:Label>
                         </a>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                     <div class="card-title">संवेदनशील</div>
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/DistrictSensitivityType.aspx">
-                            <asp:Label ID="lblsavedansheel" runat="server" CssClass="card-value"></asp:Label>
+                            <asp:Label ID="lblsavedansheel" runat="server" CssClass="card-value" Text="8"></asp:Label>
 
                         </a>
                     </div>
@@ -160,7 +160,7 @@
                     <div class="card-title">सामान्य</div>
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/DistrictSensitivityType.aspx">
-                            <asp:Label ID="lblsamanya" runat="server" CssClass="card-value"></asp:Label></a>
+                            <asp:Label ID="lblsamanya" runat="server" CssClass="card-value" Text="9"></asp:Label></a>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
 
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/ApplicationDistConsolidateRpt.aspx">
-                            <asp:Label ID="lblnispadan" runat="server" CssClass="card-value"></asp:Label>
+                            <asp:Label ID="lblnispadan" runat="server" CssClass="card-value" Text="10"></asp:Label>
                         </a>
                     </div>
 
@@ -195,7 +195,7 @@
 
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/ApplicationDistConsolidateRpt.aspx">
-                            <asp:Label ID="lblFinaldisposal" runat="server" CssClass="card-value"></asp:Label></a>
+                            <asp:Label ID="lblFinaldisposal" runat="server" CssClass="card-value" Text="11"></asp:Label></a>
                     </div>
 
                 </div>
@@ -208,7 +208,7 @@
 
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/ApplicationDistConsolidateRpt.aspx">
-                            <asp:Label ID="lblprakreeyadheen" runat="server" CssClass="card-value"></asp:Label></a>
+                            <asp:Label ID="lblprakreeyadheen" runat="server" CssClass="card-value" Text="12"></asp:Label></a>
                     </div>
 
                 </div>
@@ -221,7 +221,7 @@
 
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/ApplicationDistConsolidateRpt.aspx">
-                            <asp:Label ID="lblmapikenirdharit" runat="server" CssClass="card-value"></asp:Label></a>
+                            <asp:Label ID="lblmapikenirdharit" runat="server" CssClass="card-value" Text="13"></asp:Label></a>
                     </div>
 
                 </div>
@@ -234,7 +234,7 @@
 
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/ApplicationDistConsolidateRpt.aspx">
-                            <asp:Label ID="lblashvikrit" runat="server" CssClass="card-value"></asp:Label></a>
+                            <asp:Label ID="lblashvikrit" runat="server" CssClass="card-value" Text="14"></asp:Label></a>
                     </div>
 
                 </div>
@@ -247,7 +247,7 @@
 
                     <div class="card-body">
                         <a href="LandDispute/Reports/Consolidate/ApplicationDistConsolidateRpt.aspx">
-                            <asp:Label ID="lblNaylayNilambit" runat="server" CssClass="card-value"></asp:Label></a>
+                            <asp:Label ID="lblNaylayNilambit" runat="server" CssClass="card-value" Text="15"></asp:Label></a>
                     </div>
 
                 </div>

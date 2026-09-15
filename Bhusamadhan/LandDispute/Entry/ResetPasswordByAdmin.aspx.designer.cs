@@ -7,227 +7,191 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bhusamadhan.LandDispute.Reports.Consolidate
+namespace Bhusamadhan.LandDispute.Entry
 {
 
 
-    public partial class ApplicationDistConsolidateDashboard
+    public partial class ResetPasswordByAdmin
     {
 
         /// <summary>
-        /// lblMsg control.
+        /// pnlMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
+        protected global::System.Web.UI.WebControls.Panel pnlMessage;
 
         /// <summary>
-        /// btnback control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnback;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
-        /// txtFromdate control.
+        /// txtSearchUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFromdate;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchUserID;
 
         /// <summary>
-        /// popCalendarFrom control.
+        /// btnSearchUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender popCalendarFrom;
+        protected global::System.Web.UI.WebControls.Button btnSearchUser;
 
         /// <summary>
-        /// RFVFromDate control.
+        /// rfvSearchUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVFromDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSearchUserID;
 
         /// <summary>
-        /// txTodate control.
+        /// pnlUserDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txTodate;
+        protected global::System.Web.UI.WebControls.Panel pnlUserDetails;
 
         /// <summary>
-        /// popCalendarTo control.
+        /// lblUserID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender popCalendarTo;
+        protected global::System.Web.UI.WebControls.Label lblUserID;
 
         /// <summary>
-        /// RFVToDate control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVToDate;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// btnSearch control.
+        /// lblUsername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Label lblUsername;
 
         /// <summary>
-        /// btn_Export control.
+        /// lblRole control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Export;
+        protected global::System.Web.UI.WebControls.Label lblRole;
 
         /// <summary>
-        /// pnlDist control.
+        /// lblMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlDist;
+        protected global::System.Web.UI.WebControls.Label lblMobile;
 
         /// <summary>
-        /// lblPrintDateforDistrict control.
+        /// lblAttemptCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrintDateforDistrict;
+        protected global::System.Web.UI.WebControls.Label lblAttemptCount;
 
         /// <summary>
-        /// grd_District control.
+        /// pnlPasswordReset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grd_District;
+        protected global::System.Web.UI.WebControls.Panel pnlPasswordReset;
 
         /// <summary>
-        /// pnlCircle control.
+        /// txtNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCircle;
+        protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
 
         /// <summary>
-        /// lblPrintDateforCircle control.
+        /// rfvNewPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrintDateforCircle;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNewPassword;
 
         /// <summary>
-        /// grdCircle control.
+        /// txtConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdCircle;
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
 
         /// <summary>
-        /// pnlthana control.
+        /// rfvConfirmPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlthana;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvConfirmPassword;
 
         /// <summary>
-        /// lblPrintDateforThana control.
+        /// cvPasswords control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrintDateforThana;
+        protected global::System.Web.UI.WebControls.CompareValidator cvPasswords;
 
         /// <summary>
-        /// grdThana control.
+        /// btnResetPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdThana;
+        protected global::System.Web.UI.WebControls.Button btnResetPassword;
 
         /// <summary>
-        /// Panel_Panchayats control.
+        /// btnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel_Panchayats;
-
-        /// <summary>
-        /// lblPrintDateforPanchayat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrintDateforPanchayat;
-
-        /// <summary>
-        /// grdPanchayats control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdPanchayats;
-
-        /// <summary>
-        /// Pnlsearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Pnlsearch;
-
-        /// <summary>
-        /// GridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Button btnCancel;
     }
 }

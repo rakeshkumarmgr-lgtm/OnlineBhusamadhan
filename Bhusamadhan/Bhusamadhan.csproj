@@ -4202,6 +4202,7 @@
     <Content Include="LandDispute\Entry\EntryPageCo.aspx" />
     <Content Include="LandDispute\Entry\Finalize.aspx" />
     <Content Include="LandDispute\Entry\MenuAccessControl.aspx" />
+    <Content Include="LandDispute\Entry\ResetPasswordByAdmin.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMettingCO.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx" />
@@ -6186,6 +6187,13 @@
     </Compile>
     <Compile Include="LandDispute\Entry\MenuAccessControl.aspx.designer.cs">
       <DependentUpon>MenuAccessControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Entry\ResetPasswordByAdmin.aspx.cs">
+      <DependentUpon>ResetPasswordByAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Entry\ResetPasswordByAdmin.aspx.designer.cs">
+      <DependentUpon>ResetPasswordByAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="LandDispute\Entry\SearchAppForMettingCO.aspx.cs">
       <DependentUpon>SearchAppForMettingCO.aspx</DependentUpon>
