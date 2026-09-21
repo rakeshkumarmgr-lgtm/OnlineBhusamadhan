@@ -249,8 +249,10 @@ namespace Bhusamadhan.LandDispute.Reports.Consolidate
                 else
                 {
                     ddlSubDivision.DataSource = null;
-
+                    ddlSubDivision.DataTextField = "Sd_Name_En";
+                    ddlSubDivision.DataValueField = "Sd_Code2";
                     ddlSubDivision.DataBind();
+                    ddlSubDivision.Items.Insert(0, new ListItem("All", "0"));
 
 
                 }
@@ -270,7 +272,8 @@ namespace Bhusamadhan.LandDispute.Reports.Consolidate
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
                 listSQLP.Add(new System.Data.SqlClient.SqlParameter("@QueryType", 4));
-                listSQLP.Add(new System.Data.SqlClient.SqlParameter("@subDivision", Convert.ToInt32(ddlSubDivision.SelectedValue.ToString())));
+                //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@subDivision", Convert.ToInt32(ddlSubDivision.SelectedValue.ToString())));
+                listSQLP.Add(new SqlParameter("@subDivision", string.IsNullOrWhiteSpace(ddlSubDivision.SelectedValue) ? "0" : ddlSubDivision.SelectedValue));
 
                 DataTable dtresult = objDBHelper.GetResults("SearchApplicationWise", listSQLP, true);
                 if (dtresult.Rows.Count > 0)
@@ -284,8 +287,10 @@ namespace Bhusamadhan.LandDispute.Reports.Consolidate
                 else
                 {
                     ddlBlock.DataSource = null;
-
+                    ddlBlock.DataTextField = "BlockName";
+                    ddlBlock.DataValueField = "BlockCode";
                     ddlBlock.DataBind();
+                    ddlBlock.Items.Insert(0, new ListItem("All", "0"));
 
                 }
 
@@ -304,9 +309,15 @@ namespace Bhusamadhan.LandDispute.Reports.Consolidate
             {
                 List<System.Data.SqlClient.SqlParameter> listSQLP = new List<System.Data.SqlClient.SqlParameter>();
                 listSQLP.Add(new System.Data.SqlClient.SqlParameter("@QueryType", 5));
-                listSQLP.Add(new System.Data.SqlClient.SqlParameter("@DISTRICTCODE", Convert.ToInt32(ddlDistrict.SelectedValue.ToString())));
-                listSQLP.Add(new System.Data.SqlClient.SqlParameter("@subDivision", Convert.ToInt32(ddlSubDivision.SelectedValue.ToString())));
-                listSQLP.Add(new System.Data.SqlClient.SqlParameter("@BlockCode", Convert.ToInt32(ddlBlock.SelectedValue.ToString())));
+                //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@DISTRICTCODE", Convert.ToInt32(ddlDistrict.SelectedValue.ToString())));
+                //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@subDivision", Convert.ToInt32(ddlSubDivision.SelectedValue.ToString())));
+                //listSQLP.Add(new System.Data.SqlClient.SqlParameter("@BlockCode", Convert.ToInt32(ddlBlock.SelectedValue.ToString())));
+
+                listSQLP.Add(new SqlParameter( "@DISTRICTCODE", string.IsNullOrWhiteSpace(ddlDistrict.SelectedValue) ? "0" : ddlDistrict.SelectedValue));
+
+                listSQLP.Add(new SqlParameter( "@subDivision", string.IsNullOrWhiteSpace(ddlSubDivision.SelectedValue) ? "0" : ddlSubDivision.SelectedValue));
+
+                listSQLP.Add(new SqlParameter("@BlockCode", string.IsNullOrWhiteSpace(ddlBlock.SelectedValue)? "0" : ddlBlock.SelectedValue));
 
                 DataTable dtresult = objDBHelper.GetResults("SearchApplicationWise", listSQLP, true);
                 if (dtresult.Rows.Count > 0)
@@ -320,8 +331,10 @@ namespace Bhusamadhan.LandDispute.Reports.Consolidate
                 else
                 {
                     ddlThana.DataSource = null;
-
+                    ddlThana.DataTextField = "";
+                    ddlThana.DataValueField = "";
                     ddlThana.DataBind();
+                    ddlThana.Items.Insert(0, new ListItem("All", "0"));
 
                 }
 
@@ -331,6 +344,34 @@ namespace Bhusamadhan.LandDispute.Reports.Consolidate
                 lblMsg.Text = ex.ToString();
             }
         }
+
+        protected void ddlCommissionary_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindDistrict();
+            bindSubDivision();
+            bindBlock();
+            bindthana();
+        }
+
+        protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindSubDivision();
+            bindBlock();
+            bindthana();
+        }
+
+        protected void ddlSubDivision_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindBlock();
+            bindthana();
+        }
+
+        protected void ddlBlock_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindthana();
+        }
+
+       
 
         protected void ddlSearchby_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -694,6 +735,8 @@ namespace Bhusamadhan.LandDispute.Reports.Consolidate
         {
             // Required for exporting GridView to Excel
         }
+
+        
     }
 
 }

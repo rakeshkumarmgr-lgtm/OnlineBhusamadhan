@@ -56,9 +56,6 @@ namespace Bhusamadhan.LandDispute.Entry
                 return;
             }
 
-            // Example:
-            // Only authorized roles should access this page.
-          
             if (roleid != 17)
             {
                 Response.Redirect("~/Login.aspx");

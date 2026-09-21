@@ -4191,6 +4191,7 @@
     <Content Include="images\UploadPhoto100-115.jpg" />
     <Content Include="images\User.png" />
     <Content Include="images\User41.jpg" />
+    <Content Include="LandDispute\Dashboard\Bhu-Dashboard-graph.aspx" />
     <Content Include="LandDispute\Entry\AddHoliday.aspx" />
     <Content Include="LandDispute\Entry\AddMenu.aspx" />
     <Content Include="LandDispute\Entry\AddMettingApplication.aspx" />
@@ -4204,17 +4205,19 @@
     <Content Include="LandDispute\Entry\MenuAccessControl.aspx" />
     <Content Include="LandDispute\Entry\ResetPasswordByAdmin.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMettingCO.aspx" />
+    <Content Include="LandDispute\Map\Map.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationConsolidateRpt.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateDashboard.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\ApplicationDistConsolidateRpt.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\DistrictSensitivityType.aspx" />
+    <Content Include="LandDispute\Reports\Consolidate\Information.aspx" />
     <Content Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx" />
+    <Content Include="LandDispute\Reports\Disputs_Details\DisputeConsolidateBlockRpt.aspx" />
     <Content Include="OldFiles\Entry_Page.aspx" />
     <Content Include="LandDispute\Entry\SearchAppForMetting.aspx" />
     <Content Include="LandDispute\Entry\Unfinalize.aspx" />
     <Content Include="OldFiles\Unfinalize_test.aspx" />
-    <Content Include="LandDispute\Entry\UserControls\UC_Step1.ascx" />
     <Content Include="OldFiles\UserEntry.aspx" />
     <Content Include="LandDispute\Reports\LoginDetailsRPT.aspx" />
     <Content Include="Login.aspx" />
@@ -6111,6 +6114,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LandDispute\Dashboard\Bhu-Dashboard-graph.aspx.cs">
+      <DependentUpon>Bhu-Dashboard-graph.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Dashboard\Bhu-Dashboard-graph.aspx.designer.cs">
+      <DependentUpon>Bhu-Dashboard-graph.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Entry\AddHoliday.aspx.cs">
       <DependentUpon>AddHoliday.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6202,6 +6212,13 @@
     <Compile Include="LandDispute\Entry\SearchAppForMettingCO.aspx.designer.cs">
       <DependentUpon>SearchAppForMettingCO.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LandDispute\Map\Map.aspx.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Map\Map.aspx.designer.cs">
+      <DependentUpon>Map.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Reports\Consolidate\ApplicationConsolidateBlockRpt.aspx.cs">
       <DependentUpon>ApplicationConsolidateBlockRpt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6237,12 +6254,26 @@
     <Compile Include="LandDispute\Reports\Consolidate\DistrictSensitivityType.aspx.designer.cs">
       <DependentUpon>DistrictSensitivityType.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\Information.aspx.cs">
+      <DependentUpon>Information.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Consolidate\Information.aspx.designer.cs">
+      <DependentUpon>Information.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx.cs">
       <DependentUpon>SearchApplicationwise.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LandDispute\Reports\Consolidate\SearchApplicationwise.aspx.designer.cs">
       <DependentUpon>SearchApplicationwise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Disputs_Details\DisputeConsolidateBlockRpt.aspx.cs">
+      <DependentUpon>DisputeConsolidateBlockRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandDispute\Reports\Disputs_Details\DisputeConsolidateBlockRpt.aspx.designer.cs">
+      <DependentUpon>DisputeConsolidateBlockRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="OldFiles\Entry_Page.aspx.cs">
       <DependentUpon>Entry_Page.aspx</DependentUpon>
@@ -6271,13 +6302,6 @@
     </Compile>
     <Compile Include="OldFiles\Unfinalize_test.aspx.designer.cs">
       <DependentUpon>Unfinalize_test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LandDispute\Entry\UserControls\UC_Step1.ascx.cs">
-      <DependentUpon>UC_Step1.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LandDispute\Entry\UserControls\UC_Step1.ascx.designer.cs">
-      <DependentUpon>UC_Step1.ascx</DependentUpon>
     </Compile>
     <Compile Include="OldFiles\UserEntry.aspx.cs">
       <DependentUpon>UserEntry.aspx</DependentUpon>
@@ -6739,6 +6763,13 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Bhusamadhan_UploadImageService_ImageWebService</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LandDispute\Reports\Court\" />
+    <Folder Include="LandDispute\Reports\Crime\" />
+    <Folder Include="LandDispute\Reports\Meeting\" />
+    <Folder Include="LandDispute\Reports\PratiVadiReport\" />
+    <Folder Include="LandDispute\Reports\VadiDeatils\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

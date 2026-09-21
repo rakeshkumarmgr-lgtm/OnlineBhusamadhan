@@ -45,7 +45,7 @@
 
                                 <label runat="server" id="divLabRange" class="font-weight-bold">Range </label>
 
-                                <asp:DropDownList ID="ddlRange" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlRange" runat="server" CssClass="form-control" ></asp:DropDownList>
 
                             </div>
 
@@ -53,7 +53,7 @@
 
                                 <label runat="server" id="divLabCommissionary" class="font-weight-bold">Commissionary </label>
 
-                                <asp:DropDownList ID="ddlCommissionary" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlCommissionary" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlCommissionary_SelectedIndexChanged"></asp:DropDownList>
 
                             </div>
 
@@ -61,7 +61,7 @@
 
                                 <label class="font-weight-bold">District</label>
 
-                                <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
 
                             </div>
 
@@ -70,7 +70,7 @@
 
                                 <label class="font-weight-bold">Sub-Division </label>
 
-                                <asp:DropDownList ID="ddlSubDivision" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlSubDivision" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlSubDivision_SelectedIndexChanged"></asp:DropDownList>
 
                             </div>
 
@@ -79,7 +79,7 @@
 
                                 <label class="font-weight-bold">Circle </label>
 
-                                <asp:DropDownList ID="ddlBlock" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlBlock" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlBlock_SelectedIndexChanged"></asp:DropDownList>
 
                             </div>
 
@@ -88,7 +88,7 @@
 
                                 <label class="font-weight-bold">Thana </label>
 
-                                <asp:DropDownList ID="ddlThana" runat="server" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlThana" runat="server" CssClass="form-control" ></asp:DropDownList>
 
                             </div>
 

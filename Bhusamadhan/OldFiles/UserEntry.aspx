@@ -155,7 +155,7 @@
         </div>
 
         <asp:Panel ID="pnlStep1" runat="server">
-            <uc:Step1 ID="Step1" runat="server" />
+          
         </asp:Panel>
 
         <asp:Panel ID="pnlStep2" runat="server">

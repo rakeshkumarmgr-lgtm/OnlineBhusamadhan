@@ -61,7 +61,7 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
         {
             using (SqlConnection con = new SqlConnection(conStr))
             {
-                using (SqlCommand cmd =  new SqlCommand(" UPDATE BS_Matter_Registration SET CurrentStep = @CurrentStep WHERE a_id = @a_id;", con))
+                using (SqlCommand cmd =  new SqlCommand(" UPDATE Matter_Registration SET CurrentStep = @CurrentStep WHERE a_id = @a_id;", con))
                 {
                     cmd.CommandType = CommandType.Text;
 

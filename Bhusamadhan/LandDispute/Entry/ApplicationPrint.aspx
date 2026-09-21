@@ -7,11 +7,7 @@
     <title>Application Print</title>
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        /* =========================================================
-       PRINT PAGE - BASE
-       Keep the same layout as ApplicationPreview.aspx
-       ========================================================= */
-
+      
         html,
         body {
             margin: 0;
@@ -188,12 +184,7 @@
             }
 
 
-        /* =========================================================
-       LONG TEXT
-       IMPORTANT:
-       Do NOT use fixed height in print.
-       ========================================================= */
-
+      
         .preview-grid-text {
             display: block;
             max-height: none;
@@ -251,10 +242,6 @@
 
 
 
-
-        /* =========================================================
-   PRINT - PRESERVE BOOTSTRAP COLUMN LAYOUT
-   ========================================================= */
 
         @media print {
 

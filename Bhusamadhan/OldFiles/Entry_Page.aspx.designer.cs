@@ -96,15 +96,6 @@ namespace Bhusamadhan.LandDispute.Entry
         protected global::System.Web.UI.WebControls.Panel pnlStep1;
 
         /// <summary>
-        /// Step1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Bhusamadhan.LandDispute.Entry.UserControls.UC_Step1 Step1;
-
-        /// <summary>
         /// pnlStep2 control.
         /// </summary>
         /// <remarks>

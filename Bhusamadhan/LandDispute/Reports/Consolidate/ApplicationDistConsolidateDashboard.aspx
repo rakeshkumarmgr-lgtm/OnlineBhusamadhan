@@ -21,6 +21,12 @@
                     </div>
                 </div>
 
+                <div class="row mb-3">
+                    <div class="col-12 text-center">
+                        <asp:Label ID="lbltext" runat="server" Visible="false" CssClass="text-dark" Style="text-align: center; font-weight: bold;"></asp:Label>
+                    </div>
+                </div>
+
                 <div class="row align-items-end mb-3">
 
 
@@ -526,17 +532,17 @@
                                 <FooterStyle BackColor="#1C6794" ForeColor="White" Font-Bold="True" />
 
                             </asp:GridView>
+
                         </asp:Panel>
 
                         <asp:Panel ID="Pnlsearch" runat="server" Style="overflow-x: auto; overflow-y: hidden;" Visible="false">
-                           
-                            <asp:GridView ID="GridView1"  runat="server" DataKeyNames="a_id"  AutoGenerateColumns="False" EnableTheming="False" Width="100%"
-                               
-                                GridLines="None" ShowFooter="True" EmptyDataText="No Record Found"  PagerStyle-CssClass="pgr" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound">
+
+                            <asp:GridView ID="GridView1" runat="server" DataKeyNames="a_id" AutoGenerateColumns="False" EnableTheming="False" Width="100%"
+                                GridLines="None" ShowFooter="True" EmptyDataText="No Record Found" PagerStyle-CssClass="pgr" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound">
 
                                 <Columns>
 
-                                  
+
                                     <asp:TemplateField HeaderText="Sl. No.">
 
                                         <ItemTemplate>
@@ -545,11 +551,11 @@
 
                                         <HeaderStyle Width="5%" />
 
-                                        <ItemStyle  Width="5%"  HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
-                                  
+
                                     <asp:TemplateField HeaderText="Application No.">
 
                                         <ItemTemplate>
@@ -558,11 +564,11 @@
 
                                         <HeaderStyle Width="6%" />
 
-                                        <ItemStyle  Width="6%"  HorizontalAlign="Left"  VerticalAlign="Top" />
+                                        <ItemStyle Width="6%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField   HeaderText="कमिश्नरी &lt;hr style='margin-bottom:0px;margin-top:0px;' /&gt; जिला &lt;hr style='margin-bottom:0px;margin-top:0px;' /&gt; सब डिवीज़न">
+                                    <asp:TemplateField HeaderText="कमिश्नरी &lt;hr style='margin-bottom:0px;margin-top:0px;' /&gt; जिला &lt;hr style='margin-bottom:0px;margin-top:0px;' /&gt; सब डिवीज़न">
 
                                         <ItemTemplate>
 
@@ -596,7 +602,7 @@
 
                                         <HeaderStyle Width="10%" />
 
-                                        <ItemStyle Width="10%"  HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="10%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -617,7 +623,7 @@
 
                                         <HeaderStyle Width="15%" />
 
-                                        <ItemStyle  Width="15%" HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="15%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -631,7 +637,7 @@
 
                                         <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle Width="5%"  HorizontalAlign="Left"  VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -643,9 +649,9 @@
                                             <%# Eval("TotalPratiVadi") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="5%"  Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle  Width="5%" HorizontalAlign="Left"  VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -662,7 +668,7 @@
 
                                         <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle  Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -672,7 +678,7 @@
                                             <%# Eval("BhumiVivad") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="5%" Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
                                         <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
@@ -684,9 +690,9 @@
                                             <%# Eval("Bhumi_savedansheelta") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle   Width="5%" Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle  Width="5%" HorizontalAlign="Left"   VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -696,9 +702,9 @@
                                             <%# Eval("Meeting_date") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="5%" Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle   Width="5%" HorizontalAlign="Left"  VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -708,7 +714,7 @@
                                             <%# Eval("Description") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="5%" Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
                                         <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
@@ -717,7 +723,7 @@
                                     <asp:TemplateField HeaderText="(Action)">
 
                                         <ItemTemplate>
-                                            <div id="div_Action"  runat="server"  class="divclss">  <%# Eval("disposal") %></div>
+                                            <div id="div_Action" runat="server" class="divclss"><%# Eval("disposal") %></div>
                                         </ItemTemplate>
 
                                         <HeaderStyle Width="5%" Wrap="False" />
@@ -732,9 +738,9 @@
                                             <%# Eval("bhumi_vivad_ka_adyatan_sthiti") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle Width="5%"  Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle  Width="5%"  HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -779,13 +785,13 @@
 
                                         <ItemTemplate>
 
-                                            <asp:ImageButton ID="Image6" runat="server"   Height="50px"   Width="50px"  ImageUrl="~/images/pdf.gif" path='<%# Eval("Vadi_sakshya_File") %>'  Style="cursor: pointer"  Visible='<%# CheckNull(Eval("Vadi_sakshya_File")) %>' />
+                                            <asp:ImageButton ID="Image6" runat="server" Height="50px" Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("Vadi_sakshya_File") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("Vadi_sakshya_File")) %>' />
 
                                         </ItemTemplate>
 
-                                        <HeaderStyle Width="5%"  Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle Width="5%"  HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -820,9 +826,9 @@
                                             <%# Eval("pratiVadi_Anya_sakshya") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="10%" Wrap="False" />
+                                        <HeaderStyle Width="10%" Wrap="False" />
 
-                                        <ItemStyle Width="10%"  HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="10%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -830,64 +836,36 @@
 
                                         <ItemTemplate>
 
-                                            <asp:ImageButton ID="Image1" runat="server"  Height="50px"  Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("Prativadi_sakshya_File") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("Prativadi_sakshya_File")) %>' />
+                                            <asp:ImageButton ID="Image1" runat="server" Height="50px" Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("Prativadi_sakshya_File") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("Prativadi_sakshya_File")) %>' />
 
                                         </ItemTemplate>
 
                                         <HeaderStyle Width="10%" Wrap="False" />
 
-                                        <ItemStyle Width="10%"  HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="10%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField  HeaderText="पुलिस पदाधिकारी द्वारा समर्पित &lt;/br&gt;जाँच प्रतिवेदन की संक्षिप्त विवरणी">
+                                    <asp:TemplateField HeaderText="पुलिस पदाधिकारी द्वारा समर्पित &lt;/br&gt;जाँच प्रतिवेदन की संक्षिप्त विवरणी">
 
                                         <ItemTemplate>
 
-                                            <div id="div_pulis_padadhikari_vivarani"  runat="server"  class="divclss" visible='<%# CheckNull(Eval("pulis_padadhikari_vivarani")) %>'>  <%# Eval("pulis_padadhikari_vivarani") %> </div>
+                                            <div id="div_pulis_padadhikari_vivarani" runat="server" class="divclss" visible='<%# CheckNull(Eval("pulis_padadhikari_vivarani")) %>'><%# Eval("pulis_padadhikari_vivarani") %> </div>
 
                                         </ItemTemplate>
 
-                                        <HeaderStyle Width="20%"  Wrap="False" />
+                                        <HeaderStyle Width="20%" Wrap="False" />
 
-                                        <ItemStyle  Width="20%"  HorizontalAlign="Left" VerticalAlign="Top" />
-
-                                    </asp:TemplateField>
-
-                                 
-                                    <asp:TemplateField HeaderText="दस्तावेज">
-
-                                        <ItemTemplate>
-
-                                            <asp:ImageButton ID="Image2" runat="server" Height="50px" Width="50px" ImageUrl="~/images/pdf.gif"  path='<%# Eval("pulis_padadhikar_Patr_file") %>'  Style="cursor: pointer"  Visible='<%# CheckNull(Eval("pulis_padadhikar_Patr_file")) %>' />
-
-                                        </ItemTemplate>
-
-                                        <HeaderStyle  Width="5%"  Wrap="False" />
-
-                                        <ItemStyle Width="5%"   HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="20%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField  HeaderText="हल्का कर्मचारी / अंचल निरीक्षक द्वारा समर्पित &lt;/br&gt;जाँच प्रतिवेदन की संक्षिप्त विवरणी">
-
-                                        <ItemTemplate>
-
-                                            <div id="div_HalkaKarmchari_vivran" runat="server" class="divclss" visible='<%# CheckNull(Eval("HalkaKarmchari_vivran")) %>'> <%# Eval("HalkaKarmchari_vivran") %> </div>
-
-                                        </ItemTemplate>
-
-                                        <HeaderStyle  Width="20%" Wrap="False" />
-
-                                        <ItemStyle Width="20%"    HorizontalAlign="Left"  VerticalAlign="Top" />
-
-                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="दस्तावेज">
 
                                         <ItemTemplate>
 
-                                            <asp:ImageButton ID="Image3" runat="server"  Height="50px" Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("HalkaKarmchari_Patr_file") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("HalkaKarmchari_Patr_file")) %>' />
+                                            <asp:ImageButton ID="Image2" runat="server" Height="50px" Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("pulis_padadhikar_Patr_file") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("pulis_padadhikar_Patr_file")) %>' />
 
                                         </ItemTemplate>
 
@@ -897,7 +875,35 @@
 
                                     </asp:TemplateField>
 
-                               
+                                    <asp:TemplateField HeaderText="हल्का कर्मचारी / अंचल निरीक्षक द्वारा समर्पित &lt;/br&gt;जाँच प्रतिवेदन की संक्षिप्त विवरणी">
+
+                                        <ItemTemplate>
+
+                                            <div id="div_HalkaKarmchari_vivran" runat="server" class="divclss" visible='<%# CheckNull(Eval("HalkaKarmchari_vivran")) %>'><%# Eval("HalkaKarmchari_vivran") %> </div>
+
+                                        </ItemTemplate>
+
+                                        <HeaderStyle Width="20%" Wrap="False" />
+
+                                        <ItemStyle Width="20%" HorizontalAlign="Left" VerticalAlign="Top" />
+
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="दस्तावेज">
+
+                                        <ItemTemplate>
+
+                                            <asp:ImageButton ID="Image3" runat="server" Height="50px" Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("HalkaKarmchari_Patr_file") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("HalkaKarmchari_Patr_file")) %>' />
+
+                                        </ItemTemplate>
+
+                                        <HeaderStyle Width="5%" Wrap="False" />
+
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
+
+                                    </asp:TemplateField>
+
+
                                     <asp:TemplateField HeaderText="विवादित भू-खंड मापी का विवरणी">
 
                                         <ItemTemplate>
@@ -910,7 +916,7 @@
 
                                             <hr style="margin: 0; border-color: #c1c1c1;" />
 
-                                            <asp:Label ID="Label1" runat="server" Text="माप के लिए निर्धारित तिथि : "  Visible='<%# CheckNull(Eval("maapee_ke_lie_nirdhaarit_tithi")) %>' />
+                                            <asp:Label ID="Label1" runat="server" Text="माप के लिए निर्धारित तिथि : " Visible='<%# CheckNull(Eval("maapee_ke_lie_nirdhaarit_tithi")) %>' />
 
                                             <%# Eval("maapee_ke_lie_nirdhaarit_tithi", "{0:dd/MM/yyyy}") %>
 
@@ -918,11 +924,11 @@
 
                                             <asp:Label ID="Label2" runat="server" Text="मापी नहीं होने का कारण :" Visible='<%# CheckNull(Eval("vivaadit_bhukhand_Mapi_Reason")) %>' />
 
-                                            <div id="div_vivaadit_bhukhand_Mapi_Reason"  runat="server" class="divclss"  visible='<%# CheckNull(Eval("vivaadit_bhukhand_Mapi_Reason")) %>'> <%# Eval("vivaadit_bhukhand_Mapi_Reason") %> </div>
+                                            <div id="div_vivaadit_bhukhand_Mapi_Reason" runat="server" class="divclss" visible='<%# CheckNull(Eval("vivaadit_bhukhand_Mapi_Reason")) %>'><%# Eval("vivaadit_bhukhand_Mapi_Reason") %> </div>
 
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="5%"  Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
                                         <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
@@ -932,13 +938,13 @@
 
                                         <ItemTemplate>
 
-                                            <asp:ImageButton ID="Image4" runat="server"  Height="50px"  Width="50px"    ImageUrl="~/images/pdf.gif"   path='<%# Eval("vivaadit_bhukhand_Mapi_File") %>' Style="cursor: pointer"  Visible='<%# CheckNull(Eval("vivaadit_bhukhand_Mapi_File")) %>' />
+                                            <asp:ImageButton ID="Image4" runat="server" Height="50px" Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("vivaadit_bhukhand_Mapi_File") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("vivaadit_bhukhand_Mapi_File")) %>' />
 
                                         </ItemTemplate>
 
-                                        <HeaderStyle Width="5%"    Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle  Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -948,7 +954,7 @@
                                             <%# Eval("bhumi_vivad_Vivran_Available") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="5%"  Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
                                         <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
@@ -960,9 +966,9 @@
                                             <%# Eval("dispute_in_court_available") %>
                                         </ItemTemplate>
 
-                                        <HeaderStyle Width="5%"  Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle  Width="5%"   HorizontalAlign="Left"  VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -970,13 +976,13 @@
 
                                         <ItemTemplate>
 
-                                            <asp:ImageButton ID="Image5" runat="server" Height="50px"  Width="50px" ImageUrl="~/images/pdf.gif"  path='<%# Eval("ApplicationFile") %>' Style="cursor: pointer"  Visible='<%# CheckNull(Eval("ApplicationFile")) %>' />
+                                            <asp:ImageButton ID="Image5" runat="server" Height="50px" Width="50px" ImageUrl="~/images/pdf.gif" path='<%# Eval("ApplicationFile") %>' Style="cursor: pointer" Visible='<%# CheckNull(Eval("ApplicationFile")) %>' />
 
                                         </ItemTemplate>
 
-                                        <HeaderStyle  Width="5%" Wrap="False" />
+                                        <HeaderStyle Width="5%" Wrap="False" />
 
-                                        <ItemStyle Width="5%"  HorizontalAlign="Left"  VerticalAlign="Top" />
+                                        <ItemStyle Width="5%" HorizontalAlign="Left" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
@@ -984,7 +990,7 @@
 
                                         <ItemTemplate>
 
-                                            <asp:LinkButton ID="lnkView"   runat="server"  CommandArgument='<%# Eval("a_id") %>'  CssClass="btn btn-success"  Font-Underline="false"  ForeColor="Blue"  OnClick="lnkView_Click"  Text="View" ToolTip="Click Edit">  </asp:LinkButton>
+                                            <asp:LinkButton ID="lnkView" runat="server" CommandArgument='<%# Eval("a_id") %>' CssClass="btn btn-success" Font-Underline="false" ForeColor="Blue" OnClick="lnkView_Click" Text="View" ToolTip="Click Edit">  </asp:LinkButton>
 
                                         </ItemTemplate>
 
@@ -992,22 +998,22 @@
 
                                 </Columns>
 
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775"  CssClass="alt" />
+                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" CssClass="alt" />
 
-                                <HeaderStyle BackColor="Beige" ForeColor="#333333"  Font-Bold="True" />
+                                <HeaderStyle BackColor="Beige" ForeColor="#333333" Font-Bold="True" />
 
-                                <RowStyle  BackColor="#F7F6F3" ForeColor="#333333" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
 
                                 <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
 
-                                <PagerStyle CssClass="pgr" BackColor="#284775" ForeColor="White"  HorizontalAlign="Center" />
+                                <PagerStyle CssClass="pgr" BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
 
                             </asp:GridView>
-                         
+
 
                         </asp:Panel>
 
-                  
+
                     </div>
                 </div>
 

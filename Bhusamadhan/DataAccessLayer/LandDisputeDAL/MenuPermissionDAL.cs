@@ -286,5 +286,78 @@ namespace Bhusamadhan.DataAccessLayer.LandDisputeDAL
                 throw;
             }
         }
+
+        public DataTable GetUsersByRole(string role, string userId = "")
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string sql = @"SELECT userid, username, Name, Mobile, UserRole, Attempt_Count,PwdResetDate  FROM UserLogin  WHERE 1 = 1";
+
+                    if (!string.IsNullOrEmpty(role))
+                    {
+                        sql += " AND UserRole = @UserRole";
+                    }
+
+                    if (!string.IsNullOrEmpty(userId))
+                    {
+                        sql += " AND userid LIKE @UserID";
+                    }
+
+                    sql += " ORDER BY Name";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        if (!string.IsNullOrEmpty(role))
+                        {
+                            cmd.Parameters.AddWithValue("@UserRole", role);
+                        }
+
+                        if (!string.IsNullOrEmpty(userId))
+                        {
+                            cmd.Parameters.AddWithValue("@UserID", "%" + userId.Trim() + "%");
+                        }
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                        }
+                    }
+                }
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int UpdatePassword(string userId, string hashedPassword)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(conStr))
+                {
+                    string sql = @"UPDATE UserLogin  SET Password_BCrypt = @Password_BCrypt,   Attempt_Count = 0 ,PwdResetDate=getdate()  WHERE userid = @UserID";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Password_BCrypt", hashedPassword);
+                        cmd.Parameters.AddWithValue("@UserID", userId);
+                        con.Open();
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }
